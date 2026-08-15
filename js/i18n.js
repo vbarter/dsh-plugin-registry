@@ -615,7 +615,11 @@
   function apply(root) {
     const scope = root || document;
     scope.querySelectorAll("[data-i18n]").forEach(function (el) {
-      setText(el, t(el.getAttribute("data-i18n")));
+      const key = el.getAttribute("data-i18n");
+      const value = t(key);
+      const existing = (el.textContent || "").trim();
+      if (value === key && existing && existing !== key) return;
+      setText(el, value);
     });
     scope.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
       el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder")));
