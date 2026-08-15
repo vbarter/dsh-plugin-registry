@@ -704,6 +704,20 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
 .policy-aside > a:not(.btn):hover, .policy-aside > a.active { color: var(--blue); }
 .policy-aside .btn { margin-top: 16px; }
 
+/* —— index FAQ —— */
+.faq { margin-top: 8px; }
+.faq-list { max-width: 72ch; }
+.faq-list > div {
+  padding: 16px 0 18px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.faq-list dt {
+  font: 500 15px/1.4 var(--font-ui);
+  color: var(--fg);
+  margin-bottom: 6px;
+}
+.faq-list dd { font-size: 13px; color: var(--fg-2); line-height: 1.65; }
+
 /* —— footer / toast —— */
 .footer { border-top: 1px solid var(--line-soft); margin-top: 110px; padding: 32px 0 48px; }
 .footer-in { display: flex; align-items: center; gap: 22px; font: 13px var(--font-ui); color: var(--muted); flex-wrap: wrap; }

@@ -3,8 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DeepSeek Harness Plugin Registry</title>
-<meta name="description" data-i18n-content="meta.index" content="搜索、筛选并比较 DeepSeek Harness 社区插件，查看数据来源、Manifest 格式状态、GitHub 数据和安装方式。">
+<title>DeepSeek Harness 插件目录 · dsplugin.app</title>
+<meta name="description" data-i18n-content="meta.index" content="在 dsplugin.app 浏览 DeepSeek Harness（dsh）社区插件目录：按来源与 Manifest 状态筛选，查看 GitHub 数据和安装命令。">
+<link rel="canonical" href="https://dsplugin.app/">
+<link rel="alternate" hreflang="zh-CN" href="https://dsplugin.app/?lang=zh">
+<link rel="alternate" hreflang="en" href="https://dsplugin.app/?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://dsplugin.app/">
+<meta property="og:title" content="DeepSeek Harness 插件目录 · dsplugin.app" data-i18n-content="title.index">
+<meta property="og:description" content="在 dsplugin.app 浏览 DeepSeek Harness（dsh）社区插件目录：按来源与 Manifest 状态筛选，查看 GitHub 数据和安装命令。" data-i18n-content="meta.index">
+<meta property="og:url" content="https://dsplugin.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="dsplugin.app">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dsplugin.app/og.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DeepSeek Harness 插件目录 · dsplugin.app" data-i18n-content="title.index">
+<meta name="twitter:description" content="在 dsplugin.app 浏览 DeepSeek Harness（dsh）社区插件目录：按来源与 Manifest 状态筛选，查看 GitHub 数据和安装命令。" data-i18n-content="meta.index">
+<meta name="theme-color" content="#181411">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script type="application/ld+json" id="seo-jsonld"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
@@ -121,6 +138,30 @@
     <div class="plist" id="list"></div>
     <div class="load-more-wrap" id="load-more-wrap" hidden><button class="btn" id="load-more" type="button" data-i18n="index.loadMore">加载更多</button></div>
   </section>
+
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="section-label">
+      <h2 id="faq-title" data-i18n="faq.title">常见问题</h2>
+    </div>
+    <dl class="faq-list">
+      <div>
+        <dt data-i18n="faq.q1">这是什么注册表？</dt>
+        <dd data-i18n="faq.a1">dsplugin.app 是 DeepSeek Harness（dsh）社区插件目录，收录公开 GitHub 仓库，供浏览、筛选和复制安装命令。本站由社区维护，不是 DeepSeek 官方站点。</dd>
+      </div>
+      <div>
+        <dt data-i18n="faq.q2">dsh.bundle 是什么？</dt>
+        <dd data-i18n="faq.a2">dsh.bundle 是插件仓库根目录 package.json 里的声明，指向一份相对路径的 patch 文件。Manifest 格式检查通过后，本站才会给出 dsh plugin --profile web add github:owner/repo 安装命令。</dd>
+      </div>
+      <div>
+        <dt data-i18n="faq.q3">如何发布插件？</dt>
+        <dd data-i18n="faq.a3">在发布页预检公开 GitHub 仓库，再通过 Issue / PR 提交到 vbarter/dsh-plugin-registry。维护者合并后，dsplugin.app 上的目录才会更新。</dd>
+      </div>
+      <div>
+        <dt data-i18n="faq.q4">「未检查」和「格式检查」是什么意思？</dt>
+        <dd data-i18n="faq.a4">「格式检查通过」表示本站核对过 package.json 里的 dsh.bundle 形态。「未检查」表示条目来自社区目录，本站尚未核对其 Manifest。两者都不是安全审计，也不等于已经做过安装测试。</dd>
+      </div>
+    </dl>
+  </section>
 </main>
 
 <footer class="footer">
@@ -137,5 +178,6 @@
 <script src="js/data.js"></script>
 <script src="js/common.js"></script>
 <script src="js/list.js"></script>
+<script src="js/seo.js"></script>
 </body>
 </html>

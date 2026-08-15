@@ -1,5 +1,6 @@
 {
   "repo": "vbarter/dsh-plugin-registry",
   "topic": "dsh-plugin",
-  "discoverEvery": "2h"
+  "discoverEvery": "2h",
+  "siteUrl": "https://dsplugin.app"
 }
