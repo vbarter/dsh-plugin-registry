@@ -31944,8 +31944,8 @@
       "owner": "43456-awa",
       "url": "https://github.com/43456-awa/dsh-notepad",
       "description": {
-        "zh": "DSH Web GUI ???????:??/?????????????????Agent ????",
-        "en": "DSH Web GUI ???????:??/?????????????????Agent ????"
+        "zh": "DSH Web GUI 右侧常驻记事本：钉在页面最右边的便签面板，自动保存到 ~/.dsh/notepad/notes.md，Agent 可通过 notepad_read/notepad_write 读写。",
+        "en": "DSH Web GUI 右侧常驻记事本：钉在页面最右边的便签面板，自动保存到 ~/.dsh/notepad/notes.md，Agent 可通过 notepad_read/notepad_write 读写。"
       },
       "category": "tools",
       "stars": 0,
@@ -53382,8 +53382,8 @@
       "owner": "Mystery-God",
       "url": "https://github.com/Mystery-God/dsh-balance",
       "description": {
-        "zh": "濡€崇€风拹锔藉煕娴ｆ瑩顤傞幃顒佽癁缁?for the dsh web GUI: floating model-account balance monitor with a Plugins-settings master switch. Supports DeepSeek / SiliconFlow / Moonshot / OpenRouter balance endpoints. Zero runtime dependencies.",
-        "en": "濡€崇€风拹锔藉煕娴ｆ瑩顤傞幃顒佽癁缁?for the dsh web GUI: floating model-account balance monitor with a Plugins-settings master switch. Supports DeepSeek / SiliconFlow / Moonshot / OpenRouter balance endpoints. Zero runtime dependencies."
+        "zh": "模型账户余额悬浮窗插件 for DeepSeek Harness Web GUI — floating model-account balance monitor with a settings master switch",
+        "en": "模型账户余额悬浮窗插件 for DeepSeek Harness Web GUI — floating model-account balance monitor with a settings master switch"
       },
       "category": "model",
       "stars": 1,
@@ -69448,8 +69448,8 @@
       "owner": "lbl61",
       "url": "https://github.com/lbl61/dsh-drop-in",
       "description": {
-        "zh": "鎷栧叆鏂囦欢锛氳緭鍏ユ涓婃柟鏂囦欢鏍?+ 闅忔秷鎭彂閫侊紙鍚粷瀵硅矾寰勶級+ 姘旀场鏂囦欢鍗＄墖銆侱rag files into the DeepSeek Harness web GUI and send them with your message (absolute paths included).",
-        "en": "鎷栧叆鏂囦欢锛氳緭鍏ユ涓婃柟鏂囦欢鏍?+ 闅忔秷鎭彂閫侊紙鍚粷瀵硅矾寰勶級+ 姘旀场鏂囦欢鍗＄墖銆侱rag files into the DeepSeek Harness web GUI and send them with your message (absolute paths included)."
+        "zh": "Drag files into the DeepSeek Harness web GUI: chip bar, send-with-message (absolute paths), bubble file cards. Bundle-form dsh plugin.",
+        "en": "Drag files into the DeepSeek Harness web GUI: chip bar, send-with-message (absolute paths), bubble file cards. Bundle-form dsh plugin."
       },
       "category": "memory",
       "stars": 0,
