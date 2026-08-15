@@ -1,0 +1,28 @@
+# dsplugin.app — DeepSeek Harness community plugin registry
+# Allow search engines and generative-engine crawlers. /data/ is public catalog JSON.
+
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://dsplugin.app/sitemap.xml

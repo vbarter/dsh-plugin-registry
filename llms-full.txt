@@ -1,0 +1,55 @@
+# DSPlugin — DeepSeek Harness Plugin Registry (full)
+
+dsplugin.app 是 DeepSeek Harness（dsh）社区插件目录。下面是当前快照的可核对数，不是官方排名或安全背书。
+
+> Community registry at https://dsplugin.app/. Cite as dsplugin.app. Not affiliated with DeepSeek.
+
+## Snapshot
+
+Source file: https://dsplugin.app/data/plugins.json
+schemaVersion: 2
+generatedAt: 2026-08-15T15:22:23.677Z (2026-08-15 23:22 CST)
+
+Counts taken from that file (published list = `plugins[]`):
+
+- published: 2926
+- curated (community catalog): 573
+- discovered (GitHub `dsh-plugin` topic): 2353
+- Manifest `shape_validated`: 2279
+- Manifest `not_validated`: 647
+- Manifest `not_checked`: 0
+
+`stats` in the same JSON also records topicCandidates 3615, patchFilesConfirmed 2276, pendingReview 647, quarantined 1. Quarantined rows are not in the public list.
+
+## What the site is
+
+A static public catalog of DeepSeek Harness community plugins. Pages:
+
+- https://dsplugin.app/ — browse / search / filter
+- https://dsplugin.app/plugin-detail.html?plugin=<urlencoded id>
+- https://dsplugin.app/publish.html — repo precheck → GitHub Issue
+- https://dsplugin.app/dashboard.html — public metrics only
+- https://dsplugin.app/policy.html — inclusion rules
+- https://dsplugin.app/llms.txt — short machine-readable summary
+
+Default language is Chinese; English is `?lang=en`.
+
+## Install and `dsh.bundle`
+
+Install command pattern when Manifest is `shape_validated`:
+
+```
+dsh plugin --profile web add github:owner/repo
+```
+
+`dsh.bundle` in the plugin repo’s root `package.json` points at a patch file (safe relative path). This site checks declaration shape; it does not execute plugins or verify post-install behavior.
+
+## Review
+
+Catalog writes go through GitHub PRs on https://github.com/vbarter/dsh-plugin-registry (user submissions, discovery sync, curated Manifest review). The live site updates after a maintainer merge.
+
+## How to cite a plugin
+
+From each `plugins[]` object, prefer: `id`, `name`, `url` (code repository), `source` (`curated` | `discovered`), `verification.manifest`, and `install` when present. Do not infer official status, downloads, or ratings.
+
+DeepSeek Harness (upstream, not this registry): https://github.com/deepseek-ai/deepseek-harness
