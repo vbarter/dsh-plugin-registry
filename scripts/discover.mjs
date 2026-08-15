@@ -6,6 +6,7 @@
  *   node scripts/discover.mjs
  *   node scripts/discover.mjs --repo owner/repo [--source curated|discovered]
  *   node scripts/discover.mjs --ingest
+ *   node scripts/discover.mjs --review-curated
  */
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
@@ -44,12 +45,13 @@ const TOPIC_CAT = [
 ];
 
 function args() {
-  const out = { repo: "", source: "", ingest: false };
+  const out = { repo: "", source: "", ingest: false, reviewCurated: false };
   const argv = process.argv.slice(2);
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === "--repo") out.repo = argv[++i] || "";
     else if (argv[i] === "--source") out.source = argv[++i] || "";
     else if (argv[i] === "--ingest") out.ingest = true;
+    else if (argv[i] === "--review-curated") out.reviewCurated = true;
   }
   return out;
 }
@@ -462,7 +464,7 @@ function mergeLive(existing, live, source) {
         keep.trustLevel = "curated";
       }
     } else if (source === "curated" && p.source === "curated") {
-      if (live.verification && live.verification.manifest === "shape_validated") {
+      if (live.verification) {
         keep.verification = live.verification;
         if (live.install) keep.install = live.install;
       }
@@ -727,12 +729,94 @@ async function ingestFromIssue() {
   return result;
 }
 
+function parsePluginRepo(plugin) {
+  const idMatch = String(plugin.id || "").match(/^([^/#]+)\/([^/#]+)/);
+  if (idMatch) return { owner: idMatch[1], repo: idMatch[2] };
+  return extractRepo(plugin.url);
+}
+
+async function reviewCurated() {
+  const catalog = await readJson(PLUGINS_PATH);
+  const plugins = catalog.plugins || [];
+  const targets = plugins.filter((p) => {
+    if (p.source !== "curated") return false;
+    const manifest = p.verification && p.verification.manifest;
+    return !manifest || manifest === "not_checked";
+  });
+
+  let checked = 0;
+  let validated = 0;
+  let missing = 0;
+  let errors = 0;
+  let unchanged = plugins.filter((p) => p.source === "curated").length - targets.length;
+
+  await mapPool(targets, CONCURRENCY, async (plugin) => {
+    checked += 1;
+    const parsed = parsePluginRepo(plugin);
+    if (!parsed) {
+      plugin.verification = { ...(plugin.verification || {}), manifest: "not_validated" };
+      missing += 1;
+      return;
+    }
+    try {
+      const meta = await fetchRepo(parsed.owner, parsed.repo);
+      if (!meta || meta.missing) {
+        plugin.verification = { ...(plugin.verification || {}), manifest: "not_validated" };
+        missing += 1;
+        return;
+      }
+      const live = await classifyRepo(meta, "curated");
+      if (!live) {
+        plugin.verification = { ...(plugin.verification || {}), manifest: "not_validated" };
+        missing += 1;
+        return;
+      }
+      plugin.verification = live.verification;
+      if (live.install) plugin.install = live.install;
+      plugin.stars = live.stars;
+      plugin.forks = live.forks;
+      plugin.pushedAt = live.pushedAt;
+      if (live.icon) plugin.icon = live.icon;
+      if (live.language) plugin.language = live.language;
+      if (live.topics && live.topics.length) plugin.topics = live.topics;
+      plugin.source = "curated";
+      plugin.trustLevel = "curated";
+      if (live.verification && live.verification.manifest === "shape_validated") validated += 1;
+      else missing += 1;
+    } catch (err) {
+      errors += 1;
+      console.warn("review-curated error", plugin.id || plugin.url, err.message || err);
+    }
+  });
+
+  recomputeStats(catalog, catalog.stats && catalog.stats.topicCandidates, "review_curated");
+  await writeCatalog(catalog);
+  console.log(
+    "review-curated checked",
+    checked,
+    "validated",
+    validated,
+    "missing/not_validated",
+    missing,
+    "errors",
+    errors,
+    "unchanged",
+    unchanged
+  );
+  return { wrote: true, checked, validated, missing, errors, unchanged };
+}
+
 async function main() {
   const a = args();
   if (a.ingest) {
     const r = await ingestFromIssue();
     console.log(JSON.stringify(r, null, 2));
     if (!r.ok && r.action === "error" && !r.message.includes("No GitHub")) process.exitCode = 1;
+    return;
+  }
+  if (a.reviewCurated) {
+    const r = await reviewCurated();
+    console.log(JSON.stringify(r, null, 2));
     return;
   }
   if (a.repo) {

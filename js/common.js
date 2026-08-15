@@ -109,6 +109,7 @@
     document.querySelectorAll("[data-registry-href]").forEach(function (el) {
       const kind = el.getAttribute("data-registry-href");
       if (kind === "issues") el.href = "https://github.com/" + repo + "/issues";
+      if (kind === "pulls") el.href = "https://github.com/" + repo + "/pulls";
       if (kind === "issue-new") {
         el.href = "https://github.com/" + repo + "/issues/new?template=plugin_submission.yml";
       }
