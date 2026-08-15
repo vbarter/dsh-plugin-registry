@@ -207,6 +207,32 @@ function orderPlugin(p) {
   return out;
 }
 
+
+function looksGarbled(s) {
+  if (!s || typeof s !== "string") return false;
+  if (/[\uE000-\uF8FF]/.test(s)) return true;
+  const q = (s.match(/\?/g) || []).length;
+  const compact = s.replace(/\s/g, "");
+  if (q >= 6 && compact && q * 2 >= compact.length) return true;
+  if (/鎷栧|鏂囦欢|锛氳|鍏ユ|閫侊|顤傞|癁缁|銆侱/.test(s)) return true;
+  return false;
+}
+
+function pickDescription(pkgDesc, repoDesc) {
+  const a = String(pkgDesc || "").trim();
+  const b = String(repoDesc || "").trim();
+  if (a && !looksGarbled(a)) return a;
+  if (b && !looksGarbled(b)) return b;
+  return a || b;
+}
+
+function descTextOf(p) {
+  const d = p && p.description;
+  if (!d) return "";
+  if (typeof d === "string") return d;
+  return d.zh || d.en || "";
+}
+
 function slugOf(owner, repo) {
   return owner + "/" + repo;
 }
@@ -290,7 +316,7 @@ async function getPackageJson(owner, repo, branch) {
     if (res.ok) {
       const data = await res.json();
       if (data && data.content) {
-        const raw = Buffer.from(data.content, "base64").toString("utf8");
+        const raw = Buffer.from(data.content, "base64").toString("utf8").replace(/^\uFEFF/, "");
         return JSON.parse(raw);
       }
     }
@@ -357,7 +383,7 @@ async function classifyRepo(repoMeta, source) {
     }
   }
 
-  const descText = (pkg && pkg.description) || repoMeta.description || "";
+  const descText = pickDescription(pkg && pkg.description, repoMeta.description);
   const src = source || "discovered";
   return {
     id: slugOf(owner, name),
@@ -454,6 +480,11 @@ function mergeLive(existing, live, source) {
     keep.pushedAt = live.pushedAt;
     if (live.icon) keep.icon = live.icon;
     if (live.language && !keep.language) keep.language = live.language;
+    const oldDesc = descTextOf(keep);
+    const newDesc = descTextOf(live);
+    if (newDesc && (!oldDesc || looksGarbled(oldDesc)) && !looksGarbled(newDesc)) {
+      keep.description = live.description;
+    }
     if (live.topics && live.topics.length) keep.topics = live.topics;
     if (p.source === "discovered") {
       keep.verification = live.verification;
