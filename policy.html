@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>收录规范 — DeepSeek Harness Plugin Registry</title>
+<meta name="description" data-i18n-content="meta.policy" content="DeepSeek Harness Plugin Registry 本站执行的插件自动发现、Manifest 校验、状态与移除规范。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="policy">
+<a class="skip-link" href="#main-content" data-i18n="skip">跳到主要内容</a>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="index.html">
+      <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="34" height="34" role="img" aria-labelledby="logo-title logo-desc">
+        <title id="logo-title">DeepSeek Harness Plugin Registry</title>
+        <desc id="logo-desc">A branching harness circuit inside a rounded square.</desc>
+        <rect width="48" height="48" rx="13" fill="#181411"/>
+        <path d="M13.5 13.5v21M13.5 17.5h10.25c3.3 0 5.25-1.95 5.25-5.25M13.5 24H29M13.5 30.5h10.25c3.3 0 5.25 1.95 5.25 5.25" fill="none" stroke="#F5F2EF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="29" cy="11.5" r="3.5" fill="#60A5FA"/>
+        <circle cx="31.5" cy="24" r="3.5" fill="#F5F2EF"/>
+        <circle cx="29" cy="36.5" r="3.5" fill="#60A5FA"/>
+      </svg>
+      <span class="brand-word"><strong>DeepSeek Harness</strong><em>Community Registry</em></span>
+    </a>
+    <nav class="nav" aria-label="主要导航" data-i18n-aria="nav.aria">
+      <a href="index.html" class="on" aria-current="page" data-i18n="nav.browse">浏览插件</a>
+      <a href="publish.html" data-i18n="nav.publish">发布</a>
+      <a href="dashboard.html" data-i18n="nav.stats">统计</a>
+    </nav>
+    <div class="topbar-r">
+      <div class="lang-toggle" role="group" aria-label="语言" data-i18n-aria="lang.aria">
+        <button type="button" data-lang-set="zh" aria-pressed="true">中文</button>
+        <button type="button" data-lang-set="en" aria-pressed="false">EN</button>
+      </div>
+      <span class="cli-tag" data-i18n="tag.policy">REGISTRY POLICY</span>
+    </div>
+  </div>
+</header>
+<main class="wrap policy-page" id="main-content">
+  <section class="page-head">
+    <p class="eyebrow rise" data-i18n="policy.eyebrow">收录 · 本站规则</p>
+    <h1 class="page-title rise rise-1" data-i18n="policy.heroTitle">怎样进入可安装列表。</h1>
+    <p class="page-sub rise rise-2" data-i18n="policy.heroSub">下面写的是本站自己执行的发现、核对和治理规则。规范全文都在这一页，入口也全部留在站内。</p>
+  </section>
+
+  <div class="policy-layout rise rise-3">
+    <div class="policy-stack">
+    <article class="policy-content" data-lang-block="zh">
+      <section class="policy-section" id="requirements">
+        <span class="policy-index" aria-hidden="true">01</span>
+        <div>
+          <h2>自动收录条件</h2>
+          <p class="policy-lead">要进入「可安装」列表，仓库需要同时满足下列要求。若还没有有效的 dsh.bundle，仓库仍会出现在浏览页，只是会带上对应状态。</p>
+          <ol class="policy-requirements">
+            <li><strong>公开且读得到</strong><span>同步任务必须能拉取仓库元数据，以及根目录的 package.json。</span></li>
+            <li><strong>带上发现标记</strong><span>仓库应声明 <code>dsh-plugin</code> Topic，供定时扫描找到。</span></li>
+            <li><strong>写明可安装 bundle</strong><span>根目录 package.json 里的 <code>dsh.bundle.patch</code> 必须是安全的相对路径。</span></li>
+            <li><strong>仓库状态正常</strong><span>已归档仓库和 Fork 不会被自动放进公开列表。</span></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="policy-section" id="manifest">
+        <span class="policy-index" aria-hidden="true">02</span>
+        <div>
+          <h2>Manifest 最低契约</h2>
+          <p class="policy-lead">patch 只能指向仓库内部的相对路径：不能写绝对路径，也不能靠 <code>..</code> 逃出仓库根目录。对应文件要和仓库一起维护。</p>
+          <pre class="codeblock"><code>{
+  <span class="k">"dsh"</span>: {
+    <span class="k">"bundle"</span>: {
+      <span class="k">"patch"</span>: <span class="k">"./cordis.patch.yml"</span>
+    }
+  }
+}</code></pre>
+        </div>
+      </section>
+
+      <section class="policy-section" id="statuses">
+        <span class="policy-index" aria-hidden="true">03</span>
+        <div>
+          <h2>本站显示的状态</h2>
+          <p class="policy-lead">这些标签只说明本站检查到了什么，并不等于对插件代码做了安全背书。</p>
+          <dl class="policy-statuses">
+            <div><dt><span class="pill pill-manifest">Manifest 格式检查通过</span></dt><dd>由自动发现进入，并且根目录 bundle 通过格式校验，可以出现在公开列表。</dd></div>
+            <div><dt><span class="pill pill-source">来源：社区目录</span></dt><dd>从社区维护的公开目录同步过来；本站没有核对其 Manifest、功能质量或安全性。</dd></div>
+            <div><dt><span class="pill pill-pending">缺少有效 dsh.bundle</span></dt><dd>仓库已被发现并出现在浏览列表，但不提供安装命令；补上有效声明后会自动转为可安装。</dd></div>
+            <div><dt><span class="pill pill-danger">已隔离</span></dt><dd>因误收录、重复、风险或治理决定被移出，不会出现在公开列表。</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="policy-section" id="boundary">
+        <span class="policy-index" aria-hidden="true">04</span>
+        <div>
+          <h2>验证边界</h2>
+          <p>本站只核对公开元数据和 manifest 结构。我们不会运行插件代码，不会验证安装后的实际行为，也不会持续盯着权限变化。</p>
+          <p>复制安装命令只表示命令进了剪贴板，并不表示插件已经装好。安装前请自行核对仓库内容、依赖和所需权限。</p>
+        </div>
+      </section>
+
+      <section class="policy-section" id="sync">
+        <span class="policy-index" aria-hidden="true">05</span>
+        <div>
+          <h2>同步与移除</h2>
+          <p>公开数据按计划定时刷新。新仓库不会马上出现，已有元数据也可能要等到下一轮同步才会更新。</p>
+          <p>不再满足条件、已归档或被隔离的插件会从公开列表拿掉。为防止异常同步覆盖正常数据，当数量骤降超过 40% 或发现过程不完整时，本站会暂停发布新快照。</p>
+          <p>用户提交走 GitHub Issue：Action 预检后开出审核 PR，维护者合并后站点数据才会更新。待审记录保存在 <code>data/submissions.json</code>，自动发现不会删除它们。</p>
+        </div>
+      </section>
+    </article>
+
+    <article class="policy-content" data-lang-block="en" hidden>
+      <section class="policy-section" id="requirements-en">
+        <span class="policy-index" aria-hidden="true">01</span>
+        <div>
+          <h2>Auto-inclusion requirements</h2>
+          <p class="policy-lead">To appear on the installable list, a repository must meet all of the following. Repositories without a valid <code>dsh.bundle</code> still show up on the browse page, with the matching status.</p>
+          <ol class="policy-requirements">
+            <li><strong>Public and readable</strong><span>The sync job must be able to fetch repository metadata and the root <code>package.json</code>.</span></li>
+            <li><strong>Discovery marker</strong><span>The repository should declare the <code>dsh-plugin</code> topic so the scheduled scan can find it.</span></li>
+            <li><strong>Installable bundle</strong><span><code>dsh.bundle.patch</code> in the root <code>package.json</code> must be a safe relative path.</span></li>
+            <li><strong>Healthy repository status</strong><span>Archived repositories and forks are not added to the public list automatically.</span></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="policy-section" id="manifest-en">
+        <span class="policy-index" aria-hidden="true">02</span>
+        <div>
+          <h2>Manifest minimum contract</h2>
+          <p class="policy-lead">The patch may only point at a relative path inside the repository: no absolute paths, and no <code>..</code> escapes from the repo root. Keep that file in the same repository.</p>
+          <pre class="codeblock"><code>{
+  <span class="k">"dsh"</span>: {
+    <span class="k">"bundle"</span>: {
+      <span class="k">"patch"</span>: <span class="k">"./cordis.patch.yml"</span>
+    }
+  }
+}</code></pre>
+        </div>
+      </section>
+
+      <section class="policy-section" id="statuses-en">
+        <span class="policy-index" aria-hidden="true">03</span>
+        <div>
+          <h2>Statuses shown on this site</h2>
+          <p class="policy-lead">These labels only describe what this site checked. They are not a security endorsement of the plugin code.</p>
+          <dl class="policy-statuses">
+            <div><dt><span class="pill pill-manifest">Manifest shape validated</span></dt><dd>Entered via auto-discovery, and the root bundle passed the format check, so it can appear on the public list.</dd></div>
+            <div><dt><span class="pill pill-source">Source: community catalog</span></dt><dd>Synced from a community-maintained public catalog; this site did not verify its Manifest, quality, or safety.</dd></div>
+            <div><dt><span class="pill pill-pending">Missing a valid dsh.bundle</span></dt><dd>The repository was discovered and appears in the browse list, but no install command is offered; add a valid declaration and it will become installable on the next sync.</dd></div>
+            <div><dt><span class="pill pill-danger">Quarantined</span></dt><dd>Removed because of a mistaken listing, duplicate, risk, or a governance decision; it will not appear on the public list.</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="policy-section" id="boundary-en">
+        <span class="policy-index" aria-hidden="true">04</span>
+        <div>
+          <h2>Verification boundary</h2>
+          <p>This site only checks public metadata and manifest shape. We do not run plugin code, verify post-install behavior, or continuously watch permission changes.</p>
+          <p>Copying an install command only means it reached the clipboard, not that the plugin is installed. Review the repository, its dependencies, and the permissions it needs before you install.</p>
+        </div>
+      </section>
+
+      <section class="policy-section" id="sync-en">
+        <span class="policy-index" aria-hidden="true">05</span>
+        <div>
+          <h2>Sync and removal</h2>
+          <p>Public data refreshes on a schedule. New repositories will not appear immediately, and existing metadata may wait until the next sync to update.</p>
+          <p>Plugins that no longer meet the rules, have been archived, or were quarantined are taken off the public list. To avoid a bad sync overwriting good data, this site will refuse to publish a new snapshot when the published count drops by more than 40% or discovery is incomplete.</p>
+          <p>User submissions go through a GitHub Issue: an Action prechecks the repo, opens a review PR, and the site updates only after a maintainer merges. Pending records live in <code>data/submissions.json</code>; auto-discovery never deletes them.</p>
+        </div>
+      </section>
+    </article>
+    </div>
+
+    <aside class="policy-aside" aria-label="页面目录">
+      <p class="policy-aside-label" data-i18n="policy.toc">ON THIS PAGE</p>
+      <a href="#requirements" data-i18n="policy.toc1">01 自动收录条件</a>
+      <a href="#manifest" data-i18n="policy.toc2">02 Manifest 契约</a>
+      <a href="#statuses" data-i18n="policy.toc3">03 状态说明</a>
+      <a href="#boundary" data-i18n="policy.toc4">04 验证边界</a>
+      <a href="#sync" data-i18n="policy.toc5">05 同步与移除</a>
+      <a class="btn btn-primary" href="publish.html" data-i18n="policy.goPublish">去发布</a>
+    </aside>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <a href="index.html" data-i18n="footer.backList">返回插件列表</a>
+    <a href="publish.html" data-i18n="footer.publish">发布你的插件</a>
+    <span class="fr" data-i18n="footer.policyNote">本站收录规则</span>
+  </div>
+</footer>
+<script src="js/i18n.js"></script>
+<script src="js/common.js"></script>
+</body>
+</html>

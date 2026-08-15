@@ -1,0 +1,106 @@
+name: Ingest plugin submission
+
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  ingest:
+    if: >
+      github.event.issue &&
+      (
+        github.event.action == 'opened' ||
+        (github.event.action == 'labeled' && github.event.label.name == 'submission')
+      )
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Precheck the submitted repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          INGEST_RESULT: /tmp/dsh-ingest-result.json
+        run: node scripts/discover.mjs --ingest
+
+      - name: Open review branch and PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          set -euo pipefail
+          RESULT=/tmp/dsh-ingest-result.json
+          ACTION="unknown"
+          REPO=""
+          MSG=""
+          if [ -f "$RESULT" ]; then
+            ACTION=$(node -e "const r=require('$RESULT'); process.stdout.write(r.action||'')")
+            REPO=$(node -e "const r=require('$RESULT'); process.stdout.write(r.repo||'')")
+            MSG=$(node -e "const r=require('$RESULT'); process.stdout.write(r.message||'')")
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          BRANCH="submission/${ISSUE_NUMBER}"
+          git checkout -B "$BRANCH"
+
+          git add data/plugins.json data/submissions.json
+          CHANGED=0
+          if git diff --cached --quiet; then
+            echo "No data changes to commit"
+          else
+            git commit -m "feat: ingest submission #${ISSUE_NUMBER}"
+            CHANGED=1
+          fi
+
+          COMMENT="## 预检结果 / Precheck result
+
+          - 仓库 / Repo: `${REPO:-unknown}`
+          - 动作 / Action: `${ACTION}`
+          - ${MSG}
+
+          "
+          if [ "$CHANGED" = "1" ]; then
+            git push -u origin "$BRANCH"
+            PR_URL=$(gh pr create --title "Review plugin submission #${ISSUE_NUMBER}" --body "$(cat <<EOF
+          Closes #${ISSUE_NUMBER}
+
+          Auto-opened from a plugin submission Issue.
+
+          - Repo: ${REPO}
+          - Action: ${ACTION}
+          - ${MSG}
+
+          维护者合并此 PR 后，站点 `data/plugins.json` / `data/submissions.json` 才会更新。
+          Merge this PR to publish the catalog change.
+          EOF
+          )" || true)
+            COMMENT="${COMMENT}
+          已开审核 PR / Review PR: ${PR_URL:-$BRANCH}
+
+          流程：用户提交 Issue → Action 预检 → 开 PR → 维护者合并 → 站点数据更新。
+          "
+          else
+            COMMENT="${COMMENT}
+          没有新的数据文件改动（可能已收录，或 Issue 里没有可用仓库地址）。
+          No new data-file changes (already listed, or no usable repo in the Issue).
+          "
+          fi
+
+          gh issue comment "$ISSUE_NUMBER" --body "$COMMENT"
+          if [ "$ACTION" != "error" ]; then
+            gh issue edit "$ISSUE_NUMBER" --add-label "submission" || true
+          fi

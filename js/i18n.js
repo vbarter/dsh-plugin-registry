@@ -1,0 +1,668 @@
+/* Locale dictionary + toggle. Default zh; persist dsh-registry.locale; ?lang= overrides. */
+(function (global) {
+  const STORAGE = "dsh-registry.locale";
+
+  const DICT = {
+    zh: {
+      "title.index": "DeepSeek Harness Plugin Registry",
+      "title.detail": "插件详情 — DeepSeek Harness Plugin Registry",
+      "title.publish": "发布插件 — DeepSeek Harness Plugin Registry",
+      "title.dashboard": "统计 — DeepSeek Harness Plugin Registry",
+      "title.policy": "收录规范 — DeepSeek Harness Plugin Registry",
+      "meta.index": "搜索、筛选并比较 DeepSeek Harness 社区插件，查看数据来源、Manifest 格式状态、GitHub 数据和安装方式。",
+      "meta.detail": "查看 DeepSeek Harness 插件的功能简介、数据来源、Manifest 格式状态、GitHub 指标和安装方式。",
+      "meta.publish": "先预检公开 GitHub 仓库，再把检查结果带到 Issue，走完 DeepSeek Harness 插件审核。",
+      "meta.dashboard": "查看 DeepSeek Harness 插件注册表的公开覆盖数据、来源构成、Manifest 格式检查和 GitHub 社区指标。",
+      "meta.policy": "DeepSeek Harness Plugin Registry 本站执行的插件自动发现、Manifest 校验、状态与移除规范。",
+      "skip": "跳到主要内容",
+      "nav.aria": "主要导航",
+      "nav.browse": "浏览插件",
+      "nav.publish": "发布",
+      "nav.stats": "统计",
+      "lang.aria": "语言",
+      "tag.preview": "COMMUNITY PREVIEW",
+      "tag.discovery": "AUTO DISCOVERY",
+      "tag.snapshot": "SNAPSHOT DATA",
+      "tag.policy": "REGISTRY POLICY",
+      "index.eyebrow": "DeepSeek Harness · Plugin Registry",
+      "index.heroTitle": "给 Harness 装上能力。",
+      "index.heroSub": "路由、检索、评测、通知 —— 社区插件和 GitHub 候选仓库都在这里。先看数据来源和 Manifest 状态，再到仓库确认依赖与配置。",
+      "index.searchLabel": "搜索插件",
+      "index.searchPlaceholder": "描述你想让 Harness 做什么…",
+      "index.try": "试试",
+      "index.intent.terminal": "终端界面",
+      "index.intent.notify": "消息通知",
+      "index.intent.search": "网页搜索",
+      "index.intent.workflow": "工作流",
+      "index.intent.memory": "记忆",
+      "index.stat.repos": "可浏览仓库",
+      "index.stat.stars": "GitHub Stars",
+      "index.stat.authors": "插件作者",
+      "index.stat.manifest": "Manifest 格式检查",
+      "index.filter.source": "插件来源",
+      "index.filter.manifest": "Manifest 状态",
+      "index.filter.language": "编程语言",
+      "index.filter.sort": "排序方式",
+      "index.source.all": "全部来源",
+      "index.source.curated": "社区目录",
+      "index.source.discovered": "GitHub 自动发现",
+      "index.manifest.all": "全部 Manifest 状态",
+      "index.manifest.ok": "格式检查通过",
+      "index.manifest.unchecked": "未检查",
+      "index.manifest.missing": "缺少有效 dsh.bundle",
+      "index.lang.all": "全部语言",
+      "index.sort.relevance": "智能排序",
+      "index.sort.stars": "按 Stars",
+      "index.sort.manifest": "Manifest 格式通过优先",
+      "index.sort.forks": "按 Forks",
+      "index.sort.new": "按最近更新",
+      "index.sort.added": "按最近收录",
+      "index.filter.all": "全部",
+      "index.sectionTitle": "插件与候选仓库",
+      "index.loadMore": "加载更多",
+      "index.empty": "没有符合当前筛选的仓库。试试放宽来源、Manifest 或关键词。",
+      "index.listNote": "显示 {shown} / {total}",
+      "index.listNoteZero": "0 条",
+      "index.viewRepo": "查看仓库",
+      "index.noDesc": "暂无简介",
+      "index.loadFail": "注册表加载失败：{error}",
+      "footer.publish": "发布你的插件",
+      "footer.policy": "收录规范",
+      "footer.json": "注册表 JSON",
+      "footer.harness": "DeepSeek Harness",
+      "footer.preview": "预发布版本 · 数据每 2 小时自动发现",
+      "footer.browse": "浏览插件",
+      "footer.back": "返回插件库",
+      "footer.backList": "返回插件列表",
+      "footer.topic": "浏览 GitHub Topic",
+      "footer.sync": "每 2 小时自动同步",
+      "footer.api": "数据接口 API",
+      "footer.policyNote": "本站收录规则",
+      "footer.previewShort": "预发布版本",
+      "label.source.curated": "社区目录",
+      "label.source.discovered": "GitHub 自动发现",
+      "label.manifest.shape_validated": "格式检查通过",
+      "label.manifest.not_checked": "未检查",
+      "label.manifest.not_validated": "缺少有效 dsh.bundle",
+      "label.patch.exists": "已确认",
+      "label.patch.missing": "缺失",
+      "label.patch.not_checked": "未检查",
+      "label.install.not_tested": "未执行",
+      "label.install.tested": "已测试",
+      "label.install.failed": "失败",
+      "label.uncategorized": "未分类",
+      "label.unspecified": "未标注",
+      "time.justNow": "刚刚",
+      "time.minutes": "{n} 分钟前",
+      "time.hours": "{n} 小时前",
+      "time.days": "{n} 天前",
+      "time.months": "{n} 个月前",
+      "time.years": "{n} 年前",
+      "time.unknown": "未知",
+      "toast.copied": "已复制到剪贴板",
+      "toast.copyFail": "复制失败，请手动选择命令",
+      "toast.empty": "没有可复制的内容",
+      "toast.copiedCmd": "命令已复制。这不代表插件已经安装。",
+      "toast.copyFailCmd": "复制失败，请手动选择命令。",
+      "publish.eyebrow": "Publish · GitHub review",
+      "publish.heroTitle": "提交仓库，公开走完审核。",
+      "publish.heroSub": "先运行仓库预检，再创建带检查结果的 GitHub Issue。维护者反馈、修复记录和最终结论都留在 GitHub；满足契约的仓库仍会自动发现。",
+      "publish.stepperAria": "GitHub 提交流程",
+      "publish.step1t": "检查仓库",
+      "publish.step1d": "公开元数据",
+      "publish.step2t": "预填提交",
+      "publish.step2d": "检查结果",
+      "publish.step3t": "GitHub 审核",
+      "publish.step3d": "Issue 可追踪",
+      "publish.step4t": "进入列表",
+      "publish.step4d": "合并后同步",
+      "publish.routeTitle": "GitHub 是正式提交通道",
+      "publish.routeBody": "每次提交都会创建公开 Issue，用于自动检查、维护者反馈和最终结论。",
+      "publish.queue": "查看提交队列",
+      "publish.formTitle": "提交插件仓库",
+      "publish.formSub": "输入公开 GitHub 仓库，先完成预检，再生成带结果的正式提交。",
+      "publish.fieldLabel": "GitHub 仓库",
+      "publish.fieldPlaceholder": "owner/repo 或 GitHub URL",
+      "publish.fieldHelp": "例如：owner/repo",
+      "publish.checkBtn": "检查仓库",
+      "publish.checksAria": "自动发现检查结果",
+      "publish.check.repo": "公开仓库存在",
+      "publish.check.topic": "包含 dsh-plugin Topic",
+      "publish.check.bundle": "声明有效的 dsh.bundle",
+      "publish.check.status": "仓库未归档且不是 Fork",
+      "publish.pending": "待检查",
+      "publish.submit": "提交到 GitHub",
+      "publish.submitHelp": "先检查仓库，GitHub 提交会自动带上预检结果。",
+      "publish.guideTitle": "发布前准备",
+      "publish.guideSub": "自动发现要求根目录 package.json 声明 dsh.bundle。GitHub Issue 是正式通道，本站不另开账号体系。",
+      "publish.afterTitle": "提交后会发生什么",
+      "publish.after1": "GitHub 创建公开提交 Issue。",
+      "publish.after2": "Action 预检仓库，通过则写入目录草稿，否则进入待审队列。",
+      "publish.after3": "系统开出审核 PR；按评论修复后在同一 Issue 跟进。",
+      "publish.after4": "维护者合并 PR 后，站点数据更新。",
+      "publish.policyBtn": "查看完整收录规范",
+      "publish.openIssue": "直接打开 GitHub Issue",
+      "publish.emptyRepo": "仓库不能为空。",
+      "publish.badUrl": "请输入 owner/repo，或完整的 GitHub 仓库地址。",
+      "publish.badChars": "owner/repo 含有不支持的字符。",
+      "publish.badPath": "仓库路径不合法。",
+      "publish.unchecked": "未检查",
+      "publish.checking": "检查中…",
+      "publish.checkingSlug": "正在核对 {slug} …",
+      "publish.repoOk": "公开仓库存在",
+      "publish.repoFail": "仓库不存在或未公开",
+      "publish.topicOk": "包含 dsh-plugin",
+      "publish.topicFail": "未找到 dsh-plugin Topic",
+      "publish.statusOk": "未归档且不是 Fork",
+      "publish.archived": "仓库已归档",
+      "publish.isFork": "仓库是 Fork",
+      "publish.localRepo": "本地形态通过（远程被拦截）",
+      "publish.topicWarn": "未能读取 GitHub topics",
+      "publish.statusWarn": "未能读取归档 / Fork 状态",
+      "publish.localShape": "通过（本地检查）",
+      "publish.remoteFail": "未能远程验证",
+      "publish.bundleOk": "声明了安全的相对 patch",
+      "publish.bundleUnsafe": "patch 路径不安全",
+      "publish.bundleMissing": "package.json 缺少 dsh.bundle.patch",
+      "publish.bundleUnread": "未能读取 package.json",
+      "publish.pass": "通过",
+      "publish.fail": "未通过",
+      "publish.noteRemote": "预检已请求 GitHub 公开 API，无需本站账号。",
+      "publish.noteLocal": "浏览器未能访问 GitHub API（可能是 CORS 或限流）。已完成本地形态检查：非空、GitHub URL 形状合法。可将本结果提交到公开 Issue。",
+      "publish.doneRemote": "预检完成。可以把带结果的 Issue 发到 GitHub。",
+      "publish.doneLocal": "远程核对受阻，已记下本地检查。仍可提交到 GitHub，维护者会再验一次。",
+      "publish.enableHint": "将打开 GitHub 新建 Issue，标题和正文已按预检结果填好。不需要本站登录。",
+      "publish.checkFirst": "请先检查仓库。",
+      "publish.manualIssue": "无法打开 GitHub 时，请到 {url} 手动开 Issue，并附上预检结果。",
+      "publish.checkError": "检查出错：{error}",
+      "publish.issueRepo": "仓库",
+      "publish.issueChecks": "预检结果",
+      "publish.issueNotes": "备注",
+      "publish.issueFooter": "请维护者按收录规范核验 dsh-plugin Topic 与 dsh.bundle.patch。",
+      "dash.eyebrow": "Stats · 公开数据",
+      "dash.heroTitle": "Registry 的脉搏。",
+      "dash.heroSub": "数据来自社区目录与 GitHub dsh-plugin Topic。这里不制造下载量或评分，只展示可以被验证的公开指标。",
+      "dash.k.stars": "GitHub Stars",
+      "dash.k.starsSub": "已收录仓库合计",
+      "dash.k.count": "收录插件",
+      "dash.k.countSub": "公开列表条目",
+      "dash.k.author": "插件作者",
+      "dash.k.authorSub": "按 GitHub owner 去重",
+      "dash.k.auto": "Manifest 格式检查",
+      "dash.k.autoSub": "格式检查通过",
+      "dash.cats": "分类分布",
+      "dash.catsSub": "按公开列表条目数量",
+      "dash.sources": "来源构成",
+      "dash.sourcesSub": "公开列表中的数据来源",
+      "dash.top": "插件榜",
+      "dash.topSub": "GitHub Stars Top 10",
+      "dash.authors": "作者榜",
+      "dash.authorsSub": "按收录插件的 Stars 合计",
+      "dash.col.plugin": "插件",
+      "dash.col.author": "作者",
+      "dash.col.count": "插件数",
+      "dash.updated": "快照生成于 {date} · schema v{ver}",
+      "dash.loadFail": "统计加载失败：{error}",
+      "detail.crumb": "返回插件列表",
+      "detail.loading": "正在加载…",
+      "detail.viewGithub": "查看 GitHub",
+      "detail.installBtn": "安装步骤",
+      "detail.ev.source": "来源",
+      "detail.ev.manifest": "Manifest",
+      "detail.ev.patch": "Patch",
+      "detail.ev.install": "安装测试",
+      "detail.copy": "复制命令",
+      "detail.tab": "插件信息",
+      "detail.what": "它能做什么",
+      "detail.before": "安装前请确认",
+      "detail.li.readme": "查看 GitHub 仓库中的 README、依赖和额外配置。",
+      "detail.li.audit": "本站不审计插件安全性，也没有执行安装测试。",
+      "detail.scope": "验证范围",
+      "detail.topics": "GitHub Topics",
+      "detail.related": "同类插件",
+      "detail.community": "社区数据",
+      "detail.info": "信息",
+      "detail.k.maintainer": "维护者",
+      "detail.k.category": "分类",
+      "detail.k.language": "语言",
+      "detail.k.updated": "更新",
+      "detail.k.added": "收录",
+      "detail.k.source": "来源",
+      "detail.k.manifest": "Manifest",
+      "detail.k.repo": "仓库",
+      "detail.noCmd": "当前条目没有可用安装命令",
+      "detail.noTopics": "暂无 topics",
+      "detail.noDesc": "暂无简介。",
+      "detail.decision.ok": "Manifest 已通过格式检查，可以按命令安装，但仍请先阅读仓库说明。",
+      "detail.decision.missing": "缺少有效 dsh.bundle，本站不提供安装命令。",
+      "detail.decision.unchecked": "该条目来自社区目录，本站未检查其 Manifest 声明。",
+      "detail.evOk.title": "本站核对过 Manifest 形态",
+      "detail.evOk.body": "自动发现路径已读到根目录 bundle 声明，并且 patch 路径通过格式检查。这不代表代码安全或安装已被实测。",
+      "detail.evBad.title": "尚未声明有效的 dsh.bundle",
+      "detail.evBad.body": "仓库已被发现并展示，但当前没有可安装命令。补上安全的相对 patch 路径后，下一轮同步会转为可安装。",
+      "detail.evSkip.title": "来自社区目录，未做 Manifest 检查",
+      "detail.evSkip.body": "条目从社区维护的公开目录同步。本站没有核对其 package.json、功能质量或安全性。",
+      "detail.missingTitle": "找不到这个插件。",
+      "detail.missingBody": "列表里没有对应条目，可能链接不完整，或该仓库已从公开快照中移除。",
+      "detail.backList": "返回插件列表",
+      "detail.loadFail": "加载失败",
+      "detail.ariaEvidence": "本站掌握的信息",
+      "modal.kicker": "INSTALL",
+      "modal.title": "把插件装进 Harness",
+      "modal.close": "关闭",
+      "modal.intro": "复制命令只表示它进了剪贴板。安装前请自己核对仓库、依赖和权限。",
+      "modal.s1t": "准备 DeepSeek Harness",
+      "modal.s1d": "本机已安装 CLI，并能访问目标仓库。",
+      "modal.s2t": "运行安装命令",
+      "modal.s2d": "在终端粘贴下面这一行，按仓库 README 补齐配置。",
+      "modal.s3t": "回到仓库确认",
+      "modal.s3d": "检查 patch 文件、额外依赖，以及插件声明的权限。",
+      "modal.copy": "复制命令",
+      "modal.safety": "安全提示",
+      "modal.safetyBody": "本站不运行插件代码，也不持续监控权限变化。复制成功 ≠ 安装成功。",
+      "policy.eyebrow": "收录 · 本站规则",
+      "policy.heroTitle": "怎样进入可安装列表。",
+      "policy.heroSub": "下面写的是本站自己执行的发现、核对和治理规则。规范全文都在这一页，入口也全部留在站内。",
+      "policy.toc": "ON THIS PAGE",
+      "policy.toc1": "01 自动收录条件",
+      "policy.toc2": "02 Manifest 契约",
+      "policy.toc3": "03 状态说明",
+      "policy.toc4": "04 验证边界",
+      "policy.toc5": "05 同步与移除",
+      "policy.goPublish": "去发布"
+    },
+    en: {
+      "title.index": "DeepSeek Harness Plugin Registry",
+      "title.detail": "Plugin detail — DeepSeek Harness Plugin Registry",
+      "title.publish": "Publish a plugin — DeepSeek Harness Plugin Registry",
+      "title.dashboard": "Stats — DeepSeek Harness Plugin Registry",
+      "title.policy": "Inclusion policy — DeepSeek Harness Plugin Registry",
+      "meta.index": "Search, filter, and compare DeepSeek Harness community plugins. See source, Manifest status, GitHub data, and install commands.",
+      "meta.detail": "Read a DeepSeek Harness plugin’s summary, source, Manifest status, GitHub stats, and install steps.",
+      "meta.publish": "Precheck a public GitHub repository, then open an Issue with the results to start DeepSeek Harness plugin review.",
+      "meta.dashboard": "Public coverage, source mix, Manifest checks, and GitHub community metrics for the DeepSeek Harness plugin registry.",
+      "meta.policy": "Discovery, Manifest checks, status labels, and removal rules used by this DeepSeek Harness Plugin Registry.",
+      "skip": "Skip to main content",
+      "nav.aria": "Primary navigation",
+      "nav.browse": "Browse",
+      "nav.publish": "Publish",
+      "nav.stats": "Stats",
+      "lang.aria": "Language",
+      "tag.preview": "COMMUNITY PREVIEW",
+      "tag.discovery": "AUTO DISCOVERY",
+      "tag.snapshot": "SNAPSHOT DATA",
+      "tag.policy": "REGISTRY POLICY",
+      "index.eyebrow": "DeepSeek Harness · Plugin Registry",
+      "index.heroTitle": "Give Harness new powers.",
+      "index.heroSub": "Routing, retrieval, evals, notifications — community plugins and GitHub candidates live here. Check the source and Manifest status first, then confirm dependencies in the repo.",
+      "index.searchLabel": "Search plugins",
+      "index.searchPlaceholder": "Describe what you want Harness to do…",
+      "index.try": "Try",
+      "index.intent.terminal": "terminal UI",
+      "index.intent.notify": "notifications",
+      "index.intent.search": "web search",
+      "index.intent.workflow": "workflow",
+      "index.intent.memory": "memory",
+      "index.stat.repos": "Browsable repos",
+      "index.stat.stars": "GitHub Stars",
+      "index.stat.authors": "Plugin authors",
+      "index.stat.manifest": "Manifest shape checks",
+      "index.filter.source": "Plugin source",
+      "index.filter.manifest": "Manifest status",
+      "index.filter.language": "Language",
+      "index.filter.sort": "Sort",
+      "index.source.all": "All sources",
+      "index.source.curated": "Community catalog",
+      "index.source.discovered": "GitHub auto-discovery",
+      "index.manifest.all": "All Manifest statuses",
+      "index.manifest.ok": "Shape validated",
+      "index.manifest.unchecked": "Not checked",
+      "index.manifest.missing": "Missing a valid dsh.bundle",
+      "index.lang.all": "All languages",
+      "index.sort.relevance": "Relevance",
+      "index.sort.stars": "Stars",
+      "index.sort.manifest": "Validated Manifest first",
+      "index.sort.forks": "Forks",
+      "index.sort.new": "Recently updated",
+      "index.sort.added": "Recently added",
+      "index.filter.all": "All",
+      "index.sectionTitle": "Plugins and candidates",
+      "index.loadMore": "Load more",
+      "index.empty": "No repositories match these filters. Try widening source, Manifest, or keywords.",
+      "index.listNote": "Showing {shown} / {total}",
+      "index.listNoteZero": "0 items",
+      "index.viewRepo": "View repo",
+      "index.noDesc": "No description",
+      "index.loadFail": "Failed to load the registry: {error}",
+      "footer.publish": "Publish your plugin",
+      "footer.policy": "Inclusion policy",
+      "footer.json": "Registry JSON",
+      "footer.harness": "DeepSeek Harness",
+      "footer.preview": "Preview · auto-discovery every 2 hours",
+      "footer.browse": "Browse plugins",
+      "footer.back": "Back to the catalog",
+      "footer.backList": "Back to the plugin list",
+      "footer.topic": "Browse the GitHub topic",
+      "footer.sync": "Auto-sync every 2 hours",
+      "footer.api": "Data API",
+      "footer.policyNote": "Site inclusion rules",
+      "footer.previewShort": "Preview release",
+      "label.source.curated": "Community catalog",
+      "label.source.discovered": "GitHub auto-discovery",
+      "label.manifest.shape_validated": "Shape validated",
+      "label.manifest.not_checked": "Not checked",
+      "label.manifest.not_validated": "Missing a valid dsh.bundle",
+      "label.patch.exists": "Confirmed",
+      "label.patch.missing": "Missing",
+      "label.patch.not_checked": "Not checked",
+      "label.install.not_tested": "Not run",
+      "label.install.tested": "Tested",
+      "label.install.failed": "Failed",
+      "label.uncategorized": "Uncategorized",
+      "label.unspecified": "Unspecified",
+      "time.justNow": "just now",
+      "time.minutes": "{n} min ago",
+      "time.hours": "{n} hr ago",
+      "time.days": "{n} days ago",
+      "time.months": "{n} mo ago",
+      "time.years": "{n} yr ago",
+      "time.unknown": "unknown",
+      "toast.copied": "Copied to clipboard",
+      "toast.copyFail": "Copy failed — select the command manually",
+      "toast.empty": "Nothing to copy",
+      "toast.copiedCmd": "Command copied. That does not mean the plugin is installed.",
+      "toast.copyFailCmd": "Copy failed — select the command manually.",
+      "publish.eyebrow": "Publish · GitHub review",
+      "publish.heroTitle": "Submit a repo. Review stays public.",
+      "publish.heroSub": "Run the repository precheck, then open a GitHub Issue with the results. Maintainer feedback, fixes, and the final decision live on GitHub. Repos that meet the contract are still auto-discovered.",
+      "publish.stepperAria": "GitHub submission flow",
+      "publish.step1t": "Check the repo",
+      "publish.step1d": "Public metadata",
+      "publish.step2t": "Prefill the Issue",
+      "publish.step2d": "Check results",
+      "publish.step3t": "GitHub review",
+      "publish.step3d": "Tracked Issue",
+      "publish.step4t": "Join the list",
+      "publish.step4d": "After merge",
+      "publish.routeTitle": "GitHub is the official channel",
+      "publish.routeBody": "Every submission opens a public Issue for automated checks, maintainer feedback, and the final decision.",
+      "publish.queue": "View the queue",
+      "publish.formTitle": "Submit a plugin repository",
+      "publish.formSub": "Enter a public GitHub repository, finish the precheck, then file a formal submission with the results.",
+      "publish.fieldLabel": "GitHub repository",
+      "publish.fieldPlaceholder": "owner/repo or GitHub URL",
+      "publish.fieldHelp": "Example: owner/repo",
+      "publish.checkBtn": "Check repository",
+      "publish.checksAria": "Auto-discovery check results",
+      "publish.check.repo": "Public repository exists",
+      "publish.check.topic": "Has the dsh-plugin topic",
+      "publish.check.bundle": "Declares a valid dsh.bundle",
+      "publish.check.status": "Not archived and not a fork",
+      "publish.pending": "Pending",
+      "publish.submit": "Submit to GitHub",
+      "publish.submitHelp": "Check the repository first. The GitHub Issue will include the precheck results.",
+      "publish.guideTitle": "Before you publish",
+      "publish.guideSub": "Auto-discovery expects a root package.json that declares dsh.bundle. GitHub Issues are the official channel — this site has no separate accounts.",
+      "publish.afterTitle": "What happens after you submit",
+      "publish.after1": "GitHub opens a public submission Issue.",
+      "publish.after2": "An Action prechecks the repo: valid Manifest → catalog draft; otherwise the pending queue.",
+      "publish.after3": "A review PR is opened. Follow up on the same Issue after you fix comments.",
+      "publish.after4": "When a maintainer merges the PR, the site data updates.",
+      "publish.policyBtn": "Read the full inclusion policy",
+      "publish.openIssue": "Open a GitHub Issue directly",
+      "publish.emptyRepo": "Repository cannot be empty.",
+      "publish.badUrl": "Enter owner/repo or a full GitHub repository URL.",
+      "publish.badChars": "owner/repo contains unsupported characters.",
+      "publish.badPath": "Repository path is not valid.",
+      "publish.unchecked": "Not checked",
+      "publish.checking": "Checking…",
+      "publish.checkingSlug": "Checking {slug}…",
+      "publish.repoOk": "Public repository exists",
+      "publish.repoFail": "Repository missing or not public",
+      "publish.topicOk": "Has dsh-plugin",
+      "publish.topicFail": "dsh-plugin topic not found",
+      "publish.statusOk": "Not archived and not a fork",
+      "publish.archived": "Repository is archived",
+      "publish.isFork": "Repository is a fork",
+      "publish.localRepo": "Local shape passed (remote blocked)",
+      "publish.topicWarn": "Could not read GitHub topics",
+      "publish.statusWarn": "Could not read archived / fork status",
+      "publish.localShape": "Passed (local check)",
+      "publish.remoteFail": "Could not verify remotely",
+      "publish.bundleOk": "Safe relative patch declared",
+      "publish.bundleUnsafe": "Patch path is not safe",
+      "publish.bundleMissing": "package.json is missing dsh.bundle.patch",
+      "publish.bundleUnread": "Could not read package.json",
+      "publish.pass": "Passed",
+      "publish.fail": "Failed",
+      "publish.noteRemote": "Precheck used the public GitHub API. No site account required.",
+      "publish.noteLocal": "The browser could not reach the GitHub API (CORS or rate limit). Local shape checks passed: non-empty, valid GitHub URL. You can still file a public Issue.",
+      "publish.doneRemote": "Precheck finished. You can open a GitHub Issue with the results.",
+      "publish.doneLocal": "Remote checks were blocked. Local results are recorded. You can still submit; maintainers will re-check.",
+      "publish.enableHint": "This opens a new GitHub Issue with the title and body filled from the precheck. No site login.",
+      "publish.checkFirst": "Check the repository first.",
+      "publish.manualIssue": "If GitHub will not open, file an Issue at {url} and paste the precheck results.",
+      "publish.checkError": "Check failed: {error}",
+      "publish.issueRepo": "Repository",
+      "publish.issueChecks": "Precheck results",
+      "publish.issueNotes": "Notes",
+      "publish.issueFooter": "Maintainers: verify the dsh-plugin topic and dsh.bundle.patch against the inclusion policy.",
+      "dash.eyebrow": "Stats · public data",
+      "dash.heroTitle": "The registry’s pulse.",
+      "dash.heroSub": "Numbers come from the community catalog and the GitHub dsh-plugin topic. No invented downloads or scores — only public metrics we can verify.",
+      "dash.k.stars": "GitHub Stars",
+      "dash.k.starsSub": "Sum across listed repos",
+      "dash.k.count": "Listed plugins",
+      "dash.k.countSub": "Public catalog entries",
+      "dash.k.author": "Plugin authors",
+      "dash.k.authorSub": "Unique GitHub owners",
+      "dash.k.auto": "Manifest shape checks",
+      "dash.k.autoSub": "Shape validated",
+      "dash.cats": "Category mix",
+      "dash.catsSub": "By public catalog entries",
+      "dash.sources": "Source mix",
+      "dash.sourcesSub": "Where public entries come from",
+      "dash.top": "Plugin leaderboard",
+      "dash.topSub": "GitHub Stars top 10",
+      "dash.authors": "Author leaderboard",
+      "dash.authorsSub": "Stars summed across listed plugins",
+      "dash.col.plugin": "Plugin",
+      "dash.col.author": "Author",
+      "dash.col.count": "Plugins",
+      "dash.updated": "Snapshot generated {date} · schema v{ver}",
+      "dash.loadFail": "Failed to load stats: {error}",
+      "detail.crumb": "Back to the plugin list",
+      "detail.loading": "Loading…",
+      "detail.viewGithub": "View on GitHub",
+      "detail.installBtn": "Install steps",
+      "detail.ev.source": "Source",
+      "detail.ev.manifest": "Manifest",
+      "detail.ev.patch": "Patch",
+      "detail.ev.install": "Install test",
+      "detail.copy": "Copy command",
+      "detail.tab": "Plugin info",
+      "detail.what": "What it does",
+      "detail.before": "Before you install",
+      "detail.li.readme": "Read the GitHub README, dependencies, and extra setup.",
+      "detail.li.audit": "This site does not audit plugin safety and has not run an install test.",
+      "detail.scope": "What we verified",
+      "detail.topics": "GitHub Topics",
+      "detail.related": "Similar plugins",
+      "detail.community": "Community data",
+      "detail.info": "Info",
+      "detail.k.maintainer": "Maintainer",
+      "detail.k.category": "Category",
+      "detail.k.language": "Language",
+      "detail.k.updated": "Updated",
+      "detail.k.added": "Listed",
+      "detail.k.source": "Source",
+      "detail.k.manifest": "Manifest",
+      "detail.k.repo": "Repository",
+      "detail.noCmd": "This entry has no install command",
+      "detail.noTopics": "No topics",
+      "detail.noDesc": "No description.",
+      "detail.decision.ok": "Manifest shape passed. You can install with the command, but read the repository first.",
+      "detail.decision.missing": "No valid dsh.bundle — this site does not offer an install command.",
+      "detail.decision.unchecked": "This entry comes from the community catalog. This site did not check its Manifest.",
+      "detail.evOk.title": "This site checked Manifest shape",
+      "detail.evOk.body": "Auto-discovery read a root bundle declaration and the patch path passed the format check. That is not a safety review or a live install test.",
+      "detail.evBad.title": "No valid dsh.bundle yet",
+      "detail.evBad.body": "The repository was discovered and is listed, but there is no install command. Add a safe relative patch path and the next sync can mark it installable.",
+      "detail.evSkip.title": "Community catalog — Manifest not checked",
+      "detail.evSkip.body": "Synced from a community-maintained public catalog. This site did not verify package.json, quality, or safety.",
+      "detail.missingTitle": "This plugin was not found.",
+      "detail.missingBody": "There is no matching entry. The link may be incomplete, or the repository left the public snapshot.",
+      "detail.backList": "Back to the plugin list",
+      "detail.loadFail": "Failed to load",
+      "detail.ariaEvidence": "What this site knows",
+      "modal.kicker": "INSTALL",
+      "modal.title": "Install the plugin into Harness",
+      "modal.close": "Close",
+      "modal.intro": "Copying the command only puts it on the clipboard. Review the repository, dependencies, and permissions before you install.",
+      "modal.s1t": "Prepare DeepSeek Harness",
+      "modal.s1d": "The CLI is installed locally and can reach the target repository.",
+      "modal.s2t": "Run the install command",
+      "modal.s2d": "Paste the line below in a terminal and finish any setup from the repository README.",
+      "modal.s3t": "Confirm in the repository",
+      "modal.s3d": "Check the patch file, extra dependencies, and the permissions the plugin declares.",
+      "modal.copy": "Copy command",
+      "modal.safety": "Safety note",
+      "modal.safetyBody": "This site does not run plugin code and does not watch permission changes. Copied ≠ installed.",
+      "policy.eyebrow": "Policy · this site",
+      "policy.heroTitle": "How a plugin becomes installable.",
+      "policy.heroSub": "These are the discovery, verification, and governance rules this site actually runs. The full policy lives on this page, with every entry point on-site.",
+      "policy.toc": "ON THIS PAGE",
+      "policy.toc1": "01 Auto-inclusion",
+      "policy.toc2": "02 Manifest contract",
+      "policy.toc3": "03 Status labels",
+      "policy.toc4": "04 Verification boundary",
+      "policy.toc5": "05 Sync and removal",
+      "policy.goPublish": "Publish"
+    }
+  };
+
+  function detect() {
+    try {
+      const q = new URLSearchParams(location.search).get("lang");
+      if (q === "en" || q === "zh") {
+        try { localStorage.setItem(STORAGE, q); } catch (e) {}
+        return q;
+      }
+    } catch (e) {}
+    try {
+      const saved = localStorage.getItem(STORAGE);
+      if (saved === "en" || saved === "zh") return saved;
+    } catch (e) {}
+    return "zh";
+  }
+
+  function htmlLang(loc) {
+    return loc === "en" ? "en" : "zh-CN";
+  }
+
+  let locale = detect();
+  document.documentElement.lang = htmlLang(locale);
+
+  function t(key, vars) {
+    const table = DICT[locale] || DICT.zh;
+    let s = table[key];
+    if (s == null) s = (DICT.zh[key] != null ? DICT.zh[key] : key);
+    if (vars) {
+      s = String(s).replace(/\{(\w+)\}/g, function (_, k) {
+        return vars[k] == null ? "" : String(vars[k]);
+      });
+    }
+    return s;
+  }
+
+  function setText(el, value) {
+    if (!el) return;
+    el.textContent = value;
+  }
+
+  function apply(root) {
+    const scope = root || document;
+    scope.querySelectorAll("[data-i18n]").forEach(function (el) {
+      setText(el, t(el.getAttribute("data-i18n")));
+    });
+    scope.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+      el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder")));
+    });
+    scope.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+      el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria")));
+    });
+    scope.querySelectorAll("[data-i18n-title]").forEach(function (el) {
+      el.setAttribute("title", t(el.getAttribute("data-i18n-title")));
+    });
+    scope.querySelectorAll("[data-i18n-content]").forEach(function (el) {
+      el.setAttribute("content", t(el.getAttribute("data-i18n-content")));
+    });
+    scope.querySelectorAll("[data-lang-block]").forEach(function (el) {
+      el.hidden = el.getAttribute("data-lang-block") !== locale;
+    });
+    const page = document.body && document.body.getAttribute("data-page");
+    if (page) document.title = t("title." + page);
+    document.querySelectorAll("[data-lang-set]").forEach(function (btn) {
+      const on = btn.getAttribute("data-lang-set") === locale;
+      btn.classList.toggle("on", on);
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+    document.querySelectorAll("[data-intent-key]").forEach(function (btn) {
+      const text = t(btn.getAttribute("data-intent-key"));
+      btn.textContent = text;
+      btn.setAttribute("data-intent", text);
+    });
+    document.querySelectorAll(".policy-aside a[href^='#']").forEach(function (a) {
+      const raw = a.getAttribute("href") || "";
+      const base = raw.replace(/^#/, "").replace(/-en$/, "");
+      if (!base || base === "main-content") return;
+      a.setAttribute("href", "#" + (locale === "en" ? base + "-en" : base));
+    });
+  }
+
+  function setUrlLang(next) {
+    try {
+      const url = new URL(location.href);
+      url.searchParams.set("lang", next);
+      history.replaceState(null, "", url.pathname + url.search + url.hash);
+    } catch (e) {}
+  }
+
+  function setLocale(next) {
+    if (next !== "en" && next !== "zh") return;
+    if (next === locale) {
+      apply();
+      return;
+    }
+    locale = next;
+    try { localStorage.setItem(STORAGE, locale); } catch (e) {}
+    document.documentElement.lang = htmlLang(locale);
+    setUrlLang(locale);
+    apply();
+    document.dispatchEvent(new CustomEvent("dsh-locale-change", { detail: { locale: locale } }));
+  }
+
+  function bind() {
+    document.addEventListener("click", function (ev) {
+      const btn = ev.target.closest("[data-lang-set]");
+      if (!btn) return;
+      ev.preventDefault();
+      setLocale(btn.getAttribute("data-lang-set"));
+    });
+    apply();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bind);
+  } else {
+    bind();
+  }
+
+  global.DSHI18n = {
+    t: t,
+    apply: apply,
+    setLocale: setLocale,
+    get locale() { return locale; },
+    STORAGE: STORAGE,
+  };
+})(window);

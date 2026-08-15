@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>统计 — DeepSeek Harness Plugin Registry</title>
+<meta name="description" data-i18n-content="meta.dashboard" content="查看 DeepSeek Harness 插件注册表的公开覆盖数据、来源构成、Manifest 格式检查和 GitHub 社区指标。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="dashboard">
+<a class="skip-link" href="#main-content" data-i18n="skip">跳到主要内容</a>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="index.html">
+      <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="34" height="34" role="img" aria-labelledby="logo-title logo-desc">
+        <title id="logo-title">DeepSeek Harness Plugin Registry</title>
+        <desc id="logo-desc">A branching harness circuit inside a rounded square.</desc>
+        <rect width="48" height="48" rx="13" fill="#181411"/>
+        <path d="M13.5 13.5v21M13.5 17.5h10.25c3.3 0 5.25-1.95 5.25-5.25M13.5 24H29M13.5 30.5h10.25c3.3 0 5.25 1.95 5.25 5.25" fill="none" stroke="#F5F2EF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="29" cy="11.5" r="3.5" fill="#60A5FA"/>
+        <circle cx="31.5" cy="24" r="3.5" fill="#F5F2EF"/>
+        <circle cx="29" cy="36.5" r="3.5" fill="#60A5FA"/>
+      </svg>
+      <span class="brand-word"><strong>DeepSeek Harness</strong><em>Community Registry</em></span>
+    </a>
+    <nav class="nav" aria-label="主要导航" data-i18n-aria="nav.aria">
+      <a href="index.html" data-i18n="nav.browse">浏览插件</a>
+      <a href="publish.html" data-i18n="nav.publish">发布</a>
+      <a href="dashboard.html" class="on" aria-current="page" data-i18n="nav.stats">统计</a>
+    </nav>
+    <div class="topbar-r">
+      <div class="lang-toggle" role="group" aria-label="语言" data-i18n-aria="lang.aria">
+        <button type="button" data-lang-set="zh" aria-pressed="true">中文</button>
+        <button type="button" data-lang-set="en" aria-pressed="false">EN</button>
+      </div>
+      <span class="cli-tag" data-i18n="tag.snapshot">SNAPSHOT DATA</span>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="main-content">
+  <section class="page-head">
+    <p class="eyebrow rise" data-i18n="dash.eyebrow">Stats · 公开数据</p>
+    <h1 class="page-title rise rise-1" data-i18n="dash.heroTitle">Registry 的脉搏。</h1>
+    <p class="page-sub rise rise-2" data-i18n="dash.heroSub">数据来自社区目录与 GitHub dsh-plugin Topic。这里不制造下载量或评分，只展示可以被验证的公开指标。</p>
+  </section>
+
+  <div class="kpis rise rise-3">
+    <div class="kpi"><div class="kl" data-i18n="dash.k.stars">GitHub Stars</div><div class="kv2" id="k-stars">—</div><div class="kd" data-i18n="dash.k.starsSub">已收录仓库合计</div></div>
+    <div class="kpi"><div class="kl" data-i18n="dash.k.count">收录插件</div><div class="kv2" id="k-count">—</div><div class="kd" data-i18n="dash.k.countSub">公开列表条目</div></div>
+    <div class="kpi"><div class="kl" data-i18n="dash.k.author">插件作者</div><div class="kv2" id="k-author">—</div><div class="kd" data-i18n="dash.k.authorSub">按 GitHub owner 去重</div></div>
+    <div class="kpi"><div class="kl" data-i18n="dash.k.auto">Manifest 格式检查</div><div class="kv2" id="k-auto">—</div><div class="kd" data-i18n="dash.k.autoSub">格式检查通过</div></div>
+  </div>
+
+  <div class="dash-grid rise rise-4">
+    <div class="panel">
+      <h3 data-i18n="dash.cats">分类分布</h3>
+      <div class="psub" data-i18n="dash.catsSub">按公开列表条目数量</div>
+      <div id="cats"></div>
+    </div>
+    <div class="panel">
+      <h3 data-i18n="dash.sources">来源构成</h3>
+      <div class="psub" data-i18n="dash.sourcesSub">公开列表中的数据来源</div>
+      <div id="sources"></div>
+      <p class="registry-updated" id="updated"></p>
+    </div>
+  </div>
+
+  <div class="dash-grid">
+    <div class="panel">
+      <h3 data-i18n="dash.top">插件榜</h3>
+      <div class="psub" data-i18n="dash.topSub">GitHub Stars Top 10</div>
+      <table class="tbl">
+        <thead><tr><th>#</th><th data-i18n="dash.col.plugin">插件</th><th class="r">Stars</th><th class="r">Forks</th></tr></thead>
+        <tbody id="top-rows"></tbody>
+      </table>
+    </div>
+    <div class="panel">
+      <h3 data-i18n="dash.authors">作者榜</h3>
+      <div class="psub" data-i18n="dash.authorsSub">按收录插件的 Stars 合计</div>
+      <table class="tbl">
+        <thead><tr><th data-i18n="dash.col.author">作者</th><th class="r" data-i18n="dash.col.count">插件数</th><th class="r">Stars</th></tr></thead>
+        <tbody id="author-rows"></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <a href="index.html" data-i18n="footer.browse">浏览插件</a>
+    <a href="publish.html" data-i18n="footer.publish">发布你的插件</a>
+    <a href="data/plugins.json" data-i18n="footer.api">数据接口 API</a>
+    <span class="fr" data-i18n="footer.sync">每 2 小时自动同步</span>
+  </div>
+</footer>
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
