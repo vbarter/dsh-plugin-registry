@@ -1,8 +1,6 @@
-name: Discover dsh plugins
+name: Review curated Manifest
 
 on:
-  schedule:
-    - cron: "20 */2 * * *"
   workflow_dispatch:
 
 permissions:
@@ -10,7 +8,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  discover:
+  review:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,10 +19,10 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Scan GitHub topic and merge catalog
+      - name: Review curated plugin manifests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node scripts/discover.mjs
+        run: node scripts/discover.mjs --review-curated
 
       - name: Open review PR if catalog changed
         env:
@@ -38,17 +36,17 @@ jobs:
             echo "No catalog changes"
             exit 0
           fi
-          git checkout -B discover/sync
-          git commit -m "chore: sync discovered dsh plugins"
-          git push --force origin discover/sync
-          EXISTING=$(gh pr list --base main --head discover/sync --state open --json number --jq '.[0].number // empty')
+          git checkout -B review/curated-manifest
+          git commit -m "chore: review curated plugin manifests"
+          git push --force origin review/curated-manifest
+          EXISTING=$(gh pr list --base main --head review/curated-manifest --state open --json number --jq '.[0].number // empty')
           if [ -n "$EXISTING" ]; then
             echo "PR already open: #$EXISTING"
           else
-            gh pr create --base main --head discover/sync --title "Review: discovered dsh plugins" --body "$(cat <<'EOFBODY'
-          自动发现已更新 `data/plugins.json`。合并此 PR 后，站点目录才会发布。
+            gh pr create --base main --head review/curated-manifest --title "Review: curated catalog Manifest checks" --body "$(cat <<'EOFBODY'
+          已复核社区目录条目的 Manifest。合并此 PR 后，站点目录才会更新。
 
-          Auto-discovery updated `data/plugins.json`. Merge this PR to publish the catalog sync.
+          Curated catalog Manifest checks finished. Merge this PR to publish the catalog update.
           EOFBODY
           )"
           fi
