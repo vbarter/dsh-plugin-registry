@@ -1,0 +1,32 @@
+name: Plugin submission
+description: Submit a public GitHub repository for DSH plugin review
+title: "[plugin] "
+labels: ["submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        提交一个公开 GitHub 仓库。Action 会预检 `dsh-plugin` topic 与 `dsh.bundle`，然后开出审核 PR。
+        Submit a public GitHub repository. An Action prechecks the `dsh-plugin` topic and `dsh.bundle`, then opens a review PR.
+  - type: input
+    id: repo_url
+    attributes:
+      label: Repository URL
+      description: Full GitHub URL
+      placeholder: https://github.com/owner/repo
+    validations:
+      required: true
+  - type: input
+    id: owner_repo
+    attributes:
+      label: owner/repo
+      description: Short form of the same repository
+      placeholder: owner/repo
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything maintainers should know (install notes, monorepo path, etc.)
+      placeholder: Optional

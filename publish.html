@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>发布插件 — DeepSeek Harness Plugin Registry</title>
+<meta name="description" data-i18n-content="meta.publish" content="先预检公开 GitHub 仓库，再把检查结果带到 Issue，走完 DeepSeek Harness 插件审核。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="publish">
+<a class="skip-link" href="#main-content" data-i18n="skip">跳到主要内容</a>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="index.html">
+      <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="34" height="34" role="img" aria-labelledby="logo-title logo-desc">
+        <title id="logo-title">DeepSeek Harness Plugin Registry</title>
+        <desc id="logo-desc">A branching harness circuit inside a rounded square.</desc>
+        <rect width="48" height="48" rx="13" fill="#181411"/>
+        <path d="M13.5 13.5v21M13.5 17.5h10.25c3.3 0 5.25-1.95 5.25-5.25M13.5 24H29M13.5 30.5h10.25c3.3 0 5.25 1.95 5.25 5.25" fill="none" stroke="#F5F2EF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="29" cy="11.5" r="3.5" fill="#60A5FA"/>
+        <circle cx="31.5" cy="24" r="3.5" fill="#F5F2EF"/>
+        <circle cx="29" cy="36.5" r="3.5" fill="#60A5FA"/>
+      </svg>
+      <span class="brand-word"><strong>DeepSeek Harness</strong><em>Community Registry</em></span>
+    </a>
+    <nav class="nav" aria-label="主要导航" data-i18n-aria="nav.aria">
+      <a href="index.html" data-i18n="nav.browse">浏览插件</a>
+      <a href="publish.html" class="on" aria-current="page" data-i18n="nav.publish">发布</a>
+      <a href="dashboard.html" data-i18n="nav.stats">统计</a>
+    </nav>
+    <div class="topbar-r">
+      <div class="lang-toggle" role="group" aria-label="语言" data-i18n-aria="lang.aria">
+        <button type="button" data-lang-set="zh" aria-pressed="true">中文</button>
+        <button type="button" data-lang-set="en" aria-pressed="false">EN</button>
+      </div>
+      <span class="cli-tag" data-i18n="tag.discovery">AUTO DISCOVERY</span>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="main-content">
+  <section class="page-head">
+    <p class="eyebrow rise" data-i18n="publish.eyebrow">Publish · GitHub review</p>
+    <h1 class="page-title rise rise-1" data-i18n="publish.heroTitle">提交仓库，公开走完审核。</h1>
+    <p class="page-sub rise rise-2" data-i18n="publish.heroSub">先运行仓库预检，再创建带检查结果的 GitHub Issue。维护者反馈、修复记录和最终结论都留在 GitHub；满足契约的仓库仍会自动发现。</p>
+  </section>
+
+  <ol class="stepper rise rise-3" aria-label="GitHub 提交流程" data-i18n-aria="publish.stepperAria">
+    <li class="step on"><span class="step-n" aria-hidden="true">01</span><span class="step-copy"><strong class="step-t" data-i18n="publish.step1t">检查仓库</strong><span class="step-d" data-i18n="publish.step1d">公开元数据</span></span></li>
+    <li class="step"><span class="step-n" aria-hidden="true">02</span><span class="step-copy"><strong class="step-t" data-i18n="publish.step2t">预填提交</strong><span class="step-d" data-i18n="publish.step2d">检查结果</span></span></li>
+    <li class="step"><span class="step-n" aria-hidden="true">03</span><span class="step-copy"><strong class="step-t" data-i18n="publish.step3t">GitHub 审核</strong><span class="step-d" data-i18n="publish.step3d">Issue 可追踪</span></span></li>
+    <li class="step"><span class="step-n" aria-hidden="true">04</span><span class="step-copy"><strong class="step-t" data-i18n="publish.step4t">进入列表</strong><span class="step-d" data-i18n="publish.step4d">合并后同步</span></span></li>
+  </ol>
+
+  <div class="pub-grid rise rise-4">
+    <section class="panel" aria-labelledby="repo-checker-title">
+      <div class="github-route">
+        <span class="github-route-mark" aria-hidden="true">GH</span>
+        <div>
+          <strong data-i18n="publish.routeTitle">GitHub 是正式提交通道</strong>
+          <p data-i18n="publish.routeBody">每次提交都会创建公开 Issue，用于自动检查、维护者反馈和最终结论。</p>
+        </div>
+        <a href="https://github.com/vbarter/dsh-plugin-registry/issues" target="_blank" rel="noopener" data-registry-href="issues" data-i18n="publish.queue">查看提交队列</a>
+      </div>
+      <h2 class="panel-title" id="repo-checker-title" data-i18n="publish.formTitle">提交插件仓库</h2>
+      <p class="psub" data-i18n="publish.formSub">输入公开 GitHub 仓库，先完成预检，再生成带结果的正式提交。</p>
+      <form id="repo-checker-form" novalidate>
+        <label class="field" for="repo-input">
+          <span class="field-label" data-i18n="publish.fieldLabel">GitHub 仓库</span>
+          <input type="text" id="repo-input" placeholder="owner/repo 或 GitHub URL" data-i18n-placeholder="publish.fieldPlaceholder" autocomplete="url" autocapitalize="none" spellcheck="false" aria-describedby="repo-help check-message">
+        </label>
+        <p class="field-help" id="repo-help" data-i18n="publish.fieldHelp">例如：owner/repo</p>
+        <button class="btn repo-check-button" id="check-button" type="submit" data-i18n="publish.checkBtn">检查仓库</button>
+        <ul class="check-list" id="check-results" hidden aria-label="自动发现检查结果" data-i18n-aria="publish.checksAria">
+          <li class="check-row" data-check="repo"><span class="check-ic" aria-hidden="true">—</span><span class="check-label" data-i18n="publish.check.repo">公开仓库存在</span><span class="check-state" data-i18n="publish.pending">待检查</span></li>
+          <li class="check-row" data-check="topic"><span class="check-ic" aria-hidden="true">—</span><span class="check-label" data-i18n="publish.check.topic">包含 dsh-plugin Topic</span><span class="check-state" data-i18n="publish.pending">待检查</span></li>
+          <li class="check-row" data-check="bundle"><span class="check-ic" aria-hidden="true">—</span><span class="check-label" data-i18n="publish.check.bundle">声明有效的 dsh.bundle</span><span class="check-state" data-i18n="publish.pending">待检查</span></li>
+          <li class="check-row" data-check="status"><span class="check-ic" aria-hidden="true">—</span><span class="check-label" data-i18n="publish.check.status">仓库未归档且不是 Fork</span><span class="check-state" data-i18n="publish.pending">待检查</span></li>
+        </ul>
+        <p class="form-hint" id="check-message" role="status" aria-live="polite"></p>
+        <div class="submission-actions">
+          <a class="btn btn-primary github-submit is-disabled" id="github-submit" aria-disabled="true" target="_blank" rel="noopener"><span data-i18n="publish.submit">提交到 GitHub</span><span aria-hidden="true">↗</span></a>
+          <p id="submission-help" data-i18n="publish.submitHelp">先检查仓库，GitHub 提交会自动带上预检结果。</p>
+        </div>
+      </form>
+    </section>
+
+    <aside class="panel publish-guide" aria-labelledby="publish-guide-title">
+      <h2 class="panel-title" id="publish-guide-title" data-i18n="publish.guideTitle">发布前准备</h2>
+      <p class="psub" data-i18n="publish.guideSub">自动发现要求根目录 package.json 声明 dsh.bundle。GitHub Issue 是正式通道，本站不另开账号体系。</p>
+      <pre class="codeblock"><code>{
+  <span class="k">"dsh"</span>: {
+    <span class="k">"bundle"</span>: {
+      <span class="k">"patch"</span>: <span class="k">"./cordis.patch.yml"</span>
+    }
+  }
+}</code></pre>
+      <h2 class="panel-title" data-i18n="publish.afterTitle">提交后会发生什么</h2>
+      <ol class="publish-list">
+        <li data-i18n="publish.after1">GitHub 创建公开提交 Issue。</li>
+        <li data-i18n="publish.after2">Action 预检仓库，通过则写入目录草稿，否则进入待审队列。</li>
+        <li data-i18n="publish.after3">系统开出审核 PR；按评论修复后在同一 Issue 跟进。</li>
+        <li data-i18n="publish.after4">维护者合并 PR 后，站点数据更新。</li>
+      </ol>
+      <div class="publish-guide-links">
+        <a class="btn" href="policy.html" data-i18n="publish.policyBtn">查看完整收录规范</a>
+        <a href="https://github.com/vbarter/dsh-plugin-registry/issues/new?template=plugin_submission.yml" target="_blank" rel="noopener" data-registry-href="issue-new" data-i18n="publish.openIssue">直接打开 GitHub Issue</a>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <a href="index.html" data-i18n="footer.back">返回插件库</a>
+    <a href="https://github.com/topics/dsh-plugin" target="_blank" rel="noopener" data-i18n="footer.topic">浏览 GitHub Topic</a>
+    <span class="fr" data-i18n="footer.sync">每 2 小时自动同步</span>
+  </div>
+</footer>
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/publish.js"></script>
+</body>
+</html>

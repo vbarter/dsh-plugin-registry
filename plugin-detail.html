@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>插件详情 — DeepSeek Harness Plugin Registry</title>
+<meta name="description" data-i18n-content="meta.detail" content="查看 DeepSeek Harness 插件的功能简介、数据来源、Manifest 格式状态、GitHub 指标和安装方式。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="detail">
+<a class="skip-link" href="#main-content" data-i18n="skip">跳到主要内容</a>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="index.html">
+      <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="34" height="34" role="img" aria-labelledby="logo-title logo-desc">
+        <title id="logo-title">DeepSeek Harness Plugin Registry</title>
+        <desc id="logo-desc">A branching harness circuit inside a rounded square.</desc>
+        <rect width="48" height="48" rx="13" fill="#181411"/>
+        <path d="M13.5 13.5v21M13.5 17.5h10.25c3.3 0 5.25-1.95 5.25-5.25M13.5 24H29M13.5 30.5h10.25c3.3 0 5.25 1.95 5.25 5.25" fill="none" stroke="#F5F2EF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="29" cy="11.5" r="3.5" fill="#60A5FA"/>
+        <circle cx="31.5" cy="24" r="3.5" fill="#F5F2EF"/>
+        <circle cx="29" cy="36.5" r="3.5" fill="#60A5FA"/>
+      </svg>
+      <span class="brand-word"><strong>DeepSeek Harness</strong><em>Community Registry</em></span>
+    </a>
+    <nav class="nav" aria-label="主要导航" data-i18n-aria="nav.aria">
+      <a href="index.html" class="on" aria-current="page" data-i18n="nav.browse">浏览插件</a>
+      <a href="publish.html" data-i18n="nav.publish">发布</a>
+      <a href="dashboard.html" data-i18n="nav.stats">统计</a>
+    </nav>
+    <div class="topbar-r">
+      <div class="lang-toggle" role="group" aria-label="语言" data-i18n-aria="lang.aria">
+        <button type="button" data-lang-set="zh" aria-pressed="true">中文</button>
+        <button type="button" data-lang-set="en" aria-pressed="false">EN</button>
+      </div>
+      <span class="cli-tag" data-i18n="tag.preview">COMMUNITY PREVIEW</span>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="main-content">
+<div id="detail-root">
+  <a class="crumb rise" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg><span data-i18n="detail.crumb">返回插件列表</span></a>
+  <section class="detail-head rise rise-1">
+    <div id="avatar-slot"></div>
+    <div style="flex:1;min-width:0">
+      <div class="detail-title">
+        <h1 id="plugin-name" data-i18n="detail.loading">正在加载…</h1>
+        <span id="source-pill"></span>
+      </div>
+      <p class="detail-owner" id="plugin-owner"></p>
+      <p class="detail-desc" id="plugin-desc"></p>
+    </div>
+    <div class="detail-cta">
+      <a class="btn" id="repo-button" target="_blank" rel="noopener" data-i18n="detail.viewGithub">查看 GitHub</a>
+      <button class="btn btn-primary" id="install-btn" type="button" data-i18n="detail.installBtn">安装步骤</button>
+    </div>
+  </section>
+
+  <section class="evidence-grid rise rise-2" aria-label="本站掌握的信息" data-i18n-aria="detail.ariaEvidence">
+    <div><span data-i18n="detail.ev.source">来源</span><strong id="evidence-source">—</strong></div>
+    <div><span data-i18n="detail.ev.manifest">Manifest</span><strong id="evidence-manifest">—</strong></div>
+    <div><span data-i18n="detail.ev.patch">Patch</span><strong id="evidence-patch">—</strong></div>
+    <div><span data-i18n="detail.ev.install">安装测试</span><strong id="evidence-installation">未执行</strong></div>
+  </section>
+
+  <div class="installbox rise rise-2">
+    <span class="dollar">$</span>
+    <code id="install-command"></code>
+    <button class="copy" id="copy-btn" type="button" data-i18n="detail.copy">复制命令</button>
+  </div>
+  <p class="install-note" id="install-copy-status" role="status"></p>
+
+  <div class="detail-grid">
+    <div>
+      <div class="tabs"><span class="tab on" data-i18n="detail.tab">插件信息</span></div>
+      <div class="tabpane on readme">
+        <h3 data-i18n="detail.what">它能做什么</h3>
+        <p id="readme-desc"></p>
+        <h3 data-i18n="detail.before">安装前请确认</h3>
+        <ul class="decision-list">
+          <li id="manifest-decision"></li>
+          <li data-i18n="detail.li.readme">查看 GitHub 仓库中的 README、依赖和额外配置。</li>
+          <li data-i18n="detail.li.audit">本站不审计插件安全性，也没有执行安装测试。</li>
+        </ul>
+        <h3 data-i18n="detail.scope">验证范围</h3>
+        <div class="evidence-card">
+          <span class="evidence-mark" aria-hidden="true">i</span>
+          <div><b id="evidence-title"></b><p id="evidence-copy"></p></div>
+        </div>
+        <h3 data-i18n="detail.topics">GitHub Topics</h3>
+        <div class="topic-list" id="topic-list"></div>
+        <section class="related-section" id="related-section" hidden>
+          <h3 data-i18n="detail.related">同类插件</h3>
+          <div class="related-list" id="related-list"></div>
+        </section>
+      </div>
+    </div>
+    <aside>
+      <div class="side-card">
+        <h4 data-i18n="detail.community">社区数据</h4>
+        <div class="metric-pair">
+          <div><b id="plugin-stars">—</b><span>Stars</span></div>
+          <div><b id="plugin-forks">—</b><span>Forks</span></div>
+        </div>
+      </div>
+      <div class="side-card">
+        <h4 data-i18n="detail.info">信息</h4>
+        <div class="kv"><span class="k" data-i18n="detail.k.maintainer">维护者</span><span class="v" id="maintainer"></span></div>
+        <div class="kv"><span class="k" data-i18n="detail.k.category">分类</span><span class="v" id="category"></span></div>
+        <div class="kv"><span class="k" data-i18n="detail.k.language">语言</span><span class="v" id="language-status"></span></div>
+        <div class="kv"><span class="k" data-i18n="detail.k.updated">更新</span><time class="v" id="updated-status"></time></div>
+        <div class="kv"><span class="k" data-i18n="detail.k.added">收录</span><time class="v" id="added-status"></time></div>
+        <div class="kv"><span class="k" data-i18n="detail.k.source">来源</span><span class="v" id="source"></span></div>
+        <div class="kv"><span class="k" data-i18n="detail.k.manifest">Manifest</span><span class="v" id="manifest-status"></span></div>
+        <div class="kv"><span class="k" data-i18n="detail.k.repo">仓库</span><span class="v"><a id="repo-link" target="_blank" rel="noopener">GitHub</a></span></div>
+      </div>
+    </aside>
+  </div>
+</div>
+</main>
+
+<dialog class="install-dialog" id="install-dialog" aria-labelledby="install-dialog-title">
+  <div class="install-dialog-card">
+    <div class="install-dialog-head">
+      <div>
+        <span class="install-dialog-kicker" data-i18n="modal.kicker">INSTALL</span>
+        <h2 id="install-dialog-title" data-i18n="modal.title">把插件装进 Harness</h2>
+      </div>
+      <button class="install-dialog-close" id="install-close" type="button" aria-label="关闭" data-i18n-aria="modal.close">×</button>
+    </div>
+    <p class="install-dialog-intro" data-i18n="modal.intro">复制命令只表示它进了剪贴板。安装前请自己核对仓库、依赖和权限。</p>
+    <ol class="install-steps">
+      <li><span>01</span><div><b data-i18n="modal.s1t">准备 DeepSeek Harness</b><p data-i18n="modal.s1d">本机已安装 CLI，并能访问目标仓库。</p></div></li>
+      <li><span>02</span><div><b data-i18n="modal.s2t">运行安装命令</b><p data-i18n="modal.s2d">在终端粘贴下面这一行，按仓库 README 补齐配置。</p></div></li>
+      <li><span>03</span><div><b data-i18n="modal.s3t">回到仓库确认</b><p data-i18n="modal.s3d">检查 patch 文件、额外依赖，以及插件声明的权限。</p></div></li>
+    </ol>
+    <div class="install-dialog-command"><span>$</span><code id="modal-command"></code></div>
+    <button class="btn btn-primary install-dialog-copy" id="modal-copy" type="button" data-i18n="modal.copy">复制命令</button>
+    <p class="install-dialog-status" id="modal-copy-status" role="status"></p>
+    <div class="install-dialog-safety">
+      <b data-i18n="modal.safety">安全提示</b>
+      <p data-i18n="modal.safetyBody">本站不运行插件代码，也不持续监控权限变化。复制成功 ≠ 安装成功。</p>
+    </div>
+  </div>
+</dialog>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <a href="index.html" data-i18n="footer.browse">浏览插件</a>
+    <a href="publish.html" data-i18n="footer.publish">发布你的插件</a>
+    <span class="fr" data-i18n="footer.previewShort">预发布版本</span>
+  </div>
+</footer>
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/detail.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+node_modules/
+.cfignore
+.wrangler/
+*.log
+.DS_Store

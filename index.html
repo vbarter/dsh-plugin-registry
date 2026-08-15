@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepSeek Harness Plugin Registry</title>
+<meta name="description" data-i18n-content="meta.index" content="搜索、筛选并比较 DeepSeek Harness 社区插件，查看数据来源、Manifest 格式状态、GitHub 数据和安装方式。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="index">
+<a class="skip-link" href="#main-content" data-i18n="skip">跳到主要内容</a>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="index.html">
+      <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="34" height="34" role="img" aria-labelledby="logo-title logo-desc">
+        <title id="logo-title">DeepSeek Harness Plugin Registry</title>
+        <desc id="logo-desc">A branching harness circuit inside a rounded square.</desc>
+        <rect width="48" height="48" rx="13" fill="#181411"/>
+        <path d="M13.5 13.5v21M13.5 17.5h10.25c3.3 0 5.25-1.95 5.25-5.25M13.5 24H29M13.5 30.5h10.25c3.3 0 5.25 1.95 5.25 5.25" fill="none" stroke="#F5F2EF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="29" cy="11.5" r="3.5" fill="#60A5FA"/>
+        <circle cx="31.5" cy="24" r="3.5" fill="#F5F2EF"/>
+        <circle cx="29" cy="36.5" r="3.5" fill="#60A5FA"/>
+      </svg>
+      <span class="brand-word"><strong>DeepSeek Harness</strong><em>Community Registry</em></span>
+    </a>
+    <nav class="nav" aria-label="主要导航" data-i18n-aria="nav.aria">
+      <a href="index.html" class="on" aria-current="page" data-i18n="nav.browse">浏览插件</a>
+      <a href="publish.html" data-i18n="nav.publish">发布</a>
+      <a href="dashboard.html" data-i18n="nav.stats">统计</a>
+    </nav>
+    <div class="topbar-r">
+      <div class="lang-toggle" role="group" aria-label="语言" data-i18n-aria="lang.aria">
+        <button type="button" data-lang-set="zh" aria-pressed="true">中文</button>
+        <button type="button" data-lang-set="en" aria-pressed="false">EN</button>
+      </div>
+      <span class="cli-tag" data-i18n="tag.preview">COMMUNITY PREVIEW</span>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="main-content">
+  <section class="page-head">
+    <p class="eyebrow rise" data-i18n="index.eyebrow">DeepSeek Harness · Plugin Registry</p>
+    <h1 class="page-title rise rise-1"><span data-i18n="index.heroTitle">给 Harness 装上能力。</span><span class="caret"></span></h1>
+    <p class="page-sub rise rise-2" data-i18n="index.heroSub">路由、检索、评测、通知 —— 社区插件和 GitHub 候选仓库都在这里。先看数据来源和 Manifest 状态，再到仓库确认依赖与配置。</p>
+
+    <div class="discovery-row rise rise-3">
+      <div class="searchbar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <label class="sr-only" for="q" data-i18n="index.searchLabel">搜索插件</label>
+        <input id="q" type="search" placeholder="描述你想让 Harness 做什么…" data-i18n-placeholder="index.searchPlaceholder" autocomplete="off">
+        <span class="kbd">⌘K</span>
+      </div>
+      <div class="termline" aria-hidden="true">
+        <span class="tl-prompt">$</span>
+        <span id="typer"></span>
+        <span class="caret"></span>
+      </div>
+    </div>
+
+    <div class="intent-row rise rise-4" aria-label="常见需求">
+      <span data-i18n="index.try">试试</span>
+      <button type="button" data-intent-key="index.intent.terminal" data-intent="终端界面">终端界面</button>
+      <button type="button" data-intent-key="index.intent.notify" data-intent="消息通知">消息通知</button>
+      <button type="button" data-intent-key="index.intent.search" data-intent="网页搜索">网页搜索</button>
+      <button type="button" data-intent-key="index.intent.workflow" data-intent="工作流">工作流</button>
+      <button type="button" data-intent-key="index.intent.memory" data-intent="记忆">记忆</button>
+    </div>
+
+    <div class="statstrip rise rise-4">
+      <div class="ss"><b class="num" id="st-count">—</b><span data-i18n="index.stat.repos">可浏览仓库</span></div>
+      <div class="ss"><b class="num" id="st-stars">—</b><span data-i18n="index.stat.stars">GitHub Stars</span></div>
+      <div class="ss"><b class="num" id="st-author">—</b><span data-i18n="index.stat.authors">插件作者</span></div>
+      <div class="ss"><b class="num" id="st-auto">—</b><span data-i18n="index.stat.manifest">Manifest 格式检查</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="toolbar">
+      <div class="chips" id="chips">
+        <button class="chip on" type="button" data-cat="all"><span data-i18n="index.filter.all">全部</span> <span class="chip-count" id="all-count">—</span></button>
+      </div>
+      <div class="toolbar-r">
+        <label class="sr-only" for="source" data-i18n="index.filter.source">插件来源</label>
+        <select class="sel filter-source" id="source" aria-label="插件来源" data-i18n-aria="index.filter.source">
+          <option value="all" data-i18n="index.source.all">全部来源</option>
+          <option value="curated" data-i18n="index.source.curated">社区目录</option>
+          <option value="discovered" data-i18n="index.source.discovered">GitHub 自动发现</option>
+        </select>
+        <label class="sr-only" for="manifest" data-i18n="index.filter.manifest">Manifest 状态</label>
+        <select class="sel" id="manifest" aria-label="Manifest 状态" data-i18n-aria="index.filter.manifest">
+          <option value="all" data-i18n="index.manifest.all">全部 Manifest 状态</option>
+          <option value="shape_validated" data-i18n="index.manifest.ok">格式检查通过</option>
+          <option value="not_checked" data-i18n="index.manifest.unchecked">未检查</option>
+          <option value="not_validated" data-i18n="index.manifest.missing">缺少有效 dsh.bundle</option>
+        </select>
+        <label class="sr-only" for="language" data-i18n="index.filter.language">编程语言</label>
+        <select class="sel" id="language" aria-label="编程语言" data-i18n-aria="index.filter.language">
+          <option value="all" data-i18n="index.lang.all">全部语言</option>
+        </select>
+        <label class="sr-only" for="sort" data-i18n="index.filter.sort">排序方式</label>
+        <select class="sel" id="sort" aria-label="排序方式" data-i18n-aria="index.filter.sort">
+          <option value="relevance" data-i18n="index.sort.relevance">智能排序</option>
+          <option value="stars" data-i18n="index.sort.stars">按 Stars</option>
+          <option value="manifest" data-i18n="index.sort.manifest">Manifest 格式通过优先</option>
+          <option value="forks" data-i18n="index.sort.forks">按 Forks</option>
+          <option value="new" data-i18n="index.sort.new">按最近更新</option>
+          <option value="added" data-i18n="index.sort.added">按最近收录</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">
+      <h2 data-i18n="index.sectionTitle">插件与候选仓库</h2>
+      <span class="sl-note" id="list-note"></span>
+    </div>
+    <div class="plist" id="list"></div>
+    <div class="load-more-wrap" id="load-more-wrap" hidden><button class="btn" id="load-more" type="button" data-i18n="index.loadMore">加载更多</button></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <a href="publish.html" data-i18n="footer.publish">发布你的插件</a>
+    <a href="policy.html" data-i18n="footer.policy">收录规范</a>
+    <a href="data/plugins.json" data-i18n="footer.json">注册表 JSON</a>
+    <a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener" data-i18n="footer.harness">DeepSeek Harness</a>
+    <span class="fr" data-i18n="footer.preview">预发布版本 · 数据每 2 小时自动发现</span>
+  </div>
+</footer>
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/list.js"></script>
+</body>
+</html>

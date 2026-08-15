@@ -1,0 +1,19 @@
+name: Pages note
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  note:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cloudflare Pages can hook this repo
+        run: |
+          echo "This repository is a static site (HTML/CSS/JS + data/)."
+          echo "Point Cloudflare Pages at the repo, production branch main, output directory ."
+          echo "No Cloudflare API token or wrangler secrets are required in GitHub Actions."
+          echo "After a Pages project is connected, pushes to main will publish automatically."
