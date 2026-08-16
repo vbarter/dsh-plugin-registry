@@ -4,3 +4,6 @@
 /publish.html /publish 301
 /install.html /install 301
 /vs.html /vs 301
+
+/sitemap-plugins.xml /sitemap-gone.html 410
+/sitemap-static.xml /sitemap-gone.html 410
