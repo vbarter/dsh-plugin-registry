@@ -1,11 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap>
-    <loc>https://dsplugin.app/sitemap-static.xml</loc>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://dsplugin.app/</loc>
     <lastmod>2026-08-16</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://dsplugin.app/sitemap-plugins.xml</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://dsplugin.app/install</loc>
     <lastmod>2026-08-16</lastmod>
-  </sitemap>
-</sitemapindex>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://dsplugin.app/publish</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://dsplugin.app/vs</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://dsplugin.app/plugins/modlens</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://dsplugin.app/plugins/dsh-web-ui</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://dsplugin.app/plugins/dsh-cc-tui</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://dsplugin.app/c/vision</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://dsplugin.app/c/web-ui</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://dsplugin.app/c/tui</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+</urlset>

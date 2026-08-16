@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>如何安装 DeepSeek Harness 插件｜dsh plugin add</title>
+<meta name="description" content="如何安装 DeepSeek Harness（dsh）插件：先启动官方 CLI 的 web profile，再复制目录给出的 add 命令。社区目录，不是官方站。">
+<link rel="canonical" href="https://dsplugin.app/install">
+<meta property="og:title" content="如何安装 DeepSeek Harness 插件｜dsh plugin add">
+<meta property="og:description" content="如何安装 DeepSeek Harness（dsh）插件：先启动官方 CLI 的 web profile，再复制目录给出的 add 命令。社区目录，不是官方站。">
+<meta property="og:url" content="https://dsplugin.app/install">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="dsplugin.app">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dsplugin.app/og.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="如何安装 DeepSeek Harness 插件｜dsh plugin add">
+<meta name="twitter:description" content="如何安装 DeepSeek Harness（dsh）插件：先启动官方 CLI 的 web profile，再复制目录给出的 add 命令。社区目录，不是官方站。">
+<meta name="theme-color" content="#181411">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://dsplugin.app/#org",
+      "name": "dsplugin.app",
+      "url": "https://dsplugin.app/"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://dsplugin.app/#website",
+      "name": "dsplugin.app",
+      "url": "https://dsplugin.app/",
+      "inLanguage": "zh-CN",
+      "description": "如何安装 DeepSeek Harness（dsh）插件：先启动官方 CLI 的 web profile，再复制目录给出的 add 命令。社区目录，不是官方站。",
+      "publisher": {
+        "@id": "https://dsplugin.app/#org"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "dsplugin.app",
+          "item": "https://dsplugin.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "安装",
+          "item": "https://dsplugin.app/install"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "如何安装 dsh 插件？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "先运行官方 CLI 启动 Web profile，再复制目录给出的 add 命令。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "安装命令从哪来？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "本站是社区目录。只有条目声明了有效 dsh.bundle 才会给出安装命令。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "这是 DeepSeek 官方安装器吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不是。dsplugin.app 由社区维护，不是 DeepSeek 官方站。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "和直接搜 GitHub topic 有何不同？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "官方发现仍是 GitHub dsh-plugin topic。本站有有效 dsh.bundle 才给安装命令。"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body class="landing">
+<a class="skip-link" href="#main-content">跳到主要内容</a>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="/">
+      <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="34" height="34" role="img" aria-labelledby="logo-title logo-desc">
+        <title id="logo-title">DeepSeek Harness Plugin Registry</title>
+        <desc id="logo-desc">A branching harness circuit inside a rounded square.</desc>
+        <rect width="48" height="48" rx="13" fill="#181411"/>
+        <path d="M13.5 13.5v21M13.5 17.5h10.25c3.3 0 5.25-1.95 5.25-5.25M13.5 24H29M13.5 30.5h10.25c3.3 0 5.25 1.95 5.25 5.25" fill="none" stroke="#F5F2EF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="29" cy="11.5" r="3.5" fill="#60A5FA"/>
+        <circle cx="31.5" cy="24" r="3.5" fill="#F5F2EF"/>
+        <circle cx="29" cy="36.5" r="3.5" fill="#60A5FA"/>
+      </svg>
+      <span class="brand-word"><strong>DeepSeek Harness</strong><em>Community Registry</em></span>
+    </a>
+    <nav class="nav" aria-label="主要导航">
+      <a href="/">浏览插件</a>
+      <a href="/install" class="on" aria-current="page">安装</a>
+      <a href="/publish">发布</a>
+      <a href="/vs">对比</a>
+    </nav>
+    <div class="topbar-r"><span class="cli-tag">COMMUNITY PREVIEW</span></div>
+  </div>
+</header>
+<main class="wrap" id="main-content">
+  <nav class="crumbs" aria-label="breadcrumb"><a href="/">目录</a><span>/</span><span>安装</span></nav>
+  <section class="page-head">
+    <p class="eyebrow">Install</p>
+    <h1 class="page-title">如何安装 dsh 插件</h1>
+    <p class="page-sub">社区目录只负责展示来源、Manifest 状态和可复制命令。本站不执行安装，也不审计插件安全。</p>
+  </section>
+  <article class="prose">
+    <h2>1. 启动 DeepSeek Harness Web</h2>
+    <p>本机需要能跑 Node。用官方 CLI 打开 web profile：</p>
+    <pre class="cmd"><code>npx @deepseek-ai/dsh web</code></pre>
+    <h2>2. 添加插件</h2>
+    <p>Manifest 格式检查通过后，把 owner/repo 换成仓库地址：</p>
+    <pre class="cmd"><code>dsh plugin --profile web add github:owner/repo</code></pre>
+    <h2>3. 先看来源，再回仓库确认</h2>
+    <p>复制命令只表示它进了剪贴板。安装前请自己核对 README、依赖和权限。</p>
+    <ul class="hub-list">
+      <li><a href="/plugins/modlens">ModLens</a></li>
+      <li><a href="/plugins/dsh-web-ui">dsh-web-ui</a></li>
+      <li><a href="/plugins/dsh-cc-tui">dsh-cc-tui</a></li>
+      <li><a href="/publish">如何发布</a></li>
+      <li><a href="/">浏览目录</a></li>
+    </ul>
+  </article>
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="section-label"><h2 id="faq-title">常见问题</h2></div>
+    <dl class="faq-list">
+      <div><dt>如何安装 dsh 插件？</dt><dd>先运行官方 CLI 启动 Web profile，再复制目录给出的 add 命令。</dd></div>
+      <div><dt>安装命令从哪来？</dt><dd>本站是社区目录。只有条目声明了有效 dsh.bundle 才会给出安装命令。</dd></div>
+      <div><dt>这是 DeepSeek 官方安装器吗？</dt><dd>不是。dsplugin.app 由社区维护，不是 DeepSeek 官方站。</dd></div>
+      <div><dt>和直接搜 GitHub topic 有何不同？</dt><dd>官方发现仍是 GitHub dsh-plugin topic。本站有有效 dsh.bundle 才给安装命令。</dd></div>
+    </dl>
+  </section>
+
+</main>
+<footer class="footer">
+  <div class="wrap footer-in">
+    <a href="/">浏览插件</a>
+    <a href="/install">安装</a>
+    <a href="/publish">发布</a>
+    <a href="/vs">对比</a>
+    <a href="/c/vision">Vision</a>
+    <a href="/c/web-ui">Web UI</a>
+    <a href="/c/tui">TUI</a>
+    <a href="https://github.com/vbarter/dsh-plugin-registry" target="_blank" rel="noopener">GitHub</a>
+    <span class="fr">社区目录 · 不是 DeepSeek 官方站</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DeepSeek Harness 插件目录 · dsplugin.app</title>
+<title>DeepSeek Harness 插件目录｜dsh plugin registry · dsplugin.app</title>
 <meta name="description" data-i18n-content="meta.index" content="在 dsplugin.app 浏览 DeepSeek Harness（dsh）社区插件目录：按来源与 Manifest 状态筛选，查看 GitHub 数据和安装命令。">
 <link rel="canonical" href="https://dsplugin.app/">
 <link rel="alternate" hreflang="zh-CN" href="https://dsplugin.app/?lang=zh">
 <link rel="alternate" hreflang="en" href="https://dsplugin.app/?lang=en">
 <link rel="alternate" hreflang="x-default" href="https://dsplugin.app/">
-<meta property="og:title" content="DeepSeek Harness 插件目录 · dsplugin.app" data-i18n-content="title.index">
+<meta property="og:title" content="DeepSeek Harness 插件目录｜dsh plugin registry · dsplugin.app" data-i18n-content="title.index">
 <meta property="og:description" content="在 dsplugin.app 浏览 DeepSeek Harness（dsh）社区插件目录：按来源与 Manifest 状态筛选，查看 GitHub 数据和安装命令。" data-i18n-content="meta.index">
 <meta property="og:url" content="https://dsplugin.app/">
 <meta property="og:type" content="website">
@@ -17,18 +17,97 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://dsplugin.app/og.svg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="DeepSeek Harness 插件目录 · dsplugin.app" data-i18n-content="title.index">
+<meta name="twitter:title" content="DeepSeek Harness 插件目录｜dsh plugin registry · dsplugin.app" data-i18n-content="title.index">
 <meta name="twitter:description" content="在 dsplugin.app 浏览 DeepSeek Harness（dsh）社区插件目录：按来源与 Manifest 状态筛选，查看 GitHub 数据和安装命令。" data-i18n-content="meta.index">
 <meta name="google-site-verification" content="4zPWyiJy4k91HZLaWOdDR1HnesMwbzcoIX7Xks0Eb4Q">
 <meta name="theme-color" content="#181411">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<script type="application/ld+json" id="seo-jsonld"></script>
+<script type="application/ld+json" id="seo-jsonld">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://dsplugin.app/#org",
+      "name": "dsplugin.app",
+      "url": "https://dsplugin.app/"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://dsplugin.app/#website",
+      "name": "dsplugin.app",
+      "url": "https://dsplugin.app/",
+      "inLanguage": "zh-CN",
+      "description": "社区维护的 dsh 插件注册表，不是 DeepSeek 官方站。",
+      "publisher": {
+        "@id": "https://dsplugin.app/#org"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "dsplugin.app",
+          "item": "https://dsplugin.app/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "这是什么注册表？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "dsplugin.app 是 DeepSeek Harness（dsh）社区插件目录，收录公开 GitHub 仓库，供浏览、筛选和复制安装命令。本站由社区维护，不是 DeepSeek 官方站点。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "dsh.bundle 是什么？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "dsh.bundle 是插件仓库根目录 package.json 里的声明，指向一份相对路径的 patch 文件。Manifest 格式检查通过后，本站才会给出安装命令。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "如何发布插件？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "在发布页预检公开 GitHub 仓库，再通过 Issue / PR 提交到 vbarter/dsh-plugin-registry。维护者合并后，目录才会更新。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "「未检查」和「格式检查」是什么意思？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "「格式检查通过」表示本站核对过 package.json 里的 dsh.bundle 形态。「未检查」表示条目来自社区目录，本站尚未核对其 Manifest。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "和 GitHub topic 的区别",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "官方发现仍是 GitHub dsh-plugin topic。本站是社区目录，有有效 dsh.bundle 才给安装命令。"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20260816b">
 </head>
-<body data-page="index">
+<body data-page="index" class="landing">
 <a class="skip-link" href="#main-content" data-i18n="skip">跳到主要内容</a>
 <header class="topbar">
   <div class="wrap topbar-in">
@@ -61,8 +140,27 @@
 <main class="wrap" id="main-content">
   <section class="page-head">
     <p class="eyebrow rise" data-i18n="index.eyebrow">DeepSeek Harness · Plugin Registry</p>
-    <h1 class="page-title rise rise-1"><span data-i18n="index.heroTitle">给 Harness 装上能力。</span><span class="caret"></span></h1>
-    <p class="page-sub rise rise-2" data-i18n="index.heroSub">路由、检索、评测、通知 —— 社区插件和 GitHub 候选仓库都在这里。先看数据来源和 Manifest 状态，再到仓库确认依赖与配置。</p>
+    <h1 class="page-title rise rise-1"><span data-i18n="index.heroTitle">DeepSeek Harness 插件目录</span><span class="caret"></span></h1>
+    <p class="page-sub rise rise-2" data-i18n="index.heroSub">社区维护的 dsh 插件注册表，不是 DeepSeek 官方站。先看来源和 Manifest 状态，再复制 <code>dsh plugin --profile web add github:owner/repo</code>。</p>
+
+
+    <div class="landing rise rise-3">
+      <ul class="hub-list" aria-label="专题">
+        <li><a href="/c/vision">Vision</a></li>
+        <li><a href="/c/web-ui">Web UI</a></li>
+        <li><a href="/c/tui">TUI</a></li>
+      </ul>
+      <ul class="hub-list" aria-label="精选插件">
+        <li><a href="/plugins/modlens">ModLens</a></li>
+        <li><a href="/plugins/dsh-web-ui">dsh-web-ui</a></li>
+        <li><a href="/plugins/dsh-cc-tui">dsh-cc-tui</a></li>
+      </ul>
+      <ul class="hub-list" aria-label="开始使用">
+        <li><a href="/install">安装</a></li>
+        <li><a href="/publish">发布</a></li>
+        <li><a href="/vs">对比</a></li>
+      </ul>
+    </div>
 
     <div class="discovery-row rise rise-3">
       <div class="searchbar">
@@ -160,6 +258,10 @@
       <div>
         <dt data-i18n="faq.q4">「未检查」和「格式检查」是什么意思？</dt>
         <dd data-i18n="faq.a4">「格式检查通过」表示本站核对过 package.json 里的 dsh.bundle 形态。「未检查」表示条目来自社区目录，本站尚未核对其 Manifest。两者都不是安全审计，也不等于已经做过安装测试。</dd>
+      </div>
+      <div>
+        <dt data-i18n="faq.q5">和 GitHub topic 的区别</dt>
+        <dd data-i18n="faq.a5">官方发现仍是 GitHub dsh-plugin topic。本站是社区目录，有有效 dsh.bundle 才给安装命令。</dd>
       </div>
     </dl>
   </section>
