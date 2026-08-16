@@ -12,9 +12,13 @@
 
 /sitemap-plugins.xml
   X-Robots-Tag: noindex
+  Cache-Control: no-store, no-cache, must-revalidate
+  CDN-Cache-Control: no-store
+  Cloudflare-CDN-Cache-Control: no-store
 
 /sitemap-static.xml
   X-Robots-Tag: noindex
+  Cache-Control: no-store, no-cache, must-revalidate
+  CDN-Cache-Control: no-store
+  Cloudflare-CDN-Cache-Control: no-store
 
-/sitemap-gone.html
-  X-Robots-Tag: noindex
