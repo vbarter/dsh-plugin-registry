@@ -15,16 +15,16 @@ Counts live in that JSON (`plugins[]`). Do not treat them as rankings or a secur
 
 A static public catalog of DeepSeek Harness community plugins. Indexable pages:
 
-- https://dsplugin.app/ — browse / search / filter
-- https://dsplugin.app/install — install a plugin
-- https://dsplugin.app/publish — repo precheck → GitHub Issue
-- https://dsplugin.app/vs — three-way directory comparison
-- https://dsplugin.app/plugins/modlens
-- https://dsplugin.app/plugins/dsh-web-ui
-- https://dsplugin.app/plugins/dsh-cc-tui
-- https://dsplugin.app/c/vision
-- https://dsplugin.app/c/web-ui
-- https://dsplugin.app/c/tui
+- https://dsplugin.app/ — 目录, dsplugin / dsh plugin registry
+- https://dsplugin.app/install — 安装
+- https://dsplugin.app/publish — 发布 / dsh.bundle
+- https://dsplugin.app/vs — 对比, dsplugin vs dshplugin
+- https://dsplugin.app/plugins/modlens — ModLens
+- https://dsplugin.app/plugins/dsh-web-ui — dsh-web-ui
+- https://dsplugin.app/plugins/dsh-cc-tui — dsh-cc-tui
+- https://dsplugin.app/c/vision — Vision
+- https://dsplugin.app/c/web-ui — Web UI
+- https://dsplugin.app/c/tui — TUI
 - https://dsplugin.app/llms.txt — short machine-readable summary
 
 `/dashboard` and `/plugin-detail` are noindex. Do not cite `plugin-detail.html?plugin=` URLs.

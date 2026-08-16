@@ -4,7 +4,7 @@
 
   const DICT = {
     zh: {
-      "title.index": "DeepSeek Harness 插件目录｜dsh plugin registry · dsplugin.app",
+      "title.index": "DeepSeek Harness 插件目录｜dsplugin · dsh plugin registry",
       "title.detail": "插件详情 — DeepSeek Harness 插件目录 · dsplugin.app",
       "title.publish": "如何发布 DeepSeek Harness 插件｜dsh.bundle",
       "title.dashboard": "统计 — DeepSeek Harness 插件目录 · dsplugin.app",
@@ -27,7 +27,7 @@
       "tag.policy": "REGISTRY POLICY",
       "index.eyebrow": "DeepSeek Harness · Plugin Registry",
       "index.heroTitle": "DeepSeek Harness 插件目录",
-      "index.heroSub": "社区维护的 dsh 插件注册表，不是 DeepSeek 官方站。先看来源和 Manifest 状态，再复制 dsh plugin --profile web add github:owner/repo。",
+      "index.heroSub": "dsplugin 是社区维护的 dsh plugin registry，也叫 DeepSeek Harness 插件目录。不是 DeepSeek 官方站。先看来源和 Manifest 状态，再复制安装命令。",
       "index.searchLabel": "搜索插件",
       "index.searchPlaceholder": "描述你想让 Harness 做什么…",
       "index.try": "试试",
@@ -293,7 +293,7 @@
       "policy.goPublish": "去发布"
     },
     en: {
-      "title.index": "DeepSeek Harness Plugin Registry｜dsh plugin registry · dsplugin.app",
+      "title.index": "DeepSeek Harness Plugin Registry｜dsplugin · dsh plugin registry",
       "title.detail": "Plugin detail — DeepSeek Harness Plugin Registry · dsplugin.app",
       "title.publish": "How to publish a DeepSeek Harness plugin｜dsh.bundle",
       "title.dashboard": "Stats — DeepSeek Harness Plugin Registry · dsplugin.app",
@@ -316,7 +316,7 @@
       "tag.policy": "REGISTRY POLICY",
       "index.eyebrow": "DeepSeek Harness · Plugin Registry",
       "index.heroTitle": "DeepSeek Harness Plugin Registry",
-      "index.heroSub": "A community-maintained dsh plugin registry, not an official DeepSeek site. Check source and Manifest status first, then copy dsh plugin --profile web add github:owner/repo.",
+      "index.heroSub": "dsplugin is a community-maintained dsh plugin registry, also called the DeepSeek Harness plugin catalog. Not an official DeepSeek site. Check source and Manifest status first, then copy an install command.",
       "index.searchLabel": "Search plugins",
       "index.searchPlaceholder": "Describe what you want Harness to do…",
       "index.try": "Try",
