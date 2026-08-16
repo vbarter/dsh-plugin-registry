@@ -14,16 +14,16 @@ dsplugin.app 是 DeepSeek Harness（dsh）的社区插件目录，收录公开 G
 
 ## Key pages
 
-- [Browse](https://dsplugin.app/): DeepSeek Harness plugin catalog
-- [Install](https://dsplugin.app/install): how to add a plugin with `dsh plugin --profile web add`
-- [Publish](https://dsplugin.app/publish): precheck a public GitHub repo, then open an Issue
-- [Compare](https://dsplugin.app/vs): dsplugin.app vs dshplugin.app vs dshplugin.world
-- [ModLens](https://dsplugin.app/plugins/modlens)
-- [dsh-web-ui](https://dsplugin.app/plugins/dsh-web-ui)
-- [dsh-cc-tui](https://dsplugin.app/plugins/dsh-cc-tui)
-- [Vision](https://dsplugin.app/c/vision)
-- [Web UI](https://dsplugin.app/c/web-ui)
-- [TUI](https://dsplugin.app/c/tui)
+- [Browse](https://dsplugin.app/): 目录 — dsplugin / dsh plugin / dsh plugin registry
+- [Install](https://dsplugin.app/install): 安装 — how to add a dsh plugin
+- [Publish](https://dsplugin.app/publish): 发布 / dsh.bundle
+- [Compare](https://dsplugin.app/vs): 对比 — dsplugin vs dshplugin
+- [ModLens](https://dsplugin.app/plugins/modlens): ModLens
+- [dsh-web-ui](https://dsplugin.app/plugins/dsh-web-ui): dsh-web-ui
+- [dsh-cc-tui](https://dsplugin.app/plugins/dsh-cc-tui): dsh-cc-tui
+- [Vision](https://dsplugin.app/c/vision): Vision
+- [Web UI](https://dsplugin.app/c/web-ui): Web UI
+- [TUI](https://dsplugin.app/c/tui): TUI
 
 Languages: Chinese is the default. English via the on-page toggle or `?lang=en` / `?lang=zh`.
 
