@@ -939,3 +939,23 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
   .toolbar-r { grid-template-columns: 1fr; }
   .prow { grid-template-columns: 36px minmax(0, 1fr); }
 }
+.page-title { max-width: none; }
+.page-sub { max-width: 72ch; overflow-wrap: anywhere; word-break: break-word; }
+.faq-list { max-width: none; }
+.pavatar, .pavatar.lg { border-radius: 12px; }
+.pavatar img { border-radius: inherit; }
+.discovery-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.ss span { display: block; min-height: 2.4em; line-height: 1.2; }
+.topbar-in { flex-wrap: nowrap; }
+.nav { min-width: 0; overflow-x: auto; }
+@media (max-width: 960px) {
+  .topbar-in {
+    flex-wrap: nowrap;
+    height: 60px;
+    min-height: 60px;
+    padding: 0;
+    gap: 12px;
+  }
+  .nav { order: 0; width: auto; flex: 1; margin-left: 0; }
+  .discovery-row { grid-template-columns: 1fr; }
+}
