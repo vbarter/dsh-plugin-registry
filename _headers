@@ -9,3 +9,12 @@
 
 /data/*.json
   Content-Type: application/json; charset=utf-8
+
+/sitemap-plugins.xml
+  X-Robots-Tag: noindex
+
+/sitemap-static.xml
+  X-Robots-Tag: noindex
+
+/sitemap-gone.html
+  X-Robots-Tag: noindex
