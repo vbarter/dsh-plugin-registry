@@ -3,31 +3,71 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>发布 dsh 插件 — DeepSeek Harness 插件目录 · dsplugin.app</title>
+<title>如何发布 DeepSeek Harness 插件｜dsh.bundle</title>
 <meta name="description" data-i18n-content="meta.publish" content="把公开 GitHub 仓库提交到 dsplugin.app：预检 dsh.bundle 后，经 GitHub Issue / PR 审核进入 DeepSeek Harness 插件目录。">
-<link rel="canonical" href="https://dsplugin.app/publish.html">
-<link rel="alternate" hreflang="zh-CN" href="https://dsplugin.app/publish.html?lang=zh">
-<link rel="alternate" hreflang="en" href="https://dsplugin.app/publish.html?lang=en">
-<link rel="alternate" hreflang="x-default" href="https://dsplugin.app/publish.html">
-<meta property="og:title" content="发布 dsh 插件 — DeepSeek Harness 插件目录 · dsplugin.app" data-i18n-content="title.publish">
+<link rel="canonical" href="https://dsplugin.app/publish">
+<link rel="alternate" hreflang="zh-CN" href="https://dsplugin.app/publish?lang=zh">
+<link rel="alternate" hreflang="en" href="https://dsplugin.app/publish?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://dsplugin.app/publish">
+<meta property="og:title" content="如何发布 DeepSeek Harness 插件｜dsh.bundle" data-i18n-content="title.publish">
 <meta property="og:description" content="把公开 GitHub 仓库提交到 dsplugin.app：预检 dsh.bundle 后，经 GitHub Issue / PR 审核进入 DeepSeek Harness 插件目录。" data-i18n-content="meta.publish">
-<meta property="og:url" content="https://dsplugin.app/publish.html">
+<meta property="og:url" content="https://dsplugin.app/publish">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="dsplugin.app">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://dsplugin.app/og.svg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="发布 dsh 插件 — DeepSeek Harness 插件目录 · dsplugin.app" data-i18n-content="title.publish">
+<meta name="twitter:title" content="如何发布 DeepSeek Harness 插件｜dsh.bundle" data-i18n-content="title.publish">
 <meta name="twitter:description" content="把公开 GitHub 仓库提交到 dsplugin.app：预检 dsh.bundle 后，经 GitHub Issue / PR 审核进入 DeepSeek Harness 插件目录。" data-i18n-content="meta.publish">
 <meta name="theme-color" content="#181411">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<script type="application/ld+json" id="seo-jsonld"></script>
+<script type="application/ld+json" id="seo-jsonld">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://dsplugin.app/#org",
+      "name": "dsplugin.app",
+      "url": "https://dsplugin.app/"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://dsplugin.app/#website",
+      "name": "dsplugin.app",
+      "url": "https://dsplugin.app/",
+      "inLanguage": "zh-CN",
+      "description": "如何发布 DeepSeek Harness 插件：根目录 package.json 声明 dsh.bundle.patch，加上 dsh-plugin topic，经预检和 GitHub Issue 合并到 vbarter/dsh-plugin-registry。",
+      "publisher": {
+        "@id": "https://dsplugin.app/#org"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "dsplugin.app",
+          "item": "https://dsplugin.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "发布",
+          "item": "https://dsplugin.app/publish"
+        }
+      ]
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20260816b">
 </head>
-<body data-page="publish">
+<body data-page="publish" class="landing">
 <a class="skip-link" href="#main-content" data-i18n="skip">跳到主要内容</a>
 <header class="topbar">
   <div class="wrap topbar-in">
@@ -60,8 +100,17 @@
 <main class="wrap" id="main-content">
   <section class="page-head">
     <p class="eyebrow rise" data-i18n="publish.eyebrow">Publish · GitHub review</p>
-    <h1 class="page-title rise rise-1" data-i18n="publish.heroTitle">提交仓库，公开走完审核。</h1>
+    <h1 class="page-title rise rise-1" data-i18n="publish.heroTitle">如何发布 dsh 插件</h1>
     <p class="page-sub rise rise-2" data-i18n="publish.heroSub">先运行仓库预检，再创建带检查结果的 GitHub Issue。维护者反馈、修复记录和最终结论都留在 GitHub；满足契约的仓库仍会自动发现。</p>
+  </section>
+
+
+  <section class="landing rise rise-3" aria-labelledby="contract-title">
+    <h2 id="contract-title">dsh.bundle 与 topic 契约</h2>
+    <div class="prose">
+      <p>根目录 <code>package.json</code> 必须声明 <code>dsh.bundle.patch</code>，值为相对路径（不能含 <code>..</code>）。仓库加上 GitHub topic <code>dsh-plugin</code>。</p>
+      <p>提交路径：本页预检 → GitHub Issue → 维护者合并到 <a href="https://github.com/vbarter/dsh-plugin-registry">vbarter/dsh-plugin-registry</a> 后，目录才会更新。</p>
+    </div>
   </section>
 
   <ol class="stepper rise rise-3" aria-label="GitHub 提交流程" data-i18n-aria="publish.stepperAria">

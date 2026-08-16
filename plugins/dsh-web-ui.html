@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dsh-web-ui｜DeepSeek Harness Web UI 插件</title>
+<meta name="description" content="dsh-web-ui 是 DeepSeek Harness Web UI 插件合集：任务看板、git 图、右侧面板与皮肤。仓库 zhu1090093659/dsh-web-ui。">
+<link rel="canonical" href="https://dsplugin.app/plugins/dsh-web-ui">
+<meta property="og:title" content="dsh-web-ui｜DeepSeek Harness Web UI 插件">
+<meta property="og:description" content="dsh-web-ui 是 DeepSeek Harness Web UI 插件合集：任务看板、git 图、右侧面板与皮肤。仓库 zhu1090093659/dsh-web-ui。">
+<meta property="og:url" content="https://dsplugin.app/plugins/dsh-web-ui">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="dsplugin.app">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dsplugin.app/og.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="dsh-web-ui｜DeepSeek Harness Web UI 插件">
+<meta name="twitter:description" content="dsh-web-ui 是 DeepSeek Harness Web UI 插件合集：任务看板、git 图、右侧面板与皮肤。仓库 zhu1090093659/dsh-web-ui。">
+<meta name="theme-color" content="#181411">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://dsplugin.app/#org",
+      "name": "dsplugin.app",
+      "url": "https://dsplugin.app/"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://dsplugin.app/#website",
+      "name": "dsplugin.app",
+      "url": "https://dsplugin.app/",
+      "inLanguage": "zh-CN",
+      "description": "dsh-web-ui 是 DeepSeek Harness Web UI 插件合集：任务看板、git 图、右侧面板与皮肤。仓库 zhu1090093659/dsh-web-ui。",
+      "publisher": {
+        "@id": "https://dsplugin.app/#org"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "dsplugin.app",
+          "item": "https://dsplugin.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Web UI",
+          "item": "https://dsplugin.app/c/web-ui"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "dsh-web-ui",
+          "item": "https://dsplugin.app/plugins/dsh-web-ui"
+        }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "dsh-web-ui",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Cross-platform",
+      "description": "dsh-web-ui 是 DeepSeek Harness Web UI 插件。",
+      "url": "https://dsplugin.app/plugins/dsh-web-ui",
+      "codeRepository": "https://github.com/zhu1090093659/dsh-web-ui",
+      "installUrl": "https://dsplugin.app/plugins/dsh-web-ui",
+      "inLanguage": "zh-CN",
+      "publisher": {
+        "@id": "https://dsplugin.app/#org"
+      }
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body class="landing">
+<a class="skip-link" href="#main-content">跳到主要内容</a>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="/">
+      <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="34" height="34" role="img" aria-labelledby="logo-title logo-desc">
+        <title id="logo-title">DeepSeek Harness Plugin Registry</title>
+        <desc id="logo-desc">A branching harness circuit inside a rounded square.</desc>
+        <rect width="48" height="48" rx="13" fill="#181411"/>
+        <path d="M13.5 13.5v21M13.5 17.5h10.25c3.3 0 5.25-1.95 5.25-5.25M13.5 24H29M13.5 30.5h10.25c3.3 0 5.25 1.95 5.25 5.25" fill="none" stroke="#F5F2EF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="29" cy="11.5" r="3.5" fill="#60A5FA"/>
+        <circle cx="31.5" cy="24" r="3.5" fill="#F5F2EF"/>
+        <circle cx="29" cy="36.5" r="3.5" fill="#60A5FA"/>
+      </svg>
+      <span class="brand-word"><strong>DeepSeek Harness</strong><em>Community Registry</em></span>
+    </a>
+    <nav class="nav" aria-label="主要导航">
+      <a href="/" class="on" aria-current="page">浏览插件</a>
+      <a href="/install">安装</a>
+      <a href="/publish">发布</a>
+      <a href="/vs">对比</a>
+    </nav>
+    <div class="topbar-r"><span class="cli-tag">COMMUNITY PREVIEW</span></div>
+  </div>
+</header>
+<main class="wrap" id="main-content">
+  <nav class="crumbs" aria-label="breadcrumb"><a href="/">目录</a><span>/</span><a href="/c/web-ui">Web UI</a><span>/</span><span>dsh-web-ui</span></nav>
+  <section class="page-head">
+    <p class="eyebrow">Plugin · dsh-web-ui</p>
+    <h1 class="page-title">dsh-web-ui｜DeepSeek Harness Web UI 插件</h1>
+    <p class="page-sub">dsh-web-ui 是 DeepSeek Harness Web UI 插件合集：任务看板、git 图、右侧面板与皮肤。仓库 zhu1090093659/dsh-web-ui。</p>
+  </section>
+  <article class="prose">
+    <h2>安装命令</h2>
+    <p>dsh-web-ui 的安装命令写在页面源码里，不依赖 JavaScript：</p>
+    <pre class="cmd"><code>dsh plugin --profile web add @linxin666/dsh-web-ui-all</code></pre>
+    <p>包名是 @linxin666/dsh-web-ui-all，源码在 zhu1090093659/dsh-web-ui。先看来源和 Manifest，再回仓库确认依赖。</p>
+    <p>仓库：<a href="https://github.com/zhu1090093659/dsh-web-ui" target="_blank" rel="noopener">https://github.com/zhu1090093659/dsh-web-ui</a></p>
+    <ul class="hub-list">
+      <li><a href="/c/web-ui">Web UI 专题</a></li>
+      <li><a href="/install">如何安装</a></li>
+      <li><a href="/">浏览目录</a></li>
+    </ul>
+  </article>
+
+</main>
+<footer class="footer">
+  <div class="wrap footer-in">
+    <a href="/">浏览插件</a>
+    <a href="/install">安装</a>
+    <a href="/publish">发布</a>
+    <a href="/vs">对比</a>
+    <a href="/c/vision">Vision</a>
+    <a href="/c/web-ui">Web UI</a>
+    <a href="/c/tui">TUI</a>
+    <a href="https://github.com/vbarter/dsh-plugin-registry" target="_blank" rel="noopener">GitHub</a>
+    <span class="fr">社区目录 · 不是 DeepSeek 官方站</span>
+  </div>
+</footer>
+</body>
+</html>

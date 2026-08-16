@@ -4,9 +4,9 @@
   const PAGE_PATH = {
     index: "/",
     detail: "/plugin-detail.html",
-    publish: "/publish.html",
-    dashboard: "/dashboard.html",
-    policy: "/policy.html",
+    publish: "/publish",
+    dashboard: "/dashboard",
+    policy: "/policy",
   };
   const PAGE_NAME_KEY = {
     index: "nav.browse",
@@ -120,7 +120,7 @@
   }
 
   function faqs() {
-    return [1, 2, 3, 4].map(function (n) {
+    return [1, 2, 3, 4, 5].map(function (n) {
       return { q: t("faq.q" + n), a: t("faq.a" + n) };
     });
   }

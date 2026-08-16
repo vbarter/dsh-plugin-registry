@@ -4,9 +4,9 @@
 
   const DICT = {
     zh: {
-      "title.index": "DeepSeek Harness 插件目录 · dsplugin.app",
+      "title.index": "DeepSeek Harness 插件目录｜dsh plugin registry · dsplugin.app",
       "title.detail": "插件详情 — DeepSeek Harness 插件目录 · dsplugin.app",
-      "title.publish": "发布 dsh 插件 — DeepSeek Harness 插件目录 · dsplugin.app",
+      "title.publish": "如何发布 DeepSeek Harness 插件｜dsh.bundle",
       "title.dashboard": "统计 — DeepSeek Harness 插件目录 · dsplugin.app",
       "title.policy": "收录规范 — DeepSeek Harness 插件目录 · dsplugin.app",
       "meta.index": "在 dsplugin.app 浏览 DeepSeek Harness（dsh）社区插件目录：按来源与 Manifest 状态筛选，查看 GitHub 数据和安装命令。",
@@ -26,8 +26,8 @@
       "tag.snapshot": "SNAPSHOT DATA",
       "tag.policy": "REGISTRY POLICY",
       "index.eyebrow": "DeepSeek Harness · Plugin Registry",
-      "index.heroTitle": "给 Harness 装上能力。",
-      "index.heroSub": "路由、检索、评测、通知 —— 社区插件和 GitHub 候选仓库都在这里。先看数据来源和 Manifest 状态，再到仓库确认依赖与配置。",
+      "index.heroTitle": "DeepSeek Harness 插件目录",
+      "index.heroSub": "社区维护的 dsh 插件注册表，不是 DeepSeek 官方站。先看来源和 Manifest 状态，再复制 dsh plugin --profile web add github:owner/repo。",
       "index.searchLabel": "搜索插件",
       "index.searchPlaceholder": "描述你想让 Harness 做什么…",
       "index.try": "试试",
@@ -107,7 +107,7 @@
       "toast.copiedCmd": "命令已复制。这不代表插件已经安装。",
       "toast.copyFailCmd": "复制失败，请手动选择命令。",
       "publish.eyebrow": "Publish · GitHub review",
-      "publish.heroTitle": "提交仓库，公开走完审核。",
+      "publish.heroTitle": "如何发布 dsh 插件",
       "publish.heroSub": "先运行仓库预检，再创建带检查结果的 GitHub Issue。维护者反馈、修复记录和最终结论都留在 GitHub；满足契约的仓库仍会自动发现。",
       "publish.stepperAria": "GitHub 提交流程",
       "publish.step1t": "检查仓库",
@@ -285,12 +285,14 @@
       "faq.a3": "在发布页预检公开 GitHub 仓库，再通过 Issue / PR 提交到 vbarter/dsh-plugin-registry。维护者合并后，dsplugin.app 上的目录才会更新。",
       "faq.q4": "「未检查」和「格式检查」是什么意思？",
       "faq.a4": "「格式检查通过」表示本站核对过 package.json 里的 dsh.bundle 形态。「未检查」表示条目来自社区目录，本站尚未核对其 Manifest。两者都不是安全审计，也不等于已经做过安装测试。",
+      "faq.q5": "和 GitHub topic 的区别",
+      "faq.a5": "官方发现仍是 GitHub dsh-plugin topic。本站是社区目录，有有效 dsh.bundle 才给安装命令。",
       "policy.goPublish": "去发布"
     },
     en: {
-      "title.index": "DeepSeek Harness Plugin Registry · dsplugin.app",
+      "title.index": "DeepSeek Harness Plugin Registry｜dsh plugin registry · dsplugin.app",
       "title.detail": "Plugin detail — DeepSeek Harness Plugin Registry · dsplugin.app",
-      "title.publish": "Publish a dsh plugin — DeepSeek Harness Plugin Registry · dsplugin.app",
+      "title.publish": "How to publish a DeepSeek Harness plugin｜dsh.bundle",
       "title.dashboard": "Stats — DeepSeek Harness Plugin Registry · dsplugin.app",
       "title.policy": "Inclusion policy — DeepSeek Harness Plugin Registry · dsplugin.app",
       "meta.index": "Browse the DeepSeek Harness (dsh) community plugin catalog at dsplugin.app. Filter by source and Manifest status, then copy an install command.",
@@ -310,8 +312,8 @@
       "tag.snapshot": "SNAPSHOT DATA",
       "tag.policy": "REGISTRY POLICY",
       "index.eyebrow": "DeepSeek Harness · Plugin Registry",
-      "index.heroTitle": "Give Harness new powers.",
-      "index.heroSub": "Routing, retrieval, evals, notifications — community plugins and GitHub candidates live here. Check the source and Manifest status first, then confirm dependencies in the repo.",
+      "index.heroTitle": "DeepSeek Harness Plugin Registry",
+      "index.heroSub": "A community-maintained dsh plugin registry, not an official DeepSeek site. Check source and Manifest status first, then copy dsh plugin --profile web add github:owner/repo.",
       "index.searchLabel": "Search plugins",
       "index.searchPlaceholder": "Describe what you want Harness to do…",
       "index.try": "Try",
@@ -391,7 +393,7 @@
       "toast.copiedCmd": "Command copied. That does not mean the plugin is installed.",
       "toast.copyFailCmd": "Copy failed — select the command manually.",
       "publish.eyebrow": "Publish · GitHub review",
-      "publish.heroTitle": "Submit a repo. Review stays public.",
+      "publish.heroTitle": "How to publish a dsh plugin",
       "publish.heroSub": "Run the repository precheck, then open a GitHub Issue with the results. Maintainer feedback, fixes, and the final decision live on GitHub. Repos that meet the contract are still auto-discovered.",
       "publish.stepperAria": "GitHub submission flow",
       "publish.step1t": "Check the repo",
@@ -569,6 +571,8 @@
       "faq.a3": "Precheck a public GitHub repository on the publish page, then file an Issue/PR on vbarter/dsh-plugin-registry. The dsplugin.app catalog updates after a maintainer merges.",
       "faq.q4": "What do “not checked” and “shape validated” mean?",
       "faq.a4": "Shape validated means this site checked the dsh.bundle shape in package.json. Not checked (未检查) means the row came from the community catalog and was not re-checked here. Neither label is a security audit or an install test.",
+      "faq.q5": "How is this different from the GitHub topic?",
+      "faq.a5": "Official discovery is still the GitHub dsh-plugin topic. This site is a community catalog and only shows an install command when a valid dsh.bundle is present.",
       "policy.goPublish": "Publish"
     }
   };

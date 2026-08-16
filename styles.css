@@ -801,3 +801,34 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
   .github-route a { grid-column: 2; white-space: normal; }
   .footer-in .fr { margin-left: 0; width: 100%; }
 }
+
+/* —— landing / SEO pages —— */
+.landing .prose { max-width: 72ch; margin-top: 8px; }
+.landing .prose h2 { font-size: 28px; margin: 28px 0 10px; }
+.landing .prose p { margin: 12px 0; color: var(--fg-2); font-size: 15px; }
+.landing .prose ul { margin: 10px 0 16px 1.2em; color: var(--fg-2); }
+.landing .prose a { color: var(--blue); text-underline-offset: 3px; }
+.landing .prose code { font-family: var(--font-mono); font-size: 0.92em; }
+.cmd {
+  background: var(--ink); color: var(--cream);
+  font: 13px/1.7 var(--font-mono); border-radius: 18px;
+  padding: 16px 20px; overflow-x: auto; margin: 14px 0 18px;
+  box-shadow: var(--shadow-ink); border: 1px solid rgba(245, 242, 239, 0.12);
+}
+.cmd code { color: inherit; }
+.crumbs {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  margin-top: 36px; font: 12px var(--font-mono); color: var(--muted);
+}
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--blue); }
+.hub-list {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  list-style: none; margin: 10px 0 0;
+}
+.hub-list a {
+  display: inline-flex; padding: 6px 12px; border-radius: var(--pill);
+  background: var(--surface); color: var(--fg-2); text-decoration: none;
+  font: 500 13px var(--font-ui);
+}
+.hub-list a:hover { color: var(--blue); background: var(--blue-soft); }
