@@ -8,29 +8,26 @@ dsplugin.app 是 DeepSeek Harness（dsh）社区插件目录。下面是当前�
 
 Source file: https://dsplugin.app/data/plugins.json
 schemaVersion: 2
-generatedAt: 2026-08-15T15:22:23.677Z (2026-08-15 23:22 CST)
 
-Counts taken from that file (published list = `plugins[]`):
-
-- published: 2926
-- curated (community catalog): 573
-- discovered (GitHub `dsh-plugin` topic): 2353
-- Manifest `shape_validated`: 2279
-- Manifest `not_validated`: 647
-- Manifest `not_checked`: 0
-
-`stats` in the same JSON also records topicCandidates 3615, patchFilesConfirmed 2276, pendingReview 647, quarantined 1. Quarantined rows are not in the public list.
+Counts live in that JSON (`plugins[]`). Do not treat them as rankings or a security audit.
 
 ## What the site is
 
-A static public catalog of DeepSeek Harness community plugins. Pages:
+A static public catalog of DeepSeek Harness community plugins. Indexable pages:
 
 - https://dsplugin.app/ — browse / search / filter
-- https://dsplugin.app/plugin-detail.html?plugin=<urlencoded id>
-- https://dsplugin.app/publish.html — repo precheck → GitHub Issue
-- https://dsplugin.app/dashboard.html — public metrics only
-- https://dsplugin.app/policy.html — inclusion rules
+- https://dsplugin.app/install — install a plugin
+- https://dsplugin.app/publish — repo precheck → GitHub Issue
+- https://dsplugin.app/vs — three-way directory comparison
+- https://dsplugin.app/plugins/modlens
+- https://dsplugin.app/plugins/dsh-web-ui
+- https://dsplugin.app/plugins/dsh-cc-tui
+- https://dsplugin.app/c/vision
+- https://dsplugin.app/c/web-ui
+- https://dsplugin.app/c/tui
 - https://dsplugin.app/llms.txt — short machine-readable summary
+
+`/dashboard` and `/plugin-detail` are noindex. Do not cite `plugin-detail.html?plugin=` URLs.
 
 Default language is Chinese; English is `?lang=en`.
 

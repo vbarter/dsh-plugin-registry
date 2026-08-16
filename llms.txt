@@ -14,14 +14,20 @@ dsplugin.app 是 DeepSeek Harness（dsh）的社区插件目录，收录公开 G
 
 ## Key pages
 
-- [Browse plugins](https://dsplugin.app/): search and filter the public catalog
-- [Plugin detail](https://dsplugin.app/plugin-detail.html): `?plugin=<id>` (URL-encoded)
-- [Publish](https://dsplugin.app/publish.html): precheck a public GitHub repo, then open an Issue
-- [Stats](https://dsplugin.app/dashboard.html): public coverage only — no download counts or ratings
-- [Inclusion policy](https://dsplugin.app/policy.html): discovery, Manifest checks, removal
-- [Pending review](https://github.com/vbarter/dsh-plugin-registry/pulls): catalog writes land via GitHub PRs
+- [Browse](https://dsplugin.app/): DeepSeek Harness plugin catalog
+- [Install](https://dsplugin.app/install): how to add a plugin with `dsh plugin --profile web add`
+- [Publish](https://dsplugin.app/publish): precheck a public GitHub repo, then open an Issue
+- [Compare](https://dsplugin.app/vs): dsplugin.app vs dshplugin.app vs dshplugin.world
+- [ModLens](https://dsplugin.app/plugins/modlens)
+- [dsh-web-ui](https://dsplugin.app/plugins/dsh-web-ui)
+- [dsh-cc-tui](https://dsplugin.app/plugins/dsh-cc-tui)
+- [Vision](https://dsplugin.app/c/vision)
+- [Web UI](https://dsplugin.app/c/web-ui)
+- [TUI](https://dsplugin.app/c/tui)
 
 Languages: Chinese is the default. English via the on-page toggle or `?lang=en` / `?lang=zh`.
+
+`/dashboard` and `/plugin-detail` are noindex shells. Do not cite query-string detail URLs.
 
 ## How to install a plugin
 
