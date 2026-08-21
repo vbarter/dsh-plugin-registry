@@ -96,11 +96,10 @@
 
   function setHreflang(id, pluginId) {
     const extra = pluginId ? { plugin: pluginId } : null;
-    const zh = extra ? pageUrl(id, { plugin: pluginId, lang: "zh" }) : pageUrl(id, { lang: "zh" });
-    const en = extra ? pageUrl(id, { plugin: pluginId, lang: "en" }) : pageUrl(id, { lang: "en" });
     const def = extra ? pageUrl(id, { plugin: pluginId }) : pageUrl(id);
-    ensureLink("alternate", "zh-CN").setAttribute("href", zh);
-    ensureLink("alternate", "en").setAttribute("href", en);
+    document.head.querySelectorAll('link[rel="alternate"][hreflang="zh-CN"], link[rel="alternate"][hreflang="en"]').forEach(function (el) {
+      el.parentNode.removeChild(el);
+    });
     ensureLink("alternate", "x-default").setAttribute("href", def);
   }
 
