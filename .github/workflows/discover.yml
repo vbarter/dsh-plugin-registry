@@ -44,11 +44,17 @@ jobs:
           EXISTING=$(gh pr list --base main --head discover/sync --state open --json number --jq '.[0].number // empty')
           if [ -n "$EXISTING" ]; then
             echo "PR already open: #$EXISTING"
+            PR_NUM="$EXISTING"
           else
-            gh pr create --base main --head discover/sync --title "Review: discovered dsh plugins" --body "$(cat <<'EOFBODY'
+            PR_URL=$(gh pr create --base main --head discover/sync --title "Review: discovered dsh plugins" --body "$(cat <<'EOFBODY'
           自动发现已更新 `data/plugins.json`。合并此 PR 后，站点目录才会发布。
 
           Auto-discovery updated `data/plugins.json`. Merge this PR to publish the catalog sync.
           EOFBODY
-          )"
+          )")
+            echo "Opened $PR_URL"
+            PR_NUM=$(echo "$PR_URL" | grep -oE '[0-9]+$')
+          fi
+          if [ -n "${PR_NUM:-}" ]; then
+            gh pr merge "$PR_NUM" --auto --merge || gh pr merge "$PR_NUM" --merge || true
           fi

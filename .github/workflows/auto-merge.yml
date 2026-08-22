@@ -1,0 +1,58 @@
+name: Auto merge PRs
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: "Optional PR number to merge now"
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: auto-merge-${{ github.event.pull_request.number || github.event.inputs.pr_number || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  merge:
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.draft == false && github.event.pull_request.base.ref == 'main')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ github.event.pull_request.number || github.event.inputs.pr_number }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          if [ -z "${PR:-}" ]; then
+            echo "No PR number"
+            exit 1
+          fi
+          STATE=$(gh pr view "$PR" --repo "$REPO" --json state,mergeable,isDraft,baseRefName --jq '{state,mergeable,isDraft,baseRefName}')
+          echo "$STATE"
+          DRAFT=$(echo "$STATE" | jq -r .isDraft)
+          BASE=$(echo "$STATE" | jq -r .baseRefName)
+          ST=$(echo "$STATE" | jq -r .state)
+          if [ "$ST" != "OPEN" ]; then
+            echo "PR not open"
+            exit 0
+          fi
+          if [ "$DRAFT" = "true" ]; then
+            echo "Draft PR, skip"
+            exit 0
+          fi
+          if [ "$BASE" != "main" ]; then
+            echo "Not targeting main, skip"
+            exit 0
+          fi
+          if gh pr merge "$PR" --repo "$REPO" --auto --merge; then
+            echo "Auto-merge enabled or merged"
+          else
+            gh pr merge "$PR" --repo "$REPO" --merge --delete-branch=false
+            echo "Merged immediately"
+          fi
