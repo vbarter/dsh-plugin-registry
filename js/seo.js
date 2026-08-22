@@ -119,7 +119,7 @@
   }
 
   function faqs() {
-    return [1, 2, 3, 4, 5].map(function (n) {
+    return [1, 2, 3, 4, 5, 6, 7].map(function (n) {
       return { q: t("faq.q" + n), a: t("faq.a" + n) };
     });
   }
@@ -189,6 +189,19 @@
             acceptedAnswer: { "@type": "Answer", text: item.a },
           };
         }),
+      });
+    }
+
+    if (id === "publish") {
+      graph.push({
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: t("publish.faq.q1"),
+            acceptedAnswer: { "@type": "Answer", text: t("publish.faq.a1") },
+          },
+        ],
       });
     }
 

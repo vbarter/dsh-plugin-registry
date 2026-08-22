@@ -90,6 +90,14 @@
             "@type": "Answer",
             "text": "官方发现仍是 GitHub dsh-plugin topic。本站有有效 dsh.bundle 才给安装命令。"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "dsh plugin add 怎么用？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "把仓库换成 github:owner/repo 或 npm 包名；本站只在有有效 bundle 时给命令。"
+          }
         }
       ]
     }
@@ -131,7 +139,7 @@
   <section class="page-head">
     <p class="eyebrow">Install</p>
     <h1 class="page-title">如何安装 dsh 插件</h1>
-    <p class="page-sub">社区目录只负责展示来源、Manifest 状态和可复制命令。本站不执行安装，也不审计插件安全。</p>
+    <p class="page-sub">安装 DeepSeek Harness 插件用官方 CLI：先 npx &#64;deepseek-ai/dsh web，再 dsh plugin --profile web add …。社区目录只负责展示来源、Manifest 状态和可复制命令。本站不执行安装，也不审计插件安全。</p>
   </section>
   <article class="prose">
     <h2>1. 启动 DeepSeek Harness Web</h2>
@@ -157,6 +165,7 @@
       <div><dt>安装命令从哪来？</dt><dd>本站是社区目录。只有条目声明了有效 dsh.bundle 才会给出安装命令。</dd></div>
       <div><dt>这是 DeepSeek 官方安装器吗？</dt><dd>不是。dsplugin.app 由社区维护，不是 DeepSeek 官方站。</dd></div>
       <div><dt>和直接搜 GitHub topic 有何不同？</dt><dd>官方发现仍是 GitHub dsh-plugin topic。本站有有效 dsh.bundle 才给安装命令。</dd></div>
+      <div><dt>dsh plugin add 怎么用？</dt><dd>把仓库换成 github:owner/repo 或 npm 包名；本站只在有有效 bundle 时给命令。</dd></div>
     </dl>
   </section>
 
