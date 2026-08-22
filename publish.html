@@ -56,6 +56,19 @@
           "item": "https://dsplugin.app/publish"
         }
       ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "dsh.bundle 怎么写？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "package.json 里 dsh.bundle.patch 相对路径；加 topic dsh-plugin；本页预检 → Issue → registry。"
+          }
+        }
+      ]
     }
   ]
 }
@@ -99,7 +112,7 @@
   <section class="page-head">
     <p class="eyebrow rise" data-i18n="publish.eyebrow">Publish · GitHub review</p>
     <h1 class="page-title rise rise-1" data-i18n="publish.heroTitle">如何发布 dsh 插件</h1>
-    <p class="page-sub rise rise-2" data-i18n="publish.heroSub">先运行仓库预检，再创建带检查结果的 GitHub Issue。维护者反馈、修复记录和最终结论都留在 GitHub；满足契约的仓库仍会自动发现。</p>
+    <p class="page-sub rise rise-2" data-i18n="publish.heroSub">发布 dsh 插件先过 dsh.bundle 契约，再走本页预检。先运行仓库预检，再创建带检查结果的 GitHub Issue。维护者反馈、修复记录和最终结论都留在 GitHub；满足契约的仓库仍会自动发现。</p>
   </section>
 
 
@@ -174,6 +187,18 @@
       </div>
     </aside>
   </div>
+
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="section-label">
+      <h2 id="faq-title" data-i18n="faq.title">常见问题</h2>
+    </div>
+    <dl class="faq-list">
+      <div>
+        <dt data-i18n="publish.faq.q1">dsh.bundle 怎么写？</dt>
+        <dd data-i18n="publish.faq.a1">package.json 里 dsh.bundle.patch 相对路径；加 topic dsh-plugin；本页预检 → Issue → registry。</dd>
+      </div>
+    </dl>
+  </section>
 </main>
 
 <footer class="footer">
@@ -183,10 +208,10 @@
     <span class="fr" data-i18n="footer.sync">每 2 小时自动同步</span>
   </div>
 </footer>
-<script src="js/i18n.js?v=20260816b"></script>
+<script src="js/i18n.js?v=20260822a"></script>
 <script src="js/data.js?v=20260816b"></script>
 <script src="js/common.js?v=20260816b"></script>
 <script src="js/publish.js?v=20260816b"></script>
-<script src="js/seo.js?v=20260821a"></script>
+<script src="js/seo.js?v=20260822a"></script>
 </body>
 </html>

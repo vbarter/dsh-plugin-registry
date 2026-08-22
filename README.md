@@ -86,6 +86,14 @@ python3 -m http.server 8787
 npx --yes wrangler@3 pages deploy . --project-name=dsh-plugin-registry --branch=main
 ```
 
+部署到生产后，可把 10 条 P0 URL 提交给 IndexNow（`api.indexnow.org` 与 Bing）：
+
+```bash
+node scripts/indexnow.mjs
+```
+
+密钥文件是仓库根目录的 `{key}.txt`（内容即 key），线上地址 `https://dsplugin.app/{key}.txt`。合并进 `main` 并完成部署后再跑；不要编造 Bing Webmaster 验证码。
+
 ---
 
 ## English
