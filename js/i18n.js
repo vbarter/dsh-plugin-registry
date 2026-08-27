@@ -279,6 +279,10 @@
 
       "title.detailPlugin": "{name} — DeepSeek Harness 插件目录 · dsplugin.app",
       "meta.detailPlugin": "{name}：{desc} DeepSeek Harness（dsh）社区插件，收录于 dsplugin.app。",
+      "index.related": "相关：",
+      "index.related.compat": "（兼容目录）",
+      "index.related.scaffold": "（脚手架）",
+      "index.related.store": "应用内商店",
       "faq.title": "常见问题",
       "faq.q1": "这是什么注册表？",
       "faq.a1": "dsplugin.app 是 DeepSeek Harness（dsh）社区插件目录，收录公开 GitHub 仓库，供浏览、筛选和复制安装命令。本站由社区维护，不是 DeepSeek 官方站点。",
@@ -574,6 +578,10 @@
 
       "title.detailPlugin": "{name} — DeepSeek Harness Plugin Registry · dsplugin.app",
       "meta.detailPlugin": "{name}: {desc} A DeepSeek Harness (dsh) community plugin listed on dsplugin.app.",
+      "index.related": "Related:",
+      "index.related.compat": " (compat catalog)",
+      "index.related.scaffold": " (scaffold)",
+      "index.related.store": "in-app store",
       "faq.title": "FAQ",
       "faq.q1": "What is this registry?",
       "faq.a1": "dsplugin.app is a community catalog of DeepSeek Harness (dsh) plugins: public GitHub repositories you can browse, filter, and install from. It is community-run, not an official DeepSeek site.",
