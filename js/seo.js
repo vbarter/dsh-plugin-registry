@@ -119,7 +119,7 @@
   }
 
   function faqs() {
-    return [1, 2, 3, 4, 5, 6, 7].map(function (n) {
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (n) {
       return { q: t("faq.q" + n), a: t("faq.a" + n) };
     });
   }
