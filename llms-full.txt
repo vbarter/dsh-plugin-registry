@@ -29,7 +29,7 @@ A static public catalog of DeepSeek Harness community plugins. Indexable pages:
 
 `/dashboard` and `/plugin-detail` are noindex. Do not cite `plugin-detail.html?plugin=` URLs.
 
-Default language is Chinese; English is `?lang=en`.
+Default language is Chinese. Use the on-page language toggle for English. Do not use `?lang=` query-string URLs.
 
 ## Install and `dsh.bundle`
 

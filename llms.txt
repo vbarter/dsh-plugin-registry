@@ -25,7 +25,7 @@ dsplugin.app 是 DeepSeek Harness（dsh）的社区插件目录，收录公开 G
 - [Web UI](https://dsplugin.app/c/web-ui): Web UI
 - [TUI](https://dsplugin.app/c/tui): TUI
 
-Languages: Chinese is the default. English via the on-page toggle or `?lang=en` / `?lang=zh`.
+Languages: Chinese is the default. English via the on-page language toggle. Do not use `?lang=` query-string URLs.
 
 `/dashboard` and `/plugin-detail` are noindex shells. Do not cite query-string detail URLs.
 
