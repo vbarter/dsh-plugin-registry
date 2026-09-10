@@ -119,9 +119,13 @@
   }
 
   function faqs() {
-    return [1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (n) {
+    const items = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (n) {
       return { q: t("faq.q" + n), a: t("faq.a" + n) };
     });
+    if (pageId() === "index") {
+      items.push({ q: t("index.faq.q10"), a: t("index.faq.a10") });
+    }
+    return items;
   }
 
   function writeJsonLd(graph) {

@@ -309,6 +309,11 @@
       "faq.a8": "本站是社区目录，不是官方 marketplace；有有效 dsh.bundle 才给安装命令。",
       "faq.q9": "dsh plugin registry 是什么？",
       "faq.a9": "英文对 dsplugin / 本站的说法，和 dshplugin.app 不是同一站（见 /vs）。",
+      "index.faq.q10": "dsplugin.app 和 dsh.pub / dsh.so 有什么不同？",
+      "index.faq.a10": "本站是社区目录：先看来源与 Manifest 状态，再决定装不装。`dsh.pub` / `dsh.so` 是另一类提交型 registry。三者都不是官方站；近形域名对照见 /vs，安装走 /install。",
+      "index.faq.a10.before": "本站是社区目录：先看来源与 Manifest 状态，再决定装不装。`dsh.pub` / `dsh.so` 是另一类提交型 registry。三者都不是官方站；近形域名对照见 ",
+      "index.faq.a10.mid": "，安装走 ",
+      "index.faq.a10.after": "。",
       "publish.faq.q1": "dsh.bundle 怎么写？",
       "publish.faq.a1": "package.json 里 dsh.bundle.patch 相对路径；加 topic dsh-plugin；本页预检 → Issue → registry。",
       "policy.goPublish": "去发布"
@@ -619,6 +624,11 @@
       "faq.a8": "This site is a community catalog, not an official marketplace. An install command appears only when a valid dsh.bundle is present.",
       "faq.q9": "What is the dsh plugin registry?",
       "faq.a9": "The English name for dsplugin / this site. It is not the same site as dshplugin.app (see /vs).",
+      "index.faq.q10": "How is dsplugin.app different from dsh.pub / dsh.so?",
+      "index.faq.a10": "This site is a community catalog: check source and Manifest status first, then decide whether to install. `dsh.pub` / `dsh.so` are a different, submission-style registry. None of the three is official; lookalike-domain comparison is on /vs; install steps are on /install.",
+      "index.faq.a10.before": "This site is a community catalog: check source and Manifest status first, then decide whether to install. `dsh.pub` / `dsh.so` are a different, submission-style registry. None of the three is official; lookalike-domain comparison is on ",
+      "index.faq.a10.mid": "; install steps are on ",
+      "index.faq.a10.after": ".",
       "publish.faq.q1": "How do I write dsh.bundle?",
       "publish.faq.a1": "In package.json, set dsh.bundle.patch to a relative path; add the dsh-plugin topic; then this page’s precheck → Issue → registry.",
       "policy.goPublish": "Publish"

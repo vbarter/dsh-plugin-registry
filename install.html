@@ -96,7 +96,31 @@
           "name": "dsh plugin add 怎么用？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "把仓库换成 github:owner/repo 或 npm 包名；本站只在有有效 bundle 时给命令。"
+            "text": "先用官方 CLI 起 web profile（如 `npx @deepseek-ai/dsh web`），再执行 `dsh plugin --profile web add github:owner/repo`（或 npm 包名）。本站只在有有效 `dsh.bundle` 时给出可复制命令，不替你装。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "没有 Manifest 也能装吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "本站不给。只有条目声明了有效 `dsh.bundle`（格式检查通过）才会展示安装命令；未检查 ≠ 已测过，也不等于安全审计。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "复制命令后还要做什么？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "命令进剪贴板不等于已安装。装前自己读仓库 README、依赖与权限，确认 profile 与目标仓库后再跑官方 CLI。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "--profile web 是什么？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "指定 DeepSeek Harness 的 web profile。安装命令要带对 profile；本页步骤以官方 CLI 为准，社区目录只展示来源与命令。"
           }
         }
       ]
@@ -165,7 +189,10 @@
       <div><dt>安装命令从哪来？</dt><dd>本站是社区目录。只有条目声明了有效 dsh.bundle 才会给出安装命令。</dd></div>
       <div><dt>这是 DeepSeek 官方安装器吗？</dt><dd>不是。dsplugin.app 由社区维护，不是 DeepSeek 官方站。</dd></div>
       <div><dt>和直接搜 GitHub topic 有何不同？</dt><dd>官方发现仍是 GitHub dsh-plugin topic。本站有有效 dsh.bundle 才给安装命令。</dd></div>
-      <div><dt>dsh plugin add 怎么用？</dt><dd>把仓库换成 github:owner/repo 或 npm 包名；本站只在有有效 bundle 时给命令。</dd></div>
+      <div><dt>dsh plugin add 怎么用？</dt><dd>先用官方 CLI 起 web profile（如 `npx &#64;deepseek-ai/dsh web`），再执行 `dsh plugin --profile web add github:owner/repo`（或 npm 包名）。本站只在有有效 `dsh.bundle` 时给出可复制命令，不替你装。</dd></div>
+      <div><dt>没有 Manifest 也能装吗？</dt><dd>本站不给。只有条目声明了有效 `dsh.bundle`（格式检查通过）才会展示安装命令；未检查 ≠ 已测过，也不等于安全审计。</dd></div>
+      <div><dt>复制命令后还要做什么？</dt><dd>命令进剪贴板不等于已安装。装前自己读仓库 README、依赖与权限，确认 profile 与目标仓库后再跑官方 CLI。</dd></div>
+      <div><dt>--profile web 是什么？</dt><dd>指定 DeepSeek Harness 的 web profile。安装命令要带对 profile；本页步骤以官方 CLI 为准，社区目录只展示来源与命令。</dd></div>
     </dl>
   </section>
 
