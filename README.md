@@ -1,5 +1,9 @@
 # DeepSeek Harness Community Registry
 
+> **生产站点 / Live site:** [https://dsplugin.app/](https://dsplugin.app/)  
+> 社区 DeepSeek Harness 插件目录（非官方）· Community dsh plugin directory (unofficial)
+
+
 社区插件注册表静态站。浏览、详情、发布、统计、收录规范五页，无构建步骤。站点数据就是提交在仓库里的 `data/plugins.json`（schemaVersion 2）。GitHub Actions 是官方后端：定时扫描 `dsh-plugin` topic，用户发布走 Issue → 预检 → 审核 PR。
 
 **所有目录写入都走 GitHub PR**，不会直接推 `main`：用户提交（`submission/<n>`）、自动发现（`discover/sync`）、社区目录 Manifest 复核（`review/curated-manifest`）。维护者在 [Pull Requests](https://github.com/vbarter/dsh-plugin-registry/pulls) 合并后，站点数据才更新。
@@ -97,6 +101,8 @@ node scripts/indexnow.mjs
 ---
 
 ## English
+
+**Live site:** [https://dsplugin.app/](https://dsplugin.app/)
 
 Static community registry for DeepSeek Harness plugins. The committed file `data/plugins.json` is the site store; GitHub Actions are the backend.
 
