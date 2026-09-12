@@ -25,3 +25,31 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy . --project-name=dsh-plugin-registry --branch=main
+
+  # Separate job: IndexNow failure alerts CI without retry-looping wrangler.
+  # Cache miss / first run seeds .cache/sitemap-last.json and does not push.
+  indexnow-sitemap-diff:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Restore sitemap snapshot
+        uses: actions/cache@v4
+        with:
+          path: .cache/sitemap-last.json
+          key: sitemap-last-${{ github.run_id }}
+          restore-keys: |
+            sitemap-last-
+
+      - name: Wait for live sitemap
+        run: sleep 20
+
+      - name: IndexNow sitemap diff
+        run: node scripts/indexnow-sitemap-diff.mjs
