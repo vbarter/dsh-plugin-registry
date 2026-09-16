@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-15T21:35:03.569Z",
+  "generatedAt": "2026-09-16T00:34:14.959Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -52,13 +52,13 @@
     }
   },
   "stats": {
-    "topicCandidates": 14886,
+    "topicCandidates": 14893,
     "curated": 573,
-    "automaticallyDiscovered": 13178,
-    "patchFilesConfirmed": 11505,
-    "published": 13751,
-    "manifestRejected": 2236,
-    "pendingReview": 2236,
+    "automaticallyDiscovered": 13185,
+    "patchFilesConfirmed": 11511,
+    "published": 13758,
+    "manifestRejected": 2237,
+    "pendingReview": 2237,
     "quarantined": 1,
     "discoveryMode": "partial"
   },
@@ -119,8 +119,8 @@
         "en": "Plugin and skin collection for the DSH Web UI: task board, Git graph, right-side panel, remote mobile UI, pet, live token stats, and a skin center."
       },
       "category": "ui",
-      "stars": 7613,
-      "forks": 507,
+      "stars": 7615,
+      "forks": 506,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T16:01:55Z",
       "addedAt": "2026-08-14",
@@ -199,10 +199,10 @@
         "en": "Claude Code-style full-screen terminal UI: pixel-whale header, live status line, and streaming thought expansion."
       },
       "category": "ui",
-      "stars": 3050,
+      "stars": 3051,
       "forks": 182,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T19:31:20Z",
+      "pushedAt": "2026-09-15T22:57:19Z",
       "addedAt": "2026-08-14",
       "source": "curated",
       "trustLevel": "curated",
@@ -478,10 +478,10 @@
         "en": "Tool catalog for agents: search ~2,600 external endpoints (SEO and SERP, backlinks, social, people and company enrichment, ad libraries, scraping) by the task you want done, read each one's parameters and per-call price, then call it with the credential injected server-side. Ships the skill plus an MCP row that stays disabled until TREG_TOKEN is set."
       },
       "category": "tools",
-      "stars": 1422,
+      "stars": 1425,
       "forks": 145,
       "language": "Python",
-      "pushedAt": "2026-09-15T21:15:45Z",
+      "pushedAt": "2026-09-16T00:26:49Z",
       "addedAt": "2026-08-15",
       "source": "curated",
       "trustLevel": "curated",
@@ -635,7 +635,7 @@
         "en": "AgentTeams multi-agent teams."
       },
       "category": "workflow",
-      "stars": 1666,
+      "stars": 1667,
       "forks": 139,
       "language": "TypeScript",
       "pushedAt": "2026-09-13T05:56:03Z",
@@ -731,7 +731,7 @@
         "en": "(Recommended) The plugin market inside DSH: a Settings page to browse and search the full community catalog by category, with confirmed one-click installs and an installed-plugins view."
       },
       "category": "market",
-      "stars": 3973,
+      "stars": 3977,
       "forks": 205,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T06:53:39Z",
@@ -827,7 +827,7 @@
         "en": "Export DSH conversations as Smartisan Notes-style PNGs, or create and update Markdown notes in a configured account-scoped workspace."
       },
       "category": "tools",
-      "stars": 163,
+      "stars": 164,
       "forks": 6,
       "language": "TypeScript",
       "pushedAt": "2026-09-12T09:20:42Z",
@@ -892,7 +892,7 @@
         "en": "Web search bridge for text-only agents: ask the web or X, get structured JSON evidence (search, fetch, citations)."
       },
       "category": "tools",
-      "stars": 485,
+      "stars": 486,
       "forks": 20,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T11:04:57Z",
@@ -942,7 +942,7 @@
       "stars": 1104,
       "forks": 48,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T16:35:48Z",
+      "pushedAt": "2026-09-15T23:44:11Z",
       "addedAt": "2026-08-14",
       "source": "curated",
       "trustLevel": "curated",
@@ -1309,7 +1309,7 @@
       "stars": 59,
       "forks": 4,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T21:16:42Z",
+      "pushedAt": "2026-09-16T00:06:32Z",
       "addedAt": "2026-08-14",
       "source": "curated",
       "trustLevel": "curated",
@@ -1833,7 +1833,7 @@
         "en": "在 Web UI 中一键管理 DeepSeek Harness (DSH) 插件：查看、实时启停、安装/卸载、更新检测、健康检查（依赖/冲突/兼容性分析）、环境管理、插件市场。bundle 与非 bundle 插件全覆盖"
       },
       "category": "market",
-      "stars": 69,
+      "stars": 68,
       "forks": 3,
       "language": "TypeScript",
       "pushedAt": "2026-09-12T20:00:09Z",
@@ -2127,7 +2127,7 @@
         "en": "Per-session and daily API cost, budget with usage %, official balance, history dashboard, and one-click official price sync with peak/off-peak pricing."
       },
       "category": "ui",
-      "stars": 302,
+      "stars": 303,
       "forks": 29,
       "language": "JavaScript",
       "pushedAt": "2026-09-15T15:01:59Z",
@@ -2166,7 +2166,7 @@
         "en": "Create and manage sandboxed JavaScript tools with a Monaco editor and model-driven tool lifecycle."
       },
       "category": "tools",
-      "stars": 24,
+      "stars": 23,
       "forks": 0,
       "language": "TypeScript",
       "pushedAt": "2026-08-16T05:24:56Z",
@@ -2197,7 +2197,7 @@
       },
       "category": "memory",
       "stars": 374,
-      "forks": 32,
+      "forks": 31,
       "language": "JavaScript",
       "pushedAt": "2026-09-14T21:00:56Z",
       "addedAt": "2026-08-13",
@@ -2346,7 +2346,7 @@
       "stars": 57,
       "forks": 13,
       "language": "HTML",
-      "pushedAt": "2026-09-15T21:25:17Z",
+      "pushedAt": "2026-09-16T00:24:06Z",
       "addedAt": "2026-08-14",
       "source": "curated",
       "trustLevel": "curated",
@@ -2384,7 +2384,7 @@
       "stars": 57,
       "forks": 13,
       "language": "HTML",
-      "pushedAt": "2026-09-15T21:25:17Z",
+      "pushedAt": "2026-09-16T00:24:06Z",
       "addedAt": "2026-08-14",
       "source": "curated",
       "trustLevel": "curated",
@@ -2422,7 +2422,7 @@
       "stars": 57,
       "forks": 13,
       "language": "HTML",
-      "pushedAt": "2026-09-15T21:25:17Z",
+      "pushedAt": "2026-09-16T00:24:06Z",
       "addedAt": "2026-08-14",
       "source": "curated",
       "trustLevel": "curated",
@@ -2460,7 +2460,7 @@
       "stars": 57,
       "forks": 13,
       "language": "HTML",
-      "pushedAt": "2026-09-15T21:25:17Z",
+      "pushedAt": "2026-09-16T00:24:06Z",
       "addedAt": "2026-08-14",
       "source": "curated",
       "trustLevel": "curated",
@@ -3005,7 +3005,7 @@
         "en": "Zero-dependency toolkit: time / encoding / json / calculator / csv / regex / markdown / diff / stat / schema — ten deterministic tools in one install."
       },
       "category": "tools",
-      "stars": 29,
+      "stars": 28,
       "forks": 0,
       "language": "TypeScript",
       "pushedAt": "2026-09-10T06:31:38Z",
@@ -3072,7 +3072,7 @@
       "stars": 21,
       "forks": 3,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T17:18:48Z",
+      "pushedAt": "2026-09-15T21:35:46Z",
       "addedAt": null,
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -3676,7 +3676,7 @@
         "en": "Multi-machine remote workspace: manage many SSH hosts, pick a local or remote workspace in the native Add-workspace flow (system folder chooser / local path / remote dir browse), mirror a remote workspace to a real local folder, and operate it with rw_* tools. The picker is a centered modal that opens on the local tab and auto-fills `/` for remote paths, live-completing each directory level."
       },
       "category": "tools",
-      "stars": 79,
+      "stars": 80,
       "forks": 18,
       "language": "JavaScript",
       "pushedAt": "2026-09-15T03:23:21Z",
@@ -3776,7 +3776,7 @@
         "en": "a dsh plugin - review  files that an agent just changed,you can see the diff"
       },
       "category": "tools",
-      "stars": 41,
+      "stars": 40,
       "forks": 3,
       "language": "TypeScript",
       "pushedAt": "2026-09-12T19:17:31Z",
@@ -4528,7 +4528,7 @@
       },
       "category": "ui",
       "stars": 89,
-      "forks": 22,
+      "forks": 21,
       "language": "JavaScript",
       "pushedAt": "2026-09-11T15:08:33Z",
       "addedAt": "2026-08-15",
@@ -4563,7 +4563,7 @@
         "en": "Advisor - Pair a second model that passively reviews each turn and injects notes.  搭配一个会在每轮对话被动注入见解和审查的副模型。"
       },
       "category": "session",
-      "stars": 21,
+      "stars": 22,
       "forks": 2,
       "language": "TypeScript",
       "pushedAt": "2026-09-11T03:10:02Z",
@@ -5129,7 +5129,7 @@
         "en": "Bridge the Pi and DeepSeek Harness ecosystems: one Pi Host ABI runs unmodified Pi extensions as native DSH plugins. 打通 Pi 与 DSH 生态。"
       },
       "category": "tools",
-      "stars": 191,
+      "stars": 192,
       "forks": 32,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T04:56:43Z",
@@ -5269,7 +5269,7 @@
         "en": "Visual branch brainstorming that creates an isolated Session for each direction, automates parent, sibling, checkpoint, and return Handoffs, and provides a full tree tab with an optional Better Sidebar view."
       },
       "category": "session",
-      "stars": 24,
+      "stars": 23,
       "forks": 0,
       "language": "TypeScript",
       "pushedAt": "2026-08-21T07:05:01Z",
@@ -5334,7 +5334,7 @@
         "en": "可配置子代理 profile 系统，单一 subagent 工具 + profile 参数，含 Web UI 设置/实时进度/子代理树 | Configurable subagent profile system: single subagent tool + profile param, with Web UI settings/real-time progress/subagent tree"
       },
       "category": "ui",
-      "stars": 17,
+      "stars": 18,
       "forks": 0,
       "language": "JavaScript",
       "pushedAt": "2026-09-15T15:12:44Z",
@@ -6302,7 +6302,7 @@
         "en": "DSH 侧会话插件：/side 持续性侧会话（Codex 风格）与 /btw 一次性侧问（Claude 风格）——在临时 fork 中运行、不写入主会话历史；Web UI 右侧链面板内嵌对话，主会话保持不变"
       },
       "category": "session",
-      "stars": 15,
+      "stars": 14,
       "forks": 7,
       "language": "TypeScript",
       "pushedAt": "2026-08-31T06:29:36Z",
@@ -7065,7 +7065,7 @@
         "en": "Plugin template repo (based on the official turtle-ui repo)."
       },
       "category": "dev",
-      "stars": 14,
+      "stars": 13,
       "forks": 1,
       "language": "JavaScript",
       "pushedAt": "2026-09-08T19:38:54Z",
@@ -7616,7 +7616,7 @@
         "en": "Add a WSL workspace from the web GUI without needing to install dsh or related tools again inside WSL. Bash commands and file read/write operations run within the local WSL distribution on the host machine, while Windows files remain accessible."
       },
       "category": "tools",
-      "stars": 50,
+      "stars": 49,
       "forks": 9,
       "language": "TypeScript",
       "pushedAt": "2026-09-11T12:12:03Z",
@@ -10457,7 +10457,7 @@
         "en": "Langfuse observability for DeepSeek Harness (dsh): exports agent sessions as OpenTelemetry trace trees (GenAI semconv) to Langfuse's OTLP endpoint"
       },
       "category": "session",
-      "stars": 14,
+      "stars": 13,
       "forks": 1,
       "language": "TypeScript",
       "pushedAt": "2026-09-10T11:41:17Z",
@@ -11085,7 +11085,7 @@
         "en": "Claude Code /rewind for DeepSeek Harness: git-first workspace snapshots before every mutating tool execution, turn-boundary session forks, and a one-shot /rewind command that restores files and forks the session back to a checkpoint."
       },
       "category": "tools",
-      "stars": 18,
+      "stars": 17,
       "forks": 4,
       "language": "JavaScript",
       "pushedAt": "2026-09-12T09:34:27Z",
@@ -11594,7 +11594,7 @@
       "stars": 4,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T20:41:26Z",
+      "pushedAt": "2026-09-15T23:53:51Z",
       "addedAt": null,
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -14665,7 +14665,7 @@
         "en": "One-command skin plugin: 8 original themes, translucent wallpaper with opacity/blur, per-user accent, and shareable theme-pack import/export, favorites and surprise-me — purely native on DSH's token system."
       },
       "category": "theme",
-      "stars": 165,
+      "stars": 166,
       "forks": 16,
       "language": "JavaScript",
       "pushedAt": "2026-09-15T08:39:16Z",
@@ -16019,7 +16019,7 @@
         "en": "Multi-agent math problem-solving & verification framework: brainstorm → solver iteration → multi-verifier debate → Verified knowledge base, with checkpoint resume and manual/auto intervention (also ships as an agent preset)."
       },
       "category": "workflow",
-      "stars": 25,
+      "stars": 26,
       "forks": 1,
       "language": "",
       "pushedAt": "2026-09-06T05:43:45Z",
@@ -16348,10 +16348,10 @@
         "en": "Multi-agent spatiotemporal memory graph with cross-session persistence and importance-gated recall."
       },
       "category": "memory",
-      "stars": 199,
+      "stars": 200,
       "forks": 12,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T17:26:23Z",
+      "pushedAt": "2026-09-15T23:27:26Z",
       "addedAt": "2026-08-14",
       "source": "curated",
       "trustLevel": "curated",
@@ -16933,7 +16933,7 @@
         "en": ""
       },
       "category": "workflow",
-      "stars": 70,
+      "stars": 69,
       "forks": 7,
       "language": "JavaScript",
       "pushedAt": "2026-08-19T15:49:27Z",
@@ -17103,7 +17103,7 @@
         "en": "Displays a Session's subagents and durable workflow runs as a live DAG with status, navigation, and restart-safe history."
       },
       "category": "ui",
-      "stars": 11,
+      "stars": 10,
       "forks": 0,
       "language": "JavaScript",
       "pushedAt": "2026-09-05T06:06:20Z",
@@ -21004,7 +21004,7 @@
       "stars": 5,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T21:02:22Z",
+      "pushedAt": "2026-09-15T23:25:21Z",
       "addedAt": "2026-08-15",
       "source": "curated",
       "trustLevel": "curated",
@@ -22405,10 +22405,10 @@
         "en": "自动分类、收录和验证 DeepSeek-Harness 社区插件市场。 Automatically categorize, curate, and validate the DeepSeek-Harness community plugin marketplace."
       },
       "category": "workflow",
-      "stars": 69,
+      "stars": 70,
       "forks": 5,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T18:34:54Z",
+      "pushedAt": "2026-09-15T21:35:41Z",
       "addedAt": "2026-08-15",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -22442,7 +22442,7 @@
       "stars": 165,
       "forks": 9,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T21:18:38Z",
+      "pushedAt": "2026-09-16T00:22:18Z",
       "addedAt": "2026-08-15",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -22511,8 +22511,8 @@
         "en": "A next-generation, source-available AI workspace with a self-evolving agent runtime for editable code, design, presentations, websites, and video—a Codex alternative that integrates DeepSeek Harness for subagent delegation, combining iPolloWork’s complete AI workbench with DSH’s specialized agents and both plugin ecosystems in one workflow."
       },
       "category": "workflow",
-      "stars": 6121,
-      "forks": 1169,
+      "stars": 6131,
+      "forks": 1171,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T07:44:32Z",
       "addedAt": "2026-08-15",
@@ -22557,8 +22557,8 @@
         "en": "Local-first design product: detects your installed code-agent CLI, runs design skills + design systems, streams artifacts into a sandboxed preview."
       },
       "category": "ui",
-      "stars": 96370,
-      "forks": 11196,
+      "stars": 96381,
+      "forks": 11198,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T20:00:37Z",
       "addedAt": "2026-08-15",
@@ -22822,8 +22822,8 @@
         "en": "A curated list of DeepSeek Harness (dsh) plugins · DeepSeek Harness 插件精选列表"
       },
       "category": "tools",
-      "stars": 15822,
-      "forks": 2942,
+      "stars": 15824,
+      "forks": 2943,
       "language": "Python",
       "pushedAt": "2026-09-15T07:41:37Z",
       "addedAt": "2026-08-15",
@@ -22952,7 +22952,7 @@
         "en": "Complete research orchestration system — MCP dependencies for the yogsoth-ai research pipeline"
       },
       "category": "skill",
-      "stars": 478,
+      "stars": 479,
       "forks": 37,
       "language": "HTML",
       "pushedAt": "2026-09-14T16:07:10Z",
@@ -23102,7 +23102,7 @@
         "en": "AI code reviews grounded in 12 classic engineering books — decay risk diagnostics with book citations, severity labels, and 6 analysis modes including full-sweep auto-fix"
       },
       "category": "skill",
-      "stars": 1475,
+      "stars": 1476,
       "forks": 67,
       "language": "HTML",
       "pushedAt": "2026-09-14T14:24:19Z",
@@ -23386,7 +23386,7 @@
       "stars": 376,
       "forks": 86,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T18:21:36Z",
+      "pushedAt": "2026-09-15T22:47:17Z",
       "addedAt": "2026-08-15",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -23542,7 +23542,7 @@
         "en": "DeepSeek Harness Desktop build tooling (Electron runtime for packaging only)"
       },
       "category": "dev",
-      "stars": 110,
+      "stars": 111,
       "forks": 8,
       "language": "JavaScript",
       "pushedAt": "2026-08-13T18:00:38Z",
@@ -23642,7 +23642,7 @@
         "en": "DeepSeek Harness: Everything is a Plugin."
       },
       "category": "tools",
-      "stars": 225297,
+      "stars": 225314,
       "forks": 26816,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T04:51:11Z",
@@ -23674,7 +23674,7 @@
         "en": "Open-source Claude Managed Agents API implementation and self-hosted Claude Tag-style agent runtime."
       },
       "category": "dev",
-      "stars": 280,
+      "stars": 281,
       "forks": 38,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T08:32:08Z",
@@ -23803,8 +23803,8 @@
         "en": "Prompt as Code | GPT-Image2 工业级提示词引擎与模板库，470+ 个案例逆向工程，20+ 套工业级模板，并提炼出Skills，持续更新中"
       },
       "category": "workflow",
-      "stars": 32088,
-      "forks": 3087,
+      "stars": 32096,
+      "forks": 3086,
       "language": "JavaScript",
       "pushedAt": "2026-09-11T13:41:32Z",
       "addedAt": "2026-08-15",
@@ -24020,7 +24020,7 @@
         "en": "DSH 远程 SSH 工作区插件：本地大脑、远程手脚（接缝切换 + Web GUI 前端）"
       },
       "category": "tools",
-      "stars": 38,
+      "stars": 37,
       "forks": 3,
       "language": "TypeScript",
       "pushedAt": "2026-09-04T08:12:07Z",
@@ -24289,7 +24289,7 @@
       "stars": 17,
       "forks": 3,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T16:01:28Z",
+      "pushedAt": "2026-09-16T00:18:34Z",
       "addedAt": "2026-08-15",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -24385,7 +24385,7 @@
       "stars": 110,
       "forks": 5,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T16:07:25Z",
+      "pushedAt": "2026-09-15T22:09:17Z",
       "addedAt": "2026-08-15",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -24908,7 +24908,7 @@
       "stars": 47,
       "forks": 7,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T20:52:37Z",
+      "pushedAt": "2026-09-16T00:28:13Z",
       "addedAt": "2026-08-15",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -25704,7 +25704,7 @@
       "stars": 5,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T21:19:21Z",
+      "pushedAt": "2026-09-16T00:17:53Z",
       "addedAt": "2026-08-15",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -25773,7 +25773,7 @@
         "en": "DSH 渗透测试模式：以探索链路记录目标、线索、资产与漏洞，并在 Web 中可视化展示。"
       },
       "category": "tools",
-      "stars": 477,
+      "stars": 478,
       "forks": 58,
       "language": "JavaScript",
       "pushedAt": "2026-09-11T03:27:19Z",
@@ -26425,7 +26425,7 @@
         "en": "Free web search for DeepSeek Harness: DuckDuckGo/Bing (FREE) + Exa/Perplexity/DeepSeek (API key) engines, with web settings UI and engine test tool."
       },
       "category": "ui",
-      "stars": 189,
+      "stars": 190,
       "forks": 14,
       "language": "JavaScript",
       "pushedAt": "2026-09-13T14:49:05Z",
@@ -27052,7 +27052,7 @@
       "stars": 4,
       "forks": 1,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T17:28:51Z",
+      "pushedAt": "2026-09-15T21:47:24Z",
       "addedAt": "2026-08-15",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -27218,10 +27218,10 @@
         "en": "DeepSeek Harness Web GUI 皮肤集合 + 主题库预览页（仿 Codex-Dream-Skin / DreamSkin.cc）。每个皮肤是符合官方标准（turtle-ui 式 setup）的独立可安装插件包。"
       },
       "category": "theme",
-      "stars": 561,
+      "stars": 560,
       "forks": 19,
-      "language": "TypeScript",
-      "pushedAt": "2026-09-15T11:30:37Z",
+      "language": "JavaScript",
+      "pushedAt": "2026-09-15T23:40:18Z",
       "addedAt": "2026-08-15",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -27265,8 +27265,8 @@
         "en": "AI Novel Writer - a local-first production workspace for long-form fiction"
       },
       "category": "tools",
-      "stars": 895,
-      "forks": 117,
+      "stars": 897,
+      "forks": 118,
       "language": "TypeScript",
       "pushedAt": "2026-09-14T15:18:08Z",
       "addedAt": "2026-08-15",
@@ -27547,7 +27547,7 @@
         "en": "A better workspace for Gemini, Claude, and ChatGPT: prompts, reading tools, organization, export, and more."
       },
       "category": "ui",
-      "stars": 20073,
+      "stars": 20075,
       "forks": 664,
       "language": "TypeScript",
       "pushedAt": "2026-09-10T11:16:18Z",
@@ -28001,7 +28001,7 @@
       "stars": 6,
       "forks": 3,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T20:21:34Z",
+      "pushedAt": "2026-09-15T21:41:15Z",
       "addedAt": "2026-08-15",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -28163,7 +28163,7 @@
         "en": "数字员工 AI Box 控制中心 - 本地优先的桌面 Agent 管理器"
       },
       "category": "tools",
-      "stars": 234,
+      "stars": 236,
       "forks": 7,
       "language": "TypeScript",
       "pushedAt": "2026-09-03T16:58:08Z",
@@ -28339,7 +28339,7 @@
         "en": "AI-native engineering environment management that makes your codebase agent-ready."
       },
       "category": "tools",
-      "stars": 195,
+      "stars": 196,
       "forks": 20,
       "language": "Rust",
       "pushedAt": "2026-09-15T12:42:13Z",
@@ -28709,7 +28709,7 @@
         "en": "KodaX-parity dynamic workflow harness for DeepSeek Harness"
       },
       "category": "workflow",
-      "stars": 125,
+      "stars": 126,
       "forks": 6,
       "language": "TypeScript",
       "pushedAt": "2026-09-05T04:10:09Z",
@@ -29664,7 +29664,7 @@
         "en": "DSH Config Manager — backup / export / import / migrate DSH configuration (dual-face Cordis plugin: host engine + web UI). Manifest shape mirrors @linxin666/dsh-ssh@0.1.12."
       },
       "category": "ui",
-      "stars": 113,
+      "stars": 114,
       "forks": 3,
       "language": "TypeScript",
       "pushedAt": "2026-09-13T18:13:57Z",
@@ -30039,7 +30039,7 @@
       "stars": 143,
       "forks": 14,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T03:55:36Z",
+      "pushedAt": "2026-09-15T22:10:27Z",
       "addedAt": "2026-08-16",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -30208,7 +30208,7 @@
       "stars": 16,
       "forks": 7,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T18:06:37Z",
+      "pushedAt": "2026-09-16T00:25:57Z",
       "addedAt": "2026-08-16",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -30234,7 +30234,7 @@
         "en": "基于 DeepSeek Harness（DSH）的 SillyTavern 类文字游戏 Agent，支持候选项生成、对话式人物卡编辑、剧本模式与素材抽取。"
       },
       "category": "tools",
-      "stars": 332,
+      "stars": 333,
       "forks": 26,
       "language": "JavaScript",
       "pushedAt": "2026-09-15T17:45:49Z",
@@ -30263,7 +30263,7 @@
         "en": "Agent2Agent mesh for the Harness"
       },
       "category": "tools",
-      "stars": 10,
+      "stars": 11,
       "forks": 2,
       "language": "TypeScript",
       "pushedAt": "2026-08-21T04:21:03Z",
@@ -30901,7 +30901,7 @@
       "stars": 17,
       "forks": 1,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T09:43:39Z",
+      "pushedAt": "2026-09-15T23:21:32Z",
       "addedAt": null,
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -31133,7 +31133,7 @@
         "en": "Vox Director — an open-source Agent Skill that turns one topic into a finished Vox-style paper-collage explainer/ad video: script, collage keyframes, motion, voice-over, music and captions, automated end to end on the Atlas Cloud API + local ffmpeg. Works with Claude Code, Codex, and any SKILL.md agent."
       },
       "category": "workflow",
-      "stars": 1914,
+      "stars": 1916,
       "forks": 294,
       "language": "Python",
       "pushedAt": "2026-08-11T15:39:41Z",
@@ -31178,7 +31178,7 @@
         "en": "Course docs for Learn Harness Engineering powered by VitePress."
       },
       "category": "model",
-      "stars": 15254,
+      "stars": 15255,
       "forks": 1525,
       "language": "TypeScript",
       "pushedAt": "2026-08-26T01:08:59Z",
@@ -31922,7 +31922,7 @@
       "stars": 165,
       "forks": 11,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T09:23:00Z",
+      "pushedAt": "2026-09-15T23:15:30Z",
       "addedAt": "2026-08-17",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -32669,7 +32669,7 @@
         "en": "Installable multi-provider image generation bundle for DeepSeek Harness"
       },
       "category": "model",
-      "stars": 419,
+      "stars": 420,
       "forks": 30,
       "language": "TypeScript",
       "pushedAt": "2026-09-14T15:26:07Z",
@@ -33896,7 +33896,7 @@
         "en": "Template for deepseek-harness plugin development."
       },
       "category": "dev",
-      "stars": 110,
+      "stars": 109,
       "forks": 1,
       "language": "TypeScript",
       "pushedAt": "2026-08-27T04:58:58Z",
@@ -34436,7 +34436,7 @@
         "en": "DeepSeek Harness balance monitor with cache-aware damage-number animations for every token charge."
       },
       "category": "tools",
-      "stars": 167,
+      "stars": 168,
       "forks": 3,
       "language": "TypeScript",
       "pushedAt": "2026-09-13T03:54:42Z",
@@ -34726,7 +34726,7 @@
         "en": "独立 dsh 插件：会话内初始化/接入本地王国，Territory/Binding CRUD + Task 治理闭环（Worker Claim ≠ Fact）+ Execution 生命周期 + v0.8 Persistent Governed Worker（长期 Session / Territory Affinity / Capability Gate / Execution Lease / Dispatch Evidence / Reconciliation）+ 本地 GUI 通道"
       },
       "category": "session",
-      "stars": 16,
+      "stars": 15,
       "forks": 0,
       "language": "TypeScript",
       "pushedAt": "2026-09-13T03:14:42Z",
@@ -34806,7 +34806,7 @@
         "en": "Multi-agent team management plugin for DeepSeek Harness"
       },
       "category": "skill",
-      "stars": 35,
+      "stars": 34,
       "forks": 4,
       "language": "TypeScript",
       "pushedAt": "2026-08-26T06:43:32Z",
@@ -35121,7 +35121,7 @@
         "en": "Tencent Cloud Service CLS observability plugin for DeepSeek Harness — direct upload to Tencent Cloud CLS"
       },
       "category": "model",
-      "stars": 14,
+      "stars": 13,
       "forks": 3,
       "language": "TypeScript",
       "pushedAt": "2026-08-26T06:22:29Z",
@@ -35271,7 +35271,7 @@
       "stars": 2,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T17:12:26Z",
+      "pushedAt": "2026-09-15T21:34:24Z",
       "addedAt": "2026-08-19",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -36416,7 +36416,7 @@
       "stars": 0,
       "forks": 0,
       "language": "HTML",
-      "pushedAt": "2026-09-15T17:53:23Z",
+      "pushedAt": "2026-09-15T23:52:35Z",
       "addedAt": "2026-08-19",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -36687,7 +36687,7 @@
       "stars": 0,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T09:15:39Z",
+      "pushedAt": "2026-09-15T23:19:25Z",
       "addedAt": "2026-08-16",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -36803,7 +36803,7 @@
       "stars": 0,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T09:15:49Z",
+      "pushedAt": "2026-09-15T23:19:32Z",
       "addedAt": "2026-08-15",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -36839,7 +36839,7 @@
       "stars": 0,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T09:15:57Z",
+      "pushedAt": "2026-09-15T23:19:35Z",
       "addedAt": "2026-08-15",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -36886,7 +36886,7 @@
       "stars": 0,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T09:15:57Z",
+      "pushedAt": "2026-09-15T23:19:35Z",
       "addedAt": "2026-08-15",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -36928,7 +36928,7 @@
       "stars": 0,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T09:15:48Z",
+      "pushedAt": "2026-09-15T23:19:56Z",
       "addedAt": "2026-08-16",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -37004,7 +37004,7 @@
       "stars": 1,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T21:14:02Z",
+      "pushedAt": "2026-09-15T21:42:48Z",
       "addedAt": "2026-08-17",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -37483,7 +37483,7 @@
         "en": "DSH Web 界面右下角的 DeepSeek 余额小鲸鱼挂件（含今日已用、峰谷定价、随机台词与音效）"
       },
       "category": "dev",
-      "stars": 2461,
+      "stars": 2462,
       "forks": 98,
       "language": "JavaScript",
       "pushedAt": "2026-09-14T13:18:30Z",
@@ -38116,7 +38116,7 @@
         "en": "dsh (DeepSeek Harness) 多设备组网插件：mDNS 同网发现、密钥配对、SSH 跨网直连、SFTP 文件传输。装完在 dsh 会话内自动注册 7 个 fleet_* 工具，智能体（agent）直接调用；零 npm 依赖，Node 22 即装即用。"
       },
       "category": "dev",
-      "stars": 6,
+      "stars": 7,
       "forks": 0,
       "language": "TypeScript",
       "pushedAt": "2026-09-08T17:03:14Z",
@@ -38506,7 +38506,7 @@
         "en": "A visual, non-linear conversation workspace plugin for DeepSeek Harness."
       },
       "category": "session",
-      "stars": 396,
+      "stars": 395,
       "forks": 44,
       "language": "JavaScript",
       "pushedAt": "2026-08-26T13:12:24Z",
@@ -38973,7 +38973,7 @@
       "stars": 39,
       "forks": 5,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T10:40:41Z",
+      "pushedAt": "2026-09-15T23:41:32Z",
       "addedAt": "2026-08-21",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -39426,7 +39426,7 @@
         "en": "NocoBase is an open-source AI + no-code platform for building business systems fast. Instead of generating everything from scratch, AI works on top of production-proven infrastructure and a WYSIWYG no-code interface, so you get both speed and reliability."
       },
       "category": "workflow",
-      "stars": 24226,
+      "stars": 24228,
       "forks": 2876,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T16:22:52Z",
@@ -39576,7 +39576,7 @@
       "stars": 39,
       "forks": 5,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T10:40:41Z",
+      "pushedAt": "2026-09-15T23:41:32Z",
       "addedAt": "2026-08-21",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -39725,10 +39725,10 @@
         "en": "Ruflo - Enterprise AI agent orchestration for Claude Code. Deploy 60+ specialized agents in coordinated swarms with self-learning, fault-tolerant consensus, vector memory, and MCP integration"
       },
       "category": "memory",
-      "stars": 72545,
-      "forks": 8589,
+      "stars": 72550,
+      "forks": 8590,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T19:08:56Z",
+      "pushedAt": "2026-09-15T23:30:02Z",
       "addedAt": "2026-08-21",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -39773,7 +39773,7 @@
         "en": "DSH web profile bundle: 黑盒/代审 sidebar workspace (P0–P7, per-finding SRC reports)."
       },
       "category": "tools",
-      "stars": 15,
+      "stars": 14,
       "forks": 2,
       "language": "JavaScript",
       "pushedAt": "2026-08-22T04:11:54Z",
@@ -41322,7 +41322,7 @@
       "stars": 0,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T09:16:20Z",
+      "pushedAt": "2026-09-15T23:20:04Z",
       "addedAt": "2026-08-22",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -41595,7 +41595,7 @@
       "stars": 2,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T18:49:22Z",
+      "pushedAt": "2026-09-16T00:11:42Z",
       "addedAt": "2026-08-23",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -41664,7 +41664,7 @@
         "en": "Desktop application for DeepSeek Harness (dsh) — one-click local install and launch, no Node.js setup required."
       },
       "category": "tools",
-      "stars": 2118,
+      "stars": 2121,
       "forks": 134,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T19:21:35Z",
@@ -42095,7 +42095,7 @@
       "stars": 10,
       "forks": 0,
       "language": "Python",
-      "pushedAt": "2026-09-14T21:56:18Z",
+      "pushedAt": "2026-09-15T21:48:14Z",
       "addedAt": "2026-08-23",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -42130,7 +42130,7 @@
       "stars": 15,
       "forks": 1,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T21:30:00Z",
+      "pushedAt": "2026-09-15T21:48:09Z",
       "addedAt": "2026-08-23",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -42381,7 +42381,7 @@
         "en": "Agent Team plugin for DeepSeek Harness"
       },
       "category": "tools",
-      "stars": 26,
+      "stars": 25,
       "forks": 6,
       "language": "TypeScript",
       "pushedAt": "2026-09-14T12:29:52Z",
@@ -42819,7 +42819,7 @@
         "en": "DSH SSH remote workspace plugin monorepo (pnpm workspace)"
       },
       "category": "tools",
-      "stars": 7,
+      "stars": 6,
       "forks": 3,
       "language": "JavaScript",
       "pushedAt": "2026-08-27T08:55:49Z",
@@ -43464,7 +43464,7 @@
       "stars": 1,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T08:54:06Z",
+      "pushedAt": "2026-09-15T23:55:27Z",
       "addedAt": "2026-08-22",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -43490,7 +43490,7 @@
         "en": "Private workspace for DSH Console development."
       },
       "category": "ui",
-      "stars": 22,
+      "stars": 21,
       "forks": 1,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T08:10:06Z",
@@ -43527,8 +43527,8 @@
         "en": "DSH Desktop product workspace"
       },
       "category": "tools",
-      "stars": 26789,
-      "forks": 1276,
+      "stars": 26796,
+      "forks": 1278,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T14:17:38Z",
       "addedAt": "2026-08-24",
@@ -43563,7 +43563,7 @@
         "en": "Mimir — 一站式科研工作台插件：LaTeX 论文边写边编译、arXiv 文献管理、实验追踪、指标图表、GPU 服务器 SSH 任务编排，管理科研全周期。An open-source research workbench plugin for the whole research cycle."
       },
       "category": "tools",
-      "stars": 407,
+      "stars": 410,
       "forks": 16,
       "language": "TypeScript",
       "pushedAt": "2026-09-13T11:10:16Z",
@@ -43649,7 +43649,7 @@
         "en": "OMK — Observe. Measure. Know. Evidence-backed knowledge changes for AI applications."
       },
       "category": "memory",
-      "stars": 21,
+      "stars": 22,
       "forks": 4,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T19:48:46Z",
@@ -43911,7 +43911,7 @@
         "en": "Local-first DeepSeek Harness plugins plus a profile and plugin control plane."
       },
       "category": "tools",
-      "stars": 30,
+      "stars": 29,
       "forks": 0,
       "language": "JavaScript",
       "pushedAt": "2026-09-03T12:06:27Z",
@@ -45010,7 +45010,7 @@
         "en": "DeepSeek Harness 自动审批门控：Flash 预判不可回补操作，安全自动批准、危险转人工（fail-safe）"
       },
       "category": "tools",
-      "stars": 70,
+      "stars": 69,
       "forks": 13,
       "language": "JavaScript",
       "pushedAt": "2026-08-20T06:16:50Z",
@@ -45523,8 +45523,8 @@
         "en": "DSH redteam security research modes and runtime plugins, managed from one settings page: deploy the nine presets, install, update and uninstall the fifteen runtime plugins for the current profile."
       },
       "category": "model",
-      "stars": 461,
-      "forks": 41,
+      "stars": 462,
+      "forks": 42,
       "language": "Python",
       "pushedAt": "2026-09-15T03:48:25Z",
       "addedAt": "2026-08-25",
@@ -46409,7 +46409,7 @@
       "stars": 0,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T09:15:38Z",
+      "pushedAt": "2026-09-15T23:19:23Z",
       "addedAt": "2026-08-16",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -46455,7 +46455,7 @@
       "stars": 0,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T09:16:09Z",
+      "pushedAt": "2026-09-15T23:19:47Z",
       "addedAt": "2026-08-20",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -46898,7 +46898,7 @@
         "en": "Industry and company research domain pack for DeepSeek Harness: methodology skills, an industry-chain structure model (industry_map), public-source policy/news tracking over ctx.web (industry_track), company scan cards (company_scan), and auditable research reports with an optional ctx.researchReport sealing bridge and a builtin Markdown fallback (industry_report). Research only — not investment advice."
       },
       "category": "skill",
-      "stars": 115,
+      "stars": 117,
       "forks": 0,
       "language": "TypeScript",
       "pushedAt": "2026-09-12T09:33:58Z",
@@ -48092,7 +48092,7 @@
       "stars": 0,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T04:27:55Z",
+      "pushedAt": "2026-09-16T00:28:25Z",
       "addedAt": "2026-08-26",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -48291,7 +48291,7 @@
         "en": "Verifiable research-report engine for DeepSeek Harness: a content-addressed evidence ledger (claim ↔ snapshot binding, tamper-evident) plus versioned sealed reports where every claim carries a verification verdict and the manifest hash seals the directory. Retrieval orchestration reuses the official ctx.web / ctx.jobs seams — no deep-research loop."
       },
       "category": "tools",
-      "stars": 115,
+      "stars": 116,
       "forks": 0,
       "language": "TypeScript",
       "pushedAt": "2026-09-12T09:33:31Z",
@@ -48843,7 +48843,7 @@
       "stars": 0,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T17:16:31Z",
+      "pushedAt": "2026-09-15T21:45:52Z",
       "addedAt": "2026-08-26",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -49030,7 +49030,7 @@
       "stars": 6,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T17:33:29Z",
+      "pushedAt": "2026-09-15T23:19:06Z",
       "addedAt": "2026-08-24",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -49414,7 +49414,7 @@
         "en": "DeepSeek Tavern - DSH roleplay plugin: character cards, worldbooks, presets, memory, relations, plot options. PolyForm-Noncommercial-Copyleft-1.0.0"
       },
       "category": "theme",
-      "stars": 18,
+      "stars": 19,
       "forks": 1,
       "language": "JavaScript",
       "pushedAt": "2026-09-13T17:21:51Z",
@@ -49449,7 +49449,7 @@
         "en": "一个非官方的基于dsh的GUI。An unofficial Windows desktop workbench for DeepSeek Harness."
       },
       "category": "model",
-      "stars": 198,
+      "stars": 199,
       "forks": 13,
       "language": "TypeScript",
       "pushedAt": "2026-09-12T19:39:54Z",
@@ -49902,7 +49902,7 @@
       "stars": 3,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T16:28:58Z",
+      "pushedAt": "2026-09-15T23:11:29Z",
       "addedAt": "2026-08-19",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -50528,7 +50528,7 @@
       "stars": 4,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T04:05:45Z",
+      "pushedAt": "2026-09-15T23:41:40Z",
       "addedAt": "2026-08-22",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -51891,7 +51891,7 @@
         "en": "Session-aware sandbox escalation compatibility plugin for DeepSeek Harness"
       },
       "category": "session",
-      "stars": 54,
+      "stars": 53,
       "forks": 9,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T10:26:28Z",
@@ -52071,7 +52071,7 @@
       "stars": 13,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T21:26:04Z",
+      "pushedAt": "2026-09-15T22:28:03Z",
       "addedAt": "2026-08-29",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -52540,7 +52540,7 @@
         "en": "通用 DSH 插件库（pnpm monorepo）：模板插件、插件开发工具包、一键聚合安装包。"
       },
       "category": "tools",
-      "stars": 4,
+      "stars": 5,
       "forks": 2,
       "language": "JavaScript",
       "pushedAt": "2026-09-15T14:49:55Z",
@@ -52718,7 +52718,7 @@
       "stars": 6,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T17:33:29Z",
+      "pushedAt": "2026-09-15T23:19:06Z",
       "addedAt": "2026-08-29",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -52747,7 +52747,7 @@
       "stars": 0,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T09:17:38Z",
+      "pushedAt": "2026-09-15T23:20:49Z",
       "addedAt": "2026-08-29",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -53214,7 +53214,7 @@
       "stars": 4,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T17:21:06Z",
+      "pushedAt": "2026-09-15T22:31:34Z",
       "addedAt": "2026-08-15",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -53428,7 +53428,7 @@
         "en": "基于 Jingyun Studio + DeepSeek Harness (DSH) 打造的一站式 AI 商业化桌面客户端"
       },
       "category": "skill",
-      "stars": 383,
+      "stars": 388,
       "forks": 14,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T10:30:25Z",
@@ -54205,7 +54205,7 @@
         "en": "DeepSeek 远程连接"
       },
       "category": "dev",
-      "stars": 192,
+      "stars": 193,
       "forks": 18,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T03:48:16Z",
@@ -54534,7 +54534,7 @@
       "stars": 851,
       "forks": 139,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T21:28:30Z",
+      "pushedAt": "2026-09-16T00:24:27Z",
       "addedAt": "2026-08-30",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -55223,7 +55223,7 @@
       "stars": 4,
       "forks": 1,
       "language": "Python",
-      "pushedAt": "2026-09-12T03:50:03Z",
+      "pushedAt": "2026-09-15T23:48:16Z",
       "addedAt": "2026-08-31",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -55418,7 +55418,7 @@
       "stars": 6,
       "forks": 1,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T19:42:56Z",
+      "pushedAt": "2026-09-16T00:13:43Z",
       "addedAt": "2026-08-24",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -55600,7 +55600,7 @@
       "stars": 5858,
       "forks": 548,
       "language": "Python",
-      "pushedAt": "2026-09-15T21:24:40Z",
+      "pushedAt": "2026-09-16T00:01:17Z",
       "addedAt": "2026-08-31",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -56455,7 +56455,7 @@
         "en": "DeepSeek Harness 破甲：所有模型都可破甲，不同模型可换不同提示词；默认提示词面向国模「小码酱」。Jailbreak for every model. 求 Star ⭐"
       },
       "category": "model",
-      "stars": 984,
+      "stars": 986,
       "forks": 124,
       "language": "JavaScript",
       "pushedAt": "2026-09-15T16:46:27Z",
@@ -57199,7 +57199,7 @@
         "en": "Git-backed long-term memory and evolution plugin for DeepSeek Harness"
       },
       "category": "memory",
-      "stars": 38,
+      "stars": 39,
       "forks": 0,
       "language": "TypeScript",
       "pushedAt": "2026-09-01T22:08:09Z",
@@ -57429,7 +57429,7 @@
       "stars": 0,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T20:54:46Z",
+      "pushedAt": "2026-09-15T23:42:31Z",
       "addedAt": "2026-09-02",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -58162,7 +58162,7 @@
       "stars": 821,
       "forks": 78,
       "language": "Go",
-      "pushedAt": "2026-09-15T14:48:02Z",
+      "pushedAt": "2026-09-15T23:31:02Z",
       "addedAt": "2026-09-02",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -60539,7 +60539,7 @@
         "en": "Tavern mode for dsh web — SillyTavern character cards, prompt presets, lorebooks, personas and regex on the dsh agent runtime."
       },
       "category": "memory",
-      "stars": 105,
+      "stars": 106,
       "forks": 1,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T16:06:02Z",
@@ -61000,7 +61000,7 @@
       "stars": 0,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T16:40:03Z",
+      "pushedAt": "2026-09-15T22:42:26Z",
       "addedAt": "2026-09-04",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -61435,7 +61435,7 @@
       "stars": 2,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T14:50:34Z",
+      "pushedAt": "2026-09-15T23:57:20Z",
       "addedAt": null,
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -61569,40 +61569,6 @@
       "icon": "https://avatars.githubusercontent.com/u/128820279?v=4"
     },
     {
-      "id": "ice5kysl/dsh-file-explorer-kit",
-      "name": "dsh-file-explorer-kit",
-      "owner": "ice5kysl",
-      "url": "https://github.com/ice5kysl/dsh-file-explorer-kit",
-      "description": {
-        "zh": "dsh (DeepSeek Harness) file explorer: browse the active session's workspace and preview files (Markdown/image/PDF/text/binary) right inside the chat GUI — a standard Cordis bundle plugin (read-only /dsh-files host routes on ctx.webServer + a conversation.view file tab).",
-        "en": "dsh (DeepSeek Harness) file explorer: browse the active session's workspace and preview files (Markdown/image/PDF/text/binary) right inside the chat GUI — a standard Cordis bundle plugin (read-only /dsh-files host routes on ctx.webServer + a conversation.view file tab)."
-      },
-      "category": "session",
-      "stars": 0,
-      "forks": 0,
-      "language": "JavaScript",
-      "pushedAt": "2026-09-11T12:51:06Z",
-      "addedAt": "2026-09-05",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:ice5kysl/dsh-file-explorer-kit",
-      "archived": false,
-      "topics": [
-        "cordis",
-        "deepseek-harness",
-        "dsh",
-        "dsh-plugin",
-        "file-explorer",
-        "plugin"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/272697679?v=4"
-    },
-    {
       "id": "weibaohui/user-management",
       "name": "@weibaohui/user-management",
       "owner": "weibaohui",
@@ -61712,7 +61678,7 @@
       "stars": 1,
       "forks": 0,
       "language": "Rust",
-      "pushedAt": "2026-09-13T23:38:55Z",
+      "pushedAt": "2026-09-16T00:13:54Z",
       "addedAt": "2026-08-21",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -62689,7 +62655,7 @@
       "stars": 0,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T21:15:34Z",
+      "pushedAt": "2026-09-15T23:31:34Z",
       "addedAt": "2026-09-06",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -62720,7 +62686,7 @@
       "stars": 0,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T20:55:26Z",
+      "pushedAt": "2026-09-15T23:41:14Z",
       "addedAt": "2026-09-06",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -63996,7 +63962,7 @@
       "stars": 0,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T21:08:38Z",
+      "pushedAt": "2026-09-15T22:09:24Z",
       "addedAt": "2026-09-06",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -64029,7 +63995,7 @@
         "en": "Role-based Codex / Claude Code / ACP subagent providers for the DeepSeek Harness: continuable children, durable session recovery, per-role product permissions, delegation with a permission ceiling, and a declarative role library."
       },
       "category": "model",
-      "stars": 20,
+      "stars": 19,
       "forks": 4,
       "language": "JavaScript",
       "pushedAt": "2026-09-10T03:34:19Z",
@@ -64352,7 +64318,7 @@
         "en": ""
       },
       "category": "tools",
-      "stars": 13,
+      "stars": 12,
       "forks": 2,
       "language": "JavaScript",
       "pushedAt": "2026-09-07T12:00:16Z",
@@ -65017,7 +64983,7 @@
         "en": "OpenBitFun combines a high-performance agent runtime written in Rust with a polished desktop application. It pairs the depth of a Code Agent with open, general-purpose capabilities for work beyond software development."
       },
       "category": "dev",
-      "stars": 2147,
+      "stars": 2156,
       "forks": 229,
       "language": "Rust",
       "pushedAt": "2026-09-15T13:11:37Z",
@@ -65636,7 +65602,7 @@
         "en": "Multi-model council deliberation for DeepSeek Harness"
       },
       "category": "model",
-      "stars": 99,
+      "stars": 101,
       "forks": 9,
       "language": "TypeScript",
       "pushedAt": "2026-09-08T11:53:30Z",
@@ -65895,35 +65861,6 @@
       "icon": "https://avatars.githubusercontent.com/u/12993928?v=4"
     },
     {
-      "id": "inmny/dsh-continue",
-      "name": "dsh-plugin-continue",
-      "owner": "inmny",
-      "url": "https://github.com/inmny/dsh-continue",
-      "description": {
-        "zh": "Add a direct no-input continuation control for failed DeepSeek Harness sessions",
-        "en": "Add a direct no-input continuation control for failed DeepSeek Harness sessions"
-      },
-      "category": "session",
-      "stars": 2,
-      "forks": 0,
-      "language": "JavaScript",
-      "pushedAt": "2026-09-11T09:13:11Z",
-      "addedAt": "2026-08-24",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:inmny/dsh-continue",
-      "archived": false,
-      "topics": [
-        "dsh-plugin"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/62230233?v=4"
-    },
-    {
       "id": "ai-eks/dsh-docking-layout",
       "name": "@ai-eks/dsh-docking-layout",
       "owner": "ai-eks",
@@ -65997,7 +65934,7 @@
         "en": "DeepSeek Harness plugin: an agent browser with a persistent identity - engine-level fingerprint spoofing, per-profile cookies and passkeys, residential proxy egress."
       },
       "category": "workflow",
-      "stars": 316,
+      "stars": 330,
       "forks": 0,
       "language": "JavaScript",
       "pushedAt": "2026-09-12T07:39:10Z",
@@ -66169,7 +66106,7 @@
       "stars": 0,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T21:15:34Z",
+      "pushedAt": "2026-09-15T23:31:34Z",
       "addedAt": "2026-09-07",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -66312,7 +66249,7 @@
       "stars": 0,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T19:48:05Z",
+      "pushedAt": "2026-09-15T23:49:28Z",
       "addedAt": "2026-09-07",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -66599,7 +66536,7 @@
         "en": "DeepSeek Harness chat history and session management: search archives, restore conversations, and delete safely"
       },
       "category": "session",
-      "stars": 6,
+      "stars": 5,
       "forks": 0,
       "language": "JavaScript",
       "pushedAt": "2026-09-15T18:53:49Z",
@@ -67080,7 +67017,7 @@
         "en": "Fylar Office Editor integration for the DeepSeek Harness Web profile, powered by Fylar Office SDK"
       },
       "category": "tools",
-      "stars": 51,
+      "stars": 53,
       "forks": 4,
       "language": "TypeScript",
       "pushedAt": "2026-09-11T09:14:04Z",
@@ -67345,7 +67282,7 @@
       "stars": 1,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-12T00:28:42Z",
+      "pushedAt": "2026-09-16T00:15:24Z",
       "addedAt": "2026-09-08",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -69024,7 +68961,7 @@
       "stars": 1,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T10:03:54Z",
+      "pushedAt": "2026-09-16T00:29:44Z",
       "addedAt": "2026-09-09",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -69108,40 +69045,6 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/18025178?v=4"
-    },
-    {
-      "id": "sueqet/dsh-todo-board",
-      "name": "dsh-todo-board",
-      "owner": "sueqet",
-      "url": "https://github.com/sueqet/dsh-todo-board",
-      "description": {
-        "zh": "跨会话 TODO 板：右上角浮窗、按工作目录分组、可拖动排序；每条待办可选「提醒 / 自动续跑 / 自动新开会话」三档执行模式，双勾选（AI 完成 / 用户验收）。AI 完成一项后自动查找同目录下一条未完成待办并继续执行。",
-        "en": "跨会话 TODO 板：右上角浮窗、按工作目录分组、可拖动排序；每条待办可选「提醒 / 自动续跑 / 自动新开会话」三档执行模式，双勾选（AI 完成 / 用户验收）。AI 完成一项后自动查找同目录下一条未完成待办并继续执行。"
-      },
-      "category": "memory",
-      "stars": 0,
-      "forks": 0,
-      "language": "JavaScript",
-      "pushedAt": "2026-09-11T12:49:40Z",
-      "addedAt": "2026-09-09",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:sueqet/dsh-todo-board",
-      "archived": false,
-      "topics": [
-        "cordis",
-        "deepseek-harness",
-        "dsh",
-        "dsh-plugin",
-        "task-board",
-        "todo"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/129881006?v=4"
     },
     {
       "id": "Nesarf/mega-index-map",
@@ -70448,7 +70351,7 @@
         "en": "DeepSeek-V4.1 / V4 Flash 网络安全红队工具（无限四代）v0.3.0：双层协同红队评测系统提示词注入，融合战场实测车道与实时状态投影的纯净零工具面架构。"
       },
       "category": "tools",
-      "stars": 1558,
+      "stars": 1561,
       "forks": 111,
       "language": "JavaScript",
       "pushedAt": "2026-09-14T13:45:13Z",
@@ -70841,7 +70744,7 @@
       "stars": 0,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T14:59:12Z",
+      "pushedAt": "2026-09-15T23:16:32Z",
       "addedAt": "2026-09-09",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -72134,7 +72037,7 @@
         "en": "DeepSeek Harness plugin for organizing AI discussions into research topics, traceable knowledge cards, and reusable research materials on an interactive graph"
       },
       "category": "ui",
-      "stars": 3,
+      "stars": 4,
       "forks": 0,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T05:52:04Z",
@@ -72508,35 +72411,6 @@
       "icon": "https://avatars.githubusercontent.com/u/98015681?v=4"
     },
     {
-      "id": "SmailPang/dsh-effort-slider",
-      "name": "dsh-effort-slider",
-      "owner": "SmailPang",
-      "url": "https://github.com/SmailPang/dsh-effort-slider",
-      "description": {
-        "zh": "DSH Web 思考强度就地替换插件：把模型座位「推理等级」面板里的原生单选行替换成 Claude Effort 卡片风格的美丽滑块（Off / Low / High / Max，含 WebGL 火焰），选择仍走官方会话链路。",
-        "en": "DSH Web 思考强度就地替换插件：把模型座位「推理等级」面板里的原生单选行替换成 Claude Effort 卡片风格的美丽滑块（Off / Low / High / Max，含 WebGL 火焰），选择仍走官方会话链路。"
-      },
-      "category": "tools",
-      "stars": 0,
-      "forks": 0,
-      "language": "JavaScript",
-      "pushedAt": "2026-09-11T12:58:23Z",
-      "addedAt": "2026-09-10",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:SmailPang/dsh-effort-slider",
-      "archived": false,
-      "topics": [
-        "dsh-plugin"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/90534932?v=4"
-    },
-    {
       "id": "awol2005ex3/dsh-wecom",
       "name": "dsh-plugin-wecom",
       "owner": "awol2005ex3",
@@ -72575,7 +72449,7 @@
         "en": "DSH 原生多平台调研流水线插件：harvest_scout(多平台发现)/harvest_deep_research(深度研报)/harvest_extract(穿透抓取)/harvest_verify(交叉验证)/harvest_audit(可信度审计)。源于自研 omni-scope 方法论，零第三方外部包依赖、自包含。"
       },
       "category": "tools",
-      "stars": 6,
+      "stars": 7,
       "forks": 0,
       "language": "JavaScript",
       "pushedAt": "2026-09-15T04:18:43Z",
@@ -72685,35 +72559,6 @@
         "vision"
       ],
       "icon": "https://avatars.githubusercontent.com/u/39011100?v=4"
-    },
-    {
-      "id": "HuanLinOTO/dsh-plugin-better-plan",
-      "name": "@huanlin/dsh-plugin-better-plan",
-      "owner": "HuanLinOTO",
-      "url": "https://github.com/HuanLinOTO/dsh-plugin-better-plan",
-      "description": {
-        "zh": "取代 DSH 内置 plan mode 的计划交付体验：计划先写成 markdown 文件，经侧边栏「计划面板」展示，聊天里只剩紧凑审批卡（审批流与原版一致）。 | Replaces the built-in plan mode's plan delivery: plans are written to a markdown file first and shown in the better-sidebar plan panel, leaving only a compact review card in chat (approval flow unchanged).",
-        "en": "取代 DSH 内置 plan mode 的计划交付体验：计划先写成 markdown 文件，经侧边栏「计划面板」展示，聊天里只剩紧凑审批卡（审批流与原版一致）。 | Replaces the built-in plan mode's plan delivery: plans are written to a markdown file first and shown in the better-sidebar plan panel, leaving only a compact review card in chat (approval flow unchanged)."
-      },
-      "category": "session",
-      "stars": 0,
-      "forks": 0,
-      "language": "TypeScript",
-      "pushedAt": "2026-09-11T12:56:13Z",
-      "addedAt": "2026-09-03",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:HuanLinOTO/dsh-plugin-better-plan",
-      "archived": false,
-      "topics": [
-        "dsh-plugin"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/94176676?v=4"
     },
     {
       "id": "u9521/dsh-session-settings",
@@ -74750,7 +74595,7 @@
       "stars": 2,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-14T07:06:05Z",
+      "pushedAt": "2026-09-15T23:56:39Z",
       "addedAt": "2026-08-29",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -74868,68 +74713,6 @@
       "icon": "https://avatars.githubusercontent.com/u/120104016?v=4"
     },
     {
-      "id": "zhengjy01/dsh-aliyun-mcp",
-      "name": "dsh-aliyun-mcp",
-      "owner": "zhengjy01",
-      "url": "https://github.com/zhengjy01/dsh-aliyun-mcp",
-      "description": {
-        "zh": "Alibaba Cloud MCP connection for DeepSeek Harness: static AccessKey credentials + local Alibaba Cloud MCP Proxy (uvx alibabacloud.mcp-proxy) connecting to the official OpenAPI MCP Server, with tools under mcp__aliyun__* and a web settings panel",
-        "en": "Alibaba Cloud MCP connection for DeepSeek Harness: static AccessKey credentials + local Alibaba Cloud MCP Proxy (uvx alibabacloud.mcp-proxy) connecting to the official OpenAPI MCP Server, with tools under mcp__aliyun__* and a web settings panel"
-      },
-      "category": "tools",
-      "stars": 0,
-      "forks": 0,
-      "language": "TypeScript",
-      "pushedAt": "2026-09-11T13:06:09Z",
-      "addedAt": "2026-09-11",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:zhengjy01/dsh-aliyun-mcp",
-      "archived": false,
-      "topics": [
-        "deepseek-harness",
-        "dsh",
-        "dsh-plugin"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/306360614?v=4"
-    },
-    {
-      "id": "zhengjy01/dsh-feishu-mcp",
-      "name": "dsh-feishu-mcp",
-      "owner": "zhengjy01",
-      "url": "https://github.com/zhengjy01/dsh-feishu-mcp",
-      "description": {
-        "zh": "Feishu (Lark) OpenAPI MCP connection for DeepSeek Harness: drives the official @larksuiteoapi/lark-mcp stdio server with your Feishu app credentials, exposes Feishu API tools (IM messages, Bitable, docs, calendar, drive) under mcp__feishu__*, and a web settings panel",
-        "en": "Feishu (Lark) OpenAPI MCP connection for DeepSeek Harness: drives the official @larksuiteoapi/lark-mcp stdio server with your Feishu app credentials, exposes Feishu API tools (IM messages, Bitable, docs, calendar, drive) under mcp__feishu__*, and a web settings panel"
-      },
-      "category": "notify",
-      "stars": 0,
-      "forks": 0,
-      "language": "TypeScript",
-      "pushedAt": "2026-09-11T13:06:16Z",
-      "addedAt": "2026-09-11",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:zhengjy01/dsh-feishu-mcp",
-      "archived": false,
-      "topics": [
-        "deepseek-harness",
-        "dsh",
-        "dsh-plugin"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/306360614?v=4"
-    },
-    {
       "id": "zhengjy01/dsh-goofish-mcp",
       "name": "dsh-goofish-mcp",
       "owner": "zhengjy01",
@@ -74983,37 +74766,6 @@
         "installation": "not_tested"
       },
       "install": "dsh plugin --profile web add github:zhengjy01/dsh-skill-recommender",
-      "archived": false,
-      "topics": [
-        "deepseek-harness",
-        "dsh",
-        "dsh-plugin"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/306360614?v=4"
-    },
-    {
-      "id": "zhengjy01/dsh-zsxq",
-      "name": "dsh-zsxq",
-      "owner": "zhengjy01",
-      "url": "https://github.com/zhengjy01/dsh-zsxq",
-      "description": {
-        "zh": "Knowledge Planet (知识星球 zsxq) integration for DeepSeek Harness: cookie/QR-login auth against the unofficial web API (api.zsxq.com/v2), exposes agent tools (groups, topics, topic detail, search, publish, comment, like), a login flow, and a web settings panel",
-        "en": "Knowledge Planet (知识星球 zsxq) integration for DeepSeek Harness: cookie/QR-login auth against the unofficial web API (api.zsxq.com/v2), exposes agent tools (groups, topics, topic detail, search, publish, comment, like), a login flow, and a web settings panel"
-      },
-      "category": "tools",
-      "stars": 0,
-      "forks": 0,
-      "language": "TypeScript",
-      "pushedAt": "2026-09-11T13:06:37Z",
-      "addedAt": "2026-09-11",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:zhengjy01/dsh-zsxq",
       "archived": false,
       "topics": [
         "deepseek-harness",
@@ -75435,7 +75187,7 @@
         "en": "Postiz CLI - Command line interface for the Postiz social media scheduling API"
       },
       "category": "skill",
-      "stars": 466,
+      "stars": 467,
       "forks": 91,
       "language": "TypeScript",
       "pushedAt": "2026-09-11T05:22:24Z",
@@ -75508,7 +75260,7 @@
       "stars": 1,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T09:39:46Z",
+      "pushedAt": "2026-09-16T00:28:04Z",
       "addedAt": "2026-09-11",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -76090,44 +75842,6 @@
       "icon": "https://avatars.githubusercontent.com/u/48752601?v=4"
     },
     {
-      "id": "0x5446/rowel",
-      "name": "rowel-workspace",
-      "owner": "0x5446",
-      "url": "https://github.com/0x5446/rowel",
-      "description": {
-        "zh": "Native iOS client for DeepSeek Harness (dsh). Answer your agent from your phone — the relay only ever sees ciphertext.",
-        "en": "Native iOS client for DeepSeek Harness (dsh). Answer your agent from your phone — the relay only ever sees ciphertext."
-      },
-      "category": "ui",
-      "stars": 1,
-      "forks": 0,
-      "language": "Swift",
-      "pushedAt": "2026-09-11T09:06:31Z",
-      "addedAt": "2026-09-01",
-      "source": "discovered",
-      "trustLevel": "discovered",
-      "verification": {
-        "manifest": "not_validated",
-        "patch": "not_checked",
-        "installation": "not_tested"
-      },
-      "install": "",
-      "archived": false,
-      "topics": [
-        "ai-agents",
-        "cloudflare-workers",
-        "deepseek-harness",
-        "developer-tools",
-        "dsh-plugin",
-        "end-to-end-encryption",
-        "ios",
-        "noise-protocol",
-        "swift",
-        "swiftui"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/3060520?v=4"
-    },
-    {
       "id": "Johnblur/dsh-bilingual-reader",
       "name": "dsh-bilingual-reader",
       "owner": "Johnblur",
@@ -76312,37 +76026,6 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/112278452?v=4"
-    },
-    {
-      "id": "aaronlei/dsh-width-tiers",
-      "name": "dsh-width-tiers",
-      "owner": "aaronlei",
-      "url": "https://github.com/aaronlei/dsh-width-tiers",
-      "description": {
-        "zh": "DSH Web client plugin: chat content width tiers (standard / medium / wide / ultra / full) with a floating picker button. Frees wide tables from the app's hard-coded 748px content cap. UI copy follows the app language (zh / en).",
-        "en": "DSH Web client plugin: chat content width tiers (standard / medium / wide / ultra / full) with a floating picker button. Frees wide tables from the app's hard-coded 748px content cap. UI copy follows the app language (zh / en)."
-      },
-      "category": "ui",
-      "stars": 2,
-      "forks": 0,
-      "language": "JavaScript",
-      "pushedAt": "2026-09-11T09:05:08Z",
-      "addedAt": "2026-08-17",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:aaronlei/dsh-width-tiers",
-      "archived": false,
-      "topics": [
-        "dsh",
-        "dsh-plugin",
-        "dsh-width-tiers"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/16218247?v=4"
     },
     {
       "id": "yangbobo2021/relay-dsh-plugin-claude",
@@ -78923,37 +78606,6 @@
       "icon": "https://avatars.githubusercontent.com/u/100058976?v=4"
     },
     {
-      "id": "zhengjy01/dsh-qqbot-panel",
-      "name": "dsh-qqbot-panel",
-      "owner": "zhengjy01",
-      "url": "https://github.com/zhengjy01/dsh-qqbot-panel",
-      "description": {
-        "zh": "Visual web settings panel for the official @tencent-connect/dsh-qqbot plugin: manage the QQ Bot AppID/AppSecret, c2c & group access modes/allowlists, cwd and requireMention directly in the DSH web settings page (reads/writes the qqbot profile's cordis.patch.yml).",
-        "en": "Visual web settings panel for the official @tencent-connect/dsh-qqbot plugin: manage the QQ Bot AppID/AppSecret, c2c & group access modes/allowlists, cwd and requireMention directly in the DSH web settings page (reads/writes the qqbot profile's cordis.patch.yml)."
-      },
-      "category": "tools",
-      "stars": 0,
-      "forks": 0,
-      "language": "TypeScript",
-      "pushedAt": "2026-09-11T13:06:19Z",
-      "addedAt": "2026-08-31",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:zhengjy01/dsh-qqbot-panel",
-      "archived": false,
-      "topics": [
-        "deepseek-harness",
-        "dsh",
-        "dsh-plugin"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/306360614?v=4"
-    },
-    {
       "id": "DM010727/dsh-cline",
       "name": "dsh-cline-root",
       "owner": "DM010727",
@@ -79060,37 +78712,6 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/100058976?v=4"
-    },
-    {
-      "id": "zhengjy01/dsh-vercel-mcp",
-      "name": "dsh-vercel-mcp",
-      "owner": "zhengjy01",
-      "url": "https://github.com/zhengjy01/dsh-vercel-mcp",
-      "description": {
-        "zh": "Vercel MCP connection for DeepSeek Harness: official OAuth 2.0 flow (dynamic client registration + PKCE) against mcp.vercel.com, Vercel API tools under mcp__vercel__*, and a web settings panel",
-        "en": "Vercel MCP connection for DeepSeek Harness: official OAuth 2.0 flow (dynamic client registration + PKCE) against mcp.vercel.com, Vercel API tools under mcp__vercel__*, and a web settings panel"
-      },
-      "category": "tools",
-      "stars": 0,
-      "forks": 0,
-      "language": "TypeScript",
-      "pushedAt": "2026-09-11T13:06:32Z",
-      "addedAt": "2026-08-30",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:zhengjy01/dsh-vercel-mcp",
-      "archived": false,
-      "topics": [
-        "deepseek-harness",
-        "dsh",
-        "dsh-plugin"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/306360614?v=4"
     },
     {
       "id": "Wonjader/dsh-permission-workspace-write-plus",
@@ -81360,7 +80981,7 @@
       "stars": 0,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T04:52:55Z",
+      "pushedAt": "2026-09-15T23:16:45Z",
       "addedAt": "2026-09-11",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -85654,7 +85275,7 @@
       "stars": 1,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T21:08:42Z",
+      "pushedAt": "2026-09-15T21:51:36Z",
       "addedAt": "2026-09-12",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -85853,7 +85474,7 @@
         "en": "Normify（归一化框架图构建器）：人机共读的分形项目结构图系统——模块树源数据零容忍校验/编译/渲染，以及 AI 结构数据生成器（30 个工具 + normify-gen 技能 + 渲染数据集 + 伴随开发）。0.5.1：深度不设上限、API 级细节与箭头直连、渲染器防重叠。适配 DeepSeek Harness 0.1.5+ / DSHEAC AIO 桌面端。"
       },
       "category": "dev",
-      "stars": 11,
+      "stars": 12,
       "forks": 0,
       "language": "TypeScript",
       "pushedAt": "2026-09-13T06:01:54Z",
@@ -88628,7 +88249,7 @@
         "en": "Cross-session agent-to-agent messaging for DeepSeek Harness — address another session by name and deliver a message into its inbox."
       },
       "category": "session",
-      "stars": 5,
+      "stars": 6,
       "forks": 0,
       "language": "TypeScript",
       "pushedAt": "2026-09-12T09:55:07Z",
@@ -89113,7 +88734,7 @@
         "en": "Reactive Resume is a free and open-source resume builder that makes it easy to create, update, and share your resume."
       },
       "category": "skill",
-      "stars": 42964,
+      "stars": 42978,
       "forks": 4749,
       "language": "TypeScript",
       "pushedAt": "2026-09-12T09:29:07Z",
@@ -91330,45 +90951,6 @@
       "icon": "https://avatars.githubusercontent.com/u/14027606?v=4"
     },
     {
-      "id": "CJackHwang/Succinix",
-      "name": "succinix",
-      "owner": "CJackHwang",
-      "url": "https://github.com/CJackHwang/Succinix",
-      "description": {
-        "zh": "POC: Lifo (Unix-in-TypeScript) running inside WebContainer, sharing the container filesystem via node:fs mount.",
-        "en": "POC: Lifo (Unix-in-TypeScript) running inside WebContainer, sharing the container filesystem via node:fs mount."
-      },
-      "category": "ui",
-      "stars": 6,
-      "forks": 1,
-      "language": "TypeScript",
-      "pushedAt": "2026-08-19T01:40:19Z",
-      "addedAt": "2026-08-17",
-      "source": "discovered",
-      "trustLevel": "discovered",
-      "verification": {
-        "manifest": "not_validated",
-        "patch": "not_checked",
-        "installation": "not_tested"
-      },
-      "install": "",
-      "archived": false,
-      "topics": [
-        "container",
-        "dsh",
-        "dsh-plugin",
-        "linux",
-        "linux-server",
-        "succinix",
-        "terminal",
-        "unix",
-        "unix-command",
-        "unix-like",
-        "web"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/155826701?v=4"
-    },
-    {
       "id": "StarryHui/dsh-custom-background",
       "name": "@starryhui/dsh-background",
       "owner": "StarryHui",
@@ -91400,44 +90982,6 @@
       "icon": "https://avatars.githubusercontent.com/u/261534022?v=4"
     },
     {
-      "id": "photon-hq/dsh-imessage",
-      "name": "dsh-imessage",
-      "owner": "photon-hq",
-      "url": "https://github.com/photon-hq/dsh-imessage",
-      "description": {
-        "zh": "Photon-hosted iMessage transport and configuration UI for DeepSeek Harness",
-        "en": "Photon-hosted iMessage transport and configuration UI for DeepSeek Harness"
-      },
-      "category": "ui",
-      "stars": 11,
-      "forks": 3,
-      "language": "TypeScript",
-      "pushedAt": "2026-08-19T02:12:14Z",
-      "addedAt": "2026-08-19",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:photon-hq/dsh-imessage",
-      "archived": false,
-      "topics": [
-        "ai-agent",
-        "deepseek-ai",
-        "deepseek-harness",
-        "dsh",
-        "dsh-plugin",
-        "imessage",
-        "messaging",
-        "photon",
-        "spectrum",
-        "spectrum-ts"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/230767697?v=4"
-    },
-    {
       "id": "askman-dev/dsh-canvas-design-harness",
       "name": "dsh-canvas-design-harness",
       "owner": "askman-dev",
@@ -91467,35 +91011,6 @@
         "skills"
       ],
       "icon": "https://avatars.githubusercontent.com/u/157854306?v=4"
-    },
-    {
-      "id": "ZelinW1/dsh-cosplay",
-      "name": "dsh-cosplay",
-      "owner": "ZelinW1",
-      "url": "https://github.com/ZelinW1/dsh-cosplay",
-      "description": {
-        "zh": "Cosplay mode for DeepSeek Harness: a global switch turns the agent into any character you define, with a settings UI for role configuration and management.",
-        "en": "Cosplay mode for DeepSeek Harness: a global switch turns the agent into any character you define, with a settings UI for role configuration and management."
-      },
-      "category": "ui",
-      "stars": 6,
-      "forks": 1,
-      "language": "JavaScript",
-      "pushedAt": "2026-08-19T02:05:06Z",
-      "addedAt": "2026-08-19",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:ZelinW1/dsh-cosplay",
-      "archived": false,
-      "topics": [
-        "dsh-plugin"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/125450134?v=4"
     },
     {
       "id": "DamonBao/dsh-dungeon-party",
@@ -91722,7 +91237,7 @@
       "stars": 3,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T17:33:19Z",
+      "pushedAt": "2026-09-15T23:18:28Z",
       "addedAt": "2026-08-19",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -91920,7 +91435,7 @@
       "stars": 3,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T21:24:20Z",
+      "pushedAt": "2026-09-15T23:24:41Z",
       "addedAt": "2026-08-19",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -92352,7 +91867,7 @@
         "en": "ClearAI: The Epistemic Loop, native to DSH."
       },
       "category": "tools",
-      "stars": 12,
+      "stars": 13,
       "forks": 2,
       "language": "JavaScript",
       "pushedAt": "2026-09-15T04:22:52Z",
@@ -93048,24 +92563,26 @@
       "category": "workflow",
       "stars": 0,
       "forks": 0,
-      "language": "JavaScript",
-      "pushedAt": "2026-09-15T12:06:07Z",
+      "language": "TypeScript",
+      "pushedAt": "2026-09-15T12:04:23Z",
       "addedAt": "2026-09-12",
       "source": "discovered",
-      "trustLevel": "manifest_verified",
+      "trustLevel": "discovered",
       "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
+        "manifest": "not_validated",
+        "patch": "not_checked",
         "installation": "not_tested"
       },
       "install": "dsh plugin --profile web add github:KasenRi/dsh-orbit",
       "archived": false,
       "topics": [
         "agent-orchestration",
+        "ai-agent",
+        "browser-automation",
+        "cordis",
         "deepseek-harness",
         "dsh-plugin",
-        "orbit",
-        "workflow"
+        "orbit"
       ],
       "icon": "https://avatars.githubusercontent.com/u/63844952?v=4"
     },
@@ -96237,7 +95754,7 @@
       "stars": 2,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T13:25:40Z",
+      "pushedAt": "2026-09-15T23:40:00Z",
       "addedAt": "2026-09-13",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -96281,7 +95798,7 @@
       "stars": 238,
       "forks": 32,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T21:18:50Z",
+      "pushedAt": "2026-09-15T22:20:56Z",
       "addedAt": "2026-09-13",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -96680,7 +96197,7 @@
       "stars": 238,
       "forks": 32,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T21:18:50Z",
+      "pushedAt": "2026-09-15T22:20:56Z",
       "addedAt": "2026-09-13",
       "source": "discovered",
       "trustLevel": "discovered",
@@ -98338,7 +97855,7 @@
         "en": "DSHana: DeepSeek Harness as a subagent for HanaAgent"
       },
       "category": "tools",
-      "stars": 50,
+      "stars": 49,
       "forks": 3,
       "language": "TypeScript",
       "pushedAt": "2026-09-14T14:14:47Z",
@@ -98632,7 +98149,7 @@
       "stars": 0,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T15:46:27Z",
+      "pushedAt": "2026-09-15T23:06:48Z",
       "addedAt": "2026-09-13",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -106778,7 +106295,7 @@
         "en": "DSH 多端管理：通过已有 SSH 配置管理远端 DSH 工作区与会话（开发验证版）"
       },
       "category": "market",
-      "stars": 0,
+      "stars": 1,
       "forks": 0,
       "language": "JavaScript",
       "pushedAt": "2026-09-14T00:59:12Z",
@@ -111349,7 +110866,7 @@
       "stars": 2,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T17:30:18Z",
+      "pushedAt": "2026-09-15T22:31:53Z",
       "addedAt": "2026-08-15",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -114715,7 +114232,7 @@
       "stars": 0,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T04:46:56Z",
+      "pushedAt": "2026-09-15T22:59:44Z",
       "addedAt": "2026-08-23",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -115649,7 +115166,7 @@
       "stars": 1,
       "forks": 1,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T05:35:49Z",
+      "pushedAt": "2026-09-16T00:16:49Z",
       "addedAt": "2026-09-15",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -116163,7 +115680,7 @@
       "stars": 0,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T20:18:09Z",
+      "pushedAt": "2026-09-15T22:31:52Z",
       "addedAt": "2026-09-15",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -118602,7 +118119,7 @@
       "stars": 0,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T11:43:42Z",
+      "pushedAt": "2026-09-15T23:48:29Z",
       "addedAt": "2026-09-15",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -120724,7 +120241,7 @@
         "en": "DeepSeek Harness plugin that uses Codex to plan and review while DSH executes."
       },
       "category": "workflow",
-      "stars": 3,
+      "stars": 4,
       "forks": 0,
       "language": "TypeScript",
       "pushedAt": "2026-09-15T16:34:12Z",
@@ -121449,7 +120966,7 @@
       "stars": 1,
       "forks": 0,
       "language": "MoonBit",
-      "pushedAt": "2026-09-15T14:52:31Z",
+      "pushedAt": "2026-09-15T23:36:09Z",
       "addedAt": "2026-09-15",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -121725,7 +121242,7 @@
       "stars": 0,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T16:07:41Z",
+      "pushedAt": "2026-09-15T23:36:25Z",
       "addedAt": "2026-09-15",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -121938,7 +121455,7 @@
       "stars": 0,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T15:40:50Z",
+      "pushedAt": "2026-09-16T00:01:07Z",
       "addedAt": "2026-09-15",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -122529,7 +122046,7 @@
       "stars": 1,
       "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-09-15T18:43:41Z",
+      "pushedAt": "2026-09-15T23:51:23Z",
       "addedAt": "2026-08-27",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -122733,7 +122250,7 @@
       "stars": 1,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T18:57:49Z",
+      "pushedAt": "2026-09-15T23:28:46Z",
       "addedAt": "2026-09-15",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -122881,7 +122398,7 @@
       "stars": 0,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T21:26:54Z",
+      "pushedAt": "2026-09-16T00:30:29Z",
       "addedAt": "2026-09-15",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -122985,7 +122502,7 @@
       "stars": 0,
       "forks": 0,
       "language": "JavaScript",
-      "pushedAt": "2026-09-15T20:37:00Z",
+      "pushedAt": "2026-09-15T22:39:59Z",
       "addedAt": "2026-09-15",
       "source": "discovered",
       "trustLevel": "manifest_verified",
@@ -123514,6 +123031,914 @@
         "typescript"
       ],
       "icon": "https://avatars.githubusercontent.com/u/19632018?v=4"
+    },
+    {
+      "id": "sperictao/dsh-auth-tailscale",
+      "name": "@dsh-external/dsh-auth-tailscale",
+      "owner": "sperictao",
+      "url": "https://github.com/sperictao/dsh-auth-tailscale",
+      "description": {
+        "zh": "Tailscale Serve authentication adapter for dsh Connection",
+        "en": "Tailscale Serve authentication adapter for dsh Connection"
+      },
+      "category": "tools",
+      "stars": 0,
+      "forks": 0,
+      "language": "TypeScript",
+      "pushedAt": "2026-09-15T22:48:17Z",
+      "addedAt": "2026-08-16",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:sperictao/dsh-auth-tailscale",
+      "archived": false,
+      "topics": [
+        "access-control",
+        "app-capabilities",
+        "authentication",
+        "authorization",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin",
+        "plugin",
+        "remote-access",
+        "tailscale",
+        "tailscale-serve",
+        "typescript"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/13306434?v=4"
+    },
+    {
+      "id": "sperictao/dsh-client-connection-authz",
+      "name": "@dsh-external/dsh-client-connection-authz",
+      "owner": "sperictao",
+      "url": "https://github.com/sperictao/dsh-client-connection-authz",
+      "description": {
+        "zh": "Auth-capable drop-in replacement for the DeepSeek Harness web connection",
+        "en": "Auth-capable drop-in replacement for the DeepSeek Harness web connection"
+      },
+      "category": "tools",
+      "stars": 1,
+      "forks": 0,
+      "language": "TypeScript",
+      "pushedAt": "2026-09-15T22:48:13Z",
+      "addedAt": "2026-08-16",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:sperictao/dsh-client-connection-authz",
+      "archived": false,
+      "topics": [
+        "access-control",
+        "authentication",
+        "authorization",
+        "cordis",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin",
+        "plugin",
+        "remote-access",
+        "typescript",
+        "websocket"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/13306434?v=4"
+    },
+    {
+      "id": "GBDJXB/dsh-workspace-presets",
+      "name": "dsh-workspace-presets",
+      "owner": "GBDJXB",
+      "url": "https://github.com/GBDJXB/dsh-workspace-presets",
+      "description": {
+        "zh": "Per-workspace Agent preset bindings for DeepSeek Harness: bind a preset to a workspace once and every new session there boots with it.",
+        "en": "Per-workspace Agent preset bindings for DeepSeek Harness: bind a preset to a workspace once and every new session there boots with it."
+      },
+      "category": "session",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-09-15T23:51:06Z",
+      "addedAt": "2026-09-06",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:GBDJXB/dsh-workspace-presets",
+      "archived": false,
+      "topics": [
+        "agent-preset",
+        "dsh",
+        "dsh-plugin",
+        "dsh-plugin-market",
+        "dsh-plugins"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/226272068?v=4"
+    },
+    {
+      "id": "adrianleb/dsh-tmux-cc",
+      "name": "dsh-tmux-cc",
+      "owner": "adrianleb",
+      "url": "https://github.com/adrianleb/dsh-tmux-cc",
+      "description": {
+        "zh": "A persistent tmux control-mode cockpit for DeepSeek Harness Web.",
+        "en": "A persistent tmux control-mode cockpit for DeepSeek Harness Web."
+      },
+      "category": "ui",
+      "stars": 0,
+      "forks": 1,
+      "language": "TypeScript",
+      "pushedAt": "2026-09-16T00:07:46Z",
+      "addedAt": "2026-08-25",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:adrianleb/dsh-tmux-cc",
+      "archived": false,
+      "topics": [
+        "ai-agents",
+        "coding-agent",
+        "cordis",
+        "cordis-plugin",
+        "deepseek",
+        "deepseek-harness",
+        "developer-tools",
+        "dsh",
+        "dsh-bundle",
+        "dsh-plugin",
+        "dsh-plugins",
+        "terminal",
+        "terminal-multiplexer",
+        "tmux",
+        "typescript",
+        "web-terminal",
+        "xtermjs"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/1190887?v=4"
+    },
+    {
+      "id": "wangzhishou/onebox-dsh-bridge",
+      "name": "onebox-dsh-bridge",
+      "owner": "wangzhishou",
+      "url": "https://github.com/wangzhishou/onebox-dsh-bridge",
+      "description": {
+        "zh": "DeepSeek Harness plugin: bridge local dsh web to the OneBox Android app over the public internet (scan-to-pair, E2E encrypted tunnel). 万宝盒 App 的 DSH 云端中继桥插件。",
+        "en": "DeepSeek Harness plugin: bridge local dsh web to the OneBox Android app over the public internet (scan-to-pair, E2E encrypted tunnel). 万宝盒 App 的 DSH 云端中继桥插件。"
+      },
+      "category": "tools",
+      "stars": 2,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-09-15T22:21:47Z",
+      "addedAt": "2026-08-20",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:wangzhishou/onebox-dsh-bridge",
+      "archived": false,
+      "topics": [
+        "agent",
+        "deepseek",
+        "deepseek-harness",
+        "dsh-plugin",
+        "onebox"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/5122695?v=4"
+    },
+    {
+      "id": "builtin-pb/dsh-developer",
+      "name": "dsh-developer",
+      "owner": "builtin-pb",
+      "url": "https://github.com/builtin-pb/dsh-developer",
+      "description": {
+        "zh": "The single plugin you need for DSH",
+        "en": "The single plugin you need for DSH"
+      },
+      "category": "skill",
+      "stars": 5,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-09-15T23:06:21Z",
+      "addedAt": "2026-09-16",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:builtin-pb/dsh-developer",
+      "archived": false,
+      "topics": [
+        "agent-skills",
+        "bubblewrap",
+        "codex",
+        "deepseek",
+        "deepseek-harness",
+        "developer-tools",
+        "dsh",
+        "dsh-plugin",
+        "plugin-development"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/239264913?v=4"
+    },
+    {
+      "id": "genson1808/dsh-web-search-perplexity-account",
+      "name": "dsh-web-search-perplexity-account",
+      "owner": "genson1808",
+      "url": "https://github.com/genson1808/dsh-web-search-perplexity-account",
+      "description": {
+        "zh": "Perplexity consumer-account search provider for ctx.web — uses the perplexity.ai ask endpoint with a logged-in session (Pro account works, no API key billed) or anonymous access. Includes a login flow (browser SSO / email OTP / macOS desktop-app borrowing) through ctx.authorization.",
+        "en": "Perplexity consumer-account search provider for ctx.web — uses the perplexity.ai ask endpoint with a logged-in session (Pro account works, no API key billed) or anonymous access. Includes a login flow (browser SSO / email OTP / macOS desktop-app borrowing) through ctx.authorization."
+      },
+      "category": "model",
+      "stars": 0,
+      "forks": 0,
+      "language": "TypeScript",
+      "pushedAt": "2026-09-16T00:06:22Z",
+      "addedAt": "2026-09-16",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:genson1808/dsh-web-search-perplexity-account",
+      "archived": false,
+      "topics": [
+        "deepseek-harness",
+        "dsh-plugin",
+        "perplexity",
+        "web-search"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/43442315?v=4"
+    },
+    {
+      "id": "hasan-aghayev/dsh-task-orchestrator",
+      "name": "dsh-task-orchestrator",
+      "owner": "hasan-aghayev",
+      "url": "https://github.com/hasan-aghayev/dsh-task-orchestrator",
+      "description": {
+        "zh": "Automatic plan-first role delegation for DeepSeek Harness with dependency-aware workers and final review.",
+        "en": "Automatic plan-first role delegation for DeepSeek Harness with dependency-aware workers and final review."
+      },
+      "category": "workflow",
+      "stars": 0,
+      "forks": 0,
+      "language": "TypeScript",
+      "pushedAt": "2026-09-15T23:57:22Z",
+      "addedAt": "2026-09-16",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:hasan-aghayev/dsh-task-orchestrator",
+      "archived": false,
+      "topics": [
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/200437155?v=4"
+    },
+    {
+      "id": "POPCORNBOOM/dsh-insight-dock",
+      "name": "dsh-insight-dock",
+      "owner": "POPCORNBOOM",
+      "url": "https://github.com/POPCORNBOOM/dsh-insight-dock",
+      "description": {
+        "zh": "Insight dock for the DSH Web GUI: lets an agent park a short, strictly-bounded side observation while it works, shows it above the composer, and lets the user ask to hear it later — with a context anchor that survives context compaction.",
+        "en": "Insight dock for the DSH Web GUI: lets an agent park a short, strictly-bounded side observation while it works, shows it above the composer, and lets the user ask to hear it later — with a context anchor that survives context compaction."
+      },
+      "category": "tools",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-09-15T23:54:21Z",
+      "addedAt": "2026-09-16",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:POPCORNBOOM/dsh-insight-dock",
+      "archived": false,
+      "topics": [
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/47022281?v=4"
+    },
+    {
+      "id": "zhiheng-zhang-Mera/dsh-restart",
+      "name": "dsh-restart",
+      "owner": "zhiheng-zhang-Mera",
+      "url": "https://github.com/zhiheng-zhang-Mera/dsh-restart",
+      "description": {
+        "zh": "Safe restart execution for DeepSeek Harness: request validation, checkpoint gating, restart locking, graceful shutdown, crash-loop breaking and an external supervisor. It never decides when to restart.",
+        "en": "Safe restart execution for DeepSeek Harness: request validation, checkpoint gating, restart locking, graceful shutdown, crash-loop breaking and an external supervisor. It never decides when to restart."
+      },
+      "category": "tools",
+      "stars": 0,
+      "forks": 0,
+      "language": "TypeScript",
+      "pushedAt": "2026-09-15T23:23:07Z",
+      "addedAt": "2026-09-16",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:zhiheng-zhang-Mera/dsh-restart",
+      "archived": false,
+      "topics": [
+        "checkpoint",
+        "crash-loop",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin",
+        "nodejs",
+        "plugin",
+        "restart",
+        "supervisor"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/229580437?v=4"
+    },
+    {
+      "id": "zhiheng-zhang-Mera/dsh-health-scheduler",
+      "name": "dsh-health-scheduler",
+      "owner": "zhiheng-zhang-Mera",
+      "url": "https://github.com/zhiheng-zhang-Mera/dsh-health-scheduler",
+      "description": {
+        "zh": "Health monitoring, pressure scoring, maintenance scheduling and action decisions for DeepSeek Harness. It never restarts anything itself.",
+        "en": "Health monitoring, pressure scoring, maintenance scheduling and action decisions for DeepSeek Harness. It never restarts anything itself."
+      },
+      "category": "dev",
+      "stars": 0,
+      "forks": 0,
+      "language": "TypeScript",
+      "pushedAt": "2026-09-15T23:22:57Z",
+      "addedAt": "2026-09-16",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:zhiheng-zhang-Mera/dsh-health-scheduler",
+      "archived": false,
+      "topics": [
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin",
+        "health",
+        "monitoring",
+        "nodejs",
+        "plugin",
+        "pressure",
+        "scheduler"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/229580437?v=4"
+    },
+    {
+      "id": "wild-River2016/dsh-xiaohe-canvas",
+      "name": "@xiaohe-store/dsh-canvas",
+      "owner": "wild-River2016",
+      "url": "https://github.com/wild-River2016/dsh-xiaohe-canvas",
+      "description": {
+        "zh": "DeepSeek Harness 插件 - 小禾画布 AI 创作助手",
+        "en": "DeepSeek Harness 插件 - 小禾画布 AI 创作助手"
+      },
+      "category": "tools",
+      "stars": 0,
+      "forks": 0,
+      "language": "TypeScript",
+      "pushedAt": "2026-09-15T01:56:39Z",
+      "addedAt": "2026-09-16",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:wild-River2016/dsh-xiaohe-canvas",
+      "archived": false,
+      "topics": [
+        "ai",
+        "canvas",
+        "deepseek-harness",
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/24984406?v=4"
+    },
+    {
+      "id": "ice5kysl/dsh-file-explorer-kit",
+      "name": "dsh-file-explorer-kit",
+      "owner": "ice5kysl",
+      "url": "https://github.com/ice5kysl/dsh-file-explorer-kit",
+      "description": {
+        "zh": "dsh (DeepSeek Harness) file explorer: browse the active session's workspace and preview files (Markdown/image/PDF/text/binary) right inside the chat GUI — a standard Cordis bundle plugin (read-only /dsh-files host routes on ctx.webServer + a conversation.view file tab).",
+        "en": "dsh (DeepSeek Harness) file explorer: browse the active session's workspace and preview files (Markdown/image/PDF/text/binary) right inside the chat GUI — a standard Cordis bundle plugin (read-only /dsh-files host routes on ctx.webServer + a conversation.view file tab)."
+      },
+      "category": "session",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-09-11T12:51:06Z",
+      "addedAt": "2026-09-05",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:ice5kysl/dsh-file-explorer-kit",
+      "archived": false,
+      "topics": [
+        "cordis",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin",
+        "file-explorer",
+        "plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/272697679?v=4"
+    },
+    {
+      "id": "inmny/dsh-continue",
+      "name": "dsh-plugin-continue",
+      "owner": "inmny",
+      "url": "https://github.com/inmny/dsh-continue",
+      "description": {
+        "zh": "Add a direct no-input continuation control for failed DeepSeek Harness sessions",
+        "en": "Add a direct no-input continuation control for failed DeepSeek Harness sessions"
+      },
+      "category": "session",
+      "stars": 2,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-09-11T09:13:11Z",
+      "addedAt": "2026-08-24",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:inmny/dsh-continue",
+      "archived": false,
+      "topics": [
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/62230233?v=4"
+    },
+    {
+      "id": "sueqet/dsh-todo-board",
+      "name": "dsh-todo-board",
+      "owner": "sueqet",
+      "url": "https://github.com/sueqet/dsh-todo-board",
+      "description": {
+        "zh": "跨会话 TODO 板：右上角浮窗、按工作目录分组、可拖动排序；每条待办可选「提醒 / 自动续跑 / 自动新开会话」三档执行模式，双勾选（AI 完成 / 用户验收）。AI 完成一项后自动查找同目录下一条未完成待办并继续执行。",
+        "en": "跨会话 TODO 板：右上角浮窗、按工作目录分组、可拖动排序；每条待办可选「提醒 / 自动续跑 / 自动新开会话」三档执行模式，双勾选（AI 完成 / 用户验收）。AI 完成一项后自动查找同目录下一条未完成待办并继续执行。"
+      },
+      "category": "memory",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-09-11T12:49:40Z",
+      "addedAt": "2026-09-09",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:sueqet/dsh-todo-board",
+      "archived": false,
+      "topics": [
+        "cordis",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin",
+        "task-board",
+        "todo"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/129881006?v=4"
+    },
+    {
+      "id": "SmailPang/dsh-effort-slider",
+      "name": "dsh-effort-slider",
+      "owner": "SmailPang",
+      "url": "https://github.com/SmailPang/dsh-effort-slider",
+      "description": {
+        "zh": "DSH Web 思考强度就地替换插件：把模型座位「推理等级」面板里的原生单选行替换成 Claude Effort 卡片风格的美丽滑块（Off / Low / High / Max，含 WebGL 火焰），选择仍走官方会话链路。",
+        "en": "DSH Web 思考强度就地替换插件：把模型座位「推理等级」面板里的原生单选行替换成 Claude Effort 卡片风格的美丽滑块（Off / Low / High / Max，含 WebGL 火焰），选择仍走官方会话链路。"
+      },
+      "category": "tools",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-09-11T12:58:23Z",
+      "addedAt": "2026-09-10",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:SmailPang/dsh-effort-slider",
+      "archived": false,
+      "topics": [
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/90534932?v=4"
+    },
+    {
+      "id": "HuanLinOTO/dsh-plugin-better-plan",
+      "name": "@huanlin/dsh-plugin-better-plan",
+      "owner": "HuanLinOTO",
+      "url": "https://github.com/HuanLinOTO/dsh-plugin-better-plan",
+      "description": {
+        "zh": "取代 DSH 内置 plan mode 的计划交付体验：计划先写成 markdown 文件，经侧边栏「计划面板」展示，聊天里只剩紧凑审批卡（审批流与原版一致）。 | Replaces the built-in plan mode's plan delivery: plans are written to a markdown file first and shown in the better-sidebar plan panel, leaving only a compact review card in chat (approval flow unchanged).",
+        "en": "取代 DSH 内置 plan mode 的计划交付体验：计划先写成 markdown 文件，经侧边栏「计划面板」展示，聊天里只剩紧凑审批卡（审批流与原版一致）。 | Replaces the built-in plan mode's plan delivery: plans are written to a markdown file first and shown in the better-sidebar plan panel, leaving only a compact review card in chat (approval flow unchanged)."
+      },
+      "category": "session",
+      "stars": 0,
+      "forks": 0,
+      "language": "TypeScript",
+      "pushedAt": "2026-09-11T12:56:13Z",
+      "addedAt": "2026-09-03",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:HuanLinOTO/dsh-plugin-better-plan",
+      "archived": false,
+      "topics": [
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/94176676?v=4"
+    },
+    {
+      "id": "zhengjy01/dsh-aliyun-mcp",
+      "name": "dsh-aliyun-mcp",
+      "owner": "zhengjy01",
+      "url": "https://github.com/zhengjy01/dsh-aliyun-mcp",
+      "description": {
+        "zh": "Alibaba Cloud MCP connection for DeepSeek Harness: static AccessKey credentials + local Alibaba Cloud MCP Proxy (uvx alibabacloud.mcp-proxy) connecting to the official OpenAPI MCP Server, with tools under mcp__aliyun__* and a web settings panel",
+        "en": "Alibaba Cloud MCP connection for DeepSeek Harness: static AccessKey credentials + local Alibaba Cloud MCP Proxy (uvx alibabacloud.mcp-proxy) connecting to the official OpenAPI MCP Server, with tools under mcp__aliyun__* and a web settings panel"
+      },
+      "category": "tools",
+      "stars": 0,
+      "forks": 0,
+      "language": "TypeScript",
+      "pushedAt": "2026-09-11T13:06:09Z",
+      "addedAt": "2026-09-11",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:zhengjy01/dsh-aliyun-mcp",
+      "archived": false,
+      "topics": [
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/306360614?v=4"
+    },
+    {
+      "id": "zhengjy01/dsh-feishu-mcp",
+      "name": "dsh-feishu-mcp",
+      "owner": "zhengjy01",
+      "url": "https://github.com/zhengjy01/dsh-feishu-mcp",
+      "description": {
+        "zh": "Feishu (Lark) OpenAPI MCP connection for DeepSeek Harness: drives the official @larksuiteoapi/lark-mcp stdio server with your Feishu app credentials, exposes Feishu API tools (IM messages, Bitable, docs, calendar, drive) under mcp__feishu__*, and a web settings panel",
+        "en": "Feishu (Lark) OpenAPI MCP connection for DeepSeek Harness: drives the official @larksuiteoapi/lark-mcp stdio server with your Feishu app credentials, exposes Feishu API tools (IM messages, Bitable, docs, calendar, drive) under mcp__feishu__*, and a web settings panel"
+      },
+      "category": "notify",
+      "stars": 0,
+      "forks": 0,
+      "language": "TypeScript",
+      "pushedAt": "2026-09-11T13:06:16Z",
+      "addedAt": "2026-09-11",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:zhengjy01/dsh-feishu-mcp",
+      "archived": false,
+      "topics": [
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/306360614?v=4"
+    },
+    {
+      "id": "zhengjy01/dsh-zsxq",
+      "name": "dsh-zsxq",
+      "owner": "zhengjy01",
+      "url": "https://github.com/zhengjy01/dsh-zsxq",
+      "description": {
+        "zh": "Knowledge Planet (知识星球 zsxq) integration for DeepSeek Harness: cookie/QR-login auth against the unofficial web API (api.zsxq.com/v2), exposes agent tools (groups, topics, topic detail, search, publish, comment, like), a login flow, and a web settings panel",
+        "en": "Knowledge Planet (知识星球 zsxq) integration for DeepSeek Harness: cookie/QR-login auth against the unofficial web API (api.zsxq.com/v2), exposes agent tools (groups, topics, topic detail, search, publish, comment, like), a login flow, and a web settings panel"
+      },
+      "category": "tools",
+      "stars": 0,
+      "forks": 0,
+      "language": "TypeScript",
+      "pushedAt": "2026-09-11T13:06:37Z",
+      "addedAt": "2026-09-11",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:zhengjy01/dsh-zsxq",
+      "archived": false,
+      "topics": [
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/306360614?v=4"
+    },
+    {
+      "id": "0x5446/rowel",
+      "name": "rowel-workspace",
+      "owner": "0x5446",
+      "url": "https://github.com/0x5446/rowel",
+      "description": {
+        "zh": "Native iOS client for DeepSeek Harness (dsh). Answer your agent from your phone — the relay only ever sees ciphertext.",
+        "en": "Native iOS client for DeepSeek Harness (dsh). Answer your agent from your phone — the relay only ever sees ciphertext."
+      },
+      "category": "ui",
+      "stars": 1,
+      "forks": 0,
+      "language": "Swift",
+      "pushedAt": "2026-09-11T09:06:31Z",
+      "addedAt": "2026-09-01",
+      "source": "discovered",
+      "trustLevel": "discovered",
+      "verification": {
+        "manifest": "not_validated",
+        "patch": "not_checked",
+        "installation": "not_tested"
+      },
+      "install": "",
+      "archived": false,
+      "topics": [
+        "ai-agents",
+        "cloudflare-workers",
+        "deepseek-harness",
+        "developer-tools",
+        "dsh-plugin",
+        "end-to-end-encryption",
+        "ios",
+        "noise-protocol",
+        "swift",
+        "swiftui"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/3060520?v=4"
+    },
+    {
+      "id": "aaronlei/dsh-width-tiers",
+      "name": "dsh-width-tiers",
+      "owner": "aaronlei",
+      "url": "https://github.com/aaronlei/dsh-width-tiers",
+      "description": {
+        "zh": "DSH Web client plugin: chat content width tiers (standard / medium / wide / ultra / full) with a floating picker button. Frees wide tables from the app's hard-coded 748px content cap. UI copy follows the app language (zh / en).",
+        "en": "DSH Web client plugin: chat content width tiers (standard / medium / wide / ultra / full) with a floating picker button. Frees wide tables from the app's hard-coded 748px content cap. UI copy follows the app language (zh / en)."
+      },
+      "category": "ui",
+      "stars": 2,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-09-11T09:05:08Z",
+      "addedAt": "2026-08-17",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:aaronlei/dsh-width-tiers",
+      "archived": false,
+      "topics": [
+        "dsh",
+        "dsh-plugin",
+        "dsh-width-tiers"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/16218247?v=4"
+    },
+    {
+      "id": "zhengjy01/dsh-qqbot-panel",
+      "name": "dsh-qqbot-panel",
+      "owner": "zhengjy01",
+      "url": "https://github.com/zhengjy01/dsh-qqbot-panel",
+      "description": {
+        "zh": "Visual web settings panel for the official @tencent-connect/dsh-qqbot plugin: manage the QQ Bot AppID/AppSecret, c2c & group access modes/allowlists, cwd and requireMention directly in the DSH web settings page (reads/writes the qqbot profile's cordis.patch.yml).",
+        "en": "Visual web settings panel for the official @tencent-connect/dsh-qqbot plugin: manage the QQ Bot AppID/AppSecret, c2c & group access modes/allowlists, cwd and requireMention directly in the DSH web settings page (reads/writes the qqbot profile's cordis.patch.yml)."
+      },
+      "category": "tools",
+      "stars": 0,
+      "forks": 0,
+      "language": "TypeScript",
+      "pushedAt": "2026-09-11T13:06:19Z",
+      "addedAt": "2026-08-31",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:zhengjy01/dsh-qqbot-panel",
+      "archived": false,
+      "topics": [
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/306360614?v=4"
+    },
+    {
+      "id": "zhengjy01/dsh-vercel-mcp",
+      "name": "dsh-vercel-mcp",
+      "owner": "zhengjy01",
+      "url": "https://github.com/zhengjy01/dsh-vercel-mcp",
+      "description": {
+        "zh": "Vercel MCP connection for DeepSeek Harness: official OAuth 2.0 flow (dynamic client registration + PKCE) against mcp.vercel.com, Vercel API tools under mcp__vercel__*, and a web settings panel",
+        "en": "Vercel MCP connection for DeepSeek Harness: official OAuth 2.0 flow (dynamic client registration + PKCE) against mcp.vercel.com, Vercel API tools under mcp__vercel__*, and a web settings panel"
+      },
+      "category": "tools",
+      "stars": 0,
+      "forks": 0,
+      "language": "TypeScript",
+      "pushedAt": "2026-09-11T13:06:32Z",
+      "addedAt": "2026-08-30",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:zhengjy01/dsh-vercel-mcp",
+      "archived": false,
+      "topics": [
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/306360614?v=4"
+    },
+    {
+      "id": "CJackHwang/Succinix",
+      "name": "succinix",
+      "owner": "CJackHwang",
+      "url": "https://github.com/CJackHwang/Succinix",
+      "description": {
+        "zh": "POC: Lifo (Unix-in-TypeScript) running inside WebContainer, sharing the container filesystem via node:fs mount.",
+        "en": "POC: Lifo (Unix-in-TypeScript) running inside WebContainer, sharing the container filesystem via node:fs mount."
+      },
+      "category": "ui",
+      "stars": 6,
+      "forks": 1,
+      "language": "TypeScript",
+      "pushedAt": "2026-08-19T01:40:19Z",
+      "addedAt": "2026-08-17",
+      "source": "discovered",
+      "trustLevel": "discovered",
+      "verification": {
+        "manifest": "not_validated",
+        "patch": "not_checked",
+        "installation": "not_tested"
+      },
+      "install": "",
+      "archived": false,
+      "topics": [
+        "container",
+        "dsh",
+        "dsh-plugin",
+        "linux",
+        "linux-server",
+        "succinix",
+        "terminal",
+        "unix",
+        "unix-command",
+        "unix-like",
+        "web"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/155826701?v=4"
+    },
+    {
+      "id": "photon-hq/dsh-imessage",
+      "name": "dsh-imessage",
+      "owner": "photon-hq",
+      "url": "https://github.com/photon-hq/dsh-imessage",
+      "description": {
+        "zh": "Photon-hosted iMessage transport and configuration UI for DeepSeek Harness",
+        "en": "Photon-hosted iMessage transport and configuration UI for DeepSeek Harness"
+      },
+      "category": "ui",
+      "stars": 11,
+      "forks": 3,
+      "language": "TypeScript",
+      "pushedAt": "2026-08-19T02:12:14Z",
+      "addedAt": "2026-08-19",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:photon-hq/dsh-imessage",
+      "archived": false,
+      "topics": [
+        "ai-agent",
+        "deepseek-ai",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin",
+        "imessage",
+        "messaging",
+        "photon",
+        "spectrum",
+        "spectrum-ts"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/230767697?v=4"
+    },
+    {
+      "id": "ZelinW1/dsh-cosplay",
+      "name": "dsh-cosplay",
+      "owner": "ZelinW1",
+      "url": "https://github.com/ZelinW1/dsh-cosplay",
+      "description": {
+        "zh": "Cosplay mode for DeepSeek Harness: a global switch turns the agent into any character you define, with a settings UI for role configuration and management.",
+        "en": "Cosplay mode for DeepSeek Harness: a global switch turns the agent into any character you define, with a settings UI for role configuration and management."
+      },
+      "category": "ui",
+      "stars": 6,
+      "forks": 1,
+      "language": "JavaScript",
+      "pushedAt": "2026-08-19T02:05:06Z",
+      "addedAt": "2026-08-19",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:ZelinW1/dsh-cosplay",
+      "archived": false,
+      "topics": [
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/125450134?v=4"
     },
     {
       "id": "HuanLinOTO/dsh-plugin-android-use",
@@ -148262,46 +148687,6 @@
       "icon": "https://avatars.githubusercontent.com/u/233244?v=4"
     },
     {
-      "id": "sperictao/dsh-auth-tailscale",
-      "name": "@dsh-external/dsh-auth-tailscale",
-      "owner": "sperictao",
-      "url": "https://github.com/sperictao/dsh-auth-tailscale",
-      "description": {
-        "zh": "Tailscale Serve authentication adapter for dsh Connection",
-        "en": "Tailscale Serve authentication adapter for dsh Connection"
-      },
-      "category": "tools",
-      "stars": 0,
-      "forks": 0,
-      "language": "TypeScript",
-      "pushedAt": "2026-09-09T08:46:18Z",
-      "addedAt": "2026-08-16",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:sperictao/dsh-auth-tailscale",
-      "archived": false,
-      "topics": [
-        "access-control",
-        "app-capabilities",
-        "authentication",
-        "authorization",
-        "deepseek-harness",
-        "dsh",
-        "dsh-plugin",
-        "plugin",
-        "remote-access",
-        "tailscale",
-        "tailscale-serve",
-        "typescript"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/13306434?v=4"
-    },
-    {
       "id": "ruisenbai/dsh-turn-fold",
       "name": "dsh-turn-fold",
       "owner": "ruisenbai",
@@ -148397,45 +148782,6 @@
         "xai"
       ],
       "icon": "https://avatars.githubusercontent.com/u/302556620?v=4"
-    },
-    {
-      "id": "sperictao/dsh-client-connection-authz",
-      "name": "@dsh-external/dsh-client-connection-authz",
-      "owner": "sperictao",
-      "url": "https://github.com/sperictao/dsh-client-connection-authz",
-      "description": {
-        "zh": "Auth-capable drop-in replacement for the DeepSeek Harness web connection",
-        "en": "Auth-capable drop-in replacement for the DeepSeek Harness web connection"
-      },
-      "category": "tools",
-      "stars": 0,
-      "forks": 0,
-      "language": "TypeScript",
-      "pushedAt": "2026-09-09T08:46:12Z",
-      "addedAt": "2026-08-16",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:sperictao/dsh-client-connection-authz",
-      "archived": false,
-      "topics": [
-        "access-control",
-        "authentication",
-        "authorization",
-        "cordis",
-        "deepseek-harness",
-        "dsh",
-        "dsh-plugin",
-        "plugin",
-        "remote-access",
-        "typescript",
-        "websocket"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/13306434?v=4"
     },
     {
       "id": "skkjkk/dsh-usage-dashboard",
@@ -165095,39 +165441,6 @@
         "dsh-web-search-diy"
       ],
       "icon": "https://avatars.githubusercontent.com/u/16218247?v=4"
-    },
-    {
-      "id": "GBDJXB/dsh-workspace-presets",
-      "name": "dsh-workspace-presets",
-      "owner": "GBDJXB",
-      "url": "https://github.com/GBDJXB/dsh-workspace-presets",
-      "description": {
-        "zh": "Per-workspace Agent preset bindings for DeepSeek Harness: bind a preset to a workspace once and every new session there boots with it.",
-        "en": "Per-workspace Agent preset bindings for DeepSeek Harness: bind a preset to a workspace once and every new session there boots with it."
-      },
-      "category": "session",
-      "stars": 0,
-      "forks": 0,
-      "language": "JavaScript",
-      "pushedAt": "2026-09-06T04:51:57Z",
-      "addedAt": "2026-09-06",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:GBDJXB/dsh-workspace-presets",
-      "archived": false,
-      "topics": [
-        "agent-preset",
-        "dsh",
-        "dsh-plugin",
-        "dsh-plugin-market",
-        "dsh-plugins"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/226272068?v=4"
     },
     {
       "id": "H1Kariiiiiii/dsh-desktop-launcher2",
@@ -211007,51 +211320,6 @@
         "windows"
       ],
       "icon": "https://avatars.githubusercontent.com/u/224554989?v=4"
-    },
-    {
-      "id": "adrianleb/dsh-tmux-cc",
-      "name": "dsh-tmux-cc",
-      "owner": "adrianleb",
-      "url": "https://github.com/adrianleb/dsh-tmux-cc",
-      "description": {
-        "zh": "A persistent tmux control-mode cockpit for DeepSeek Harness Web.",
-        "en": "A persistent tmux control-mode cockpit for DeepSeek Harness Web."
-      },
-      "category": "ui",
-      "stars": 0,
-      "forks": 1,
-      "language": "TypeScript",
-      "pushedAt": "2026-09-01T17:51:30Z",
-      "addedAt": "2026-08-25",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:adrianleb/dsh-tmux-cc",
-      "archived": false,
-      "topics": [
-        "ai-agents",
-        "coding-agent",
-        "cordis",
-        "cordis-plugin",
-        "deepseek",
-        "deepseek-harness",
-        "developer-tools",
-        "dsh",
-        "dsh-bundle",
-        "dsh-plugin",
-        "dsh-plugins",
-        "terminal",
-        "terminal-multiplexer",
-        "tmux",
-        "typescript",
-        "web-terminal",
-        "xtermjs"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/1190887?v=4"
     },
     {
       "id": "Dinis0214/dsh-desktop-lite",
@@ -337876,39 +338144,6 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/8982044?v=4"
-    },
-    {
-      "id": "wangzhishou/onebox-dsh-bridge",
-      "name": "onebox-dsh-bridge",
-      "owner": "wangzhishou",
-      "url": "https://github.com/wangzhishou/onebox-dsh-bridge",
-      "description": {
-        "zh": "DeepSeek Harness plugin: bridge local dsh web to the OneBox Android app over the public internet (scan-to-pair, E2E encrypted tunnel). 万宝盒 App 的 DSH 云端中继桥插件。",
-        "en": "DeepSeek Harness plugin: bridge local dsh web to the OneBox Android app over the public internet (scan-to-pair, E2E encrypted tunnel). 万宝盒 App 的 DSH 云端中继桥插件。"
-      },
-      "category": "tools",
-      "stars": 0,
-      "forks": 0,
-      "language": "JavaScript",
-      "pushedAt": "2026-08-20T12:36:23Z",
-      "addedAt": "2026-08-20",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
-      "verification": {
-        "manifest": "shape_validated",
-        "patch": "exists",
-        "installation": "not_tested"
-      },
-      "install": "dsh plugin --profile web add github:wangzhishou/onebox-dsh-bridge",
-      "archived": false,
-      "topics": [
-        "agent",
-        "deepseek",
-        "deepseek-harness",
-        "dsh-plugin",
-        "onebox"
-      ],
-      "icon": "https://avatars.githubusercontent.com/u/5122695?v=4"
     },
     {
       "id": "yanglongyun/dsh-ramify",
