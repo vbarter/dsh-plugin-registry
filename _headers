@@ -22,3 +22,22 @@
   CDN-Cache-Control: no-store
   Cloudflare-CDN-Cache-Control: no-store
 
+/sitemap-index.xml
+  X-Robots-Tag: noindex
+  Cache-Control: no-store, no-cache, must-revalidate
+  CDN-Cache-Control: no-store
+  Cloudflare-CDN-Cache-Control: no-store
+
+/sitemap_index.xml
+  X-Robots-Tag: noindex
+  Cache-Control: no-store, no-cache, must-revalidate
+  CDN-Cache-Control: no-store
+  Cloudflare-CDN-Cache-Control: no-store
+
+/sitemapindex.xml
+  X-Robots-Tag: noindex
+  Cache-Control: no-store, no-cache, must-revalidate
+  CDN-Cache-Control: no-store
+  Cloudflare-CDN-Cache-Control: no-store
+
+
