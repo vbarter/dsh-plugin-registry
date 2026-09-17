@@ -1,8 +1,15 @@
-/* Catalog loader + field helpers. Loads plugins.json once and keeps it in memory. */
+/* Catalog loader + field helpers.
+ * Homepage list loads plugins-lite.json; detail / full facts load plugins.json.
+ */
 (function (global) {
-  const DATA_URL = "data/plugins.json";
+  const LITE_URL = "data/plugins-lite.json";
+  const FULL_URL = "data/plugins.json";
+  let liteCache = null;
+  let fullCache = null;
+  let liteInflight = null;
+  let fullInflight = null;
+  // Active catalog for helpers (plugins/categories/stats/findPlugin).
   let cache = null;
-  let inflight = null;
 
   function t(key, vars) {
     if (global.DSHI18n && typeof DSHI18n.t === "function") return DSHI18n.t(key, vars);
@@ -13,24 +20,51 @@
     return (global.DSHI18n && DSHI18n.locale) || "zh";
   }
 
-  function loadCatalog() {
-    if (cache) return Promise.resolve(cache);
-    if (inflight) return inflight;
-    inflight = fetch(DATA_URL)
-      .then(function (res) {
-        if (!res.ok) throw new Error("无法读取注册表 JSON（" + res.status + "）");
-        return res.json();
-      })
+  function fetchCatalog(url) {
+    return fetch(url).then(function (res) {
+      if (!res.ok) throw new Error("无法读取注册表 JSON（" + res.status + "）");
+      return res.json();
+    });
+  }
+
+  function loadCatalog(opts) {
+    const wantFull = !!(opts && opts.full);
+    if (wantFull) {
+      if (fullCache) {
+        cache = fullCache;
+        return Promise.resolve(fullCache);
+      }
+      if (fullInflight) return fullInflight;
+      fullInflight = fetchCatalog(FULL_URL)
+        .then(function (data) {
+          fullCache = data;
+          cache = data;
+          fullInflight = null;
+          return data;
+        })
+        .catch(function (err) {
+          fullInflight = null;
+          throw err;
+        });
+      return fullInflight;
+    }
+    if (liteCache) {
+      cache = liteCache;
+      return Promise.resolve(liteCache);
+    }
+    if (liteInflight) return liteInflight;
+    liteInflight = fetchCatalog(LITE_URL)
       .then(function (data) {
+        liteCache = data;
         cache = data;
-        inflight = null;
+        liteInflight = null;
         return data;
       })
       .catch(function (err) {
-        inflight = null;
+        liteInflight = null;
         throw err;
       });
-    return inflight;
+    return liteInflight;
   }
 
   function getCatalog() {

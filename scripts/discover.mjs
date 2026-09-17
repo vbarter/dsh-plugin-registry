@@ -9,6 +9,7 @@
  *   node scripts/discover.mjs --review-curated
  */
 import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { buildPluginsLite } from "./build-plugins-lite.mjs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -449,7 +450,7 @@ function recomputeStats(catalog, topicCandidates, mode) {
   return catalog;
 }
 
-function writeCatalog(catalog) {
+async function writeCatalog(catalog) {
   const ordered = {
     schemaVersion: catalog.schemaVersion || 2,
     generatedAt: catalog.generatedAt,
@@ -462,7 +463,8 @@ function writeCatalog(catalog) {
     plugins: (catalog.plugins || []).map(orderPlugin),
   };
   const text = JSON.stringify(ordered, null, 2) + "\n";
-  return writeFile(PLUGINS_PATH, text, "utf8");
+  await writeFile(PLUGINS_PATH, text, "utf8");
+  await buildPluginsLite(ordered);
 }
 
 function mergeLive(existing, live, source) {
