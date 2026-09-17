@@ -57,7 +57,8 @@ jobs:
           BRANCH="submission/${ISSUE_NUMBER}"
           git checkout -B "$BRANCH"
 
-          git add data/plugins.json data/submissions.json
+          node scripts/build-plugins-lite.mjs
+          git add data/plugins.json data/plugins-lite.json data/submissions.json
           CHANGED=0
           if git diff --cached --quiet; then
             echo "No data changes to commit"

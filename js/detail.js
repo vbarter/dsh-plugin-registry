@@ -151,7 +151,7 @@
     if (currentPlugin) fill(currentPlugin);
   });
 
-  DSH.loadCatalog()
+  DSH.loadCatalog({ full: true })
     .then(function () {
       const id = DSH.readQuery().plugin;
       const root = document.getElementById("detail-root");

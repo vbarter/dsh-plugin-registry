@@ -298,7 +298,8 @@
   function boot() {
     refresh();
     if (global.DSH && typeof DSH.loadCatalog === "function") {
-      DSH.loadCatalog().then(refresh).catch(function () {});
+      const opts = pageId() === "detail" ? { full: true } : undefined;
+      DSH.loadCatalog(opts).then(refresh).catch(function () {});
     }
   }
 
