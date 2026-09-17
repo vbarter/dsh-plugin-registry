@@ -11,3 +11,7 @@ https://www.dsplugin.app/* https://dsplugin.app/:splat 301
 
 /sitemap-plugins.xml /sitemap-gone.html 410
 /sitemap-static.xml /sitemap-gone.html 410
+/sitemap-index.xml /sitemap-gone.html 410
+/sitemap_index.xml /sitemap-gone.html 410
+/sitemapindex.xml /sitemap-gone.html 410
+
