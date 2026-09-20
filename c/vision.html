@@ -55,6 +55,19 @@
           "item": "https://dsplugin.app/c/vision"
         }
       ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "这是某一个 Vision 插件的详情页吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不是。这是 Vision 品类汇总。具体插件看上表链接；安装走 /install。"
+          }
+        }
+      ]
     }
   ]
 }
@@ -97,12 +110,14 @@
     <p class="page-sub">给纯文本模型补视觉能力的社区插件。先看来源和 Manifest，有有效 dsh.bundle 再复制安装命令。</p>
   </section>
   <article class="prose">
+    <p>Vision 类社区插件给纯文本模型补 OCR、版面、语义等视觉证据。本页是品类汇总，不是某一个插件的产品页；条目能力与风险因仓库而异，Manifest 通过 ≠ 安全审计。装前自己回源码确认。</p>
     <h2>本专题插件</h2>
     <ul>
       <li><a href="/plugins/modlens">ModLens</a> — 社区目录种子页 · liustack/modlens</li>
       <li><a href="https://github.com/Anionex/dsh-vision-toolkit">Anionex/dsh-vision-toolkit</a> — GitHub 仓库</li>
       <li><a href="https://github.com/Anionex/agent-vision-toolkit">Anionex/agent-vision-toolkit</a> — GitHub 仓库</li>
     </ul>
+    <p>安装见 <a href="/install">/install</a>，本页不写命令。</p>
     <ul class="hub-list">
       <li><a href="/plugins/modlens">ModLens</a></li>
       <li><a href="https://github.com/Anionex/dsh-vision-toolkit">dsh-vision-toolkit</a></li>
@@ -111,6 +126,12 @@
       <li><a href="/">浏览目录</a></li>
     </ul>
   </article>
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="section-label"><h2 id="faq-title">常见问题</h2></div>
+    <dl class="faq-list">
+      <div><dt>这是某一个 Vision 插件的详情页吗？</dt><dd>不是。这是 Vision 品类汇总。具体插件看上表链接；安装走 /install。</dd></div>
+    </dl>
+  </section>
 
 </main>
 <footer class="footer">
