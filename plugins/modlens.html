@@ -75,6 +75,19 @@
       "publisher": {
         "@id": "https://dsplugin.app/#org"
       }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "这页是插件目录或完整安装教程吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不是。本页只介绍 ModLens 这一插件。浏览更多插件回 /，安装步骤与排查见 /install。"
+          }
+        }
+      ]
     }
   ]
 }
@@ -128,12 +141,19 @@
     <pre class="cmd"><!--email_off--><code>npx -y &#64;deepseek-ai/dsh plugin --profile web add &#64;liustack/modlens&#64;3.16.7</code><!--/email_off--></pre>
     <p>粘贴图片，输出结构化 JSON 证据。安装前请阅读仓库 README；本站不执行安装测试。</p>
     <p>仓库：<a href="https://github.com/liustack/modlens" target="_blank" rel="noopener">https://github.com/liustack/modlens</a></p>
+    <p>ModLens 是社区 vision 插件，不是官方内置能力，也不替代目录站或安装教程页。它会处理你粘贴的图片并产出结构化证据；具体权限、模型依赖与费用以仓库说明为准。本站只展示来源与 Manifest 状态，不审计、不替你装。官方发现路径仍见 GitHub <a href="https://github.com/topics/dsh-plugin" target="_blank" rel="noopener">dsh-plugin topic</a>。</p>
     <ul class="hub-list">
       <li><a href="/c/vision">Vision 专题</a></li>
       <li><a href="/install">如何安装</a></li>
       <li><a href="/">浏览目录</a></li>
     </ul>
   </article>
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="section-label"><h2 id="faq-title">常见问题</h2></div>
+    <dl class="faq-list">
+      <div><dt>这页是插件目录或完整安装教程吗？</dt><dd>不是。本页只介绍 ModLens 这一插件。浏览更多插件回 /，安装步骤与排查见 /install。</dd></div>
+    </dl>
+  </section>
 
 </main>
 <footer class="footer">
