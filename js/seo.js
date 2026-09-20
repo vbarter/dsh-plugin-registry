@@ -3,7 +3,7 @@
   const SITE = "https://dsplugin.app";
   const PAGE_PATH = {
     index: "/",
-    detail: "/plugin-detail.html",
+    detail: "/plugin-detail",
     publish: "/publish",
     dashboard: "/dashboard",
     policy: "/policy",
@@ -46,7 +46,7 @@
   }
 
   function pluginUrl(id) {
-    return SITE + "/plugin-detail.html?plugin=" + encodeURIComponent(id);
+    return SITE + "/plugin-detail?plugin=" + encodeURIComponent(id);
   }
 
   function pageUrl(id, extra) {
