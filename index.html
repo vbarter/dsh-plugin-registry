@@ -135,6 +135,14 @@
             "@type": "Answer",
             "text": "本站是社区目录：先看来源与 Manifest 状态，再决定装不装。`dsh.pub` / `dsh.so` 是另一类提交型 registry。三者都不是官方站；近形域名对照见 /vs，安装走 /install。"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "目录里的 Manifest 状态能当安全背书吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不能。Manifest 只说明 `dsh.bundle` 形态是否对过；不保证可用、无后门、或与你的 profile 兼容。来源风险自负，安装说明见 /install。"
+          }
         }
       ]
     }
@@ -182,6 +190,7 @@
     <h1 class="page-title rise rise-1"><span data-i18n="index.heroTitle">DeepSeek Harness 插件目录</span><span class="caret"></span></h1>
     <p class="page-sub rise rise-2"><span data-i18n="index.heroSub">DeepSeek Harness 插件是挂进 dsh profile 的社区能力包。本站是目录：先看来源和 Manifest 状态，再决定装不装。不是官方站。怎么装走</span><a href="/install" data-i18n="index.heroSub.link">安装说明</a><span data-i18n="index.heroSub.after">，别在这页找命令。</span></p>
     <p class="page-clarify rise rise-2"><span data-i18n="index.catalogNote">这里是社区目录，不是官方 marketplace 或插件商店；先查看来源与 Manifest 状态，再前往 </span><a href="/install" data-i18n="index.catalogNote.link">/install</a><span data-i18n="index.catalogNote.after"> 了解官方 CLI 安装方式。</span></p>
+    <p class="page-clarify rise rise-2"><span data-i18n="index.limitsNote">本站只做社区浏览与 Manifest 形态核对：`格式检查通过` ≠ 已安装测试，更不是安全审计。条目来自公开 GitHub，依赖、权限与数据外发需你自己读 README 与源码后再决定。官方发现路径仍是 GitHub </span><a href="https://github.com/topics/dsh-plugin" target="_blank" rel="noopener" data-i18n="index.limitsNote.topic">dsh-plugin topic</a><span data-i18n="index.limitsNote.mid">；官方产品说明见 </span><a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener" data-i18n="index.limitsNote.harness">DeepSeek Harness</a><span data-i18n="index.limitsNote.after">。</span></p>
 
 
     <div class="landing rise rise-3">
@@ -323,6 +332,10 @@
         <dt data-i18n="index.faq.q10">dsplugin.app 和 dsh.pub / dsh.so 有什么不同？</dt>
         <dd><span data-i18n="index.faq.a10.before">本站是社区目录：先看来源与 Manifest 状态，再决定装不装。`dsh.pub` / `dsh.so` 是另一类提交型 registry。三者都不是官方站；近形域名对照见 </span><a href="/vs">/vs</a><span data-i18n="index.faq.a10.mid">，安装走 </span><a href="/install">/install</a><span data-i18n="index.faq.a10.after">。</span></dd>
       </div>
+      <div>
+        <dt data-i18n="index.faq.q11">目录里的 Manifest 状态能当安全背书吗？</dt>
+        <dd><span data-i18n="index.faq.a11.before">不能。Manifest 只说明 `dsh.bundle` 形态是否对过；不保证可用、无后门、或与你的 profile 兼容。来源风险自负，安装说明见 </span><a href="/install">/install</a><span data-i18n="index.faq.a11.after">。</span></dd>
+      </div>
     </dl>
     <p class="faq-related">
       <span data-i18n="index.related">相关：</span>
@@ -345,10 +358,10 @@
     <span class="fr" data-i18n="footer.preview">预发布版本 · 数据每 2 小时自动发现</span>
   </div>
 </footer>
-<script src="js/i18n.js?v=20260910a"></script>
+<script src="js/i18n.js?v=20260920a"></script>
 <script src="js/data.js?v=20260917lite"></script>
 <script src="js/common.js?v=20260917lite"></script>
 <script src="js/list.js?v=20260917lite"></script>
-<script src="js/seo.js?v=20260910a"></script>
+<script src="js/seo.js?v=20260920a"></script>
 </body>
 </html>

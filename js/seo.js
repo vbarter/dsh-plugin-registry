@@ -124,6 +124,7 @@
     });
     if (pageId() === "index") {
       items.push({ q: t("index.faq.q10"), a: t("index.faq.a10") });
+      items.push({ q: t("index.faq.q11"), a: t("index.faq.a11") });
     }
     return items;
   }
@@ -204,6 +205,11 @@
             "@type": "Question",
             name: t("publish.faq.q1"),
             acceptedAnswer: { "@type": "Answer", text: t("publish.faq.a1") },
+          },
+          {
+            "@type": "Question",
+            name: t("publish.faq.q2"),
+            acceptedAnswer: { "@type": "Answer", text: t("publish.faq.a2") },
           },
         ],
       });

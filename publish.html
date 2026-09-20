@@ -67,6 +67,14 @@
             "@type": "Answer",
             "text": "package.json 里 dsh.bundle.patch 相对路径；加 topic dsh-plugin；本页预检 → Issue → registry。"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "预检失败了怎么办？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "按 Issue/检查输出改契约（公开仓库、合法相对路径 patch、topic），不要另开账号体系；修完回同一提交线程。通过也不等于官方背书或安全审计。"
+          }
         }
       ]
     }
@@ -113,6 +121,7 @@
     <p class="eyebrow rise" data-i18n="publish.eyebrow">Publish · GitHub review</p>
     <h1 class="page-title rise rise-1" data-i18n="publish.heroTitle">如何发布 dsh 插件</h1>
     <p class="page-sub rise rise-2" data-i18n="publish.heroSub">发布 dsh 插件先过 dsh.bundle 契约，再走本页预检。先运行仓库预检，再创建带检查结果的 GitHub Issue。维护者反馈、修复记录和最终结论都留在 GitHub；满足契约的仓库仍会自动发现。</p>
+    <p class="page-clarify rise rise-2"><span data-i18n="publish.precheckNote">预检不过常见：仓库非公开、package.json 缺 `dsh.bundle.patch`、路径含 `..`、未加 `dsh-plugin` topic。修完在同一 Issue 跟进；本站非官方，合并进 </span><a href="https://github.com/vbarter/dsh-plugin-registry" target="_blank" rel="noopener" data-i18n="publish.precheckNote.registry">vbarter/dsh-plugin-registry</a><span data-i18n="publish.precheckNote.mid"> 后目录才更新。官方如何声明 bundle 见：</span><a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/develop/basic/publish.md" target="_blank" rel="noopener" data-i18n="publish.precheckNote.docs">Package and install a plugin</a><span data-i18n="publish.precheckNote.after">。</span></p>
   </section>
 
 
@@ -197,6 +206,10 @@
         <dt data-i18n="publish.faq.q1">dsh.bundle 怎么写？</dt>
         <dd data-i18n="publish.faq.a1">package.json 里 dsh.bundle.patch 相对路径；加 topic dsh-plugin；本页预检 → Issue → registry。</dd>
       </div>
+      <div>
+        <dt data-i18n="publish.faq.q2">预检失败了怎么办？</dt>
+        <dd data-i18n="publish.faq.a2">按 Issue/检查输出改契约（公开仓库、合法相对路径 patch、topic），不要另开账号体系；修完回同一提交线程。通过也不等于官方背书或安全审计。</dd>
+      </div>
     </dl>
   </section>
 </main>
@@ -208,10 +221,10 @@
     <span class="fr" data-i18n="footer.sync">每 2 小时自动同步</span>
   </div>
 </footer>
-<script src="js/i18n.js?v=20260822a"></script>
+<script src="js/i18n.js?v=20260920a"></script>
 <script src="js/data.js?v=20260917lite"></script>
 <script src="js/common.js?v=20260917lite"></script>
 <script src="js/publish.js?v=20260917lite"></script>
-<script src="js/seo.js?v=20260822a"></script>
+<script src="js/seo.js?v=20260920a"></script>
 </body>
 </html>
