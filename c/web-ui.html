@@ -55,6 +55,19 @@
           "item": "https://dsplugin.app/c/web-ui"
         }
       ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "这是某一个 Web UI 插件的详情页吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不是。这是 Web UI 品类汇总。单一插件说明进对应 /plugins/...；安装走 /install。"
+          }
+        }
+      ]
     }
   ]
 }
@@ -97,12 +110,14 @@
     <p class="page-sub">Web 界面、侧栏和皮肤类社区插件。安装前请回仓库确认依赖与权限。</p>
   </section>
   <article class="prose">
+    <p>Web UI 类社区插件提供侧栏、面板、皮肤等界面增强。本页只做品类导航，不保证兼容每一个 Harness 版本；改 UI 可能影响布局与权限面，以各仓库 README 为准。</p>
     <h2>本专题插件</h2>
     <ul>
       <li><a href="/plugins/dsh-web-ui">dsh-web-ui</a> — 社区目录种子页 · zhu1090093659/dsh-web-ui</li>
       <li><a href="https://github.com/omdsh-dev/DSH-better-sidebar">omdsh-dev/DSH-better-sidebar</a> — GitHub 仓库</li>
       <li><a href="https://github.com/Small-tailqwq/dsh-deep-whale">Small-tailqwq/dsh-deep-whale</a> — GitHub 仓库</li>
     </ul>
+    <p>安装见 <a href="/install">/install</a>，本页不写命令。</p>
     <ul class="hub-list">
       <li><a href="/plugins/dsh-web-ui">dsh-web-ui</a></li>
       <li><a href="https://github.com/omdsh-dev/DSH-better-sidebar">DSH-better-sidebar</a></li>
@@ -111,6 +126,12 @@
       <li><a href="/">浏览目录</a></li>
     </ul>
   </article>
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="section-label"><h2 id="faq-title">常见问题</h2></div>
+    <dl class="faq-list">
+      <div><dt>这是某一个 Web UI 插件的详情页吗？</dt><dd>不是。这是 Web UI 品类汇总。单一插件说明进对应 /plugins/...；安装走 /install。</dd></div>
+    </dl>
+  </section>
 
 </main>
 <footer class="footer">
