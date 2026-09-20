@@ -95,7 +95,7 @@
 
   function rowHtml(plugin, index) {
     const pending = DSH.manifestKey(plugin) === "not_validated";
-    const href = "plugin-detail.html?plugin=" + encodeURIComponent(plugin.id);
+    const href = "/plugin-detail?plugin=" + encodeURIComponent(plugin.id);
     const idx = String(index + 1).padStart(2, "0");
     return (
       '<article class="prow' + (pending ? " prow-pending" : "") + '">' +

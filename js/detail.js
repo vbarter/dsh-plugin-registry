@@ -12,7 +12,7 @@
       '<div class="empty-state rise">' +
       "<h1>" + DSH.escapeHtml(t("detail.missingTitle")) + "</h1>" +
       "<p>" + DSH.escapeHtml(t("detail.missingBody")) + "</p>" +
-      '<a class="btn btn-primary" href="index.html">' + DSH.escapeHtml(t("detail.backList")) + "</a>" +
+      '<a class="btn btn-primary" href="/">' + DSH.escapeHtml(t("detail.backList")) + "</a>" +
       "</div>";
   }
 
@@ -104,7 +104,7 @@
       host.innerHTML = rel
         .map(function (p) {
           return (
-            '<a class="related-item" href="plugin-detail.html?plugin=' + encodeURIComponent(p.id) + '">' +
+            '<a class="related-item" href="/plugin-detail?plugin=' + encodeURIComponent(p.id) + '">' +
             "<span><b>" + DSH.escapeHtml(p.name) + "</b><small>" + DSH.escapeHtml(DSH.sourceLabel(p)) + " · " + DSH.escapeHtml(DSH.manifestLabel(p)) + "</small></span>" +
             "<strong>★ " + DSH.formatNum(p.stars || 0) + "</strong></a>"
           );

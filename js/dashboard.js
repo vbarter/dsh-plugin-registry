@@ -79,7 +79,7 @@
     document.getElementById("top-rows").innerHTML = top
       .map(function (p, i) {
         return (
-          "<tr><td>" + (i + 1) + '</td><td><a class="nm" href="plugin-detail.html?plugin=' +
+          "<tr><td>" + (i + 1) + '</td><td><a class="nm" href="/plugin-detail?plugin=' +
           encodeURIComponent(p.id) + '">' + DSH.escapeHtml(p.name) + "</a></td>" +
           '<td class="r">' + DSH.formatNum(p.stars || 0) + "</td>" +
           '<td class="r">' + DSH.formatNum(p.forks || 0) + "</td></tr>"
