@@ -122,6 +122,22 @@
             "@type": "Answer",
             "text": "指定 DeepSeek Harness 的 web profile。安装命令要带对 profile；本页步骤以官方 CLI 为准，社区目录只展示来源与命令。"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "add 失败常见原因？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "先确认官方 CLI 能起对应 profile；再核对仓库公开、有 `dsh.bundle`、本机网络与 pnpm 权限。GitHub 源若提示 allowBuilds，按官方 CLI 文档处理后再重试。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "装插件有什么权限风险？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "插件是可执行社区代码，可能读本地文件、调网络或改配置。本站不审计；装前读 README/依赖，不信任来源就不要装。"
+          }
         }
       ]
     }
@@ -174,6 +190,7 @@
     <pre class="cmd"><!--email_off--><code>dsh plugin --profile web add github:owner/repo</code><!--/email_off--></pre>
     <h2>3. 先看来源，再回仓库确认</h2>
     <p>复制命令只表示它进了剪贴板。安装前请自己核对 README、依赖和权限。</p>
+    <p>常见卡点：① Node/pnpm 未就绪；② profile 名写错（要用 <code>--profile web</code> 等与目标一致）；③ 仓库无有效 <code>dsh.bundle</code>，本站不会给命令；④ Git 源插件首次 <code>add</code> 被 pnpm 拦截 build（按 CLI 提示允许后再跑）。官方打包与安装说明：<a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/develop/basic/publish.md" target="_blank" rel="noopener">Package and install a plugin</a>；CLI 插件管理见 <a href="https://github.com/deepseek-ai/deepseek-harness/blob/master/apps/cli/reference/README.md" target="_blank" rel="noopener">apps/cli/reference</a>。</p>
     <ul class="hub-list">
       <li><a href="/plugins/modlens">ModLens</a></li>
       <li><a href="/plugins/dsh-web-ui">dsh-web-ui</a></li>
@@ -193,6 +210,8 @@
       <div><dt>没有 Manifest 也能装吗？</dt><dd>本站不给。只有条目声明了有效 `dsh.bundle`（格式检查通过）才会展示安装命令；未检查 ≠ 已测过，也不等于安全审计。</dd></div>
       <div><dt>复制命令后还要做什么？</dt><dd>命令进剪贴板不等于已安装。装前自己读仓库 README、依赖与权限，确认 profile 与目标仓库后再跑官方 CLI。</dd></div>
       <div><dt>--profile web 是什么？</dt><dd>指定 DeepSeek Harness 的 web profile。安装命令要带对 profile；本页步骤以官方 CLI 为准，社区目录只展示来源与命令。</dd></div>
+      <div><dt>add 失败常见原因？</dt><dd>先确认官方 CLI 能起对应 profile；再核对仓库公开、有 `dsh.bundle`、本机网络与 pnpm 权限。GitHub 源若提示 allowBuilds，按官方 CLI 文档处理后再重试。</dd></div>
+      <div><dt>装插件有什么权限风险？</dt><dd>插件是可执行社区代码，可能读本地文件、调网络或改配置。本站不审计；装前读 README/依赖，不信任来源就不要装。</dd></div>
     </dl>
   </section>
 
