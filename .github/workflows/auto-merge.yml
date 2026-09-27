@@ -3,6 +3,14 @@ name: Auto merge PRs
 on:
   pull_request:
     types: [opened, reopened, synchronize, ready_for_review]
+    # Data-only PRs are the catalog sync / submission / curated updates opened
+    # by GITHUB_TOKEN. Those pull_request runs are created in an
+    # approval-required state and fail with zero jobs once the PR is merged
+    # ("required approval but was not approved before it expired"). Skipping
+    # data-only diffs means the run is never created. A PR that also changes
+    # any other path still runs.
+    paths-ignore:
+      - "data/**"
   workflow_dispatch:
     inputs:
       pr_number:
@@ -10,6 +18,7 @@ on:
         required: false
 
 permissions:
+  actions: write
   contents: write
   pull-requests: write
 
@@ -19,9 +28,27 @@ concurrency:
 
 jobs:
   merge:
-    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.draft == false && github.event.pull_request.base.ref == 'main')
+    # Bot PRs are merged by discover.yml (or left for a human). If this job
+    # actually starts, do not merge them again and do not dispatch a second
+    # deploy. workflow_dispatch stays available for any PR number.
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (
+        github.event.pull_request.draft == false &&
+        github.event.pull_request.base.ref == 'main' &&
+        github.actor != 'github-actions[bot]' &&
+        github.actor != 'app/github-actions' &&
+        github.event.pull_request.user.login != 'github-actions[bot]' &&
+        github.event.pull_request.user.login != 'app/github-actions' &&
+        !startsWith(github.head_ref, 'discover/') &&
+        !startsWith(github.head_ref, 'submission/') &&
+        !startsWith(github.head_ref, 'review/')
+      )
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Merge PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -33,11 +60,12 @@ jobs:
             echo "No PR number"
             exit 1
           fi
-          STATE=$(gh pr view "$PR" --repo "$REPO" --json state,mergeable,isDraft,baseRefName --jq '{state,mergeable,isDraft,baseRefName}')
+          STATE=$(gh pr view "$PR" --repo "$REPO" --json state,mergeable,isDraft,baseRefName,headRefName --jq '{state,mergeable,isDraft,baseRefName,headRefName}')
           echo "$STATE"
           DRAFT=$(echo "$STATE" | jq -r .isDraft)
           BASE=$(echo "$STATE" | jq -r .baseRefName)
           ST=$(echo "$STATE" | jq -r .state)
+          HEAD=$(echo "$STATE" | jq -r .headRefName)
           if [ "$ST" != "OPEN" ]; then
             echo "PR not open"
             exit 0
@@ -50,9 +78,20 @@ jobs:
             echo "Not targeting main, skip"
             exit 0
           fi
-          if gh pr merge "$PR" --repo "$REPO" --auto --merge; then
-            echo "Auto-merge enabled or merged"
-          else
-            gh pr merge "$PR" --repo "$REPO" --merge --delete-branch=false
+          if gh pr merge "$PR" --repo "$REPO" --merge --delete-branch=false; then
             echo "Merged immediately"
+          elif gh pr merge "$PR" --repo "$REPO" --auto --merge; then
+            echo "Auto-merge enabled; waiting for the real merge"
+          else
+            echo "Merge was not accepted"
           fi
+          # discover.yml dispatches pages for discover/* so a sync merge
+          # deploys once. Other bot merges (workflow_dispatch of a submission
+          # or curated PR) still dispatch here; human merges do not.
+          case "$HEAD" in
+            discover/*)
+              echo "discover/* deploy is owned by discover.yml; not dispatching"
+              exit 0
+              ;;
+          esac
+          bash scripts/dispatch-pages-after-merge.sh "$PR"

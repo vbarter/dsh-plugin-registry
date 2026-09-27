@@ -39,6 +39,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
         run: |
           set -euo pipefail
           RESULT=/tmp/dsh-ingest-result.json
@@ -46,10 +47,13 @@ jobs:
           REPO=""
           MSG=""
           if [ -f "$RESULT" ]; then
-            ACTION=$(node -e "const r=require('$RESULT'); process.stdout.write(r.action||'')")
-            REPO=$(node -e "const r=require('$RESULT'); process.stdout.write(r.repo||'')")
-            MSG=$(node -e "const r=require('$RESULT'); process.stdout.write(r.message||'')")
+            ACTION=$(node -e 'const r=require(process.argv[1]); process.stdout.write(String(r.action||""))' "$RESULT")
+            REPO=$(node -e 'const r=require(process.argv[1]); process.stdout.write(String(r.repo||""))' "$RESULT")
+            MSG=$(node -e 'const r=require(process.argv[1]); process.stdout.write(String(r.message||""))' "$RESULT")
           fi
+          REPO=${REPO:-unknown}
+          ACTION=${ACTION:-unknown}
+          export ACTION REPO MSG ISSUE_NUMBER ISSUE_TITLE
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -67,20 +71,19 @@ jobs:
             CHANGED=1
           fi
 
-          COMMENT="## 预检结果 / Precheck result
-
-          - 仓库 / Repo: `${REPO:-unknown}`
-          - 动作 / Action: `${ACTION}`
-          - ${MSG}
-
-          "
+          # Quoted heredocs are not expanded by the shell. render-template.mjs
+          # does one-pass ${VAR} substitution and does not re-scan the values,
+          # so backticks, $(...), and quotes in repo/action/title/message stay
+          # literal. gh then reads the files via --body-file.
+          PR_URL=""
           if [ "$CHANGED" = "1" ]; then
             git push -u origin "$BRANCH"
-            PR_URL=$(gh pr create --title "Review plugin submission #${ISSUE_NUMBER}" --body "$(cat <<EOF
+            cat > /tmp/dsh-pr-body.tpl <<'EOF'
           Closes #${ISSUE_NUMBER}
 
           Auto-opened from a plugin submission Issue.
 
+          - Title: ${ISSUE_TITLE}
           - Repo: ${REPO}
           - Action: ${ACTION}
           - ${MSG}
@@ -88,20 +91,38 @@ jobs:
           维护者合并此 PR 后，站点 `data/plugins.json` / `data/submissions.json` 才会更新。
           Merge this PR to publish the catalog change.
           EOF
-          )" || true)
-            COMMENT="${COMMENT}
-          已开审核 PR / Review PR: ${PR_URL:-$BRANCH}
+            node scripts/render-template.mjs /tmp/dsh-pr-body.tpl /tmp/dsh-pr-body.md \
+              ISSUE_NUMBER ISSUE_TITLE REPO ACTION MSG
+            PR_URL=$(gh pr create --title "Review plugin submission #${ISSUE_NUMBER}" --body-file /tmp/dsh-pr-body.md || true)
+          fi
+          PR_REF=${PR_URL:-$BRANCH}
+          export PR_REF
+
+          cat > /tmp/dsh-issue-comment.tpl <<'EOF'
+          ## 预检结果 / Precheck result
+
+          - 标题 / Title: ${ISSUE_TITLE}
+          - 仓库 / Repo: `${REPO}`
+          - 动作 / Action: `${ACTION}`
+          - ${MSG}
+          EOF
+          if [ "$CHANGED" = "1" ]; then
+            cat >> /tmp/dsh-issue-comment.tpl <<'EOF'
+
+          已开审核 PR / Review PR: ${PR_REF}
 
           流程：用户提交 Issue → Action 预检 → 开 PR → 维护者合并 → 站点数据更新。
-          "
+          EOF
           else
-            COMMENT="${COMMENT}
+            cat >> /tmp/dsh-issue-comment.tpl <<'EOF'
+
           没有新的数据文件改动（可能已收录，或 Issue 里没有可用仓库地址）。
           No new data-file changes (already listed, or no usable repo in the Issue).
-          "
+          EOF
           fi
-
-          gh issue comment "$ISSUE_NUMBER" --body "$COMMENT"
+          node scripts/render-template.mjs /tmp/dsh-issue-comment.tpl /tmp/dsh-issue-comment.md \
+            ISSUE_TITLE REPO ACTION MSG PR_REF
+          gh issue comment "$ISSUE_NUMBER" --body-file /tmp/dsh-issue-comment.md
           if [ "$ACTION" != "error" ]; then
             gh issue edit "$ISSUE_NUMBER" --add-label "submission" || true
           fi
