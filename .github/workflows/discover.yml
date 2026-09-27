@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: write
   contents: write
   pull-requests: write
 
@@ -40,7 +41,11 @@ jobs:
             exit 0
           fi
           git checkout -B discover/sync
-          git commit -m "chore: sync discovered dsh plugins"
+          # [skip ci] is on the PR head only. GITHUB_TOKEN pull_request
+          # opened/synchronize runs wait for approval and are marked failed
+          # (zero jobs) when this PR is merged seconds later. The merge commit
+          # on main uses the PR title, so this does not skip pages.yml there.
+          git commit -m "chore: sync discovered dsh plugins" -m "[skip ci]"
           git push --force origin discover/sync
           EXISTING=$(gh pr list --base main --head discover/sync --state open --json number --jq '.[0].number // empty')
           if [ -n "$EXISTING" ]; then
@@ -57,5 +62,11 @@ jobs:
             PR_NUM=$(echo "$PR_URL" | grep -oE '[0-9]+$')
           fi
           if [ -n "${PR_NUM:-}" ]; then
-            gh pr merge "$PR_NUM" --auto --merge || gh pr merge "$PR_NUM" --merge || true
+            # --auto often only arms auto-merge; the merge lands afterwards.
+            # Prefer an immediate merge, then wait until the PR is actually
+            # MERGED before dispatching pages.yml exactly once.
+            if ! gh pr merge "$PR_NUM" --merge; then
+              gh pr merge "$PR_NUM" --auto --merge || true
+            fi
+            bash scripts/dispatch-pages-after-merge.sh "$PR_NUM"
           fi
