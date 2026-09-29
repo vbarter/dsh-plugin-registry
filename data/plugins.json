@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-29T16:38:54.372Z",
+  "generatedAt": "2026-09-29T21:43:05.227Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -54,13 +54,13 @@
   "stats": {
     "topicCandidates": 16466,
     "curated": 573,
-    "automaticallyDiscovered": 14955,
-    "patchFilesConfirmed": 13110,
-    "published": 15528,
+    "automaticallyDiscovered": 14956,
+    "patchFilesConfirmed": 13111,
+    "published": 15529,
     "manifestRejected": 2410,
     "pendingReview": 2410,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -507818,6 +507818,40 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "Hercules-debug/butler-git",
+      "name": "dsh-butler-git",
+      "owner": "Hercules-debug",
+      "url": "https://github.com/Hercules-debug/butler-git",
+      "description": {
+        "zh": "git 原生的节点门禁:节点是「意图」,commit 是「证据」。Δ(预期改动)+ P(检测程序)全过才产生 commit —— 把「我改完了」变成可验证的事实。零依赖,只用 node 和 git。",
+        "en": "Git-native node gate for AI agent work: a node is an intent, a commit is the evidence. A version exists only if the declared delta (Δ) and the verification program (P) both pass — turning \"I'm done\" into a verifiable fact. Zero dependencies: just node and git."
+      },
+      "category": "tools",
+      "stars": 1,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-09-29T21:42:57Z",
+      "addedAt": "2026-09-29",
+      "source": "discovered",
+      "trustLevel": "manifest_verified",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:Hercules-debug/butler-git",
+      "archived": false,
+      "topics": [
+        "ai-agent",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin",
+        "git",
+        "verification"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/100782629?v=4"
     }
   ]
 }
