@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-29T22:29:50.511Z",
+  "generatedAt": "2026-09-30T05:36:43.862Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 16497,
-    "curated": 573,
+    "curated": 574,
     "automaticallyDiscovered": 14995,
-    "patchFilesConfirmed": 13143,
-    "published": 15568,
+    "patchFilesConfirmed": 13144,
+    "published": 15569,
     "manifestRejected": 2417,
     "pendingReview": 2417,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -509158,6 +509158,40 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "xqtx9527/dsh-live-pricing",
+      "name": "dsh-live-pricing",
+      "owner": "xqtx9527",
+      "url": "https://github.com/xqtx9527/dsh-live-pricing",
+      "description": {
+        "zh": "DeepSeek Harness 实时价格条：高峰/空闲时段、中国法定节假日、当前单价与本次会话花费",
+        "en": "DeepSeek Harness 实时价格条：高峰/空闲时段、中国法定节假日、当前单价与本次会话花费"
+      },
+      "category": "tools",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-09-30T05:36:16Z",
+      "addedAt": "2026-09-30",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:xqtx9527/dsh-live-pricing",
+      "archived": false,
+      "topics": [
+        "deepseek",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin",
+        "plugin",
+        "pricing"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/317169504?v=4"
     }
   ]
 }
