@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-02T00:03:29.062Z",
+  "generatedAt": "2026-10-02T04:35:17.918Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 16878,
-    "curated": 573,
+    "curated": 574,
     "automaticallyDiscovered": 15448,
-    "patchFilesConfirmed": 13570,
-    "published": 16021,
+    "patchFilesConfirmed": 13571,
+    "published": 16022,
     "manifestRejected": 2443,
     "pendingReview": 2443,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -524252,6 +524252,38 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "Han-1413141/dsh-pnpm-build-control",
+      "name": "dsh-pnpm-build-control",
+      "owner": "Han-1413141",
+      "url": "https://github.com/Han-1413141/dsh-pnpm-build-control",
+      "description": {
+        "zh": "在 DeepSeek Harness 中统一开关所有配置的 pnpm 构建脚本审批。",
+        "en": "在 DeepSeek Harness 中统一开关所有配置的 pnpm 构建脚本审批。"
+      },
+      "category": "dev",
+      "stars": 1,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-10-01T04:15:32Z",
+      "addedAt": "2026-10-02",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:Han-1413141/dsh-pnpm-build-control",
+      "archived": false,
+      "topics": [
+        "deepseek-harness",
+        "dsh-plugin",
+        "plugin-development",
+        "pnpm"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/209751045?v=4"
     }
   ]
 }
