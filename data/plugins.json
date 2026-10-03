@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-03T05:33:51.388Z",
+  "generatedAt": "2026-10-03T10:21:09.549Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 17102,
-    "curated": 573,
+    "curated": 574,
     "automaticallyDiscovered": 15683,
-    "patchFilesConfirmed": 13790,
-    "published": 16256,
+    "patchFilesConfirmed": 13791,
+    "published": 16257,
     "manifestRejected": 2458,
     "pendingReview": 2458,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -532191,6 +532191,44 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "Inceptzws/dsh-project-guard",
+      "name": "dsh-project-guard",
+      "owner": "Inceptzws",
+      "url": "https://github.com/Inceptzws/dsh-project-guard",
+      "description": {
+        "zh": "Permission guard for DeepSeek Harness: work inside the workspace is never interrupted, and only the extra permission a call asks for is judged — machine-safe actions pass, system changes ask with a consequence analysis, destructive ones are refused.",
+        "en": "Permission guard for DeepSeek Harness: work inside the workspace is never interrupted, and only the extra permission a call asks for is judged — machine-safe actions pass, system changes ask with a consequence analysis, destructive ones are refused."
+      },
+      "category": "workflow",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-10-03T10:20:41Z",
+      "addedAt": "2026-10-03",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:Inceptzws/dsh-project-guard",
+      "archived": false,
+      "topics": [
+        "approval",
+        "cordis-plugin",
+        "deepseek-harness",
+        "deepseek-harness-plugin",
+        "dsh-plugin",
+        "dsh-plugins",
+        "harness-plugin",
+        "permissions",
+        "plugin",
+        "sandbox"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/61704308?v=4"
     }
   ]
 }
