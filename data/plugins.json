@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-07T01:44:46.884Z",
+  "generatedAt": "2026-10-07T06:24:31.039Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 17682,
-    "curated": 573,
+    "curated": 574,
     "automaticallyDiscovered": 16337,
-    "patchFilesConfirmed": 14354,
-    "published": 16910,
+    "patchFilesConfirmed": 14355,
+    "published": 16911,
     "manifestRejected": 2548,
     "pendingReview": 2548,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -554396,6 +554396,35 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "wangyin572/dsh-plugin-reverse",
+      "name": "dsh-plugin-reverse",
+      "owner": "wangyin572",
+      "url": "https://github.com/wangyin572/dsh-plugin-reverse",
+      "description": {
+        "zh": "DSH plugin: JS reverse-engineering toolkit - host-env stripping for static deobfuscation and crypto verification.",
+        "en": "DSH plugin: JS reverse-engineering toolkit - host-env stripping for static deobfuscation and crypto verification."
+      },
+      "category": "tools",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-10-07T04:09:55Z",
+      "addedAt": "2026-10-07",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:wangyin572/dsh-plugin-reverse",
+      "archived": false,
+      "topics": [
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/219422003?v=4"
     }
   ]
 }
