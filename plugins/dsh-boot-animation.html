@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dsh-boot-animation｜DeepSeek Harness 开机动画插件</title>
+<meta name="description" content="dsh-boot-animation 是 lxj5820 的 DeepSeek Harness 开机动画插件。本页只对应 lxj5820/dsh-boot-animation，目录里其他开机动画分支不是这一包。">
+<link rel="canonical" href="https://dsplugin.app/plugins/dsh-boot-animation">
+<meta property="og:title" content="dsh-boot-animation｜DeepSeek Harness 开机动画插件">
+<meta property="og:description" content="dsh-boot-animation 是 lxj5820 的 DeepSeek Harness 开机动画插件。本页只对应 lxj5820/dsh-boot-animation，目录里其他开机动画分支不是这一包。">
+<meta property="og:url" content="https://dsplugin.app/plugins/dsh-boot-animation">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="dsplugin.app">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dsplugin.app/og.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="dsh-boot-animation｜DeepSeek Harness 开机动画插件">
+<meta name="twitter:description" content="dsh-boot-animation 是 lxj5820 的 DeepSeek Harness 开机动画插件。本页只对应 lxj5820/dsh-boot-animation，目录里其他开机动画分支不是这一包。">
+<meta name="theme-color" content="#181411">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://dsplugin.app/#org",
+      "name": "dsplugin.app",
+      "url": "https://dsplugin.app/"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://dsplugin.app/#website",
+      "name": "dsplugin.app",
+      "url": "https://dsplugin.app/",
+      "inLanguage": "zh-CN",
+      "description": "dsh-boot-animation 是 lxj5820 的 DeepSeek Harness 开机动画插件。本页只对应 lxj5820/dsh-boot-animation，目录里其他开机动画分支不是这一包。",
+      "publisher": {
+        "@id": "https://dsplugin.app/#org"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "dsplugin.app",
+          "item": "https://dsplugin.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "dsh-boot-animation",
+          "item": "https://dsplugin.app/plugins/dsh-boot-animation"
+        }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "dsh-boot-animation",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Cross-platform",
+      "description": "dsh-boot-animation 是 lxj5820 的 DeepSeek Harness 开机动画插件。",
+      "url": "https://dsplugin.app/plugins/dsh-boot-animation",
+      "codeRepository": "https://github.com/lxj5820/dsh-boot-animation",
+      "installUrl": "https://dsplugin.app/plugins/dsh-boot-animation",
+      "inLanguage": "zh-CN",
+      "publisher": {
+        "@id": "https://dsplugin.app/#org"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "这页是插件目录或完整安装教程吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不是。本页只介绍 lxj5820/dsh-boot-animation 这一包。浏览更多插件回 /，安装步骤与排查见 /install。"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body class="landing">
+<a class="skip-link" href="#main-content">跳到主要内容</a>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="/">
+      <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="34" height="34" role="img" aria-labelledby="logo-title logo-desc">
+        <title id="logo-title">DeepSeek Harness Plugin Registry</title>
+        <desc id="logo-desc">A branching harness circuit inside a rounded square.</desc>
+        <rect width="48" height="48" rx="13" fill="#181411"/>
+        <path d="M13.5 13.5v21M13.5 17.5h10.25c3.3 0 5.25-1.95 5.25-5.25M13.5 24H29M13.5 30.5h10.25c3.3 0 5.25 1.95 5.25 5.25" fill="none" stroke="#F5F2EF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="29" cy="11.5" r="3.5" fill="#60A5FA"/>
+        <circle cx="31.5" cy="24" r="3.5" fill="#F5F2EF"/>
+        <circle cx="29" cy="36.5" r="3.5" fill="#60A5FA"/>
+      </svg>
+      <span class="brand-word"><strong>DeepSeek Harness</strong><em>Community Registry</em></span>
+    </a>
+    <nav class="nav" aria-label="主要导航">
+      <a href="/" class="on" aria-current="page">浏览插件</a>
+      <a href="/install">安装</a>
+      <a href="/publish">发布</a>
+      <a href="/vs">对比</a>
+    </nav>
+    <div class="topbar-r"><span class="cli-tag">COMMUNITY PREVIEW</span></div>
+  </div>
+</header>
+<main class="wrap" id="main-content">
+  <nav class="crumbs" aria-label="breadcrumb"><a href="/">目录</a><span>/</span><span>dsh-boot-animation</span></nav>
+  <section class="page-head">
+    <p class="eyebrow">Plugin · dsh-boot-animation</p>
+    <h1 class="page-title">dsh-boot-animation｜DeepSeek Harness 开机动画插件</h1>
+    <p class="page-sub">dsh-boot-animation 是 lxj5820 的 DeepSeek Harness 开机动画：全窗口启动短片，溶解过渡（MIT，dsh.bundle / cordis）。目录 id 是 lxj5820/dsh-boot-animation，和其他开机动画分支不是同一个包。</p>
+    <section class="evidence-grid" data-plugin-facts data-plugin-id="lxj5820/dsh-boot-animation" aria-label="目录数据">
+      <div><span>Manifest 状态</span><strong data-fact="manifest">未检查</strong></div>
+      <div><span>版本</span><strong data-fact="version">暂无</strong></div>
+      <div><span>Stars</span><strong data-fact="stars">暂无</strong></div>
+      <div><span>最近更新</span><strong data-fact="updated">暂无</strong></div>
+    </section>
+  </section>
+  <article class="prose">
+    <h2>安装命令</h2>
+    <p>dsh-boot-animation 的安装命令写在页面源码里，不依赖 JavaScript。npm 同名包已撤回，不能按其他页那样 <code>add &#64;owner/repo</code>。按仓库 <a href="https://github.com/lxj5820/dsh-boot-animation/blob/main/INSTALL.md" target="_blank" rel="noopener">INSTALL.md</a> 路 A，先拿到本地目录再交给 CLI：</p>
+    <pre class="cmd"><!--email_off--><code>git clone https://github.com/lxj5820/dsh-boot-animation.git
+dsh plugin --profile web add ./dsh-boot-animation</code><!--/email_off--></pre>
+    <p>路 A 的参数是解压（或 clone）出来的目录，不是 GitHub 包名。桌面版 profile 叫 <code>desktop</code>，这条命令不能直接改它。桌面版用 INSTALL.md 路 B（Windows <code>tools/install.ps1</code>）或路 C（macOS / Linux <code>tools/install.sh</code>）。装完重启一次 DSH。</p>
+    <p>仓库：<a href="https://github.com/lxj5820/dsh-boot-animation" target="_blank" rel="noopener">https://github.com/lxj5820/dsh-boot-animation</a></p>
+    <p>dsh-boot-animation 是社区开机动画，不是 DeepSeek 官方内置能力，也不替代目录站或安装教程页。本页只介绍 lxj5820 这一包；目录里还有别的开机动画分支，作者和包都不同，不要装错。本站不审计、不替你装。更多插件回 <a href="/">目录</a>，安装步骤见 <a href="/install">/install</a>。</p>
+    <ul class="hub-list">
+      <li><a href="/install">如何安装</a></li>
+      <li><a href="/">浏览目录</a></li>
+    </ul>
+  </article>
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="section-label"><h2 id="faq-title">常见问题</h2></div>
+    <dl class="faq-list">
+      <div><dt>这页是插件目录或完整安装教程吗？</dt><dd>不是。本页只介绍 lxj5820/dsh-boot-animation 这一包。浏览更多插件回 /，安装步骤与排查见 /install。</dd></div>
+    </dl>
+  </section>
+
+</main>
+<footer class="footer">
+  <div class="wrap footer-in">
+    <a href="/">浏览插件</a>
+    <a href="/install">安装</a>
+    <a href="/publish">发布</a>
+    <a href="/vs">对比</a>
+    <a href="/c/vision">Vision</a>
+    <a href="/c/web-ui">Web UI</a>
+    <a href="/c/tui">TUI</a>
+    <a href="https://github.com/vbarter/dsh-plugin-registry" target="_blank" rel="noopener">GitHub</a>
+    <span class="fr">社区目录 · 不是 DeepSeek 官方站</span>
+  </div>
+</footer>
+<script src="/js/plugin-facts.js"></script>
+</body>
+</html>

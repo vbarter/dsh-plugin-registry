@@ -34,7 +34,13 @@ const EXACT = new Set([
 ]);
 
 // plugins/<slug>.html that exist in the repo. Anything else under /plugins/ is a soft-200.
-const PLUGIN_SLUGS = new Set(["dsh-cc-tui", "dsh-web-ui", "modlens"]);
+const PLUGIN_SLUGS = new Set([
+  "dsh-boot-animation",
+  "dsh-cc-tui",
+  "dsh-tool-12306",
+  "dsh-web-ui",
+  "modlens",
+]);
 
 // _headers forces `Content-Type: application/json` for /data/*.json, including the
 // SPA shell. These files are real; every other /data/*.json is peeked.
