@@ -78,12 +78,15 @@ for (const path of [
   "/plugins/dsh-cc-tui",
   "/plugins/dsh-boot-animation",
   "/plugins/dsh-tool-12306",
+  "/plugins/dsh-plugin-security",
   "/plugins/modlens.html",
   "/plugins/modlens/",
   "/plugins/dsh-boot-animation.html",
   "/plugins/dsh-boot-animation/",
   "/plugins/dsh-tool-12306.html",
   "/plugins/dsh-tool-12306/",
+  "/plugins/dsh-plugin-security.html",
+  "/plugins/dsh-plugin-security/",
 ]) {
   const res = await statusOf(path);
   assert(res.res.status === 200, `${path} → 200`);
@@ -95,6 +98,12 @@ assert(modlensCase.res.status === 404, "/plugins/ModLens → 404");
 assert(modlensCase.res.headers.get("x-robots-tag") === "noindex", "/plugins/ModLens noindex");
 const bootFork = await statusOf("/plugins/dsh-boot-animation-pro");
 assert(bootFork.res.status === 404, "/plugins/dsh-boot-animation-pro → 404");
+const securityPeer = await statusOf("/plugins/dsh-plugin-security-review");
+assert(securityPeer.res.status === 404, "/plugins/dsh-plugin-security-review → 404");
+assert(securityPeer.res.headers.get("x-robots-tag") === "noindex", "/plugins/dsh-plugin-security-review noindex");
+const securityCase = await statusOf("/plugins/Dsh-Plugin-Security");
+assert(securityCase.res.status === 404, "/plugins/Dsh-Plugin-Security → 404");
+assert(securityCase.res.headers.get("x-robots-tag") === "noindex", "/plugins/Dsh-Plugin-Security noindex");
 
 for (const path of [
   "/sitemap.xml",

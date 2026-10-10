@@ -37,6 +37,7 @@ const EXACT = new Set([
 const PLUGIN_SLUGS = new Set([
   "dsh-boot-animation",
   "dsh-cc-tui",
+  "dsh-plugin-security",
   "dsh-tool-12306",
   "dsh-web-ui",
   "modlens",
