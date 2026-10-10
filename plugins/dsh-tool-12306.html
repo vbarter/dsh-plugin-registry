@@ -81,6 +81,46 @@
             "@type": "Answer",
             "text": "不是。本页只介绍 dsh-tool-12306 的查票与安装。浏览更多插件回 /，安装步骤与排查见 /install。"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "dsh-tool-12306 能查什么？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "直达车次、时刻与余票；城市/车站解析与席别筛选；两程中转（同站/跨站换乘、等待时间与席别组合）；列车经停站与沿途区间。查票场景挂本页，不另开 /c/*。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "能购票或抢票吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不能。本插件只查询，不登录、不读 Cookie、不存账号密码，也不绕过验证码。需要购票请走 12306 官方渠道。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "还要单独起 MCP Server 吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不用。它是 Harness 原生插件，装完自动注册工具；基于开源 12306 查询实现优化，不需要额外 MCP 进程。自然语言查询需先在 Harness 里配置可用模型。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "桌面端和 CLI 怎么装？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "桌面端：插件 → 添加插件，输入 dsh-tool-12306@0.1.6，装完点立即启用。CLI：dsh plugin --profile rail add dsh-tool-12306@0.1.6。升级时先卸旧版再装新版，并完全退出 Harness（含托盘）后重开。细节与排查见 /install。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "这页是完整安装教程吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不是。本页只介绍 dsh-tool-12306 的查票与安装。浏览更多插件回 /，通用安装步骤见 /install。"
+          }
         }
       ]
     }
@@ -122,7 +162,7 @@
   <section class="page-head">
     <p class="eyebrow">Plugin · dsh-tool-12306</p>
     <h1 class="page-title">dsh-tool-12306｜DeepSeek Harness 查票插件</h1>
-    <p class="page-sub">dsh-tool-12306 是 DeepSeek Harness 的 12306 查询插件（MIT，npm dsh-tool-12306@0.1.6）。直达、余票、中转和经停都在这一页。仓库 zanedonkey/dsh-tool-12306。</p>
+    <p class="page-sub">dsh-tool-12306 是 DeepSeek Harness 的 12306 查询插件（MIT，npm dsh-tool-12306@0.1.6）。直达车次与余票、两程中转、经停站都在这一页完成；不登录、不购票、不抢票。仓库 zanedonkey/dsh-tool-12306。查票场景以本页为准，不开单独品类页。</p>
     <section class="evidence-grid" data-plugin-facts data-plugin-id="zanedonkey/dsh-tool-12306" aria-label="目录数据">
       <div><span>Manifest 状态</span><strong data-fact="manifest">未检查</strong></div>
       <div><span>版本</span><strong data-fact="version">暂无</strong></div>
@@ -138,7 +178,17 @@
     <p>CLI（profile <code>rail</code>）：</p>
     <pre class="cmd"><!--email_off--><code>dsh plugin --profile rail add dsh-tool-12306&#64;0.1.6</code><!--/email_off--></pre>
     <p>仓库：<a href="https://github.com/zanedonkey/dsh-tool-12306" target="_blank" rel="noopener">https://github.com/zanedonkey/dsh-tool-12306</a></p>
-    <p>dsh-tool-12306 是社区查票插件，不是 DeepSeek 官方能力，也不是 12306 官方客户端。它查直达车次、余票、两程中转和经停站，不登录、不购票、不抢票。查票场景以本页为准。本站不审计、不替你装。更多插件回 <a href="/">目录</a>，安装步骤见 <a href="/install">/install</a>。</p>
+    <h2>能查什么</h2>
+    <p>装好后在 Harness 里直接自然语言提问即可，无需另起 MCP Server。典型用法：</p>
+    <ul>
+      <li>查明天北京到上海的高铁，只看有二等座的，最多列出 5 趟。</li>
+      <li>查明天下午两点以后上海虹桥到杭州东的高铁。</li>
+      <li>查明天深圳到拉萨的中转，第一程二等座、第二程硬卧，两程都要有票。</li>
+      <li>G1 次列车明天经过哪些车站？</li>
+    </ul>
+    <p>注册工具包括：<code>12306_query_tickets</code>（直达/余票）、<code>12306_query_transfer</code>（中转）、<code>12306_train_route</code>（经停）、<code>12306_plugin_info</code>（版本诊断）。</p>
+    <h2>局限与风险</h2>
+    <p>社区查票插件，不是 DeepSeek 官方能力，也不是 12306 官方客户端。不提供登录、购票、抢票或支付；余票与价格以官方实时信息为准。需要 Node.js 22.19+（22 系列）或 24+。本站不审计、不替你装。更多插件回 <a href="/">/</a>，安装步骤见 <a href="/install">/install</a>。</p>
     <ul class="hub-list">
       <li><a href="/install">如何安装</a></li>
       <li><a href="/">浏览目录</a></li>
@@ -148,6 +198,11 @@
     <div class="section-label"><h2 id="faq-title">常见问题</h2></div>
     <dl class="faq-list">
       <div><dt>这页是插件目录或完整安装教程吗？</dt><dd>不是。本页只介绍 dsh-tool-12306 的查票与安装。浏览更多插件回 /，安装步骤与排查见 /install。</dd></div>
+      <div><dt>dsh-tool-12306 能查什么？</dt><dd>直达车次、时刻与余票；城市/车站解析与席别筛选；两程中转（同站/跨站换乘、等待时间与席别组合）；列车经停站与沿途区间。查票场景挂本页，不另开 <code>/c/*</code>。</dd></div>
+      <div><dt>能购票或抢票吗？</dt><dd>不能。本插件只查询，不登录、不读 Cookie、不存账号密码，也不绕过验证码。需要购票请走 12306 官方渠道。</dd></div>
+      <div><dt>还要单独起 MCP Server 吗？</dt><dd>不用。它是 Harness 原生插件，装完自动注册工具；基于开源 12306 查询实现优化，不需要额外 MCP 进程。自然语言查询需先在 Harness 里配置可用模型。</dd></div>
+      <div><dt>桌面端和 CLI 怎么装？</dt><dd>桌面端：插件 → 添加插件，输入 <code>dsh-tool-12306&#64;0.1.6</code>，装完点立即启用。CLI：<code>dsh plugin --profile rail add dsh-tool-12306&#64;0.1.6</code>。升级时先卸旧版再装新版，并完全退出 Harness（含托盘）后重开。细节与排查见 <a href="/install">/install</a>。</dd></div>
+      <div><dt>这页是完整安装教程吗？</dt><dd>不是。本页只介绍 <code>dsh-tool-12306</code> 的查票与安装。浏览更多插件回 <a href="/">/</a>，通用安装步骤见 <a href="/install">/install</a>。</dd></div>
     </dl>
   </section>
 

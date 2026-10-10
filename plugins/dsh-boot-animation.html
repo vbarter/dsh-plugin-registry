@@ -80,6 +80,38 @@
             "@type": "Answer",
             "text": "不是。本页只介绍 lxj5820/dsh-boot-animation 这一包。浏览更多插件回 /，安装步骤与排查见 /install。"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "dsh-boot-animation 和 dsh-boot-animation-pro 有什么不同？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不是同一个仓库、也不是同一个包。本页对应 lxj5820/dsh-boot-animation。目录里还有别家开机动画分支（例如 Yiheng-guo/dsh-boot-animation-pro、NativeDog1/dsh-boot-animation），作者和安装方式可能不同。搜「开机动画」时先对一下作者与 slug，避免装错。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "npm 包名能直接 dsh plugin add 吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不能按其他页那种 npm / github:owner/repo 习惯硬套。按仓库 INSTALL：先 git clone https://github.com/lxj5820/dsh-boot-animation.git，再 dsh plugin --profile web add ./dsh-boot-animation（参数是本地目录）。桌面版用 INSTALL 里的 Windows / macOS·Linux 脚本路径，装完重启一次 DSH。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "装完能改片子和淡入吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "可以。在设置 → 插件 → 启动动画里调总开关、声音、点击直接进入、淡入时长、进入方式（片尾交叉溶解 / 放完再淡 / 点击才进）和素材池。改设置后刷新页面即可；改 entry.js 一类代码才需要重启。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "这页是完整安装教程吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不是。本页只介绍 lxj5820/dsh-boot-animation。浏览更多插件回 /，安装步骤与排查见 /install。"
+          }
         }
       ]
     }
@@ -121,7 +153,7 @@
   <section class="page-head">
     <p class="eyebrow">Plugin · dsh-boot-animation</p>
     <h1 class="page-title">dsh-boot-animation｜DeepSeek Harness 开机动画插件</h1>
-    <p class="page-sub">dsh-boot-animation 是 lxj5820 的 DeepSeek Harness 开机动画：全窗口启动短片，溶解过渡（MIT，dsh.bundle / cordis）。目录 id 是 lxj5820/dsh-boot-animation，和其他开机动画分支不是同一个包。</p>
+    <p class="page-sub">dsh-boot-animation 是 lxj5820 的 DeepSeek Harness 开机动画插件（MIT，cordis / dsh.bundle）：全窗口启动短片、片尾交叉溶解进界面，淡入时长与素材池可在「设置 → 插件」调整。目录 id 是 lxj5820/dsh-boot-animation；和其他开机动画分支（如 dsh-boot-animation-pro）不是同一个包，不要装错。</p>
     <section class="evidence-grid" data-plugin-facts data-plugin-id="lxj5820/dsh-boot-animation" aria-label="目录数据">
       <div><span>Manifest 状态</span><strong data-fact="manifest">未检查</strong></div>
       <div><span>版本</span><strong data-fact="version">暂无</strong></div>
@@ -136,7 +168,8 @@
 dsh plugin --profile web add ./dsh-boot-animation</code><!--/email_off--></pre>
     <p>路 A 的参数是解压（或 clone）出来的目录，不是 GitHub 包名。桌面版 profile 叫 <code>desktop</code>，这条命令不能直接改它。桌面版用 INSTALL.md 路 B（Windows <code>tools/install.ps1</code>）或路 C（macOS / Linux <code>tools/install.sh</code>）。装完重启一次 DSH。</p>
     <p>仓库：<a href="https://github.com/lxj5820/dsh-boot-animation" target="_blank" rel="noopener">https://github.com/lxj5820/dsh-boot-animation</a></p>
-    <p>dsh-boot-animation 是社区开机动画，不是 DeepSeek 官方内置能力，也不替代目录站或安装教程页。本页只介绍 lxj5820 这一包；目录里还有别的开机动画分支，作者和包都不同，不要装错。本站不审计、不替你装。更多插件回 <a href="/">目录</a>，安装步骤见 <a href="/install">/install</a>。</p>
+    <h2>局限与风险</h2>
+    <p>本页只介绍 lxj5820 这一包。它是社区插件，不是 DeepSeek 官方内置能力。npm 同名包已撤回，不能按 <code>add &#64;owner/repo</code> 那套路装。本站不审计、不替你装。更多插件回 <a href="/">/</a>，通用安装见 <a href="/install">/install</a>。</p>
     <ul class="hub-list">
       <li><a href="/install">如何安装</a></li>
       <li><a href="/">浏览目录</a></li>
@@ -146,6 +179,10 @@ dsh plugin --profile web add ./dsh-boot-animation</code><!--/email_off--></pre>
     <div class="section-label"><h2 id="faq-title">常见问题</h2></div>
     <dl class="faq-list">
       <div><dt>这页是插件目录或完整安装教程吗？</dt><dd>不是。本页只介绍 lxj5820/dsh-boot-animation 这一包。浏览更多插件回 /，安装步骤与排查见 /install。</dd></div>
+      <div><dt>dsh-boot-animation 和 dsh-boot-animation-pro 有什么不同？</dt><dd>不是同一个仓库、也不是同一个包。本页对应 <code>lxj5820/dsh-boot-animation</code>。目录里还有别家开机动画分支（例如 <code>Yiheng-guo/dsh-boot-animation-pro</code>、<code>NativeDog1/dsh-boot-animation</code>），作者和安装方式可能不同。搜「开机动画」时先对一下作者与 slug，避免装错。</dd></div>
+      <div><dt>npm 包名能直接 <code>dsh plugin add</code> 吗？</dt><dd>不能按其他页那种 npm / <code>github:owner/repo</code> 习惯硬套。按仓库 INSTALL：先 <code>git clone https://github.com/lxj5820/dsh-boot-animation.git</code>，再 <code>dsh plugin --profile web add ./dsh-boot-animation</code>（参数是本地目录）。桌面版用 INSTALL 里的 Windows / macOS·Linux 脚本路径，装完重启一次 DSH。</dd></div>
+      <div><dt>装完能改片子和淡入吗？</dt><dd>可以。在 <strong>设置 → 插件 → 启动动画</strong> 里调总开关、声音、点击直接进入、淡入时长、进入方式（片尾交叉溶解 / 放完再淡 / 点击才进）和素材池。改设置后刷新页面即可；改 <code>entry.js</code> 一类代码才需要重启。</dd></div>
+      <div><dt>这页是完整安装教程吗？</dt><dd>不是。本页只介绍 <code>lxj5820/dsh-boot-animation</code>。浏览更多插件回 <a href="/">/</a>，安装步骤与排查见 <a href="/install">/install</a>。</dd></div>
     </dl>
   </section>
 
