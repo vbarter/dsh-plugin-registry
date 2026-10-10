@@ -73,12 +73,28 @@ for (const path of ["/c/vision.html", "/c/web-ui/", "/c/tui.html"]) {
 
 const modlens = await statusOf("/plugins/modlens");
 assert(modlens.res.status === 200, "/plugins/modlens → 200");
-for (const path of ["/plugins/dsh-web-ui", "/plugins/dsh-cc-tui", "/plugins/modlens.html", "/plugins/modlens/"]) {
+for (const path of [
+  "/plugins/dsh-web-ui",
+  "/plugins/dsh-cc-tui",
+  "/plugins/dsh-boot-animation",
+  "/plugins/dsh-tool-12306",
+  "/plugins/modlens.html",
+  "/plugins/modlens/",
+  "/plugins/dsh-boot-animation.html",
+  "/plugins/dsh-boot-animation/",
+  "/plugins/dsh-tool-12306.html",
+  "/plugins/dsh-tool-12306/",
+]) {
   const res = await statusOf(path);
   assert(res.res.status === 200, `${path} → 200`);
 }
 const nopePlugin = await statusOf("/plugins/nope");
 assert(nopePlugin.res.status === 404, "/plugins/nope → 404");
+const modlensCase = await statusOf("/plugins/ModLens");
+assert(modlensCase.res.status === 404, "/plugins/ModLens → 404");
+assert(modlensCase.res.headers.get("x-robots-tag") === "noindex", "/plugins/ModLens noindex");
+const bootFork = await statusOf("/plugins/dsh-boot-animation-pro");
+assert(bootFork.res.status === 404, "/plugins/dsh-boot-animation-pro → 404");
 
 for (const path of [
   "/sitemap.xml",
