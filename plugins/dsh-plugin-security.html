@@ -81,6 +81,46 @@
             "@type": "Answer",
             "text": "不是。本页只介绍 dushaobindoudou/dsh-plugin-security 这一包。浏览更多插件回 /，安装步骤与排查见 /install。"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "dsh-plugin-security 和 security-review / security-audit 有什么不同？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不是同一个包。本页只对应 dushaobindoudou/dsh-plugin-security。目录里还有 *-security-review、*-security-audit 等表亲，作者与仓库不同；以后若开那些 SEO 页，会各自锁 title/H1，正文互链即可。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "装完做什么？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "按页上命令装好后，重启正在跑的宿主，打开 Settings → Security Gate。默认多为只报告、不自动处置；真正禁用需要在设置里切到 enforce，并满足高置信恶意审读等条件。撤销处置会还原 profile 并保留有限备份。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "是不是沙箱？能拦安装吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不是。README 写明这是 post-load inspection（装后检查），与插件同进程同权限，不是预装执行屏障，也不替代官方安全边界。依赖审计会向 npm/OSV 查询包名与版本，不上传源码路径；交给 agent 的证据可能含代码片段。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "怎么装？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "dsh plugin --profile web add github:dushaobindoudou/dsh-plugin-security，或 dsh plugin --profile web add dsh-plugin-security@0.4.7（跟最新则用 @latest）。其他 profile 把 web 换成对应名字。通用步骤见 /install。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "这页是完整安装教程吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不是。本页只介绍 dushaobindoudou/dsh-plugin-security。浏览更多插件回 /，安装与排查见 /install。"
+          }
         }
       ]
     }
@@ -122,7 +162,7 @@
   <section class="page-head">
     <p class="eyebrow">Plugin · dsh-plugin-security</p>
     <h1 class="page-title">dsh-plugin-security｜DeepSeek Harness 插件安全</h1>
-    <p class="page-sub">dsh-plugin-security 是 dushaobindoudou 的 DeepSeek Harness 插件安全包（MIT，npm dsh-plugin-security@0.4.7）。目录 id 是 dushaobindoudou/dsh-plugin-security，和 dsh-plugin-security-review、dsh-plugin-security-audit 不是同一个仓库。</p>
+    <p class="page-sub">dsh-plugin-security 是 dushaobindoudou 的 DeepSeek Harness 插件安全包（MIT，npm dsh-plugin-security@0.4.7）：对照依赖公告、带证据的源码审读，以及可撤销的处置。装完打开 Settings → Security Gate。目录 id 是 dushaobindoudou/dsh-plugin-security；和 *-security-review、*-security-audit 等不是同一个仓库，不要装错。</p>
     <section class="evidence-grid" data-plugin-facts data-plugin-id="dushaobindoudou/dsh-plugin-security" aria-label="目录数据">
       <div><span>Manifest 状态</span><strong data-fact="manifest">未检查</strong></div>
       <div><span>版本</span><strong data-fact="version">暂无</strong></div>
@@ -132,12 +172,14 @@
   </section>
   <article class="prose">
     <h2>安装命令</h2>
-    <p>dsh-plugin-security 的安装命令写在页面源码里，不依赖 JavaScript。目录安装字段是 GitHub 源；npm 同名包当前是 dsh-plugin-security@0.4.7，仓库 README 也写了 @latest。</p>
+    <p>dsh-plugin-security 的安装命令写在页面源码里，不依赖 JavaScript。目录安装字段是 GitHub 源；也可以装 npm 上的 <code>dsh-plugin-security&#64;0.4.7</code>，跟最新则用 <code>&#64;latest</code>。</p>
     <pre class="cmd"><!--email_off--><code>dsh plugin --profile web add github:dushaobindoudou/dsh-plugin-security</code><!--/email_off--></pre>
     <pre class="cmd"><!--email_off--><code>dsh plugin --profile web add dsh-plugin-security&#64;0.4.7</code><!--/email_off--></pre>
-    <p>跟 README 走最新版时，把版本换成 <code>dsh-plugin-security&#64;latest</code>。装完重启正在跑的宿主，打开 Settings → Security Gate。其他已有 profile 把 <code>web</code> 换成对应名字。</p>
+    <p>其他 profile 把 <code>web</code> 换成对应名字。装完重启正在跑的宿主，打开 <strong>Settings → Security Gate</strong>。通用步骤见 <a href="/install">/install</a>。</p>
     <p>仓库：<a href="https://github.com/dushaobindoudou/dsh-plugin-security" target="_blank" rel="noopener">https://github.com/dushaobindoudou/dsh-plugin-security</a></p>
-    <p>dsh-plugin-security 是社区插件，不是 DeepSeek 官方内置能力。它核对已装依赖公告，做语境审读，并支持可撤销处置。本页只介绍 dushaobindoudou 这一包；目录里的 *-security-review 和 *-security-audit 作者和仓库都不同，不要装错。本站不审计、不替你装。更多插件回 <a href="/">目录</a>，安装步骤见 <a href="/install">/install</a>。</p>
+    <h2>局限与风险</h2>
+    <p>社区插件，不是 DeepSeek 官方内置能力，也不是沙箱或装前强制拦载。它做的是装后检查：静态范围有上限，网络失败记为未知而非“干净”。白名单会跳过检查。「无风险发现」不等于安全保证。本页只对应 <code>dushaobindoudou/dsh-plugin-security</code>。本站不审计、不替你装。更多插件回 <a href="/">/</a>，安装见 <a href="/install">/install</a>。</p>
+    <p>界面侧也可做扫描与报告导出；本页不单独占「安全体检」词权，也不开品类页。</p>
     <ul class="hub-list">
       <li><a href="/install">如何安装</a></li>
       <li><a href="/">浏览目录</a></li>
@@ -147,6 +189,11 @@
     <div class="section-label"><h2 id="faq-title">常见问题</h2></div>
     <dl class="faq-list">
       <div><dt>这页是插件目录或完整安装教程吗？</dt><dd>不是。本页只介绍 dushaobindoudou/dsh-plugin-security 这一包。浏览更多插件回 /，安装步骤与排查见 /install。</dd></div>
+      <div><dt>dsh-plugin-security 和 security-review / security-audit 有什么不同？</dt><dd>不是同一个包。本页只对应 <code>dushaobindoudou/dsh-plugin-security</code>。目录里还有 <code>*-security-review</code>、<code>*-security-audit</code> 等表亲，作者与仓库不同；以后若开那些 SEO 页，会各自锁 title/H1，正文互链即可。</dd></div>
+      <div><dt>装完做什么？</dt><dd>按页上命令装好后，重启正在跑的宿主，打开 <strong>Settings → Security Gate</strong>。默认多为只报告、不自动处置；真正禁用需要在设置里切到 enforce，并满足高置信恶意审读等条件。撤销处置会还原 profile 并保留有限备份。</dd></div>
+      <div><dt>是不是沙箱？能拦安装吗？</dt><dd>不是。README 写明这是 <strong>post-load inspection</strong>（装后检查），与插件同进程同权限，不是预装执行屏障，也不替代官方安全边界。依赖审计会向 npm/OSV 查询包名与版本，不上传源码路径；交给 agent 的证据可能含代码片段。</dd></div>
+      <div><dt>怎么装？</dt><dd><code>dsh plugin --profile web add github:dushaobindoudou/dsh-plugin-security</code>，或 <code>dsh plugin --profile web add dsh-plugin-security&#64;0.4.7</code>（跟最新则用 <code>&#64;latest</code>）。其他 profile 把 <code>web</code> 换成对应名字。通用步骤见 <a href="/install">/install</a>。</dd></div>
+      <div><dt>这页是完整安装教程吗？</dt><dd>不是。本页只介绍 <code>dushaobindoudou/dsh-plugin-security</code>。浏览更多插件回 <a href="/">/</a>，安装与排查见 <a href="/install">/install</a>。</dd></div>
     </dl>
   </section>
 
