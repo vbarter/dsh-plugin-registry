@@ -80,6 +80,7 @@ for (const path of [
   "/plugins/dsh-tool-12306",
   "/plugins/dsh-plugin-security",
   "/plugins/dsh-context",
+  "/plugins/dsh-free-search",
   "/plugins/modlens.html",
   "/plugins/modlens/",
   "/plugins/dsh-boot-animation.html",
@@ -90,6 +91,8 @@ for (const path of [
   "/plugins/dsh-plugin-security/",
   "/plugins/dsh-context.html",
   "/plugins/dsh-context/",
+  "/plugins/dsh-free-search.html",
+  "/plugins/dsh-free-search/",
 ]) {
   const res = await statusOf(path);
   assert(res.res.status === 200, `${path} → 200`);
@@ -113,6 +116,12 @@ assert(contextCase.res.headers.get("x-robots-tag") === "noindex", "/plugins/Dsh-
 const contextFork = await statusOf("/plugins/dsh-context-pro");
 assert(contextFork.res.status === 404, "/plugins/dsh-context-pro → 404");
 assert(contextFork.res.headers.get("x-robots-tag") === "noindex", "/plugins/dsh-context-pro noindex");
+const freeSearchCase = await statusOf("/plugins/Dsh-Free-Search");
+assert(freeSearchCase.res.status === 404, "/plugins/Dsh-Free-Search → 404");
+assert(freeSearchCase.res.headers.get("x-robots-tag") === "noindex", "/plugins/Dsh-Free-Search noindex");
+const freeSearchFork = await statusOf("/plugins/dsh-free-search-pro");
+assert(freeSearchFork.res.status === 404, "/plugins/dsh-free-search-pro → 404");
+assert(freeSearchFork.res.headers.get("x-robots-tag") === "noindex", "/plugins/dsh-free-search-pro noindex");
 
 for (const path of [
   "/sitemap.xml",
