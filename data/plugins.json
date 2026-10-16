@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-16T07:25:02.618Z",
+  "generatedAt": "2026-10-16T08:40:17.463Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 19377,
-    "curated": 573,
+    "curated": 574,
     "automaticallyDiscovered": 18165,
     "patchFilesConfirmed": 16041,
-    "published": 18738,
-    "manifestRejected": 2687,
-    "pendingReview": 2687,
+    "published": 18739,
+    "manifestRejected": 2688,
+    "pendingReview": 2688,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -616221,6 +616221,43 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "ls-open/dsh-git-composer",
+      "name": "dsh-plugin-git-composer",
+      "owner": "ls-open",
+      "url": "https://github.com/ls-open/dsh-git-composer",
+      "description": {
+        "zh": "Claude-style Git branch & PR composer bar for DeepSeek Harness (DSH)",
+        "en": "Claude-style Git branch & PR composer bar for DeepSeek Harness (DSH)"
+      },
+      "category": "tools",
+      "stars": 0,
+      "forks": 0,
+      "language": "TypeScript",
+      "pushedAt": "2026-10-16T08:39:53Z",
+      "addedAt": "2026-10-16",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "not_validated",
+        "patch": "not_checked",
+        "installation": "not_tested"
+      },
+      "install": "",
+      "archived": false,
+      "topics": [
+        "claude-desktop",
+        "composer",
+        "cordis",
+        "deepseek",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin",
+        "git",
+        "github"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/232295458?v=4"
     }
   ]
 }
