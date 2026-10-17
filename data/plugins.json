@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-17T07:09:29.809Z",
+  "generatedAt": "2026-10-17T07:34:34.892Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 19660,
-    "curated": 573,
+    "curated": 574,
     "automaticallyDiscovered": 18437,
-    "patchFilesConfirmed": 16251,
-    "published": 19010,
+    "patchFilesConfirmed": 16252,
+    "published": 19011,
     "manifestRejected": 2748,
     "pendingReview": 2748,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -625835,6 +625835,39 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "Hercules-debug/dsh-ruliu",
+      "name": "dsh-ruliu",
+      "owner": "Hercules-debug",
+      "url": "https://github.com/Hercules-debug/dsh-ruliu",
+      "description": {
+        "zh": "百度如流（InfoFlow）↔ DeepSeek Harness 通道插件，支持设置页面配置。",
+        "en": "百度如流（InfoFlow）↔ DeepSeek Harness 通道插件，支持设置页面配置。"
+      },
+      "category": "tools",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-10-15T11:47:30Z",
+      "addedAt": "2026-10-17",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:Hercules-debug/dsh-ruliu",
+      "archived": false,
+      "topics": [
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin",
+        "infoflow",
+        "ruliu"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/100782629?v=4"
     }
   ]
 }
