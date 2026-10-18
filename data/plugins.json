@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-18T04:51:19.596Z",
+  "generatedAt": "2026-10-18T10:42:44.957Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 20044,
-    "curated": 573,
+    "curated": 574,
     "automaticallyDiscovered": 18823,
-    "patchFilesConfirmed": 16561,
-    "published": 19396,
+    "patchFilesConfirmed": 16562,
+    "published": 19397,
     "manifestRejected": 2822,
     "pendingReview": 2822,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -639312,6 +639312,42 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "NingYuanLee/dsh-gui-auth-url",
+      "name": "dsh-gui-auth-url",
+      "owner": "NingYuanLee",
+      "url": "https://github.com/NingYuanLee/dsh-gui-auth-url",
+      "description": {
+        "zh": "Expose the running DeepSeek Harness Web GUI's authenticated URL as an agent tool, so browser automation can open the GUI instead of failing with 401.",
+        "en": "Expose the running DeepSeek Harness Web GUI's authenticated URL as an agent tool, so browser automation can open the GUI instead of failing with 401."
+      },
+      "category": "workflow",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-10-18T10:41:54Z",
+      "addedAt": "2026-10-18",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:NingYuanLee/dsh-gui-auth-url",
+      "archived": false,
+      "topics": [
+        "agent-tool",
+        "browser-automation",
+        "cordis",
+        "deepseek",
+        "deepseek-harness",
+        "dsh-plugin",
+        "gui",
+        "web-gui"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/19420757?v=4"
     }
   ]
 }
