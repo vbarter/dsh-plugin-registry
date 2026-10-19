@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-19T13:42:37.659Z",
+  "generatedAt": "2026-10-19T16:46:20.518Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 20729,
-    "curated": 573,
+    "curated": 574,
     "automaticallyDiscovered": 19474,
-    "patchFilesConfirmed": 17133,
-    "published": 20047,
+    "patchFilesConfirmed": 17134,
+    "published": 20048,
     "manifestRejected": 2902,
     "pendingReview": 2902,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -661550,6 +661550,38 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "callaumyan-design/dshx-language-mirror",
+      "name": "dshx-language-mirror",
+      "owner": "callaumyan-design",
+      "url": "https://github.com/callaumyan-design/dshx-language-mirror",
+      "description": {
+        "zh": "Always reply (including final reports) in the language of the user's latest prompt.",
+        "en": "Always reply (including final reports) in the language of the user's latest prompt."
+      },
+      "category": "tools",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-10-19T16:43:39Z",
+      "addedAt": "2026-10-19",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:callaumyan-design/dshx-language-mirror",
+      "archived": false,
+      "topics": [
+        "cordis-plugin",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/332777610?v=4"
     }
   ]
 }
