@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-19T05:00:06.999Z",
+  "generatedAt": "2026-10-19T08:07:24.061Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 20519,
-    "curated": 573,
-    "automaticallyDiscovered": 19265,
+    "curated": 574,
+    "automaticallyDiscovered": 19264,
     "patchFilesConfirmed": 16936,
     "published": 19838,
     "manifestRejected": 2890,
     "pendingReview": 2890,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -91615,13 +91615,13 @@
         "en": "Change the DeepSeek Harness web UI font from Settings - CJK/Latin family, size, code font and typography (letter-spacing, line-height, paragraph spacing, first-line indent), persisted to the profile."
       },
       "category": "ui",
-      "stars": 11,
+      "stars": 13,
       "forks": 1,
       "language": "JavaScript",
-      "pushedAt": "2026-10-18T03:40:50Z",
+      "pushedAt": "2026-10-19T07:51:26Z",
       "addedAt": "2026-10-17",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
+      "source": "curated",
+      "trustLevel": "curated",
       "verification": {
         "manifest": "shape_validated",
         "patch": "exists",
