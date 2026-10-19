@@ -122,11 +122,11 @@
     const items = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (n) {
       return { q: t("faq.q" + n), a: t("faq.a" + n) };
     });
-    if (pageId() === "index") {
-      items.push({ q: t("index.faq.q10"), a: t("index.faq.a10") });
-      items.push({ q: t("index.faq.q11"), a: t("index.faq.a11") });
-    }
-    return items;
+    items.push({ q: t("index.faq.q10"), a: t("index.faq.a10") });
+    items.push({ q: t("index.faq.q11"), a: t("index.faq.a11") });
+    return items.filter(function (item) {
+      return item && item.q && item.a;
+    });
   }
 
   function writeJsonLd(graph) {
@@ -184,17 +184,20 @@
       itemListElement: crumbs,
     });
 
-    if (id === "index" || id === "policy") {
-      graph.push({
-        "@type": "FAQPage",
-        mainEntity: faqs().map(function (item) {
-          return {
-            "@type": "Question",
-            name: item.q,
-            acceptedAnswer: { "@type": "Answer", text: item.a },
-          };
-        }),
-      });
+    if (id === "index") {
+      const faqItems = faqs();
+      if (faqItems.length) {
+        graph.push({
+          "@type": "FAQPage",
+          mainEntity: faqItems.map(function (item) {
+            return {
+              "@type": "Question",
+              name: item.q,
+              acceptedAnswer: { "@type": "Answer", text: item.a },
+            };
+          }),
+        });
+      }
     }
 
     if (id === "publish") {
