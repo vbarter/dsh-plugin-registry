@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-19T13:42:37.659Z",
+  "generatedAt": "2026-10-19T16:46:18.219Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 20729,
-    "curated": 573,
+    "curated": 574,
     "automaticallyDiscovered": 19474,
-    "patchFilesConfirmed": 17133,
-    "published": 20047,
+    "patchFilesConfirmed": 17134,
+    "published": 20048,
     "manifestRejected": 2902,
     "pendingReview": 2902,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -661550,6 +661550,38 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "callaumyan-design/dshx-image-clamp",
+      "name": "dshx-image-clamp",
+      "owner": "callaumyan-design",
+      "url": "https://github.com/callaumyan-design/dshx-image-clamp",
+      "description": {
+        "zh": "Clamp every image sent to the model to a maximum side length (default 2000px) so Claude's many-image limit is never exceeded.",
+        "en": "Clamp every image sent to the model to a maximum side length (default 2000px) so Claude's many-image limit is never exceeded."
+      },
+      "category": "model",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-10-19T16:43:27Z",
+      "addedAt": "2026-10-19",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:callaumyan-design/dshx-image-clamp",
+      "archived": false,
+      "topics": [
+        "cordis-plugin",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/332777610?v=4"
     }
   ]
 }
