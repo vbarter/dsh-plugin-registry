@@ -53,8 +53,8 @@
   },
   "stats": {
     "topicCandidates": 21151,
-    "curated": 573,
-    "automaticallyDiscovered": 20340,
+    "curated": 574,
+    "automaticallyDiscovered": 20339,
     "patchFilesConfirmed": 17896,
     "published": 20913,
     "manifestRejected": 3005,
@@ -256300,27 +256300,27 @@
     },
     {
       "id": "scottzx/feature-blueprint",
-      "name": "@1agents/feature-blueprint",
+      "name": "Mind Map (Feature Blueprint)",
       "owner": "scottzx",
       "url": "https://github.com/scottzx/feature-blueprint",
       "description": {
-        "zh": "Mind maps and Excalidraw canvas with CLIs, browser editors and a DSH plugin",
-        "en": "Mind maps and Excalidraw canvas with CLIs, browser editors and a DSH plugin"
+        "zh": "Mind Map 思维导图与 Excalidraw 画布，提供本地文件预览、独立编辑器和 CLI。安装根目录公开 npm 包 @1agents/feature-blueprint@0.4.1；Git 源码不包含构建后的 dist 文件。",
+        "en": "Mind Map and Excalidraw canvas for DSH, with local-file previews, standalone editors and CLIs. Install the public root npm package @1agents/feature-blueprint@0.4.1; the Git source excludes built dist files."
       },
-      "category": "tools",
+      "category": "ui",
       "stars": 0,
       "forks": 0,
       "language": "JavaScript",
       "pushedAt": "2026-10-11T11:01:21Z",
       "addedAt": "2026-10-10",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
+      "source": "curated",
+      "trustLevel": "curated",
       "verification": {
         "manifest": "shape_validated",
         "patch": "exists",
         "installation": "not_tested"
       },
-      "install": "dsh plugin --profile web add github:scottzx/feature-blueprint",
+      "install": "dsh plugin --profile web add @1agents/feature-blueprint@0.4.1",
       "archived": false,
       "topics": [
         "deepseek-harness",
