@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-22T21:51:09.703Z",
+  "generatedAt": "2026-10-22T23:41:42.699Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 21544,
-    "curated": 573,
-    "automaticallyDiscovered": 20784,
+    "curated": 574,
+    "automaticallyDiscovered": 20783,
     "patchFilesConfirmed": 18317,
     "published": 21357,
     "manifestRejected": 3028,
     "pendingReview": 3028,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -113893,8 +113893,8 @@
       "language": "JavaScript",
       "pushedAt": "2026-10-22T13:45:43Z",
       "addedAt": "2026-10-21",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
+      "source": "curated",
+      "trustLevel": "curated",
       "verification": {
         "manifest": "shape_validated",
         "patch": "exists",
