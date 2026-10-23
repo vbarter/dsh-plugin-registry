@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-23T13:41:58.240Z",
+  "generatedAt": "2026-10-23T15:55:21.563Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 21804,
-    "curated": 573,
+    "curated": 574,
     "automaticallyDiscovered": 21049,
-    "patchFilesConfirmed": 18572,
-    "published": 21622,
+    "patchFilesConfirmed": 18573,
+    "published": 21623,
     "manifestRejected": 3038,
     "pendingReview": 3038,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -714836,6 +714836,40 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "wyp809/dsh-peak-tint",
+      "name": "dsh-peak-tint",
+      "owner": "wyp809",
+      "url": "https://github.com/wyp809/dsh-peak-tint",
+      "description": {
+        "zh": "Peak / off-peak pricing tint for DeepSeek Harness — the UI itself changes colour by billing window, with editable windows and gradient palettes.",
+        "en": "Peak / off-peak pricing tint for DeepSeek Harness — the UI itself changes colour by billing window, with editable windows and gradient palettes."
+      },
+      "category": "theme",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-10-23T15:54:40Z",
+      "addedAt": "2026-10-23",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:wyp809/dsh-peak-tint",
+      "archived": false,
+      "topics": [
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin",
+        "peak-hours",
+        "pricing",
+        "theme"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/277296489?v=4"
     }
   ]
 }
