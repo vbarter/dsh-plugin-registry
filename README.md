@@ -83,11 +83,11 @@ python3 -m http.server 8787
 
 ## Cloudflare 部署
 
-静态输出目录是仓库根目录。把 Cloudflare Pages 接到本仓库、生产分支 `main` 即可；GitHub Actions **不需要** Cloudflare secret。`.github/workflows/pages.yml` 只是提醒，不会调用 wrangler。
+`main` 上的 `.github/workflows/pages.yml` 用 wrangler 部署。`data/plugins.json` 超过 Cloudflare Pages 单文件 25 MiB 上限，不进上传目录；线上 `/data/plugins.json` 302 到 GitHub raw（`main` 上的同一文件）。浏览用的 `plugins-lite.json` 超过 12 MiB 时拆成 `data/plugins-lite-NNN.json`。
 
 ```bash
-# 可选：本机用 wrangler 推一次（未要求不要跑）
-npx --yes wrangler@3 pages deploy . --project-name=dsh-plugin-registry --branch=main
+node scripts/prepare-pages-deploy.mjs
+npx --yes wrangler@3 pages deploy .pages-out --project-name=dsh-plugin-registry --branch=main
 ```
 
 部署到生产后，可把 10 条 P0 URL 提交给 IndexNow（`api.indexnow.org` 与 Bing）：
@@ -104,7 +104,7 @@ node scripts/indexnow.mjs
 
 **Live site:** [https://dsplugin.app/](https://dsplugin.app/)
 
-Static community registry for DeepSeek Harness plugins. The committed file `data/plugins.json` is the site store; GitHub Actions are the backend.
+Static community registry for DeepSeek Harness plugins. The committed file `data/plugins.json` is the catalog store; GitHub Actions are the backend. Pages does not upload that file (25 MiB asset limit). `/data/plugins.json` redirects to GitHub raw, and the site browses `plugins-lite.json` (sharded once it passes 12 MiB).
 
 **All catalog writes go through GitHub PRs** — never a direct push to `main`. Maintainers merge at [Pull Requests](https://github.com/vbarter/dsh-plugin-registry/pulls):
 

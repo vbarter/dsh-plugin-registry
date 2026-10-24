@@ -1,4 +1,6 @@
-/* Hydrate first-screen catalog facts from plugins.json. Never invent numbers. */
+/* Hydrate first-screen catalog facts from plugins-lite.json. Never invent numbers.
+ * The full plugins.json is not on Pages (25 MiB asset limit). Lite shards, when
+ * present, are the same split prepare-pages-deploy.mjs writes. */
 (function () {
   var root = document.querySelector("[data-plugin-facts]");
   if (!root) return;
@@ -74,11 +76,35 @@
     set("[data-fact='updated']", plugin && plugin.pushedAt ? formatDate(plugin.pushedAt) : unavailable());
   }
 
-  fetch("/data/plugins.json")
+  function withPlugins(data) {
+    var shards = data && data.shards;
+    if (!shards || !shards.length || (data.plugins && data.plugins.length)) {
+      return Promise.resolve(data);
+    }
+    return Promise.all(shards.map(function (name) {
+      var raw = String(name || "");
+      var url = raw.charAt(0) === "/" || raw.indexOf("://") !== -1 ? raw : "/data/" + raw.replace(/^\.?\//, "");
+      return fetch(url).then(function (res) {
+        if (!res.ok) throw new Error(String(res.status));
+        return res.json();
+      });
+    })).then(function (parts) {
+      var plugins = [];
+      parts.forEach(function (part) {
+        var list = Array.isArray(part) ? part : (part && part.plugins) || [];
+        for (var i = 0; i < list.length; i++) plugins.push(list[i]);
+      });
+      data.plugins = plugins;
+      return data;
+    });
+  }
+
+  fetch("/data/plugins-lite.json")
     .then(function (res) {
       if (!res.ok) throw new Error(String(res.status));
       return res.json();
     })
+    .then(withPlugins)
     .then(function (data) {
       var list = (data && data.plugins) || [];
       var plugin = list.find(function (p) {

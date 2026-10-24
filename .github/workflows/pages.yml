@@ -19,12 +19,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Prepare Pages upload
+        run: node scripts/prepare-pages-deploy.mjs
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy . --project-name=dsh-plugin-registry --branch=main
+          # Functions stay in ./functions (cwd). Assets are .pages-out, which
+          # omits data/plugins.json (Pages 25 MiB file limit).
+          command: pages deploy .pages-out --project-name=dsh-plugin-registry --branch=main
 
   # Separate job: IndexNow failure alerts CI without retry-looping wrangler.
   # Cache miss / first run seeds .cache/sitemap-last.json and does not push.

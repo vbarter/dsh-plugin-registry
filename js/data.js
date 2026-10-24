@@ -1,9 +1,14 @@
 /* Catalog loader + field helpers.
- * Homepage list loads plugins-lite.json; detail / full facts load plugins.json.
+ * Homepage list loads /data/plugins-lite.json. When that file is over the
+ * Pages shard target, prepare-pages-deploy.mjs replaces the plugins array
+ * with shards[] of /data/plugins-lite-NNN.json files; this loader joins them.
+ * Detail asks for /data/plugins.json. Pages 302s that URL to GitHub raw
+ * because the full file is over the 25 MiB asset limit. If that fetch fails,
+ * fall back to the lite catalog so the detail page still renders.
  */
 (function (global) {
-  const LITE_URL = "data/plugins-lite.json";
-  const FULL_URL = "data/plugins.json";
+  const LITE_URL = "/data/plugins-lite.json";
+  const FULL_URL = "/data/plugins.json";
   let liteCache = null;
   let fullCache = null;
   let liteInflight = null;
@@ -27,6 +32,52 @@
     });
   }
 
+  function shardUrl(name) {
+    const value = String(name || "");
+    if (value.charAt(0) === "/" || value.indexOf("://") !== -1) return value;
+    return "/data/" + value.replace(/^\.?\//, "");
+  }
+
+  function attachShards(data) {
+    const shards = data && data.shards;
+    if (!shards || !shards.length) return Promise.resolve(data);
+    if (Array.isArray(data.plugins) && data.plugins.length) return Promise.resolve(data);
+    return Promise.all(shards.map(function (name) {
+      return fetchCatalog(shardUrl(name));
+    })).then(function (parts) {
+      const plugins = [];
+      parts.forEach(function (part) {
+        const list = Array.isArray(part) ? part : (part && part.plugins) || [];
+        for (let i = 0; i < list.length; i++) plugins.push(list[i]);
+      });
+      data.plugins = plugins;
+      return data;
+    });
+  }
+
+  function rememberLite(data) {
+    liteCache = data;
+    cache = data;
+    liteInflight = null;
+    return data;
+  }
+
+  function loadLite() {
+    if (liteCache) {
+      cache = liteCache;
+      return Promise.resolve(liteCache);
+    }
+    if (liteInflight) return liteInflight;
+    liteInflight = fetchCatalog(LITE_URL)
+      .then(attachShards)
+      .then(rememberLite)
+      .catch(function (err) {
+        liteInflight = null;
+        throw err;
+      });
+    return liteInflight;
+  }
+
   function loadCatalog(opts) {
     const wantFull = !!(opts && opts.full);
     if (wantFull) {
@@ -42,29 +93,17 @@
           fullInflight = null;
           return data;
         })
-        .catch(function (err) {
+        .catch(function () {
           fullInflight = null;
-          throw err;
+          return loadLite().then(function (lite) {
+            fullCache = lite;
+            cache = lite;
+            return lite;
+          });
         });
       return fullInflight;
     }
-    if (liteCache) {
-      cache = liteCache;
-      return Promise.resolve(liteCache);
-    }
-    if (liteInflight) return liteInflight;
-    liteInflight = fetchCatalog(LITE_URL)
-      .then(function (data) {
-        liteCache = data;
-        cache = data;
-        liteInflight = null;
-        return data;
-      })
-      .catch(function (err) {
-        liteInflight = null;
-        throw err;
-      });
-    return liteInflight;
+    return loadLite();
   }
 
   function getCatalog() {

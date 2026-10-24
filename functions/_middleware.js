@@ -71,8 +71,14 @@ function normalizePath(pathname) {
   return path;
 }
 
+// Deploy prep splits an oversized plugins-lite.json into these shards.
+// Allowlist them so the body is not buffered on the way through.
+function isLiteShard(path) {
+  return /^\/data\/plugins-lite-\d+\.json$/.test(path);
+}
+
 function isAllowed(path) {
-  if (EXACT.has(path) || DATA_JSON.has(path)) return true;
+  if (EXACT.has(path) || DATA_JSON.has(path) || isLiteShard(path)) return true;
   let match = /^\/plugins\/([a-z0-9-]+)(\.html)?$/.exec(path);
   if (match && PLUGIN_SLUGS.has(match[1])) return true;
   match = /^\/c\/(vision|web-ui|tui)(\.html)?$/.exec(path);
