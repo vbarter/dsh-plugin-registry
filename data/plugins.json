@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-24T16:11:13.778Z",
+  "generatedAt": "2026-10-24T16:24:19.389Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 22222,
-    "curated": 573,
+    "curated": 574,
     "automaticallyDiscovered": 21480,
-    "patchFilesConfirmed": 18982,
-    "published": 22053,
+    "patchFilesConfirmed": 18983,
+    "published": 22054,
     "manifestRejected": 3058,
     "pendingReview": 3058,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -729316,6 +729316,42 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "caishengshuo/beforewrite",
+      "name": "dsh-beforewrite",
+      "owner": "caishengshuo",
+      "url": "https://github.com/caishengshuo/beforewrite",
+      "description": {
+        "zh": "Every file, one version before it breaks. A DSH host plugin that snapshots a file the instant before an agent rewrites it, and puts it back in one command.",
+        "en": "Every file, one version before it breaks. A DSH host plugin that snapshots a file the instant before an agent rewrites it, and puts it back in one command."
+      },
+      "category": "dev",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-10-24T16:19:00Z",
+      "addedAt": "2026-10-24",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:caishengshuo/beforewrite",
+      "archived": false,
+      "topics": [
+        "coding-agent",
+        "content-addressed",
+        "developer-tools",
+        "dsh",
+        "dsh-plugin",
+        "file-recovery",
+        "snapshot",
+        "undo"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/168717600?v=4"
     }
   ]
 }
