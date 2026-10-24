@@ -199,6 +199,38 @@ assert(big.status === 200, "/data/plugins.json → 200");
 assert(big.bodyUsed === false, "/data/plugins.json body is not consumed");
 assert((await big.text()) === "{\"big\":true}", "/data/plugins.json body intact");
 
+const catalogRedirect = await statusOf("/data/plugins.json", {
+  status: 302,
+  contentType: "text/plain",
+  body: "",
+});
+assert(catalogRedirect.res.status === 302, "/data/plugins.json 302 passes through");
+
+const shardStream = new ReadableStream({
+  pull(controller) {
+    controller.enqueue(new TextEncoder().encode("{\"plugins\":[1]}"));
+    controller.close();
+  },
+});
+const shardRes = await onRequest({
+  request: new Request("https://dsplugin.app/data/plugins-lite-000.json"),
+  async next() {
+    return new Response(shardStream, {
+      status: 200,
+      headers: { "content-type": "application/json" },
+    });
+  },
+});
+assert(shardRes.status === 200, "lite shard → 200");
+assert(shardRes.bodyUsed === false, "lite shard body is not consumed");
+assert((await shardRes.text()) === "{\"plugins\":[1]}", "lite shard body intact");
+
+const fakeShard = await statusOf("/data/plugins-lite-nope.json", {
+  contentType: "application/json; charset=utf-8",
+  body: INDEX,
+});
+assert(fakeShard.res.status === 404, "/data/plugins-lite-nope.json SPA shell → 404");
+
 for (const path of [
   "/sitemap-plugins.xml",
   "/sitemap-static.xml",
