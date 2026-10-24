@@ -81,6 +81,7 @@ for (const path of [
   "/plugins/dsh-plugin-security",
   "/plugins/dsh-context",
   "/plugins/dsh-free-search",
+  "/plugins/dsh-ops",
   "/plugins/modlens.html",
   "/plugins/modlens/",
   "/plugins/dsh-boot-animation.html",
@@ -93,6 +94,8 @@ for (const path of [
   "/plugins/dsh-context/",
   "/plugins/dsh-free-search.html",
   "/plugins/dsh-free-search/",
+  "/plugins/dsh-ops.html",
+  "/plugins/dsh-ops/",
 ]) {
   const res = await statusOf(path);
   assert(res.res.status === 200, `${path} → 200`);
@@ -122,6 +125,15 @@ assert(freeSearchCase.res.headers.get("x-robots-tag") === "noindex", "/plugins/D
 const freeSearchFork = await statusOf("/plugins/dsh-free-search-pro");
 assert(freeSearchFork.res.status === 404, "/plugins/dsh-free-search-pro → 404");
 assert(freeSearchFork.res.headers.get("x-robots-tag") === "noindex", "/plugins/dsh-free-search-pro noindex");
+const opsCase = await statusOf("/plugins/Dsh-Ops");
+assert(opsCase.res.status === 404, "/plugins/Dsh-Ops → 404");
+assert(opsCase.res.headers.get("x-robots-tag") === "noindex", "/plugins/Dsh-Ops noindex");
+const opsKit = await statusOf("/plugins/dsh-ops-kit");
+assert(opsKit.res.status === 404, "/plugins/dsh-ops-kit → 404");
+assert(opsKit.res.headers.get("x-robots-tag") === "noindex", "/plugins/dsh-ops-kit noindex");
+const opsMac = await statusOf("/plugins/dsh-ops-mac");
+assert(opsMac.res.status === 404, "/plugins/dsh-ops-mac → 404");
+assert(opsMac.res.headers.get("x-robots-tag") === "noindex", "/plugins/dsh-ops-mac noindex");
 
 for (const path of [
   "/sitemap.xml",
