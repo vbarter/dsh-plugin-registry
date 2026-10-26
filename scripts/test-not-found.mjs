@@ -82,6 +82,7 @@ for (const path of [
   "/plugins/dsh-context",
   "/plugins/dsh-free-search",
   "/plugins/dsh-ops",
+  "/plugins/ds-bot",
   "/plugins/modlens.html",
   "/plugins/modlens/",
   "/plugins/dsh-boot-animation.html",
@@ -96,6 +97,8 @@ for (const path of [
   "/plugins/dsh-free-search/",
   "/plugins/dsh-ops.html",
   "/plugins/dsh-ops/",
+  "/plugins/ds-bot.html",
+  "/plugins/ds-bot/",
 ]) {
   const res = await statusOf(path);
   assert(res.res.status === 200, `${path} → 200`);
@@ -134,6 +137,31 @@ assert(opsKit.res.headers.get("x-robots-tag") === "noindex", "/plugins/dsh-ops-k
 const opsMac = await statusOf("/plugins/dsh-ops-mac");
 assert(opsMac.res.status === 404, "/plugins/dsh-ops-mac → 404");
 assert(opsMac.res.headers.get("x-robots-tag") === "noindex", "/plugins/dsh-ops-mac noindex");
+for (const path of ["/plugins/ds-bot", "/plugins/ds-bot.html", "/plugins/ds-bot/"]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 200, `${path} → 200`);
+  assert(res.res.headers.get("x-robots-tag") == null, `${path} no noindex`);
+}
+const dsBotCase = await statusOf("/plugins/DS-Bot");
+assert(dsBotCase.res.status === 404, "/plugins/DS-Bot → 404");
+assert(dsBotCase.res.headers.get("x-robots-tag") === "noindex", "/plugins/DS-Bot noindex");
+const dsBotMixed = await statusOf("/plugins/Ds-Bot");
+assert(dsBotMixed.res.status === 404, "/plugins/Ds-Bot → 404");
+assert(dsBotMixed.res.headers.get("x-robots-tag") === "noindex", "/plugins/Ds-Bot noindex");
+const botharness = await statusOf("/plugins/botharness");
+assert(botharness.res.status === 404, "/plugins/botharness → 404");
+assert(botharness.res.headers.get("x-robots-tag") === "noindex", "/plugins/botharness noindex");
+const deepseekBotNpm = await statusOf("/plugins/deepseekbot");
+assert(deepseekBotNpm.res.status === 404, "/plugins/deepseekbot → 404");
+assert(deepseekBotNpm.res.headers.get("x-robots-tag") === "noindex", "/plugins/deepseekbot noindex");
+const deepseekBotSlug = await statusOf("/plugins/DeepSeek-Bot");
+assert(deepseekBotSlug.res.status === 404, "/plugins/DeepSeek-Bot → 404");
+assert(deepseekBotSlug.res.headers.get("x-robots-tag") === "noindex", "/plugins/DeepSeek-Bot noindex");
+for (const path of ["/plugins/Fei2411/DS-Bot", "/plugins/fei2411/ds-bot", "/plugins/Fei2411"]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 404, `${path} → 404`);
+  assert(res.res.headers.get("x-robots-tag") === "noindex", `${path} noindex`);
+}
 
 for (const path of [
   "/sitemap.xml",

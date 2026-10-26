@@ -66,6 +66,21 @@ assert(
   "dsh-ops h1 unchanged"
 );
 
+const dsBotHtml = await readFile(join(ROOT, "plugins/ds-bot.html"), "utf8");
+const dsBotInstall = "dsh plugin --profile web add github:Fei2411/DS-Bot#path:/ds-bot";
+assert(dsBotHtml.includes("<title>ds-bot</title>"), "ds-bot title is exactly ds-bot");
+assert(dsBotHtml.includes('<h1 class="page-title">ds-bot</h1>'), "ds-bot h1 is exactly ds-bot");
+assert(
+  dsBotHtml.includes('<link rel="canonical" href="https://dsplugin.app/plugins/ds-bot">'),
+  "ds-bot canonical"
+);
+assert(dsBotHtml.includes(dsBotInstall), "ds-bot install string includes #path:/ds-bot");
+const dsBotWithoutInstall = dsBotHtml.split(dsBotInstall).join("");
+assert(!dsBotWithoutInstall.includes("github:Fei2411/DS-Bot"), "no bare github:Fei2411/DS-Bot install target");
+assert(!dsBotWithoutInstall.includes("dsh plugin"), "no second install command");
+assert(!dsBotHtml.includes("<title>ds-bot｜"), "ds-bot title has no Chinese suffix");
+assert(!/DS Bot|DeepSeek Bot/.test(dsBotHtml), "ds-bot page does not use DS Bot / DeepSeek Bot");
+
 const outDir = await mkdtemp(join(tmpdir(), "pages-out-"));
 const wholeDir = await mkdtemp(join(tmpdir(), "pages-whole-"));
 try {
