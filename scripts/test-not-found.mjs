@@ -83,6 +83,7 @@ for (const path of [
   "/plugins/dsh-free-search",
   "/plugins/dsh-ops",
   "/plugins/ds-bot",
+  "/plugins/dsh-scriptor",
   "/plugins/modlens.html",
   "/plugins/modlens/",
   "/plugins/dsh-boot-animation.html",
@@ -99,6 +100,8 @@ for (const path of [
   "/plugins/dsh-ops/",
   "/plugins/ds-bot.html",
   "/plugins/ds-bot/",
+  "/plugins/dsh-scriptor.html",
+  "/plugins/dsh-scriptor/",
 ]) {
   const res = await statusOf(path);
   assert(res.res.status === 200, `${path} → 200`);
@@ -158,6 +161,42 @@ const deepseekBotSlug = await statusOf("/plugins/DeepSeek-Bot");
 assert(deepseekBotSlug.res.status === 404, "/plugins/DeepSeek-Bot → 404");
 assert(deepseekBotSlug.res.headers.get("x-robots-tag") === "noindex", "/plugins/DeepSeek-Bot noindex");
 for (const path of ["/plugins/Fei2411/DS-Bot", "/plugins/fei2411/ds-bot", "/plugins/Fei2411"]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 404, `${path} → 404`);
+  assert(res.res.headers.get("x-robots-tag") === "noindex", `${path} noindex`);
+}
+for (const path of ["/plugins/dsh-scriptor", "/plugins/dsh-scriptor.html", "/plugins/dsh-scriptor/"]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 200, `${path} → 200`);
+  assert(res.res.headers.get("x-robots-tag") == null, `${path} no noindex`);
+}
+const scriptorCase = await statusOf("/plugins/Dsh-Scriptor");
+assert(scriptorCase.res.status === 404, "/plugins/Dsh-Scriptor → 404");
+assert(scriptorCase.res.headers.get("x-robots-tag") === "noindex", "/plugins/Dsh-Scriptor noindex");
+const scriptorUpper = await statusOf("/plugins/DSH-Scriptor");
+assert(scriptorUpper.res.status === 404, "/plugins/DSH-Scriptor → 404");
+assert(scriptorUpper.res.headers.get("x-robots-tag") === "noindex", "/plugins/DSH-Scriptor noindex");
+const webnovelPlugin = await statusOf("/plugins/dsh-webnovel-writer");
+assert(webnovelPlugin.res.status === 404, "/plugins/dsh-webnovel-writer → 404");
+assert(webnovelPlugin.res.headers.get("x-robots-tag") === "noindex", "/plugins/dsh-webnovel-writer noindex");
+const webnovelRepo = await statusOf("/plugins/webnovel-writer");
+assert(webnovelRepo.res.status === 404, "/plugins/webnovel-writer → 404");
+assert(webnovelRepo.res.headers.get("x-robots-tag") === "noindex", "/plugins/webnovel-writer noindex");
+const scriptorShort = await statusOf("/plugins/scriptor");
+assert(scriptorShort.res.status === 404, "/plugins/scriptor → 404");
+assert(scriptorShort.res.headers.get("x-robots-tag") === "noindex", "/plugins/scriptor noindex");
+const scriptorPro = await statusOf("/plugins/dsh-scriptor-pro");
+assert(scriptorPro.res.status === 404, "/plugins/dsh-scriptor-pro → 404");
+assert(scriptorPro.res.headers.get("x-robots-tag") === "noindex", "/plugins/dsh-scriptor-pro noindex");
+const scriptorC = await statusOf("/c/dsh-scriptor");
+assert(scriptorC.res.status === 404, "/c/dsh-scriptor → 404");
+assert(scriptorC.res.headers.get("x-robots-tag") === "noindex", "/c/dsh-scriptor noindex");
+for (const path of [
+  "/plugins/lingfengQAQ/webnovel-writer",
+  "/plugins/linfengqaqtat/dsh-scriptor",
+  "/plugins/RrcoVer0/dsh-webnovel-writer",
+  "/plugins/RrcoVer0",
+]) {
   const res = await statusOf(path);
   assert(res.res.status === 404, `${path} → 404`);
   assert(res.res.headers.get("x-robots-tag") === "noindex", `${path} noindex`);
