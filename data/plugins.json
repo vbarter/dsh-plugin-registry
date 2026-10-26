@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-26T00:34:09.856Z",
+  "generatedAt": "2026-10-26T01:36:03.198Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,10 +53,10 @@
   },
   "stats": {
     "topicCandidates": 22654,
-    "curated": 573,
+    "curated": 574,
     "automaticallyDiscovered": 21935,
-    "patchFilesConfirmed": 19412,
-    "published": 22508,
+    "patchFilesConfirmed": 19413,
+    "published": 22509,
     "manifestRejected": 3082,
     "pendingReview": 3082,
     "quarantined": 1,
@@ -744578,6 +744578,38 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "Fei2411/DS-Bot#ds-bot",
+      "name": "ds-bot",
+      "owner": "Fei2411",
+      "url": "https://github.com/Fei2411/DS-Bot/tree/main/ds-bot",
+      "description": {
+        "zh": "DeepSeek Harness 长期 Bot 团队：主 Bot、Bot 间消息与群聊；插件源码在仓库 ds-bot/ 子目录（npm 包名 ds-bot）。",
+        "en": "A team of long-lived bots for DeepSeek Harness, with main bots, bot-to-bot messages and group chats. Plugin package lives under ds-bot/ (npm name ds-bot)."
+      },
+      "category": "tools",
+      "stars": 3903,
+      "forks": 365,
+      "language": "JavaScript",
+      "pushedAt": "2026-10-25T16:51:19Z",
+      "addedAt": "2026-10-26",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:Fei2411/DS-Bot#path:/ds-bot",
+      "archived": false,
+      "topics": [
+        "bot",
+        "deepseek-harness",
+        "dsh-plugin",
+        "multi-agent"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/279467036?v=4"
     }
   ]
 }
