@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-26T08:01:50.653Z",
+  "generatedAt": "2026-10-26T09:44:11.145Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,10 +53,10 @@
   },
   "stats": {
     "topicCandidates": 22764,
-    "curated": 574,
+    "curated": 575,
     "automaticallyDiscovered": 22051,
     "patchFilesConfirmed": 19524,
-    "published": 22625,
+    "published": 22626,
     "manifestRejected": 3087,
     "pendingReview": 3087,
     "quarantined": 1,
@@ -748570,6 +748570,40 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "lingfengQAQ/webnovel-writer#packages/bundle",
+      "name": "dsh-scriptor",
+      "owner": "lingfengQAQ",
+      "url": "https://github.com/lingfengQAQ/webnovel-writer/tree/scriptor-v8.3.2/packages/bundle",
+      "description": {
+        "zh": "Webnovel Writer：DSH 长篇网文写作工作台（npm @linfengqaqtat/dsh-scriptor；源码在上游 tag scriptor-v8.3.2 的 packages/bundle，默认分支不含该目录）。",
+        "en": "Webnovel Writer — a long-form Chinese webnovel writing workbench for DSH (npm @linfengqaqtat/dsh-scriptor; plugin package lives under packages/bundle on tag scriptor-v8.3.2; absent from default branch)."
+      },
+      "category": "tools",
+      "stars": 7673,
+      "forks": 1252,
+      "language": "TypeScript",
+      "pushedAt": "2026-10-24T10:15:31Z",
+      "addedAt": "2026-10-26",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add @linfengqaqtat/dsh-scriptor",
+      "archived": false,
+      "topics": [
+        "ai-writing",
+        "chinese-novel",
+        "deepseek-harness",
+        "dsh-plugin",
+        "webnovel",
+        "writing-assistant"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/75821188?v=4"
     }
   ]
 }
