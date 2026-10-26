@@ -35,6 +35,7 @@ const EXACT = new Set([
 
 // plugins/<slug>.html that exist in the repo. Anything else under /plugins/ is a soft-200.
 const PLUGIN_SLUGS = new Set([
+  "ds-bot",
   "dsh-boot-animation",
   "dsh-cc-tui",
   "dsh-context",
