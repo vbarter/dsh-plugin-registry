@@ -367,6 +367,7 @@ h1, h2, h3 {
   margin-top: 28px; overflow: hidden;
   border: 1px solid var(--line); border-radius: var(--r-md); background: var(--line);
 }
+.evidence-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 .evidence-grid > div { min-width: 0; padding: 14px 18px; background: var(--bg); }
 .evidence-grid span {
   display: block; color: var(--muted); font: 10px var(--font-mono);
@@ -805,7 +806,8 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
   .detail-title h1 { font-size: 34px; }
   .detail-cta { width: 100%; }
   .detail-cta .btn { flex: 1; justify-content: center; }
-  .evidence-grid { grid-template-columns: 1fr; }
+  .evidence-grid,
+  .evidence-grid.cols-3 { grid-template-columns: 1fr; }
   .installbox { flex-wrap: wrap; }
   .installbox .copy { width: 100%; justify-content: center; }
   .policy-section { grid-template-columns: 34px minmax(0, 1fr); }
