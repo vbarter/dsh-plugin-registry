@@ -42,6 +42,7 @@ const PLUGIN_SLUGS = new Set([
   "dsh-free-search",
   "dsh-ops",
   "dsh-plugin-security",
+  "dsh-scriptor",
   "dsh-tool-12306",
   "dsh-web-ui",
   "modlens",

@@ -81,6 +81,46 @@ assert(!dsBotWithoutInstall.includes("dsh plugin"), "no second install command")
 assert(!dsBotHtml.includes("<title>ds-bot｜"), "ds-bot title has no Chinese suffix");
 assert(!/DS Bot|DeepSeek Bot/.test(dsBotHtml), "ds-bot page does not use DS Bot / DeepSeek Bot");
 
+const scriptorHtml = await readFile(join(ROOT, "plugins/dsh-scriptor.html"), "utf8");
+const scriptorInstall = "dsh plugin --profile web add @linfengqaqtat/dsh-scriptor";
+assert(scriptorHtml.includes("<title>dsh-scriptor</title>"), "dsh-scriptor title is exactly dsh-scriptor");
+assert(scriptorHtml.includes('<h1 class="page-title">dsh-scriptor</h1>'), "dsh-scriptor h1 is exactly dsh-scriptor");
+assert(
+  scriptorHtml.includes('<meta property="og:title" content="dsh-scriptor">'),
+  "dsh-scriptor og:title is exactly dsh-scriptor"
+);
+assert(
+  scriptorHtml.includes('<meta name="twitter:title" content="dsh-scriptor">'),
+  "dsh-scriptor twitter:title is exactly dsh-scriptor"
+);
+assert(
+  scriptorHtml.includes('<link rel="canonical" href="https://dsplugin.app/plugins/dsh-scriptor">'),
+  "dsh-scriptor canonical"
+);
+assert(
+  scriptorHtml.includes("lingfengQAQ/webnovel-writer#packages/bundle"),
+  "dsh-scriptor pins catalog id"
+);
+assert(scriptorHtml.includes(scriptorInstall), "dsh-scriptor install string");
+assert(
+  scriptorHtml.split(scriptorInstall).length - 1 === 3,
+  "dsh-scriptor install string appears only in code, FAQ, and FAQ JSON-LD"
+);
+const scriptorWithoutInstall = scriptorHtml.split(scriptorInstall).join("");
+assert(!scriptorWithoutInstall.includes("dsh plugin"), "no second dsh-scriptor install command");
+assert(!scriptorWithoutInstall.includes("github:"), "no github: install form on dsh-scriptor");
+assert(!scriptorHtml.includes("github:linfengqaqtat"), "no github:linfengqaqtat install");
+assert(!scriptorHtml.includes("github:lingfengQAQ"), "no github:lingfengQAQ install");
+assert(!/@linfengqaqtat\/dsh-scriptor@/.test(scriptorHtml), "no version-pinned second install");
+assert(!scriptorHtml.includes("<title>dsh-scriptor｜"), "dsh-scriptor title has no Chinese suffix");
+assert(!/<title>[^<]*(dsh-webnovel-writer|RrcoVer0)/.test(scriptorHtml), "lookalike is not the title");
+assert(!/<h1[^>]*>[^<]*(dsh-webnovel-writer|RrcoVer0)/.test(scriptorHtml), "lookalike is not the h1");
+const sitemapXml = await readFile(join(ROOT, "sitemap.xml"), "utf8");
+assert(
+  sitemapXml.includes("<loc>https://dsplugin.app/plugins/dsh-scriptor</loc>"),
+  "sitemap lists /plugins/dsh-scriptor"
+);
+
 const outDir = await mkdtemp(join(tmpdir(), "pages-out-"));
 const wholeDir = await mkdtemp(join(tmpdir(), "pages-whole-"));
 try {
