@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-27T14:40:49.068Z",
+  "generatedAt": "2026-10-27T17:42:46.682Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,10 +53,10 @@
   },
   "stats": {
     "topicCandidates": 1064,
-    "curated": 575,
+    "curated": 576,
     "automaticallyDiscovered": 22426,
-    "patchFilesConfirmed": 19876,
-    "published": 23001,
+    "patchFilesConfirmed": 19877,
+    "published": 23002,
     "manifestRejected": 3113,
     "pendingReview": 3113,
     "quarantined": 1,
@@ -104320,6 +104320,45 @@
         "installation": "not_tested"
       },
       "install": "",
+      "archived": false,
+      "topics": [
+        "agent-memory",
+        "agents",
+        "ai-agents",
+        "claude-code",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin",
+        "llm",
+        "markdown",
+        "memory",
+        "pi"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/20576609?v=4"
+    },
+    {
+      "id": "ys118/harnmem#packages/dsh-harnmem",
+      "name": "dsh-harnmem",
+      "owner": "ys118",
+      "url": "https://github.com/ys118/harnmem/tree/master/packages/dsh-harnmem",
+      "description": {
+        "zh": "HarnMem 记忆插件（DSH）：稳定热索引注入、记忆工具、会话结束抽取与只读记忆浏览面板（npm dsh-harnmem；源码在 monorepo packages/dsh-harnmem，与 catalog 中无 install 的 harnmem-monorepo 根仓行区分）。",
+        "en": "HarnMem memory plugin for DSH: byte-stable hot-index injection, memory tools, session-end extraction, and a read-only memory browser panel (npm dsh-harnmem; package lives under packages/dsh-harnmem — distinct from the install-less discovered harnmem-monorepo root row)."
+      },
+      "category": "memory",
+      "stars": 2,
+      "forks": 1,
+      "language": "TypeScript",
+      "pushedAt": "2026-10-27T17:27:14Z",
+      "addedAt": "2026-10-28",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile desktop add dsh-harnmem",
       "archived": false,
       "topics": [
         "agent-memory",
