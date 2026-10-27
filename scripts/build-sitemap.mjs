@@ -29,6 +29,7 @@ const PAGES = [
   ["/plugins/dsh-ops", "2026-10-24"],
   ["/plugins/ds-bot", "2026-10-26"],
   ["/plugins/dsh-scriptor", "2026-10-26"],
+  ["/plugins/dsh-harnmem", "2026-10-28"],
 ];
 function urlEntry(loc, lastmod) {
   return "  <url>\n    <loc>" + loc + "</loc>\n    <lastmod>" + lastmod + "</lastmod>\n    <changefreq>weekly</changefreq>\n  </url>\n";
