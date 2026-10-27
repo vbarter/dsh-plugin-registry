@@ -121,6 +121,49 @@ assert(
   "sitemap lists /plugins/dsh-scriptor"
 );
 
+const harnmemHtml = await readFile(join(ROOT, "plugins/dsh-harnmem.html"), "utf8");
+const harnmemInstall = "dsh plugin --profile desktop add dsh-harnmem";
+assert(harnmemHtml.includes("<title>dsh-harnmem</title>"), "dsh-harnmem title is exactly dsh-harnmem");
+assert(harnmemHtml.includes('<h1 class="page-title">dsh-harnmem</h1>'), "dsh-harnmem h1 is exactly dsh-harnmem");
+assert(
+  harnmemHtml.includes('<meta property="og:title" content="dsh-harnmem">'),
+  "dsh-harnmem og:title is exactly dsh-harnmem"
+);
+assert(
+  harnmemHtml.includes('<meta name="twitter:title" content="dsh-harnmem">'),
+  "dsh-harnmem twitter:title is exactly dsh-harnmem"
+);
+assert(
+  harnmemHtml.includes('<link rel="canonical" href="https://dsplugin.app/plugins/dsh-harnmem">'),
+  "dsh-harnmem canonical"
+);
+assert(!/noindex/i.test(harnmemHtml), "dsh-harnmem has no noindex");
+assert(
+  harnmemHtml.includes("ys118/harnmem#packages/dsh-harnmem"),
+  "dsh-harnmem pins catalog id"
+);
+assert(harnmemHtml.includes("dsh-harnmem@0.4.0"), "dsh-harnmem npm pin note");
+assert(harnmemHtml.includes("https://github.com/ys118/harnmem"), "dsh-harnmem upstream repo link");
+assert(harnmemHtml.includes("packages/dsh-harnmem"), "dsh-harnmem package path");
+assert(harnmemHtml.includes('class="evidence-grid cols-3"'), "dsh-harnmem uses cols-3 facts");
+assert(!harnmemHtml.includes('data-fact="stars"'), "dsh-harnmem has no stars tile");
+assert(harnmemHtml.includes(harnmemInstall), "dsh-harnmem install string");
+assert(
+  harnmemHtml.split(harnmemInstall).length - 1 === 3,
+  "dsh-harnmem install string appears only in code, FAQ, and FAQ JSON-LD"
+);
+const harnmemWithoutInstall = harnmemHtml.split(harnmemInstall).join("");
+assert(!harnmemWithoutInstall.includes("dsh plugin"), "no second dsh-harnmem install command");
+assert(!harnmemHtml.includes("github:"), "no github: install form on dsh-harnmem");
+assert(!harnmemHtml.includes("add dsh-harnmem@"), "no version-pinned second install");
+assert(!harnmemHtml.includes("<title>dsh-harnmem｜"), "dsh-harnmem title has no Chinese suffix");
+assert(!/<title>[^<]*(harnmem-monorepo|pi-harnmem|harnmem-cli)/.test(harnmemHtml), "lookalike is not the title");
+assert(!/<h1[^>]*>[^<]*(harnmem-monorepo|pi-harnmem|harnmem-cli)/.test(harnmemHtml), "lookalike is not the h1");
+assert(
+  sitemapXml.includes("<loc>https://dsplugin.app/plugins/dsh-harnmem</loc>"),
+  "sitemap lists /plugins/dsh-harnmem"
+);
+
 const outDir = await mkdtemp(join(tmpdir(), "pages-out-"));
 const wholeDir = await mkdtemp(join(tmpdir(), "pages-whole-"));
 try {
@@ -160,6 +203,11 @@ try {
   assert(landingStat.isFile(), "dsh-ops landing is in the upload");
   const landing = await readFile(join(outDir, "plugins/dsh-ops.html"), "utf8");
   assert(landing.includes('href="https://dsplugin.app/plugins/dsh-ops"'), "uploaded landing keeps canonical");
+  const harnmemLanding = await readFile(join(outDir, "plugins/dsh-harnmem.html"), "utf8");
+  assert(
+    harnmemLanding.includes('href="https://dsplugin.app/plugins/dsh-harnmem"'),
+    "uploaded dsh-harnmem landing keeps canonical"
+  );
 
   const whole = await preparePagesDeploy({
     root: ROOT,

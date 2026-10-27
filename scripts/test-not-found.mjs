@@ -81,6 +81,7 @@ for (const path of [
   "/plugins/dsh-plugin-security",
   "/plugins/dsh-context",
   "/plugins/dsh-free-search",
+  "/plugins/dsh-harnmem",
   "/plugins/dsh-ops",
   "/plugins/ds-bot",
   "/plugins/dsh-scriptor",
@@ -96,6 +97,8 @@ for (const path of [
   "/plugins/dsh-context/",
   "/plugins/dsh-free-search.html",
   "/plugins/dsh-free-search/",
+  "/plugins/dsh-harnmem.html",
+  "/plugins/dsh-harnmem/",
   "/plugins/dsh-ops.html",
   "/plugins/dsh-ops/",
   "/plugins/ds-bot.html",
@@ -196,6 +199,31 @@ for (const path of [
   "/plugins/linfengqaqtat/dsh-scriptor",
   "/plugins/RrcoVer0/dsh-webnovel-writer",
   "/plugins/RrcoVer0",
+]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 404, `${path} → 404`);
+  assert(res.res.headers.get("x-robots-tag") === "noindex", `${path} noindex`);
+}
+for (const path of ["/plugins/dsh-harnmem", "/plugins/dsh-harnmem.html", "/plugins/dsh-harnmem/"]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 200, `${path} → 200`);
+  assert(res.res.headers.get("x-robots-tag") == null, `${path} no noindex`);
+}
+const harnmemCase = await statusOf("/plugins/Dsh-Harnmem");
+assert(harnmemCase.res.status === 404, "/plugins/Dsh-Harnmem → 404");
+assert(harnmemCase.res.headers.get("x-robots-tag") === "noindex", "/plugins/Dsh-Harnmem noindex");
+const harnmemUpper = await statusOf("/plugins/DSH-Harnmem");
+assert(harnmemUpper.res.status === 404, "/plugins/DSH-Harnmem → 404");
+assert(harnmemUpper.res.headers.get("x-robots-tag") === "noindex", "/plugins/DSH-Harnmem noindex");
+for (const path of [
+  "/plugins/harnmem",
+  "/plugins/harnmem-monorepo",
+  "/plugins/harnmem-cli",
+  "/plugins/pi-harnmem",
+  "/plugins/dsh-harnmem-pro",
+  "/c/dsh-harnmem",
+  "/plugins/ys118/harnmem",
+  "/plugins/@harnmem/cli",
 ]) {
   const res = await statusOf(path);
   assert(res.res.status === 404, `${path} → 404`);

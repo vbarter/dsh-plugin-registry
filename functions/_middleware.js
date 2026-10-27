@@ -40,6 +40,7 @@ const PLUGIN_SLUGS = new Set([
   "dsh-cc-tui",
   "dsh-context",
   "dsh-free-search",
+  "dsh-harnmem",
   "dsh-ops",
   "dsh-plugin-security",
   "dsh-scriptor",
