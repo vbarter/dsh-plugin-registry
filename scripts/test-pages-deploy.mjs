@@ -142,7 +142,23 @@ assert(
   harnmemHtml.includes("ys118/harnmem#packages/dsh-harnmem"),
   "dsh-harnmem pins catalog id"
 );
-assert(harnmemHtml.includes("dsh-harnmem@0.4.0"), "dsh-harnmem npm pin note");
+assert(
+  harnmemHtml.includes(
+    "dsh-harnmem 是 HarnMem 给 DeepSeek Harness（DSH）的社区记忆插件（MIT，npm 包名 dsh-harnmem，源码在 ys118/harnmem 的 packages/dsh-harnmem）"
+  ),
+  "dsh-harnmem lead is the signed copy"
+);
+assert(
+  harnmemHtml.includes("它是 HarnMem 的 DeepSeek Harness 社区记忆插件（包名 dsh-harnmem）"),
+  "dsh-harnmem FAQ 1 matches signed copy"
+);
+assert(
+  harnmemHtml.includes("不是 @harnmem/cli、不是 pi-harnmem，也不是 catalog 里无 install 的 harnmem-monorepo"),
+  "dsh-harnmem FAQ 3 soft-disambiguates lookalikes"
+);
+assert(!harnmemHtml.includes("本页是占位"), "dsh-harnmem stub placeholder removed");
+assert(!harnmemHtml.includes("正文以后替换"), "dsh-harnmem writer note removed");
+assert(!harnmemHtml.includes("dsh-harnmem@"), "signed copy does not pin an npm version");
 assert(harnmemHtml.includes("https://github.com/ys118/harnmem"), "dsh-harnmem upstream repo link");
 assert(harnmemHtml.includes("packages/dsh-harnmem"), "dsh-harnmem package path");
 assert(harnmemHtml.includes('class="evidence-grid cols-3"'), "dsh-harnmem uses cols-3 facts");
