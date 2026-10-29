@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-29T06:07:01.727Z",
+  "generatedAt": "2026-10-29T06:47:09.785Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 23857,
-    "curated": 576,
+    "curated": 577,
     "automaticallyDiscovered": 23163,
-    "patchFilesConfirmed": 20566,
-    "published": 23739,
+    "patchFilesConfirmed": 20567,
+    "published": 23740,
     "manifestRejected": 3161,
     "pendingReview": 3161,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -785743,6 +785743,37 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "sdiwenchen-lang/DeepSeek-Usage",
+      "name": "deepseek-usage",
+      "owner": "sdiwenchen-lang",
+      "url": "https://github.com/sdiwenchen-lang/DeepSeek-Usage",
+      "description": {
+        "zh": "DeepSeek 官方口径的账户余额与每日 Token 用量 —— DeepSeek Harness 插件：点侧边栏「用量」弹出居中的用量与余额面板，数据直接复用 DSH 里已登录的 DeepSeek 账号",
+        "en": "DeepSeek 官方口径的账户余额与每日 Token 用量 —— DeepSeek Harness 插件：点侧边栏「用量」弹出居中的用量与余额面板，数据直接复用 DSH 里已登录的 DeepSeek 账号"
+      },
+      "category": "tools",
+      "stars": 1,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-10-29T06:36:17Z",
+      "addedAt": "2026-10-29",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:sdiwenchen-lang/DeepSeek-Usage",
+      "archived": false,
+      "topics": [
+        "deepseek",
+        "dsh-plugin",
+        "usage"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/272386836?v=4"
     }
   ]
 }
