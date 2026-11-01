@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-01T06:31:48.733Z",
+  "generatedAt": "2026-11-01T13:30:59.724Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 25042,
-    "curated": 576,
+    "curated": 577,
     "automaticallyDiscovered": 24393,
-    "patchFilesConfirmed": 21718,
-    "published": 24969,
+    "patchFilesConfirmed": 21719,
+    "published": 24970,
     "manifestRejected": 3232,
     "pendingReview": 3232,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -827061,6 +827061,38 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "Master-chai/dsh-cyber-dept",
+      "name": "dsh-cyber-dept",
+      "owner": "Master-chai",
+      "url": "https://github.com/Master-chai/dsh-cyber-dept",
+      "description": {
+        "zh": "Cyber IT Department — a pixel-office view of DSH Agent Teams with snapshot + command routes.",
+        "en": "Cyber IT Department — a pixel-office view of DSH Agent Teams with snapshot + command routes."
+      },
+      "category": "tools",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-11-01T12:59:54Z",
+      "addedAt": "2026-11-01",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:Master-chai/dsh-cyber-dept",
+      "archived": false,
+      "topics": [
+        "agent-teams",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/195569762?v=4"
     }
   ]
 }
