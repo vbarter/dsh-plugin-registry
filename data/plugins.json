@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-03T19:45:11.320Z",
+  "generatedAt": "2026-11-03T19:57:59.964Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 26042,
-    "curated": 576,
+    "curated": 577,
     "automaticallyDiscovered": 25428,
-    "patchFilesConfirmed": 22693,
-    "published": 26004,
+    "patchFilesConfirmed": 22694,
+    "published": 26005,
     "manifestRejected": 3292,
     "pendingReview": 3292,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -861618,6 +861618,40 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "Stopning/dsh-usage-stats",
+      "name": "dsh-usage-stats",
+      "owner": "Stopning",
+      "url": "https://github.com/Stopning/dsh-usage-stats",
+      "description": {
+        "zh": "Token usage, cost, budget and host CPU statistics for DSH sessions.",
+        "en": "Token usage, cost, budget and host CPU statistics for DSH sessions."
+      },
+      "category": "session",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-11-03T19:50:15Z",
+      "addedAt": "2026-11-03",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:Stopning/dsh-usage-stats",
+      "archived": false,
+      "topics": [
+        "dashboard",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin",
+        "plugin",
+        "token-usage"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/36223258?v=4"
     }
   ]
 }
