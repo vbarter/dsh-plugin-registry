@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-04T00:47:15.909Z",
+  "generatedAt": "2026-11-04T02:35:12.693Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 26077,
-    "curated": 576,
-    "automaticallyDiscovered": 25458,
+    "curated": 577,
+    "automaticallyDiscovered": 25457,
     "patchFilesConfirmed": 22722,
     "published": 26034,
     "manifestRejected": 3293,
     "pendingReview": 3293,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -119362,13 +119362,13 @@
         "en": "同一需求，两版真跑：在 DSH 对话里比较、验证并审查采用。A DeepSeek Harness plugin for two implementations, live previews, shared checks and reviewed adoption."
       },
       "category": "dev",
-      "stars": 25,
+      "stars": 27,
       "forks": 1,
       "language": "TypeScript",
       "pushedAt": "2026-11-03T20:06:46Z",
       "addedAt": "2026-11-03",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
+      "source": "curated",
+      "trustLevel": "curated",
       "verification": {
         "manifest": "shape_validated",
         "patch": "exists",
