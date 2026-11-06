@@ -41,6 +41,7 @@ const PLUGIN_SLUGS = new Set([
   "dsh-context",
   "dsh-free-search",
   "dsh-harnmem",
+  "dsh-hongguo",
   "dsh-ops",
   "dsh-plugin-security",
   "dsh-scriptor",
