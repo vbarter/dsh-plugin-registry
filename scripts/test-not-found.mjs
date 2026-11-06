@@ -82,6 +82,7 @@ for (const path of [
   "/plugins/dsh-context",
   "/plugins/dsh-free-search",
   "/plugins/dsh-harnmem",
+  "/plugins/dsh-hongguo",
   "/plugins/dsh-ops",
   "/plugins/ds-bot",
   "/plugins/dsh-scriptor",
@@ -99,6 +100,8 @@ for (const path of [
   "/plugins/dsh-free-search/",
   "/plugins/dsh-harnmem.html",
   "/plugins/dsh-harnmem/",
+  "/plugins/dsh-hongguo.html",
+  "/plugins/dsh-hongguo/",
   "/plugins/dsh-ops.html",
   "/plugins/dsh-ops/",
   "/plugins/ds-bot.html",
@@ -224,6 +227,31 @@ for (const path of [
   "/c/dsh-harnmem",
   "/plugins/ys118/harnmem",
   "/plugins/@harnmem/cli",
+]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 404, `${path} → 404`);
+  assert(res.res.headers.get("x-robots-tag") === "noindex", `${path} noindex`);
+}
+for (const path of ["/plugins/dsh-hongguo", "/plugins/dsh-hongguo.html", "/plugins/dsh-hongguo/"]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 200, `${path} → 200`);
+  assert(res.res.headers.get("x-robots-tag") == null, `${path} no noindex`);
+}
+const hongguoCase = await statusOf("/plugins/Dsh-Hongguo");
+assert(hongguoCase.res.status === 404, "/plugins/Dsh-Hongguo → 404");
+assert(hongguoCase.res.headers.get("x-robots-tag") === "noindex", "/plugins/Dsh-Hongguo noindex");
+const hongguoUpper = await statusOf("/plugins/DSH-Hongguo");
+assert(hongguoUpper.res.status === 404, "/plugins/DSH-Hongguo → 404");
+assert(hongguoUpper.res.headers.get("x-robots-tag") === "noindex", "/plugins/DSH-Hongguo noindex");
+for (const path of [
+  "/plugins/dsh-hongguo-pro",
+  "/plugins/openhongguo",
+  "/plugins/moyu-duanju",
+  "/c/dsh-hongguo",
+  "/plugins/ShoWin2333/dsh-hongguo",
+  "/plugins/radish999/dsh-hongguo",
+  "/plugins/showin2333/dsh-hongguo",
+  "/plugins/frostming/dsh-hongguo",
 ]) {
   const res = await statusOf(path);
   assert(res.res.status === 404, `${path} → 404`);

@@ -180,6 +180,94 @@ assert(
   "sitemap lists /plugins/dsh-harnmem"
 );
 
+const hongguoHtml = await readFile(join(ROOT, "plugins/dsh-hongguo.html"), "utf8");
+const hongguoInstall = "dsh plugin --profile web add github:frostming/dsh-hongguo";
+assert(hongguoHtml.includes("<title>dsh-hongguo</title>"), "dsh-hongguo title is exactly dsh-hongguo");
+assert(hongguoHtml.includes('<h1 class="page-title">dsh-hongguo</h1>'), "dsh-hongguo h1 is exactly dsh-hongguo");
+assert(
+  hongguoHtml.includes('<meta property="og:title" content="dsh-hongguo">'),
+  "dsh-hongguo og:title is exactly dsh-hongguo"
+);
+assert(
+  hongguoHtml.includes('<meta name="twitter:title" content="dsh-hongguo">'),
+  "dsh-hongguo twitter:title is exactly dsh-hongguo"
+);
+assert(
+  hongguoHtml.includes('<link rel="canonical" href="https://dsplugin.app/plugins/dsh-hongguo">'),
+  "dsh-hongguo canonical"
+);
+assert(!/noindex/i.test(hongguoHtml), "dsh-hongguo has no noindex");
+assert(hongguoHtml.includes('data-plugin-id="frostming/dsh-hongguo"'), "dsh-hongguo pins catalog id");
+assert(
+  hongguoHtml.includes(
+    "dsh-hongguo（摸鱼短剧）是给 DeepSeek Harness（DSH）的社区插件：在右侧边栏播放短剧，Agent 工作时提示你把它调出来。数据来自 openhongguo（第三方短剧平台的非官方 SDK）。本页只对应目录 id"
+  ),
+  "dsh-hongguo lead is the signed copy"
+);
+assert(
+  hongguoHtml.includes("它面向 DeepSeek Harness 的 web profile，在右侧边栏提供「摸鱼短剧」标签页"),
+  "dsh-hongguo body is the signed copy"
+);
+assert(
+  hongguoHtml.includes("请仅用于个人学习与研究，内容版权归权利人所有"),
+  "dsh-hongguo keeps the study/copyright line"
+);
+assert(!hongguoHtml.includes("本页是占位"), "dsh-hongguo has no stub placeholder");
+assert(!hongguoHtml.includes('data-fact="stars"'), "dsh-hongguo has no stars tile");
+assert(hongguoHtml.includes("https://github.com/frostming/dsh-hongguo"), "dsh-hongguo repo link");
+assert(hongguoHtml.includes('"softwareVersion": "1.2.1"'), "dsh-hongguo softwareVersion is 1.2.1");
+assert(!/"softwareVersion": "(?!1\.2\.1")/.test(hongguoHtml), "dsh-hongguo has no other softwareVersion");
+assert(hongguoHtml.includes(hongguoInstall), "dsh-hongguo install string");
+assert(
+  hongguoHtml.split(hongguoInstall).length - 1 === 3,
+  "dsh-hongguo install string appears only in code, FAQ, and FAQ JSON-LD"
+);
+const hongguoWithoutInstall = hongguoHtml.split(hongguoInstall).join("");
+assert(!hongguoWithoutInstall.includes("dsh plugin"), "no second dsh-hongguo install command");
+assert(!hongguoWithoutInstall.includes("github:"), "no other github: install target on dsh-hongguo");
+assert(!hongguoHtml.includes("npm install"), "no npm install on dsh-hongguo");
+assert(!hongguoHtml.includes("<title>dsh-hongguo｜"), "dsh-hongguo title has no Chinese suffix");
+assert(!/<h1[^>]*>摸鱼短剧</.test(hongguoHtml), "摸鱼短剧 is not the h1");
+assert(!/<title>摸鱼短剧</.test(hongguoHtml), "摸鱼短剧 is not the title");
+for (const term of [
+  "ShoWin2333",
+  "radish999",
+  "NamiDSH",
+  "dsh-game-studio",
+  "CENC",
+  "ffmpeg",
+  "解密",
+  "密钥",
+  "下载量",
+  "排名",
+  "官方插件",
+]) {
+  assert(!hongguoHtml.includes(term), `dsh-hongguo page omits ${term}`);
+}
+const hongguoMain = hongguoHtml.split("<main")[1].split("</main>")[0];
+assert(!hongguoMain.includes('href="/c/'), "dsh-hongguo main has no /c/ CTA");
+const hongguoLd = JSON.parse(
+  hongguoHtml.match(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/)[1]
+);
+const hongguoFaqLd = hongguoLd["@graph"].find((node) => node["@type"] === "FAQPage");
+const hongguoFaqHtml = [...hongguoHtml.matchAll(/<div><dt>(.*?)<\/dt><dd>(.*?)<\/dd><\/div>/gs)].map((m) => ({
+  q: m[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(),
+  a: m[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(),
+}));
+assert(hongguoFaqLd.mainEntity.length === 4, "dsh-hongguo FAQPage has 4 items");
+assert(hongguoFaqHtml.length === 4, "dsh-hongguo HTML FAQ has 4 items");
+for (let i = 0; i < 4; i++) {
+  assert(hongguoFaqHtml[i].q === hongguoFaqLd.mainEntity[i].name, `dsh-hongguo FAQ ${i + 1} question matches JSON-LD`);
+  assert(
+    hongguoFaqHtml[i].a === hongguoFaqLd.mainEntity[i].acceptedAnswer.text,
+    `dsh-hongguo FAQ ${i + 1} answer matches JSON-LD`
+  );
+}
+assert(
+  sitemapXml.includes("<loc>https://dsplugin.app/plugins/dsh-hongguo</loc>"),
+  "sitemap lists /plugins/dsh-hongguo"
+);
+
 const outDir = await mkdtemp(join(tmpdir(), "pages-out-"));
 const wholeDir = await mkdtemp(join(tmpdir(), "pages-whole-"));
 try {
@@ -224,6 +312,12 @@ try {
     harnmemLanding.includes('href="https://dsplugin.app/plugins/dsh-harnmem"'),
     "uploaded dsh-harnmem landing keeps canonical"
   );
+  const hongguoLanding = await readFile(join(outDir, "plugins/dsh-hongguo.html"), "utf8");
+  assert(
+    hongguoLanding.includes('href="https://dsplugin.app/plugins/dsh-hongguo"'),
+    "uploaded dsh-hongguo landing keeps canonical"
+  );
+  assert(!hongguoLanding.includes("本页是占位"), "uploaded dsh-hongguo landing is not a stub");
 
   const whole = await preparePagesDeploy({
     root: ROOT,
