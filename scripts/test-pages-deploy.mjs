@@ -1,6 +1,7 @@
 // Pages upload: full catalog stays out of the asset dir, lite shards stay
 // under 25 MiB, and the browser loader can put the shards back together.
 //   node scripts/test-pages-deploy.mjs
+import { existsSync } from "node:fs";
 import { mkdtemp, readFile, rm, stat } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -268,6 +269,116 @@ assert(
   "sitemap lists /plugins/dsh-hongguo"
 );
 
+const mediaDeskHtml = await readFile(join(ROOT, "plugins/dsh-media-desk.html"), "utf8");
+const mediaDeskInstall = "dsh plugin --profile web add github:woniuniuniu/dsh-media-desk";
+assert(mediaDeskHtml.includes("<title>dsh-media-desk</title>"), "dsh-media-desk title is exactly dsh-media-desk");
+assert(mediaDeskHtml.includes('<h1 class="page-title">dsh-media-desk</h1>'), "dsh-media-desk h1 is exactly dsh-media-desk");
+assert(
+  mediaDeskHtml.includes('<meta property="og:title" content="dsh-media-desk">'),
+  "dsh-media-desk og:title is exactly dsh-media-desk"
+);
+assert(
+  mediaDeskHtml.includes('<meta name="twitter:title" content="dsh-media-desk">'),
+  "dsh-media-desk twitter:title is exactly dsh-media-desk"
+);
+assert(
+  mediaDeskHtml.includes('<link rel="canonical" href="https://dsplugin.app/plugins/dsh-media-desk">'),
+  "dsh-media-desk canonical"
+);
+assert(!/noindex/i.test(mediaDeskHtml), "dsh-media-desk has no noindex");
+assert(mediaDeskHtml.includes('data-plugin-id="woniuniuniu/dsh-media-desk"'), "dsh-media-desk pins catalog id");
+assert(
+  mediaDeskHtml.includes(
+    "dsh-media-desk（自媒体工作台）是给 DeepSeek Harness（DSH）的社区插件：一句话记下灵感，再生成口播脚本、标题、视频封面、配图和分镜。本页只对应目录 id"
+  ),
+  "dsh-media-desk lead is the signed copy"
+);
+assert(
+  mediaDeskHtml.includes("它装在 DeepSeek Harness 的侧栏里，打开是一面灵感墙：一句话记一条灵感。"),
+  "dsh-media-desk body is the signed copy"
+);
+assert(
+  mediaDeskHtml.includes("请仅用于个人学习与研究，内容版权归权利人所有"),
+  "dsh-media-desk keeps the study/copyright line"
+);
+assert(
+  mediaDeskHtml.includes("各平台内容与素材的版权归权利人所有，请仅用于个人学习与研究"),
+  "dsh-media-desk body keeps the signed copyright sentence"
+);
+assert(!mediaDeskHtml.includes("本页是占位"), "dsh-media-desk has no stub placeholder");
+assert(!mediaDeskHtml.includes('data-fact="stars"'), "dsh-media-desk has no stars tile");
+assert(mediaDeskHtml.includes("https://github.com/woniuniuniu/dsh-media-desk"), "dsh-media-desk repo link");
+assert(mediaDeskHtml.includes('"softwareVersion": "2.6.1"'), "dsh-media-desk softwareVersion is 2.6.1");
+assert(!/"softwareVersion": "(?!2\.6\.1")/.test(mediaDeskHtml), "dsh-media-desk has no other softwareVersion");
+assert(mediaDeskHtml.includes(mediaDeskInstall), "dsh-media-desk install string");
+assert(
+  mediaDeskHtml.split(mediaDeskInstall).length - 1 === 3,
+  "dsh-media-desk install string appears only in code, FAQ, and FAQ JSON-LD"
+);
+const mediaDeskWithoutInstall = mediaDeskHtml.split(mediaDeskInstall).join("");
+assert(!mediaDeskWithoutInstall.includes("dsh plugin"), "no second dsh-media-desk install command");
+assert(!mediaDeskWithoutInstall.includes("github:"), "no other github: install target on dsh-media-desk");
+assert(!mediaDeskWithoutInstall.includes("add dsh-media-desk"), "no short-form add dsh-media-desk");
+assert(!mediaDeskHtml.includes("--profile desktop"), "no desktop profile on dsh-media-desk");
+assert(!mediaDeskHtml.includes("npm install"), "no npm install on dsh-media-desk");
+assert(!mediaDeskHtml.includes("<title>dsh-media-desk｜"), "dsh-media-desk title has no Chinese suffix");
+assert(!/<h1[^>]*>自媒体工作台</.test(mediaDeskHtml), "自媒体工作台 is not the h1");
+assert(!/<title>自媒体工作台</.test(mediaDeskHtml), "自媒体工作台 is not the title");
+assert(!/<title>[^<]*自媒体工作台/.test(mediaDeskHtml), "title does not include 自媒体工作台");
+assert(!/<h1[^>]*>[^<]*自媒体工作台/.test(mediaDeskHtml), "h1 does not include 自媒体工作台");
+for (const term of [
+  "Letter2025",
+  "vibeinging",
+  "dsh-tool-search",
+  "FreeCAD",
+  "Negulons",
+  "dsh-freecad",
+  "NamiDSH",
+  "dsh-game-studio",
+  "ShoWin2333",
+  "radish999",
+  "下载量",
+  "排名",
+  "官方插件",
+  "340",
+  "345",
+]) {
+  assert(!mediaDeskHtml.includes(term), `dsh-media-desk page omits ${term}`);
+}
+const mediaDeskMain = mediaDeskHtml.split("<main")[1].split("</main>")[0];
+assert(!mediaDeskMain.includes('href="/c/'), "dsh-media-desk main has no /c/ CTA");
+assert(!mediaDeskMain.includes("官方"), "dsh-media-desk main does not call the plugin 官方");
+const mediaDeskLd = JSON.parse(
+  mediaDeskHtml.match(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/)[1]
+);
+const mediaDeskFaqLd = mediaDeskLd["@graph"].find((node) => node["@type"] === "FAQPage");
+const mediaDeskFaqHtml = [...mediaDeskHtml.matchAll(/<div><dt>(.*?)<\/dt><dd>(.*?)<\/dd><\/div>/gs)].map((m) => ({
+  q: m[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(),
+  a: m[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(),
+}));
+assert(mediaDeskFaqLd.mainEntity.length === 4, "dsh-media-desk FAQPage has 4 items");
+assert(mediaDeskFaqHtml.length === 4, "dsh-media-desk HTML FAQ has 4 items");
+for (let i = 0; i < 4; i++) {
+  assert(mediaDeskFaqHtml[i].q === mediaDeskFaqLd.mainEntity[i].name, `dsh-media-desk FAQ ${i + 1} question matches JSON-LD`);
+  assert(
+    mediaDeskFaqHtml[i].a === mediaDeskFaqLd.mainEntity[i].acceptedAnswer.text,
+    `dsh-media-desk FAQ ${i + 1} answer matches JSON-LD`
+  );
+}
+assert(
+  mediaDeskFaqLd.mainEntity[1].acceptedAnswer.text.startsWith(mediaDeskInstall),
+  "dsh-media-desk FAQPage answer 2 starts with the install command"
+);
+assert(
+  sitemapXml.includes("<loc>https://dsplugin.app/plugins/dsh-media-desk</loc>"),
+  "sitemap lists /plugins/dsh-media-desk"
+);
+assert(
+  /<loc>https:\/\/dsplugin\.app\/plugins\/dsh-media-desk<\/loc>\s*<lastmod>2026-11-07<\/lastmod>/.test(sitemapXml),
+  "sitemap lastmod for dsh-media-desk is 2026-11-07"
+);
+assert(!existsSync(join(ROOT, "c/dsh-media-desk.html")), "no /c/dsh-media-desk page");
+
 const outDir = await mkdtemp(join(tmpdir(), "pages-out-"));
 const wholeDir = await mkdtemp(join(tmpdir(), "pages-whole-"));
 try {
@@ -318,6 +429,13 @@ try {
     "uploaded dsh-hongguo landing keeps canonical"
   );
   assert(!hongguoLanding.includes("本页是占位"), "uploaded dsh-hongguo landing is not a stub");
+  const mediaDeskLanding = await readFile(join(outDir, "plugins/dsh-media-desk.html"), "utf8");
+  assert(
+    mediaDeskLanding.includes('href="https://dsplugin.app/plugins/dsh-media-desk"'),
+    "uploaded dsh-media-desk landing keeps canonical"
+  );
+  assert(!mediaDeskLanding.includes("本页是占位"), "uploaded dsh-media-desk landing is not a stub");
+  assert(mediaDeskLanding.includes(mediaDeskInstall), "uploaded dsh-media-desk keeps the install command");
 
   const whole = await preparePagesDeploy({
     root: ROOT,
