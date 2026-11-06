@@ -83,6 +83,7 @@ for (const path of [
   "/plugins/dsh-free-search",
   "/plugins/dsh-harnmem",
   "/plugins/dsh-hongguo",
+  "/plugins/dsh-media-desk",
   "/plugins/dsh-ops",
   "/plugins/ds-bot",
   "/plugins/dsh-scriptor",
@@ -102,6 +103,8 @@ for (const path of [
   "/plugins/dsh-harnmem/",
   "/plugins/dsh-hongguo.html",
   "/plugins/dsh-hongguo/",
+  "/plugins/dsh-media-desk.html",
+  "/plugins/dsh-media-desk/",
   "/plugins/dsh-ops.html",
   "/plugins/dsh-ops/",
   "/plugins/ds-bot.html",
@@ -252,6 +255,28 @@ for (const path of [
   "/plugins/radish999/dsh-hongguo",
   "/plugins/showin2333/dsh-hongguo",
   "/plugins/frostming/dsh-hongguo",
+]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 404, `${path} → 404`);
+  assert(res.res.headers.get("x-robots-tag") === "noindex", `${path} noindex`);
+}
+for (const path of ["/plugins/dsh-media-desk", "/plugins/dsh-media-desk.html", "/plugins/dsh-media-desk/"]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 200, `${path} → 200`);
+  assert(res.res.headers.get("x-robots-tag") == null, `${path} no noindex`);
+}
+const mediaDeskCase = await statusOf("/plugins/Dsh-Media-Desk");
+assert(mediaDeskCase.res.status === 404, "/plugins/Dsh-Media-Desk → 404");
+assert(mediaDeskCase.res.headers.get("x-robots-tag") === "noindex", "/plugins/Dsh-Media-Desk noindex");
+const mediaDeskUpper = await statusOf("/plugins/DSH-Media-Desk");
+assert(mediaDeskUpper.res.status === 404, "/plugins/DSH-Media-Desk → 404");
+assert(mediaDeskUpper.res.headers.get("x-robots-tag") === "noindex", "/plugins/DSH-Media-Desk noindex");
+for (const path of [
+  "/plugins/dsh-media-desk-pro",
+  "/plugins/media-desk",
+  "/plugins/dsh-media",
+  "/c/dsh-media-desk",
+  "/plugins/woniuniuniu/dsh-media-desk",
 ]) {
   const res = await statusOf(path);
   assert(res.res.status === 404, `${path} → 404`);
