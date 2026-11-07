@@ -34,6 +34,8 @@ const EXACT = new Set([
 ]);
 
 // plugins/<slug>.html that exist in the repo. Anything else under /plugins/ is a soft-200.
+// Underscore is part of the slug charset: dsh-infinite_canvas matches the github path.
+// Hyphen lookalikes are not listed, so they stay 404 + noindex.
 const PLUGIN_SLUGS = new Set([
   "ds-bot",
   "dsh-boot-animation",
@@ -42,6 +44,7 @@ const PLUGIN_SLUGS = new Set([
   "dsh-free-search",
   "dsh-harnmem",
   "dsh-hongguo",
+  "dsh-infinite_canvas",
   "dsh-media-desk",
   "dsh-ops",
   "dsh-plugin-security",
@@ -84,7 +87,7 @@ function isLiteShard(path) {
 
 function isAllowed(path) {
   if (EXACT.has(path) || DATA_JSON.has(path) || isLiteShard(path)) return true;
-  let match = /^\/plugins\/([a-z0-9-]+)(\.html)?$/.exec(path);
+  let match = /^\/plugins\/([a-z0-9_-]+)(\.html)?$/.exec(path);
   if (match && PLUGIN_SLUGS.has(match[1])) return true;
   match = /^\/c\/(vision|web-ui|tui)(\.html)?$/.exec(path);
   return Boolean(match);

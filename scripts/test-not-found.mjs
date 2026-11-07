@@ -83,6 +83,7 @@ for (const path of [
   "/plugins/dsh-free-search",
   "/plugins/dsh-harnmem",
   "/plugins/dsh-hongguo",
+  "/plugins/dsh-infinite_canvas",
   "/plugins/dsh-media-desk",
   "/plugins/dsh-ops",
   "/plugins/ds-bot",
@@ -103,6 +104,8 @@ for (const path of [
   "/plugins/dsh-harnmem/",
   "/plugins/dsh-hongguo.html",
   "/plugins/dsh-hongguo/",
+  "/plugins/dsh-infinite_canvas.html",
+  "/plugins/dsh-infinite_canvas/",
   "/plugins/dsh-media-desk.html",
   "/plugins/dsh-media-desk/",
   "/plugins/dsh-ops.html",
@@ -277,6 +280,33 @@ for (const path of [
   "/plugins/dsh-media",
   "/c/dsh-media-desk",
   "/plugins/woniuniuniu/dsh-media-desk",
+]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 404, `${path} → 404`);
+  assert(res.res.headers.get("x-robots-tag") === "noindex", `${path} noindex`);
+}
+for (const path of ["/plugins/dsh-infinite_canvas", "/plugins/dsh-infinite_canvas.html", "/plugins/dsh-infinite_canvas/"]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 200, `${path} → 200`);
+  assert(res.res.headers.get("x-robots-tag") == null, `${path} no noindex`);
+}
+const infiniteCanvasCase = await statusOf("/plugins/Dsh-Infinite_Canvas");
+assert(infiniteCanvasCase.res.status === 404, "/plugins/Dsh-Infinite_Canvas → 404");
+assert(infiniteCanvasCase.res.headers.get("x-robots-tag") === "noindex", "/plugins/Dsh-Infinite_Canvas noindex");
+const infiniteCanvasUpper = await statusOf("/plugins/DSH-Infinite_Canvas");
+assert(infiniteCanvasUpper.res.status === 404, "/plugins/DSH-Infinite_Canvas → 404");
+assert(infiniteCanvasUpper.res.headers.get("x-robots-tag") === "noindex", "/plugins/DSH-Infinite_Canvas noindex");
+const unknownUnderscore = await statusOf("/plugins/not_a_plugin");
+assert(unknownUnderscore.res.status === 404, "/plugins/not_a_plugin → 404");
+assert(unknownUnderscore.res.headers.get("x-robots-tag") === "noindex", "/plugins/not_a_plugin noindex");
+for (const path of [
+  "/plugins/dsh-infinite-canvas",
+  "/plugins/dsh-infinite-canvas.html",
+  "/plugins/dsh-infinite-canvas/",
+  "/plugins/dsh-infinite_canvas-pro",
+  "/c/dsh-infinite_canvas",
+  "/c/dsh-infinite-canvas",
+  "/plugins/NINKCH/dsh-infinite_canvas",
 ]) {
   const res = await statusOf(path);
   assert(res.res.status === 404, `${path} → 404`);

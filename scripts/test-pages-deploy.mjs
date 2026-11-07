@@ -379,6 +379,140 @@ assert(
 );
 assert(!existsSync(join(ROOT, "c/dsh-media-desk.html")), "no /c/dsh-media-desk page");
 
+const infiniteCanvasHtml = await readFile(join(ROOT, "plugins/dsh-infinite_canvas.html"), "utf8");
+const infiniteCanvasInstall = "dsh plugin --profile web add github:NINKCH/dsh-infinite_canvas";
+const infiniteCanvasPkg = "@ninkch/dsh-infinite-canvas";
+assert(infiniteCanvasHtml.includes("<title>dsh-infinite_canvas</title>"), "dsh-infinite_canvas title is exactly dsh-infinite_canvas");
+assert(
+  infiniteCanvasHtml.includes('<h1 class="page-title">dsh-infinite_canvas</h1>'),
+  "dsh-infinite_canvas h1 is exactly dsh-infinite_canvas"
+);
+assert(
+  infiniteCanvasHtml.includes('<meta property="og:title" content="dsh-infinite_canvas">'),
+  "dsh-infinite_canvas og:title is exactly dsh-infinite_canvas"
+);
+assert(
+  infiniteCanvasHtml.includes('<meta name="twitter:title" content="dsh-infinite_canvas">'),
+  "dsh-infinite_canvas twitter:title is exactly dsh-infinite_canvas"
+);
+assert(
+  infiniteCanvasHtml.includes('<link rel="canonical" href="https://dsplugin.app/plugins/dsh-infinite_canvas">'),
+  "dsh-infinite_canvas canonical"
+);
+assert(!/noindex/i.test(infiniteCanvasHtml), "dsh-infinite_canvas has no noindex");
+assert(
+  infiniteCanvasHtml.includes('data-plugin-id="NINKCH/dsh-infinite_canvas"'),
+  "dsh-infinite_canvas pins catalog id"
+);
+assert(
+  infiniteCanvasHtml.includes(
+    "dsh-infinite_canvas（无限画布）是给 DeepSeek Harness（DSH）的社区插件：在侧栏打开节点式短剧工作室，从一句话灵感走到剧本、分镜、参考素材、多镜头生成与成片剪辑。本页只对应目录 id"
+  ),
+  "dsh-infinite_canvas lead is the signed copy"
+);
+assert(
+  infiniteCanvasHtml.includes("它把 DeepSeek Harness 的右侧边栏变成一块无限画布：用节点串起短剧流水线"),
+  "dsh-infinite_canvas body is the signed copy"
+);
+assert(
+  infiniteCanvasHtml.includes("请仅用于个人学习与研究，内容与素材的版权归权利人所有"),
+  "dsh-infinite_canvas keeps the study/copyright line"
+);
+assert(!infiniteCanvasHtml.includes("本页是占位"), "dsh-infinite_canvas has no stub placeholder");
+assert(!infiniteCanvasHtml.includes("合入备注"), "dsh-infinite_canvas omits the writer note");
+assert(!infiniteCanvasHtml.includes('data-fact="stars"'), "dsh-infinite_canvas has no stars tile");
+assert(infiniteCanvasHtml.includes("https://github.com/NINKCH/dsh-infinite_canvas"), "dsh-infinite_canvas repo link");
+assert(infiniteCanvasHtml.includes('"softwareVersion": "0.20.1"'), "dsh-infinite_canvas softwareVersion is 0.20.1");
+assert(!/"softwareVersion": "(?!0\.20\.1")/.test(infiniteCanvasHtml), "dsh-infinite_canvas has no other softwareVersion");
+assert(infiniteCanvasHtml.includes(infiniteCanvasInstall), "dsh-infinite_canvas install string");
+assert(
+  infiniteCanvasHtml.split(infiniteCanvasInstall).length - 1 === 3,
+  "dsh-infinite_canvas install string appears only in code, FAQ, and FAQ JSON-LD"
+);
+const infiniteCanvasWithoutInstall = infiniteCanvasHtml.split(infiniteCanvasInstall).join("");
+assert(!infiniteCanvasWithoutInstall.includes("dsh plugin"), "no second dsh-infinite_canvas install command");
+assert(!infiniteCanvasWithoutInstall.includes("github:"), "no other github: install target on dsh-infinite_canvas");
+assert(!infiniteCanvasWithoutInstall.includes("--profile"), "no second profile on dsh-infinite_canvas");
+assert(!infiniteCanvasHtml.includes("add dsh-infinite_canvas"), "no short-form add dsh-infinite_canvas");
+assert(!infiniteCanvasHtml.includes("add dsh-infinite-canvas"), "no short-form add dsh-infinite-canvas");
+assert(!infiniteCanvasHtml.includes("--profile desktop"), "no desktop profile on dsh-infinite_canvas");
+assert(!infiniteCanvasHtml.includes("npm install"), "no npm install on dsh-infinite_canvas");
+assert(!infiniteCanvasHtml.includes("<title>dsh-infinite_canvas｜"), "dsh-infinite_canvas title has no Chinese suffix");
+assert(!/<title>[^<]*无限画布/.test(infiniteCanvasHtml), "无限画布 is not in the title");
+assert(!/<h1[^>]*>[^<]*无限画布/.test(infiniteCanvasHtml), "无限画布 is not in the h1");
+assert(!/<title>[^<]*短剧/.test(infiniteCanvasHtml), "短剧 is not in the title");
+assert(!/<h1[^>]*>[^<]*短剧/.test(infiniteCanvasHtml), "短剧 is not in the h1");
+assert(!infiniteCanvasHtml.includes("<title>dsh-infinite-canvas</title>"), "hyphen slug is not the title");
+assert(
+  !infiniteCanvasHtml.includes('<h1 class="page-title">dsh-infinite-canvas</h1>'),
+  "hyphen slug is not the h1"
+);
+assert(
+  !infiniteCanvasHtml.includes("https://dsplugin.app/plugins/dsh-infinite-canvas"),
+  "hyphen slug is not a canonical or url"
+);
+assert(
+  infiniteCanvasHtml.split(infiniteCanvasPkg).length - 1 === 3,
+  "package name appears only as a non-install clarification"
+);
+assert(
+  !infiniteCanvasHtml.split(infiniteCanvasPkg).join("").includes("dsh-infinite-canvas"),
+  "hyphen slug is not used outside the package-name clarification"
+);
+for (const term of [
+  "自媒体",
+  "摸鱼短剧",
+  "TNTest",
+  "Haitang-Hub",
+  "CapCut",
+  "FreeCAD",
+  "NamiDSH",
+  "dsh-game-studio",
+  "下载量",
+  "排名",
+  "官方插件",
+]) {
+  assert(!infiniteCanvasHtml.includes(term), `dsh-infinite_canvas page omits ${term}`);
+}
+const infiniteCanvasMain = infiniteCanvasHtml.split("<main")[1].split("</main>")[0];
+assert(!infiniteCanvasMain.includes('href="/c/'), "dsh-infinite_canvas main has no /c/ CTA");
+assert(!infiniteCanvasMain.includes("官方"), "dsh-infinite_canvas main does not call the plugin 官方");
+const infiniteCanvasLd = JSON.parse(
+  infiniteCanvasHtml.match(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/)[1]
+);
+const infiniteCanvasFaqLd = infiniteCanvasLd["@graph"].find((node) => node["@type"] === "FAQPage");
+const infiniteCanvasFaqHtml = [...infiniteCanvasHtml.matchAll(/<div><dt>(.*?)<\/dt><dd>(.*?)<\/dd><\/div>/gs)].map((m) => ({
+  q: m[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(),
+  a: m[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(),
+}));
+assert(infiniteCanvasFaqLd.mainEntity.length === 4, "dsh-infinite_canvas FAQPage has 4 items");
+assert(infiniteCanvasFaqHtml.length === 4, "dsh-infinite_canvas HTML FAQ has 4 items");
+for (let i = 0; i < 4; i++) {
+  assert(
+    infiniteCanvasFaqHtml[i].q === infiniteCanvasFaqLd.mainEntity[i].name,
+    `dsh-infinite_canvas FAQ ${i + 1} question matches JSON-LD`
+  );
+  assert(
+    infiniteCanvasFaqHtml[i].a === infiniteCanvasFaqLd.mainEntity[i].acceptedAnswer.text,
+    `dsh-infinite_canvas FAQ ${i + 1} answer matches JSON-LD`
+  );
+}
+assert(
+  infiniteCanvasFaqLd.mainEntity[1].acceptedAnswer.text.startsWith(infiniteCanvasInstall),
+  "dsh-infinite_canvas FAQPage answer 2 starts with the install command"
+);
+assert(
+  sitemapXml.includes("<loc>https://dsplugin.app/plugins/dsh-infinite_canvas</loc>"),
+  "sitemap lists /plugins/dsh-infinite_canvas"
+);
+assert(
+  /<loc>https:\/\/dsplugin\.app\/plugins\/dsh-infinite_canvas<\/loc>\s*<lastmod>2026-11-07<\/lastmod>/.test(sitemapXml),
+  "sitemap lastmod for dsh-infinite_canvas is 2026-11-07"
+);
+assert(!sitemapXml.includes("dsh-infinite-canvas"), "sitemap has no hyphen lookalike");
+assert(!existsSync(join(ROOT, "plugins/dsh-infinite-canvas.html")), "no hyphen slug page");
+assert(!existsSync(join(ROOT, "c/dsh-infinite_canvas.html")), "no /c/dsh-infinite_canvas page");
+
 const outDir = await mkdtemp(join(tmpdir(), "pages-out-"));
 const wholeDir = await mkdtemp(join(tmpdir(), "pages-whole-"));
 try {
@@ -436,6 +570,13 @@ try {
   );
   assert(!mediaDeskLanding.includes("本页是占位"), "uploaded dsh-media-desk landing is not a stub");
   assert(mediaDeskLanding.includes(mediaDeskInstall), "uploaded dsh-media-desk keeps the install command");
+  const infiniteCanvasLanding = await readFile(join(outDir, "plugins/dsh-infinite_canvas.html"), "utf8");
+  assert(
+    infiniteCanvasLanding.includes('href="https://dsplugin.app/plugins/dsh-infinite_canvas"'),
+    "uploaded dsh-infinite_canvas landing keeps canonical"
+  );
+  assert(!infiniteCanvasLanding.includes("本页是占位"), "uploaded dsh-infinite_canvas landing is not a stub");
+  assert(infiniteCanvasLanding.includes(infiniteCanvasInstall), "uploaded dsh-infinite_canvas keeps the install command");
 
   const whole = await preparePagesDeploy({
     root: ROOT,
