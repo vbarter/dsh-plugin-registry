@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-08T01:38:12.148Z",
+  "generatedAt": "2026-11-08T07:07:28.698Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 27896,
-    "curated": 576,
+    "curated": 577,
     "automaticallyDiscovered": 27301,
-    "patchFilesConfirmed": 24461,
-    "published": 27877,
+    "patchFilesConfirmed": 24462,
+    "published": 27878,
     "manifestRejected": 3395,
     "pendingReview": 3395,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -924090,6 +924090,39 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "NorthGateChat/dsh-think-game",
+      "name": "dsh-think-game",
+      "owner": "NorthGateChat",
+      "url": "https://github.com/NorthGateChat/dsh-think-game",
+      "description": {
+        "zh": "Inline mini-game arcade for DeepSeek Harness streaming reasoning / 流式思考下方的轻量小游戏（七款游戏，自动暂停/淡出）",
+        "en": "Inline mini-game arcade for DeepSeek Harness streaming reasoning / 流式思考下方的轻量小游戏（七款游戏，自动暂停/淡出）"
+      },
+      "category": "ui",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-11-08T07:07:16Z",
+      "addedAt": "2026-11-08",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:NorthGateChat/dsh-think-game",
+      "archived": false,
+      "topics": [
+        "arcade",
+        "deepseek-harness",
+        "dsh-plugin",
+        "mini-games",
+        "ui"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/258409091?v=4"
     }
   ]
 }
