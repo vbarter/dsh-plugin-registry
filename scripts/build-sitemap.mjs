@@ -33,6 +33,7 @@ const PAGES = [
   ["/plugins/dsh-hongguo", "2026-11-06"],
   ["/plugins/dsh-media-desk", "2026-11-07"],
   ["/plugins/dsh-infinite_canvas", "2026-11-07"],
+  ["/plugins/agentero-dsh-plugin", "2026-11-09"],
 ];
 function urlEntry(loc, lastmod) {
   return "  <url>\n    <loc>" + loc + "</loc>\n    <lastmod>" + lastmod + "</lastmod>\n    <changefreq>weekly</changefreq>\n  </url>\n";

@@ -37,6 +37,7 @@ const EXACT = new Set([
 // Underscore is part of the slug charset: dsh-infinite_canvas matches the github path.
 // Hyphen lookalikes are not listed, so they stay 404 + noindex.
 const PLUGIN_SLUGS = new Set([
+  "agentero-dsh-plugin",
   "ds-bot",
   "dsh-boot-animation",
   "dsh-cc-tui",

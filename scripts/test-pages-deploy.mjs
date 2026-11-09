@@ -513,6 +513,157 @@ assert(!sitemapXml.includes("dsh-infinite-canvas"), "sitemap has no hyphen looka
 assert(!existsSync(join(ROOT, "plugins/dsh-infinite-canvas.html")), "no hyphen slug page");
 assert(!existsSync(join(ROOT, "c/dsh-infinite_canvas.html")), "no /c/dsh-infinite_canvas page");
 
+const agenteroHtml = await readFile(join(ROOT, "plugins/agentero-dsh-plugin.html"), "utf8");
+const agenteroInstall = "dsh plugin --profile web add github:poco-ai/agentero-dsh-plugin";
+const agenteroMeta =
+  "agentero-dsh-plugin 是 DeepSeek Harness 的社区科研文献库插件：搜论文、带出处、审批入库，并把笔记线索交给同会话其他插件（本地 Agentero Vault）。目录 id poco-ai/agentero-dsh-plugin。安装：dsh plugin --profile web add github:poco-ai/agentero-dsh-plugin。";
+const agenteroPkg = "@poco-ai/agentero-dsh";
+assert(agenteroHtml.includes("<title>agentero-dsh-plugin</title>"), "agentero-dsh-plugin title is exactly agentero-dsh-plugin");
+assert(
+  agenteroHtml.includes('<h1 class="page-title">agentero-dsh-plugin</h1>'),
+  "agentero-dsh-plugin h1 is exactly agentero-dsh-plugin"
+);
+assert(
+  agenteroHtml.includes('<meta property="og:title" content="agentero-dsh-plugin">'),
+  "agentero-dsh-plugin og:title is exactly agentero-dsh-plugin"
+);
+assert(
+  agenteroHtml.includes('<meta name="twitter:title" content="agentero-dsh-plugin">'),
+  "agentero-dsh-plugin twitter:title is exactly agentero-dsh-plugin"
+);
+assert(
+  agenteroHtml.includes('<link rel="canonical" href="https://dsplugin.app/plugins/agentero-dsh-plugin">'),
+  "agentero-dsh-plugin canonical"
+);
+assert(!/noindex/i.test(agenteroHtml), "agentero-dsh-plugin has no noindex");
+assert(
+  agenteroHtml.includes('data-plugin-id="poco-ai/agentero-dsh-plugin"'),
+  "agentero-dsh-plugin pins catalog id"
+);
+assert(
+  agenteroHtml.includes(`<meta name="description" content="${agenteroMeta}">`),
+  "agentero-dsh-plugin meta description is the signed suggestion"
+);
+assert(
+  agenteroHtml.includes(`<meta property="og:description" content="${agenteroMeta}">`),
+  "agentero-dsh-plugin og:description matches the signed meta"
+);
+assert(
+  agenteroHtml.includes(`<meta name="twitter:description" content="${agenteroMeta}">`),
+  "agentero-dsh-plugin twitter:description matches the signed meta"
+);
+assert(
+  agenteroHtml.includes(
+    "agentero-dsh-plugin（科研文献库）是给 DeepSeek Harness（DSH）的社区插件：在本地 Agentero Vault 里搜论文、带出处回答、审批后入库，并把笔记线索交给同会话其他插件。本页只对应目录 id"
+  ),
+  "agentero-dsh-plugin lead is the signed copy"
+);
+assert(
+  agenteroHtml.includes("它把本地优先的科研文献库带进 DeepSeek Harness：聊天在中间，论文与 PDF 在侧栏。"),
+  "agentero-dsh-plugin body is the signed copy"
+);
+assert(
+  agenteroHtml.includes("请仅用于个人学习与研究，论文与素材的版权归权利人所有"),
+  "agentero-dsh-plugin keeps the study/copyright line"
+);
+assert(!agenteroHtml.includes("本页是占位"), "agentero-dsh-plugin has no stub placeholder");
+assert(!agenteroHtml.includes("合入备注"), "agentero-dsh-plugin omits the writer note");
+assert(!agenteroHtml.includes('data-fact="stars"'), "agentero-dsh-plugin has no stars tile");
+assert(agenteroHtml.includes("https://github.com/poco-ai/agentero-dsh-plugin"), "agentero-dsh-plugin repo link");
+assert(agenteroHtml.includes('"softwareVersion": "0.1.7"'), "agentero-dsh-plugin softwareVersion is 0.1.7");
+assert(!/"softwareVersion": "(?!0\.1\.7")/.test(agenteroHtml), "agentero-dsh-plugin has no other softwareVersion");
+assert(agenteroHtml.includes(agenteroInstall), "agentero-dsh-plugin install string");
+assert(
+  agenteroHtml.split(agenteroInstall).length - 1 === 7,
+  "agentero-dsh-plugin install string is the signed meta (meta/og/twitter/WebSite) plus code, FAQ, and FAQ JSON-LD"
+);
+const agenteroWithoutInstall = agenteroHtml.split(agenteroInstall).join("");
+assert(!agenteroWithoutInstall.includes("dsh plugin"), "no second agentero-dsh-plugin install command");
+assert(!agenteroWithoutInstall.includes("github:"), "no other github: install target on agentero-dsh-plugin");
+assert(!agenteroWithoutInstall.includes("--profile"), "no second profile on agentero-dsh-plugin");
+assert(!agenteroHtml.includes("add agentero-dsh"), "no short-form add agentero-dsh");
+assert(!agenteroHtml.includes("add agentero-dsh-plugin"), "no short-form add agentero-dsh-plugin");
+assert(!agenteroHtml.includes("--profile desktop"), "no desktop profile on agentero-dsh-plugin");
+assert(!agenteroHtml.includes("npm install"), "no npm install on agentero-dsh-plugin");
+assert(!agenteroHtml.includes("npm i "), "no npm i on agentero-dsh-plugin");
+assert(!agenteroHtml.includes("<title>agentero-dsh-plugin｜"), "agentero-dsh-plugin title has no Chinese suffix");
+assert(!/<title>[^<]*科研文献库/.test(agenteroHtml), "科研文献库 is not in the title");
+assert(!/<h1[^>]*>[^<]*科研文献库/.test(agenteroHtml), "科研文献库 is not in the h1");
+assert(!/<title>[^<]*搜论文/.test(agenteroHtml), "搜论文 is not in the title");
+assert(!/<h1[^>]*>[^<]*搜论文/.test(agenteroHtml), "搜论文 is not in the h1");
+assert(!/<title>agentero<\/title>/.test(agenteroHtml), "bare agentero is not the title");
+assert(!agenteroHtml.includes('<h1 class="page-title">agentero</h1>'), "bare agentero is not the h1");
+assert(
+  agenteroHtml.split(agenteroPkg).length - 1 === 3,
+  "scoped package name appears only as a non-install clarification"
+);
+assert(
+  agenteroHtml.split(agenteroPkg).join("").split("agentero-dsh-plugin").join("").split("agentero-dsh").length - 1 === 1,
+  "short agentero-dsh appears only in the body clarification"
+);
+assert(
+  agenteroHtml.includes("（短名 <code>agentero-dsh</code>）不是安装命令"),
+  "short name is marked as not the install command"
+);
+for (const term of [
+  "yellkiin",
+  "dsh-agentero-annotations",
+  "web_search",
+  "Bing",
+  "bing",
+  "免费搜索",
+  "搜索插件",
+  "下载量",
+  "排名",
+  "官方插件",
+  "合入备注",
+]) {
+  assert(!agenteroHtml.includes(term), `agentero-dsh-plugin page omits ${term}`);
+}
+const agenteroMain = agenteroHtml.split("<main")[1].split("</main>")[0];
+assert(!agenteroMain.includes('href="/c/'), "agentero-dsh-plugin main has no /c/ CTA");
+assert(!agenteroMain.includes("官方"), "agentero-dsh-plugin main does not call the plugin 官方");
+const agenteroLd = JSON.parse(
+  agenteroHtml.match(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/)[1]
+);
+const agenteroFaqLd = agenteroLd["@graph"].find((node) => node["@type"] === "FAQPage");
+const agenteroFaqHtml = [...agenteroHtml.matchAll(/<div><dt>(.*?)<\/dt><dd>(.*?)<\/dd><\/div>/gs)].map((m) => ({
+  q: m[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(),
+  a: m[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(),
+}));
+assert(agenteroFaqLd.mainEntity.length === 4, "agentero-dsh-plugin FAQPage has 4 items");
+assert(agenteroFaqHtml.length === 4, "agentero-dsh-plugin HTML FAQ has 4 items");
+for (let i = 0; i < 4; i++) {
+  assert(
+    agenteroFaqHtml[i].q === agenteroFaqLd.mainEntity[i].name,
+    `agentero-dsh-plugin FAQ ${i + 1} question matches JSON-LD`
+  );
+  assert(
+    agenteroFaqHtml[i].a === agenteroFaqLd.mainEntity[i].acceptedAnswer.text,
+    `agentero-dsh-plugin FAQ ${i + 1} answer matches JSON-LD`
+  );
+}
+assert(
+  agenteroFaqLd.mainEntity[1].acceptedAnswer.text.startsWith(agenteroInstall),
+  "agentero-dsh-plugin FAQPage answer 2 starts with the install command"
+);
+assert(
+  sitemapXml.includes("<loc>https://dsplugin.app/plugins/agentero-dsh-plugin</loc>"),
+  "sitemap lists /plugins/agentero-dsh-plugin"
+);
+assert(
+  /<loc>https:\/\/dsplugin\.app\/plugins\/agentero-dsh-plugin<\/loc>\s*<lastmod>2026-11-09<\/lastmod>/.test(sitemapXml),
+  "sitemap lastmod for agentero-dsh-plugin is 2026-11-09"
+);
+assert(!sitemapXml.includes("https://dsplugin.app/plugins/agentero-dsh<"), "sitemap has no agentero-dsh lookalike");
+assert(!sitemapXml.includes("https://dsplugin.app/plugins/dsh-agentero"), "sitemap has no dsh-agentero lookalike");
+assert(!sitemapXml.includes("https://dsplugin.app/plugins/agentero<"), "sitemap has no bare agentero lookalike");
+assert(!sitemapXml.includes("https://dsplugin.app/c/agentero"), "sitemap has no /c/agentero URL");
+assert(!existsSync(join(ROOT, "plugins/agentero-dsh.html")), "no /plugins/agentero-dsh page");
+assert(!existsSync(join(ROOT, "plugins/dsh-agentero.html")), "no /plugins/dsh-agentero page");
+assert(!existsSync(join(ROOT, "plugins/agentero.html")), "no /plugins/agentero page");
+assert(!existsSync(join(ROOT, "c/agentero-dsh-plugin.html")), "no /c/agentero-dsh-plugin page");
+
 const outDir = await mkdtemp(join(tmpdir(), "pages-out-"));
 const wholeDir = await mkdtemp(join(tmpdir(), "pages-whole-"));
 try {
@@ -577,6 +728,14 @@ try {
   );
   assert(!infiniteCanvasLanding.includes("本页是占位"), "uploaded dsh-infinite_canvas landing is not a stub");
   assert(infiniteCanvasLanding.includes(infiniteCanvasInstall), "uploaded dsh-infinite_canvas keeps the install command");
+  const agenteroLanding = await readFile(join(outDir, "plugins/agentero-dsh-plugin.html"), "utf8");
+  assert(
+    agenteroLanding.includes('href="https://dsplugin.app/plugins/agentero-dsh-plugin"'),
+    "uploaded agentero-dsh-plugin landing keeps canonical"
+  );
+  assert(!agenteroLanding.includes("本页是占位"), "uploaded agentero-dsh-plugin landing is not a stub");
+  assert(agenteroLanding.includes(agenteroInstall), "uploaded agentero-dsh-plugin keeps the install command");
+  assert(!existsSync(join(outDir, "data/plugins.json")), "upload still omits data/plugins.json");
 
   const whole = await preparePagesDeploy({
     root: ROOT,
