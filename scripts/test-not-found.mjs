@@ -74,6 +74,7 @@ for (const path of ["/c/vision.html", "/c/web-ui/", "/c/tui.html"]) {
 const modlens = await statusOf("/plugins/modlens");
 assert(modlens.res.status === 200, "/plugins/modlens → 200");
 for (const path of [
+  "/plugins/agentero-dsh-plugin",
   "/plugins/dsh-web-ui",
   "/plugins/dsh-cc-tui",
   "/plugins/dsh-boot-animation",
@@ -114,6 +115,8 @@ for (const path of [
   "/plugins/ds-bot/",
   "/plugins/dsh-scriptor.html",
   "/plugins/dsh-scriptor/",
+  "/plugins/agentero-dsh-plugin.html",
+  "/plugins/agentero-dsh-plugin/",
 ]) {
   const res = await statusOf(path);
   assert(res.res.status === 200, `${path} → 200`);
@@ -307,6 +310,34 @@ for (const path of [
   "/c/dsh-infinite_canvas",
   "/c/dsh-infinite-canvas",
   "/plugins/NINKCH/dsh-infinite_canvas",
+]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 404, `${path} → 404`);
+  assert(res.res.headers.get("x-robots-tag") === "noindex", `${path} noindex`);
+}
+for (const path of ["/plugins/agentero-dsh-plugin", "/plugins/agentero-dsh-plugin.html", "/plugins/agentero-dsh-plugin/"]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 200, `${path} → 200`);
+  assert(res.res.headers.get("x-robots-tag") == null, `${path} no noindex`);
+}
+const agenteroCase = await statusOf("/plugins/Agentero-Dsh-Plugin");
+assert(agenteroCase.res.status === 404, "/plugins/Agentero-Dsh-Plugin → 404");
+assert(agenteroCase.res.headers.get("x-robots-tag") === "noindex", "/plugins/Agentero-Dsh-Plugin noindex");
+const agenteroUpper = await statusOf("/plugins/AGENTERO-DSH-PLUGIN");
+assert(agenteroUpper.res.status === 404, "/plugins/AGENTERO-DSH-PLUGIN → 404");
+assert(agenteroUpper.res.headers.get("x-robots-tag") === "noindex", "/plugins/AGENTERO-DSH-PLUGIN noindex");
+for (const path of [
+  "/plugins/agentero-dsh",
+  "/plugins/agentero-dsh.html",
+  "/plugins/agentero-dsh/",
+  "/plugins/dsh-agentero",
+  "/plugins/dsh-agentero.html",
+  "/plugins/agentero",
+  "/plugins/agentero.html",
+  "/plugins/agentero_dsh_plugin",
+  "/plugins/agentero-dsh-plugin-pro",
+  "/c/agentero-dsh-plugin",
+  "/plugins/poco-ai/agentero-dsh-plugin",
 ]) {
   const res = await statusOf(path);
   assert(res.res.status === 404, `${path} → 404`);
