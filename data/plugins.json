@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-09T10:02:44.434Z",
+  "generatedAt": "2026-11-09T20:14:23.299Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 28525,
-    "curated": 576,
+    "curated": 577,
     "automaticallyDiscovered": 27968,
-    "patchFilesConfirmed": 25099,
-    "published": 28544,
+    "patchFilesConfirmed": 25100,
+    "published": 28545,
     "manifestRejected": 3424,
     "pendingReview": 3424,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -946450,6 +946450,37 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "cyrus-xc/better-ego-browser",
+      "name": "@cyrusxc5/better-ego-browser",
+      "owner": "cyrus-xc",
+      "url": "https://github.com/cyrus-xc/better-ego-browser",
+      "description": {
+        "zh": "better-ego-browser: connect DeepSeek Harness to the official Windows ego lite app over authenticated loopback HTTP",
+        "en": "better-ego-browser: connect DeepSeek Harness to the official Windows ego lite app over authenticated loopback HTTP"
+      },
+      "category": "tools",
+      "stars": 1,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-11-09T20:08:30Z",
+      "addedAt": "2026-11-09",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:cyrus-xc/better-ego-browser",
+      "archived": false,
+      "topics": [
+        "deepseek-harness",
+        "dsh-plugin",
+        "ego-browser"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/59599375?v=4"
     }
   ]
 }
