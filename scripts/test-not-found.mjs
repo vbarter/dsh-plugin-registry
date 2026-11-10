@@ -78,6 +78,7 @@ for (const path of [
   "/plugins/dsh-providers-hub",
   "/plugins/dsh-ios",
   "/plugins/eac-design-world",
+  "/plugins/dsh-wallpaper-engine",
   "/plugins/dsh-web-ui",
   "/plugins/dsh-cc-tui",
   "/plugins/dsh-boot-animation",
@@ -126,6 +127,8 @@ for (const path of [
   "/plugins/dsh-ios/",
   "/plugins/eac-design-world.html",
   "/plugins/eac-design-world/",
+  "/plugins/dsh-wallpaper-engine.html",
+  "/plugins/dsh-wallpaper-engine/",
 ]) {
   const res = await statusOf(path);
   assert(res.res.status === 200, `${path} → 200`);
@@ -435,6 +438,34 @@ for (const path of [
   "/plugins/eac-pack",
   "/plugins/eac-pack.html",
   "/c/eac-design-world",
+]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 404, `${path} → 404`);
+  assert(res.res.headers.get("x-robots-tag") === "noindex", `${path} noindex`);
+}
+for (const path of ["/plugins/dsh-wallpaper-engine", "/plugins/dsh-wallpaper-engine.html", "/plugins/dsh-wallpaper-engine/"]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 200, `${path} → 200`);
+  assert(res.res.headers.get("x-robots-tag") == null, `${path} no noindex`);
+}
+const wallpaperUpper = await statusOf("/plugins/DSH-wallpaper-engine");
+assert(wallpaperUpper.res.status === 404, "/plugins/DSH-wallpaper-engine → 404");
+assert(wallpaperUpper.res.headers.get("x-robots-tag") === "noindex", "/plugins/DSH-wallpaper-engine noindex");
+const wallpaperMixed = await statusOf("/plugins/dsh-Wallpaper-Engine");
+assert(wallpaperMixed.res.status === 404, "/plugins/dsh-Wallpaper-Engine → 404");
+assert(wallpaperMixed.res.headers.get("x-robots-tag") === "noindex", "/plugins/dsh-Wallpaper-Engine noindex");
+for (const path of [
+  "/plugins/dsh-plugin-wallpaper-engine",
+  "/plugins/dsh-plugin-wallpaper-engine.html",
+  "/plugins/dsh-plugin-wallpaper-engine/",
+  "/plugins/wallpaper-engine",
+  "/plugins/wallpaper-engine.html",
+  "/plugins/wallpaper-engine/",
+  "/plugins/elysia395-dsh-wallpaper-engine",
+  "/plugins/elysia395-dsh-wallpaper-engine.html",
+  "/c/dsh-wallpaper-engine",
+  "/c/dsh-plugin-wallpaper-engine",
+  "/c/wallpaper-engine",
 ]) {
   const res = await statusOf(path);
   assert(res.res.status === 404, `${path} → 404`);

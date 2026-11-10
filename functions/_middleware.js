@@ -53,6 +53,7 @@ const PLUGIN_SLUGS = new Set([
   "dsh-providers-hub",
   "dsh-scriptor",
   "dsh-tool-12306",
+  "dsh-wallpaper-engine",
   "dsh-web-ui",
   "eac-design-world",
   "modlens",

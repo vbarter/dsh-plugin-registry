@@ -1064,6 +1064,155 @@ assert(!existsSync(join(ROOT, "plugins/EAC-Pack.html")), "no /plugins/EAC-Pack p
 assert(!existsSync(join(ROOT, "plugins/eac-pack.html")), "no /plugins/eac-pack page");
 assert(!existsSync(join(ROOT, "c/eac-design-world.html")), "no /c/eac-design-world page");
 
+const wallHtml = await readFile(join(ROOT, "plugins/dsh-wallpaper-engine.html"), "utf8");
+const wallInstall = "dsh plugin --profile web add github:elysia395/dsh-wallpaper-engine";
+const wallMeta =
+  "dsh-wallpaper-engine 是 DeepSeek Harness 的社区插件：把本机 Wallpaper Engine 里的 Scene、Web 或视频内容铺到 DSH 网页会话界面背后使用。目录 id elysia395/dsh-wallpaper-engine。安装：dsh plugin --profile web add github:elysia395/dsh-wallpaper-engine。";
+assert(wallHtml.includes("<title>dsh-wallpaper-engine</title>"), "dsh-wallpaper-engine title is exactly dsh-wallpaper-engine");
+assert(wallHtml.includes('<h1 class="page-title">dsh-wallpaper-engine</h1>'), "dsh-wallpaper-engine h1 is exactly dsh-wallpaper-engine");
+assert(
+  wallHtml.includes('<meta property="og:title" content="dsh-wallpaper-engine">'),
+  "dsh-wallpaper-engine og:title is exactly dsh-wallpaper-engine"
+);
+assert(
+  wallHtml.includes('<meta name="twitter:title" content="dsh-wallpaper-engine">'),
+  "dsh-wallpaper-engine twitter:title is exactly dsh-wallpaper-engine"
+);
+assert(
+  wallHtml.includes('<link rel="canonical" href="https://dsplugin.app/plugins/dsh-wallpaper-engine">'),
+  "dsh-wallpaper-engine canonical is self"
+);
+assert(!/noindex/i.test(wallHtml), "dsh-wallpaper-engine has no noindex");
+assert(wallHtml.includes('data-plugin-id="elysia395/dsh-wallpaper-engine"'), "dsh-wallpaper-engine pins catalog id");
+assert(wallHtml.includes(`<meta name="description" content="${wallMeta}">`), "dsh-wallpaper-engine meta description is the signed suggestion");
+assert(wallHtml.includes(`<meta property="og:description" content="${wallMeta}">`), "dsh-wallpaper-engine og:description matches the signed meta");
+assert(
+  wallHtml.includes(`<meta name="twitter:description" content="${wallMeta}">`),
+  "dsh-wallpaper-engine twitter:description matches the signed meta"
+);
+assert(
+  wallHtml.includes(
+    "dsh-wallpaper-engine（Wallpaper Engine 背景接入）是给 DeepSeek Harness（DSH）的社区插件：把本机 Wallpaper Engine 里的 Scene、Web 或视频内容，铺到 DSH 网页会话界面背后使用。使用前需要本机已有 Wallpaper Engine 的内容库。本页只对应目录 id"
+  ),
+  "dsh-wallpaper-engine lead is the signed copy"
+);
+assert(
+  wallHtml.includes("它读取本机已有的 Wallpaper Engine 内容库，把其中的 Scene、Web 或视频铺到 DeepSeek Harness 网页会话界面背后，并可在设置里筛选、轮播或调整显示。"),
+  "dsh-wallpaper-engine body is the signed copy"
+);
+assert(
+  wallHtml.includes("请仅用于个人学习与研究；内容与素材的版权归权利人所有。"),
+  "dsh-wallpaper-engine keeps the study/copyright line"
+);
+assert(
+  wallHtml.includes("仓库 README 里还有短式包名、其它 profile 与源码安装方式，那些都不是本页的安装命令"),
+  "dsh-wallpaper-engine mentions other install channels only as not this page's command"
+);
+assert(!wallHtml.includes("本页是占位"), "dsh-wallpaper-engine has no stub placeholder");
+assert(!wallHtml.includes("合入备注"), "dsh-wallpaper-engine omits the writer note");
+assert(!wallHtml.includes('data-fact="stars"'), "dsh-wallpaper-engine has no stars tile");
+assert(wallHtml.includes("https://github.com/elysia395/dsh-wallpaper-engine"), "dsh-wallpaper-engine repo link");
+assert(wallHtml.includes('"softwareVersion": "1.4.2"'), "dsh-wallpaper-engine softwareVersion is 1.4.2");
+assert(!/"softwareVersion": "(?!1\.4\.2")/.test(wallHtml), "dsh-wallpaper-engine has no other softwareVersion");
+assert(wallHtml.includes(wallInstall), "dsh-wallpaper-engine install string");
+assert(
+  wallHtml.split(wallInstall).length - 1 === 7,
+  "dsh-wallpaper-engine install string is the signed meta (meta/og/twitter/WebSite) plus code, FAQ, and FAQ JSON-LD"
+);
+const wallWithoutInstall = wallHtml.split(wallInstall).join("");
+assert(!wallWithoutInstall.includes("dsh plugin"), "no second dsh-wallpaper-engine install command");
+assert(!wallWithoutInstall.includes("github:"), "no other github: install target on dsh-wallpaper-engine");
+assert(!wallWithoutInstall.includes("--profile"), "no second profile on dsh-wallpaper-engine");
+assert(!wallHtml.includes("add dsh-wallpaper-engine"), "no short-form add dsh-wallpaper-engine");
+assert(!wallHtml.includes("add dsh-plugin-wallpaper-engine"), "no short-form add dsh-plugin-wallpaper-engine");
+assert(!wallHtml.includes("dsh-plugin-wallpaper-engine"), "catalog package name dsh-plugin-wallpaper-engine is not on the page");
+assert(!wallHtml.includes("@dsh-use/wallpaper-engine"), "npm scope @dsh-use/wallpaper-engine is not on the page");
+assert(!wallHtml.includes("dsh-use-wallpaper"), "dsh-use-wallpaper is not on the page");
+assert(!wallHtml.includes("--profile desktop"), "no desktop profile on dsh-wallpaper-engine");
+assert(!wallHtml.includes("npm install"), "no npm install on dsh-wallpaper-engine");
+assert(!wallHtml.includes("npm i "), "no npm i on dsh-wallpaper-engine");
+assert(!wallHtml.includes("install-source.mjs"), "no install-source.mjs on dsh-wallpaper-engine");
+assert(!wallHtml.includes("<title>dsh-wallpaper-engine｜"), "dsh-wallpaper-engine title has no Chinese suffix");
+assert(!/<title>[^<]*背景接入/.test(wallHtml), "背景接入 is not in the title");
+assert(!/<h1[^>]*>[^<]*背景接入/.test(wallHtml), "背景接入 is not in the h1");
+assert(!/<title>[^<]*Wallpaper Engine/.test(wallHtml), "Wallpaper Engine is not in the title");
+assert(!/<h1[^>]*>[^<]*Wallpaper Engine/.test(wallHtml), "Wallpaper Engine is not in the h1");
+assert(!/<title>wallpaper-engine<\/title>/.test(wallHtml), "bare wallpaper-engine is not the title");
+assert(!wallHtml.includes('<h1 class="page-title">wallpaper-engine</h1>'), "bare wallpaper-engine is not the h1");
+assert(!/<title>dsh-plugin-wallpaper-engine<\/title>/.test(wallHtml), "dsh-plugin-wallpaper-engine is not the title");
+assert(!wallHtml.includes('<h1 class="page-title">dsh-plugin-wallpaper-engine</h1>'), "dsh-plugin-wallpaper-engine is not the h1");
+for (const term of [
+  "壁纸",
+  "皮肤",
+  "换肤",
+  "液态玻璃",
+  "开机动画",
+  "Magpie",
+  "magpie",
+  "DPH-1121",
+  "drmi5446",
+  "sakuraaa667",
+  "yu502950715yang",
+  "下载量",
+  "排名",
+  "赞赏",
+  "打赏",
+  "官方插件",
+  "合入备注",
+]) {
+  assert(!wallHtml.includes(term), `dsh-wallpaper-engine page omits ${term}`);
+}
+const wallMain = wallHtml.split("<main")[1].split("</main>")[0];
+assert(!wallMain.includes('href="/c/'), "dsh-wallpaper-engine main has no /c/ CTA");
+assert(!wallMain.includes("官方"), "dsh-wallpaper-engine main does not call the plugin 官方");
+const wallLd = JSON.parse(wallHtml.match(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/)[1]);
+const wallFaqLd = wallLd["@graph"].find((node) => node["@type"] === "FAQPage");
+const wallAppLd = wallLd["@graph"].find((node) => node["@type"] === "SoftwareApplication");
+const wallCrumbLd = wallLd["@graph"].find((node) => node["@type"] === "BreadcrumbList");
+const wallSiteLd = wallLd["@graph"].find((node) => node["@type"] === "WebSite");
+assert(wallAppLd.name === "dsh-wallpaper-engine", "SoftwareApplication name is dsh-wallpaper-engine");
+assert(wallAppLd.softwareVersion === "1.4.2", "SoftwareApplication softwareVersion is 1.4.2");
+assert(wallCrumbLd.itemListElement[1].name === "dsh-wallpaper-engine", "BreadcrumbList name is dsh-wallpaper-engine");
+assert(wallSiteLd.description === wallMeta, "WebSite JSON-LD description is the signed meta");
+const wallFaqHtml = [...wallHtml.matchAll(/<div><dt>(.*?)<\/dt><dd>(.*?)<\/dd><\/div>/gs)].map((m) => ({
+  q: m[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(),
+  a: m[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(),
+}));
+assert(wallFaqLd.mainEntity.length === 4, "dsh-wallpaper-engine FAQPage has 4 items");
+assert(wallFaqHtml.length === 4, "dsh-wallpaper-engine HTML FAQ has 4 items");
+for (let i = 0; i < 4; i++) {
+  assert(wallFaqHtml[i].q === wallFaqLd.mainEntity[i].name, `dsh-wallpaper-engine FAQ ${i + 1} question matches JSON-LD`);
+  assert(
+    wallFaqHtml[i].a === wallFaqLd.mainEntity[i].acceptedAnswer.text,
+    `dsh-wallpaper-engine FAQ ${i + 1} answer matches JSON-LD`
+  );
+}
+assert(
+  wallFaqLd.mainEntity[1].acceptedAnswer.text.startsWith(wallInstall),
+  "dsh-wallpaper-engine FAQPage answer 2 starts with the install command"
+);
+assert(
+  sitemapXml.includes("<loc>https://dsplugin.app/plugins/dsh-wallpaper-engine</loc>"),
+  "sitemap lists /plugins/dsh-wallpaper-engine"
+);
+assert(
+  /<loc>https:\/\/dsplugin\.app\/plugins\/dsh-wallpaper-engine<\/loc>\s*<lastmod>2026-11-11<\/lastmod>/.test(sitemapXml),
+  "sitemap lastmod for dsh-wallpaper-engine is 2026-11-11"
+);
+assert(!sitemapXml.includes("dsh-plugin-wallpaper-engine"), "sitemap has no dsh-plugin-wallpaper-engine");
+assert(!sitemapXml.includes("https://dsplugin.app/plugins/wallpaper-engine"), "sitemap has no bare wallpaper-engine");
+assert(!sitemapXml.includes("https://dsplugin.app/c/dsh-wallpaper-engine"), "sitemap has no /c/dsh-wallpaper-engine URL");
+assert(!sitemapXml.includes("https://dsplugin.app/c/wallpaper-engine"), "sitemap has no /c/wallpaper-engine URL");
+assert(!sitemapXml.includes("elysia395-dsh-wallpaper-engine"), "sitemap has no owner-hyphen lookalike");
+assert(!sitemapXml.includes("DSH-wallpaper-engine"), "sitemap has no uppercase DSH-wallpaper-engine");
+assert(!sitemapXml.includes("dsh-Wallpaper-Engine"), "sitemap has no mixed-case dsh-Wallpaper-Engine");
+assert(!existsSync(join(ROOT, "plugins/dsh-plugin-wallpaper-engine.html")), "no /plugins/dsh-plugin-wallpaper-engine page");
+assert(!existsSync(join(ROOT, "plugins/wallpaper-engine.html")), "no /plugins/wallpaper-engine page");
+assert(!existsSync(join(ROOT, "plugins/elysia395-dsh-wallpaper-engine.html")), "no owner-hyphen wallpaper page");
+assert(!existsSync(join(ROOT, "c/dsh-wallpaper-engine.html")), "no /c/dsh-wallpaper-engine page");
+assert(!existsSync(join(ROOT, "c/dsh-plugin-wallpaper-engine.html")), "no /c/dsh-plugin-wallpaper-engine page");
+assert(!existsSync(join(ROOT, "c/wallpaper-engine.html")), "no /c/wallpaper-engine page");
+
 const outDir = await mkdtemp(join(tmpdir(), "pages-out-"));
 const wholeDir = await mkdtemp(join(tmpdir(), "pages-whole-"));
 try {
@@ -1153,6 +1302,13 @@ try {
   );
   assert(!eacLanding.includes("本页是占位"), "uploaded eac-design-world landing is not a stub");
   assert(eacLanding.includes(eacInstall), "uploaded eac-design-world keeps the install command");
+  const wallLanding = await readFile(join(outDir, "plugins/dsh-wallpaper-engine.html"), "utf8");
+  assert(
+    wallLanding.includes('href="https://dsplugin.app/plugins/dsh-wallpaper-engine"'),
+    "uploaded dsh-wallpaper-engine landing keeps canonical"
+  );
+  assert(!wallLanding.includes("本页是占位"), "uploaded dsh-wallpaper-engine landing is not a stub");
+  assert(wallLanding.includes(wallInstall), "uploaded dsh-wallpaper-engine keeps the install command");
   assert(!existsSync(join(outDir, "data/plugins.json")), "upload still omits data/plugins.json");
 
   const whole = await preparePagesDeploy({
