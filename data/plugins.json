@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-10T04:18:08.347Z",
+  "generatedAt": "2026-11-10T09:22:56.932Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 28811,
-    "curated": 576,
+    "curated": 577,
     "automaticallyDiscovered": 28281,
-    "patchFilesConfirmed": 25393,
-    "published": 28857,
+    "patchFilesConfirmed": 25394,
+    "published": 28858,
     "manifestRejected": 3443,
     "pendingReview": 3443,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -956944,6 +956944,36 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "oceanjustinlin/xuanxue-dsh",
+      "name": "xuanxue-dsh",
+      "owner": "oceanjustinlin",
+      "url": "https://github.com/oceanjustinlin/xuanxue-dsh",
+      "description": {
+        "zh": "DeepSeek Harness (dsh) plugin: Bazi, Zi Wei, Qimen and Western natal chart engines via xuanxue-mcp, plus reading-guide skills",
+        "en": "DeepSeek Harness (dsh) plugin: Bazi, Zi Wei, Qimen and Western natal chart engines via xuanxue-mcp, plus reading-guide skills"
+      },
+      "category": "skill",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-11-10T09:21:21Z",
+      "addedAt": "2026-11-10",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:oceanjustinlin/xuanxue-dsh",
+      "archived": false,
+      "topics": [
+        "dsh-plugin",
+        "mcp"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/256919646?v=4"
     }
   ]
 }
