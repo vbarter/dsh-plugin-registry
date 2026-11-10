@@ -49,6 +49,7 @@ const PLUGIN_SLUGS = new Set([
   "dsh-media-desk",
   "dsh-ops",
   "dsh-plugin-security",
+  "dsh-providers-hub",
   "dsh-scriptor",
   "dsh-tool-12306",
   "dsh-web-ui",

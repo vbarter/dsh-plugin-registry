@@ -75,6 +75,7 @@ const modlens = await statusOf("/plugins/modlens");
 assert(modlens.res.status === 200, "/plugins/modlens → 200");
 for (const path of [
   "/plugins/agentero-dsh-plugin",
+  "/plugins/dsh-providers-hub",
   "/plugins/dsh-web-ui",
   "/plugins/dsh-cc-tui",
   "/plugins/dsh-boot-animation",
@@ -117,6 +118,8 @@ for (const path of [
   "/plugins/dsh-scriptor/",
   "/plugins/agentero-dsh-plugin.html",
   "/plugins/agentero-dsh-plugin/",
+  "/plugins/dsh-providers-hub.html",
+  "/plugins/dsh-providers-hub/",
 ]) {
   const res = await statusOf(path);
   assert(res.res.status === 200, `${path} → 200`);
@@ -338,6 +341,38 @@ for (const path of [
   "/plugins/agentero-dsh-plugin-pro",
   "/c/agentero-dsh-plugin",
   "/plugins/poco-ai/agentero-dsh-plugin",
+]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 404, `${path} → 404`);
+  assert(res.res.headers.get("x-robots-tag") === "noindex", `${path} noindex`);
+}
+for (const path of ["/plugins/dsh-providers-hub", "/plugins/dsh-providers-hub.html", "/plugins/dsh-providers-hub/"]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 200, `${path} → 200`);
+  assert(res.res.headers.get("x-robots-tag") == null, `${path} no noindex`);
+}
+const providersHubCase = await statusOf("/plugins/Dsh-Providers-Hub");
+assert(providersHubCase.res.status === 404, "/plugins/Dsh-Providers-Hub → 404");
+assert(providersHubCase.res.headers.get("x-robots-tag") === "noindex", "/plugins/Dsh-Providers-Hub noindex");
+const providersHubUpper = await statusOf("/plugins/DSH-PROVIDERS-HUB");
+assert(providersHubUpper.res.status === 404, "/plugins/DSH-PROVIDERS-HUB → 404");
+assert(providersHubUpper.res.headers.get("x-robots-tag") === "noindex", "/plugins/DSH-PROVIDERS-HUB noindex");
+for (const path of [
+  "/plugins/providers-hub",
+  "/plugins/providers-hub.html",
+  "/plugins/providers-hub/",
+  "/plugins/dsh-providers",
+  "/plugins/dsh-providers.html",
+  "/plugins/dsh-providers/",
+  "/plugins/dsh-provider-hub",
+  "/plugins/dsh-provider-hub.html",
+  "/plugins/dsh-provider-hub/",
+  "/plugins/dsh-codearts-auth",
+  "/plugins/dsh-codearts-auth.html",
+  "/plugins/dsh-codearts-auth/",
+  "/plugins/iJetLi-dsh-providers-hub",
+  "/plugins/iJetLi/dsh-providers-hub",
+  "/c/dsh-providers-hub",
 ]) {
   const res = await statusOf(path);
   assert(res.res.status === 404, `${path} → 404`);

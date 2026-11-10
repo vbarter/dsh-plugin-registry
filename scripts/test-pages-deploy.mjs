@@ -664,6 +664,173 @@ assert(!existsSync(join(ROOT, "plugins/dsh-agentero.html")), "no /plugins/dsh-ag
 assert(!existsSync(join(ROOT, "plugins/agentero.html")), "no /plugins/agentero page");
 assert(!existsSync(join(ROOT, "c/agentero-dsh-plugin.html")), "no /c/agentero-dsh-plugin page");
 
+const providersHtml = await readFile(join(ROOT, "plugins/dsh-providers-hub.html"), "utf8");
+const providersInstall = "dsh plugin --profile web add github:iJetLi/dsh-providers-hub";
+const providersMeta =
+  "dsh-providers-hub 是 DeepSeek Harness 的社区多服务账号中枢插件：在 Jet Hub 登录并管理多家 AI 编程服务账号，支持多账号池与凭据静默续期，并把模型接到 DSH 选择器。目录 id iJetLi/dsh-providers-hub。安装：dsh plugin --profile web add github:iJetLi/dsh-providers-hub。";
+const providersOldName = "dsh-codearts-auth";
+assert(providersHtml.includes("<title>dsh-providers-hub</title>"), "dsh-providers-hub title is exactly dsh-providers-hub");
+assert(
+  providersHtml.includes('<h1 class="page-title">dsh-providers-hub</h1>'),
+  "dsh-providers-hub h1 is exactly dsh-providers-hub"
+);
+assert(
+  providersHtml.includes('<meta property="og:title" content="dsh-providers-hub">'),
+  "dsh-providers-hub og:title is exactly dsh-providers-hub"
+);
+assert(
+  providersHtml.includes('<meta name="twitter:title" content="dsh-providers-hub">'),
+  "dsh-providers-hub twitter:title is exactly dsh-providers-hub"
+);
+assert(
+  providersHtml.includes('<link rel="canonical" href="https://dsplugin.app/plugins/dsh-providers-hub">'),
+  "dsh-providers-hub canonical"
+);
+assert(!/noindex/i.test(providersHtml), "dsh-providers-hub has no noindex");
+assert(
+  providersHtml.includes('data-plugin-id="iJetLi/dsh-providers-hub"'),
+  "dsh-providers-hub pins catalog id"
+);
+assert(
+  providersHtml.includes(`<meta name="description" content="${providersMeta}">`),
+  "dsh-providers-hub meta description is the signed suggestion"
+);
+assert(
+  providersHtml.includes(`<meta property="og:description" content="${providersMeta}">`),
+  "dsh-providers-hub og:description matches the signed meta"
+);
+assert(
+  providersHtml.includes(`<meta name="twitter:description" content="${providersMeta}">`),
+  "dsh-providers-hub twitter:description matches the signed meta"
+);
+assert(
+  providersHtml.includes(
+    "dsh-providers-hub（多服务账号中枢）是给 DeepSeek Harness（DSH）的社区插件：在 Jet Hub 里登录并管理多家 AI 编程服务账号，支持多账号池与凭据静默续期，并把这些渠道的模型接到 DSH 模型选择器。本页只对应目录 id"
+  ),
+  "dsh-providers-hub lead is the signed copy"
+);
+assert(
+  providersHtml.includes("它把多家 AI 编程服务的账号收进同一个 Jet Hub 面板：登录、查看状态、凭据续期和积分领取都在设置页完成，不注册斜杠命令。"),
+  "dsh-providers-hub body is the signed copy"
+);
+assert(
+  providersHtml.includes("请仅用于个人学习与研究，并遵守各服务提供方的服务条款；内容与素材的版权归权利人所有。"),
+  "dsh-providers-hub keeps the study/service-terms/copyright line"
+);
+assert(!providersHtml.includes("本页是占位"), "dsh-providers-hub has no stub placeholder");
+assert(!providersHtml.includes("合入备注"), "dsh-providers-hub omits the writer note");
+assert(!providersHtml.includes('data-fact="stars"'), "dsh-providers-hub has no stars tile");
+assert(providersHtml.includes("https://github.com/iJetLi/dsh-providers-hub"), "dsh-providers-hub repo link");
+assert(providersHtml.includes('"softwareVersion": "0.2.1-rc.2"'), "dsh-providers-hub softwareVersion is 0.2.1-rc.2");
+assert(!/"softwareVersion": "(?!0\.2\.1-rc\.2")/.test(providersHtml), "dsh-providers-hub has no other softwareVersion");
+assert(providersHtml.includes(providersInstall), "dsh-providers-hub install string");
+assert(
+  providersHtml.split(providersInstall).length - 1 === 7,
+  "dsh-providers-hub install string is the signed meta (meta/og/twitter/WebSite) plus code, FAQ, and FAQ JSON-LD"
+);
+const providersWithoutInstall = providersHtml.split(providersInstall).join("");
+assert(!providersWithoutInstall.includes("dsh plugin"), "no second dsh-providers-hub install command");
+assert(!providersWithoutInstall.includes("github:"), "no other github: install target on dsh-providers-hub");
+assert(!providersWithoutInstall.includes("--profile"), "no second profile on dsh-providers-hub");
+assert(!providersHtml.includes("add dsh-providers-hub"), "no short-form add dsh-providers-hub");
+assert(!providersHtml.includes("add providers-hub"), "no short-form add providers-hub");
+assert(!providersHtml.includes("--profile desktop"), "no desktop profile on dsh-providers-hub");
+assert(!providersHtml.includes("npm install"), "no npm install on dsh-providers-hub");
+assert(!providersHtml.includes("npm i "), "no npm i on dsh-providers-hub");
+assert(!providersHtml.includes("gitee.com"), "no gitee install URL on dsh-providers-hub");
+assert(!providersHtml.includes("<title>dsh-providers-hub｜"), "dsh-providers-hub title has no Chinese suffix");
+assert(!/<title>[^<]*多服务账号中枢/.test(providersHtml), "多服务账号中枢 is not in the title");
+assert(!/<h1[^>]*>[^<]*多服务账号中枢/.test(providersHtml), "多服务账号中枢 is not in the h1");
+assert(!/<title>providers-hub<\/title>/.test(providersHtml), "bare providers-hub is not the title");
+assert(!providersHtml.includes('<h1 class="page-title">providers-hub</h1>'), "bare providers-hub is not the h1");
+assert(!/<title>dsh-providers<\/title>/.test(providersHtml), "dsh-providers is not the title");
+assert(!providersHtml.includes('<h1 class="page-title">dsh-providers</h1>'), "dsh-providers is not the h1");
+assert(!/<title>dsh-provider-hub<\/title>/.test(providersHtml), "dsh-provider-hub is not the title");
+assert(!providersHtml.includes('<h1 class="page-title">dsh-provider-hub</h1>'), "dsh-provider-hub is not the h1");
+assert(
+  providersHtml.split(providersOldName).length - 1 === 3,
+  "old package name appears only in body, FAQ #3, and FAQ JSON-LD"
+);
+assert(
+  providersHtml.includes("本包曾用名 <code>dsh-codearts-auth</code> 同样不是安装命令"),
+  "old package name in the body is marked as not the install command"
+);
+assert(
+  providersHtml.includes("本包曾用名 dsh-codearts-auth 不是本页的安装命令"),
+  "old package name in FAQ JSON-LD is marked as not the install command"
+);
+for (const term of [
+  "MaoYouShiJie",
+  "yellkiin",
+  "anvilsong",
+  "dsh-plugin-provider-usage",
+  "web_search",
+  "Bing",
+  "bing",
+  "免费搜索",
+  "搜索插件",
+  "下载量",
+  "排名",
+  "官方插件",
+  "合入备注",
+]) {
+  assert(!providersHtml.includes(term), `dsh-providers-hub page omits ${term}`);
+}
+const providersMain = providersHtml.split("<main")[1].split("</main>")[0];
+assert(!providersMain.includes('href="/c/'), "dsh-providers-hub main has no /c/ CTA");
+assert(!providersMain.includes("官方"), "dsh-providers-hub main does not call the plugin 官方");
+const providersLd = JSON.parse(
+  providersHtml.match(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/)[1]
+);
+const providersFaqLd = providersLd["@graph"].find((node) => node["@type"] === "FAQPage");
+const providersAppLd = providersLd["@graph"].find((node) => node["@type"] === "SoftwareApplication");
+const providersCrumbLd = providersLd["@graph"].find((node) => node["@type"] === "BreadcrumbList");
+assert(providersAppLd.name === "dsh-providers-hub", "SoftwareApplication name is dsh-providers-hub");
+assert(
+  providersCrumbLd.itemListElement[1].name === "dsh-providers-hub",
+  "BreadcrumbList name is dsh-providers-hub"
+);
+const providersFaqHtml = [...providersHtml.matchAll(/<div><dt>(.*?)<\/dt><dd>(.*?)<\/dd><\/div>/gs)].map((m) => ({
+  q: m[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(),
+  a: m[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(),
+}));
+assert(providersFaqLd.mainEntity.length === 4, "dsh-providers-hub FAQPage has 4 items");
+assert(providersFaqHtml.length === 4, "dsh-providers-hub HTML FAQ has 4 items");
+for (let i = 0; i < 4; i++) {
+  assert(
+    providersFaqHtml[i].q === providersFaqLd.mainEntity[i].name,
+    `dsh-providers-hub FAQ ${i + 1} question matches JSON-LD`
+  );
+  assert(
+    providersFaqHtml[i].a === providersFaqLd.mainEntity[i].acceptedAnswer.text,
+    `dsh-providers-hub FAQ ${i + 1} answer matches JSON-LD`
+  );
+}
+assert(
+  providersFaqLd.mainEntity[1].acceptedAnswer.text.startsWith(providersInstall),
+  "dsh-providers-hub FAQPage answer 2 starts with the install command"
+);
+assert(
+  sitemapXml.includes("<loc>https://dsplugin.app/plugins/dsh-providers-hub</loc>"),
+  "sitemap lists /plugins/dsh-providers-hub"
+);
+assert(
+  /<loc>https:\/\/dsplugin\.app\/plugins\/dsh-providers-hub<\/loc>\s*<lastmod>2026-11-10<\/lastmod>/.test(sitemapXml),
+  "sitemap lastmod for dsh-providers-hub is 2026-11-10"
+);
+assert(!sitemapXml.includes("https://dsplugin.app/plugins/providers-hub"), "sitemap has no bare providers-hub");
+assert(!sitemapXml.includes("https://dsplugin.app/plugins/dsh-providers<"), "sitemap has no dsh-providers lookalike");
+assert(!sitemapXml.includes("https://dsplugin.app/plugins/dsh-provider-hub"), "sitemap has no dsh-provider-hub lookalike");
+assert(!sitemapXml.includes("dsh-codearts-auth"), "sitemap has no dsh-codearts-auth");
+assert(!sitemapXml.includes("https://dsplugin.app/c/dsh-providers-hub"), "sitemap has no /c/dsh-providers-hub URL");
+assert(!sitemapXml.includes("iJetLi-dsh-providers-hub"), "sitemap has no owner-hyphen lookalike");
+assert(!existsSync(join(ROOT, "plugins/providers-hub.html")), "no /plugins/providers-hub page");
+assert(!existsSync(join(ROOT, "plugins/dsh-providers.html")), "no /plugins/dsh-providers page");
+assert(!existsSync(join(ROOT, "plugins/dsh-provider-hub.html")), "no /plugins/dsh-provider-hub page");
+assert(!existsSync(join(ROOT, "plugins/dsh-codearts-auth.html")), "no /plugins/dsh-codearts-auth page");
+assert(!existsSync(join(ROOT, "plugins/iJetLi-dsh-providers-hub.html")), "no owner-hyphen page");
+assert(!existsSync(join(ROOT, "c/dsh-providers-hub.html")), "no /c/dsh-providers-hub page");
+
 const outDir = await mkdtemp(join(tmpdir(), "pages-out-"));
 const wholeDir = await mkdtemp(join(tmpdir(), "pages-whole-"));
 try {
@@ -735,6 +902,13 @@ try {
   );
   assert(!agenteroLanding.includes("本页是占位"), "uploaded agentero-dsh-plugin landing is not a stub");
   assert(agenteroLanding.includes(agenteroInstall), "uploaded agentero-dsh-plugin keeps the install command");
+  const providersLanding = await readFile(join(outDir, "plugins/dsh-providers-hub.html"), "utf8");
+  assert(
+    providersLanding.includes('href="https://dsplugin.app/plugins/dsh-providers-hub"'),
+    "uploaded dsh-providers-hub landing keeps canonical"
+  );
+  assert(!providersLanding.includes("本页是占位"), "uploaded dsh-providers-hub landing is not a stub");
+  assert(providersLanding.includes(providersInstall), "uploaded dsh-providers-hub keeps the install command");
   assert(!existsSync(join(outDir, "data/plugins.json")), "upload still omits data/plugins.json");
 
   const whole = await preparePagesDeploy({
