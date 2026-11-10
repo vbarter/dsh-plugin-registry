@@ -37,6 +37,7 @@ const PAGES = [
   ["/plugins/dsh-providers-hub", "2026-11-10"],
   ["/plugins/dsh-ios", "2026-11-10"],
   ["/plugins/eac-design-world", "2026-11-10"],
+  ["/plugins/dsh-wallpaper-engine", "2026-11-11"],
 ];
 function urlEntry(loc, lastmod) {
   return "  <url>\n    <loc>" + loc + "</loc>\n    <lastmod>" + lastmod + "</lastmod>\n    <changefreq>weekly</changefreq>\n  </url>\n";
