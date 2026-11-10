@@ -35,6 +35,8 @@ const PAGES = [
   ["/plugins/dsh-infinite_canvas", "2026-11-07"],
   ["/plugins/agentero-dsh-plugin", "2026-11-09"],
   ["/plugins/dsh-providers-hub", "2026-11-10"],
+  ["/plugins/dsh-ios", "2026-11-10"],
+  ["/plugins/eac-design-world", "2026-11-10"],
 ];
 function urlEntry(loc, lastmod) {
   return "  <url>\n    <loc>" + loc + "</loc>\n    <lastmod>" + lastmod + "</lastmod>\n    <changefreq>weekly</changefreq>\n  </url>\n";

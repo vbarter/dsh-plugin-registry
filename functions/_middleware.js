@@ -46,6 +46,7 @@ const PLUGIN_SLUGS = new Set([
   "dsh-harnmem",
   "dsh-hongguo",
   "dsh-infinite_canvas",
+  "dsh-ios",
   "dsh-media-desk",
   "dsh-ops",
   "dsh-plugin-security",
@@ -53,6 +54,7 @@ const PLUGIN_SLUGS = new Set([
   "dsh-scriptor",
   "dsh-tool-12306",
   "dsh-web-ui",
+  "eac-design-world",
   "modlens",
 ]);
 

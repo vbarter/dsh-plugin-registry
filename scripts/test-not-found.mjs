@@ -76,6 +76,8 @@ assert(modlens.res.status === 200, "/plugins/modlens → 200");
 for (const path of [
   "/plugins/agentero-dsh-plugin",
   "/plugins/dsh-providers-hub",
+  "/plugins/dsh-ios",
+  "/plugins/eac-design-world",
   "/plugins/dsh-web-ui",
   "/plugins/dsh-cc-tui",
   "/plugins/dsh-boot-animation",
@@ -120,6 +122,10 @@ for (const path of [
   "/plugins/agentero-dsh-plugin/",
   "/plugins/dsh-providers-hub.html",
   "/plugins/dsh-providers-hub/",
+  "/plugins/dsh-ios.html",
+  "/plugins/dsh-ios/",
+  "/plugins/eac-design-world.html",
+  "/plugins/eac-design-world/",
 ]) {
   const res = await statusOf(path);
   assert(res.res.status === 200, `${path} → 200`);
@@ -373,6 +379,62 @@ for (const path of [
   "/plugins/iJetLi-dsh-providers-hub",
   "/plugins/iJetLi/dsh-providers-hub",
   "/c/dsh-providers-hub",
+]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 404, `${path} → 404`);
+  assert(res.res.headers.get("x-robots-tag") === "noindex", `${path} noindex`);
+}
+for (const path of ["/plugins/dsh-ios", "/plugins/dsh-ios.html", "/plugins/dsh-ios/"]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 200, `${path} → 200`);
+  assert(res.res.headers.get("x-robots-tag") == null, `${path} no noindex`);
+}
+const dshIosCase = await statusOf("/plugins/DSH-ios");
+assert(dshIosCase.res.status === 404, "/plugins/DSH-ios → 404");
+assert(dshIosCase.res.headers.get("x-robots-tag") === "noindex", "/plugins/DSH-ios noindex");
+const dshIosUpperTail = await statusOf("/plugins/dsh-IOS");
+assert(dshIosUpperTail.res.status === 404, "/plugins/dsh-IOS → 404");
+assert(dshIosUpperTail.res.headers.get("x-robots-tag") === "noindex", "/plugins/dsh-IOS noindex");
+for (const path of [
+  "/plugins/ios",
+  "/plugins/ios.html",
+  "/plugins/ios/",
+  "/plugins/dsh-ios-simulator",
+  "/plugins/dsh-ios-simulator.html",
+  "/plugins/dsh-ios-simulator/",
+  "/plugins/zseven-w-dsh-ios",
+  "/plugins/zseven-w-dsh-ios.html",
+  "/plugins/ZSeven-W-dsh-ios",
+  "/plugins/ZSeven-W-dsh-ios.html",
+  "/c/dsh-ios",
+]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 404, `${path} → 404`);
+  assert(res.res.headers.get("x-robots-tag") === "noindex", `${path} noindex`);
+}
+for (const path of ["/plugins/eac-design-world", "/plugins/eac-design-world.html", "/plugins/eac-design-world/"]) {
+  const res = await statusOf(path);
+  assert(res.res.status === 200, `${path} → 200`);
+  assert(res.res.headers.get("x-robots-tag") == null, `${path} no noindex`);
+}
+const eacMixed = await statusOf("/plugins/EAC-design-world");
+assert(eacMixed.res.status === 404, "/plugins/EAC-design-world → 404");
+assert(eacMixed.res.headers.get("x-robots-tag") === "noindex", "/plugins/EAC-design-world noindex");
+const eacTitle = await statusOf("/plugins/EAC-Design-World");
+assert(eacTitle.res.status === 404, "/plugins/EAC-Design-World → 404");
+assert(eacTitle.res.headers.get("x-robots-tag") === "noindex", "/plugins/EAC-Design-World noindex");
+for (const path of [
+  "/plugins/eac-design",
+  "/plugins/eac-design.html",
+  "/plugins/eac-design/",
+  "/plugins/eac-designworld",
+  "/plugins/eac-designworld.html",
+  "/plugins/eac-designworld/",
+  "/plugins/EAC-Pack",
+  "/plugins/EAC-Pack.html",
+  "/plugins/eac-pack",
+  "/plugins/eac-pack.html",
+  "/c/eac-design-world",
 ]) {
   const res = await statusOf(path);
   assert(res.res.status === 404, `${path} → 404`);

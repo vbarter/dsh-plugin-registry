@@ -831,6 +831,239 @@ assert(!existsSync(join(ROOT, "plugins/dsh-codearts-auth.html")), "no /plugins/d
 assert(!existsSync(join(ROOT, "plugins/iJetLi-dsh-providers-hub.html")), "no owner-hyphen page");
 assert(!existsSync(join(ROOT, "c/dsh-providers-hub.html")), "no /c/dsh-providers-hub page");
 
+const iosHtml = await readFile(join(ROOT, "plugins/dsh-ios.html"), "utf8");
+const iosInstall = "dsh plugin --profile web add github:ZSeven-W/dsh-ios";
+const iosMeta =
+  "dsh-ios 是 DeepSeek Harness 的社区插件：在会话里接入 iOS Simulator 以及 USB 连接的 iPhone 真机流，支持构建、运行、无障碍或 OCR 操作，并在侧栏预览。目录 id ZSeven-W/dsh-ios。安装：dsh plugin --profile web add github:ZSeven-W/dsh-ios。";
+const iosPkg = "@zseven-w/dsh-ios";
+assert(iosHtml.includes("<title>dsh-ios</title>"), "dsh-ios title is exactly dsh-ios");
+assert(iosHtml.includes('<h1 class="page-title">dsh-ios</h1>'), "dsh-ios h1 is exactly dsh-ios");
+assert(iosHtml.includes('<meta property="og:title" content="dsh-ios">'), "dsh-ios og:title is exactly dsh-ios");
+assert(iosHtml.includes('<meta name="twitter:title" content="dsh-ios">'), "dsh-ios twitter:title is exactly dsh-ios");
+assert(
+  iosHtml.includes('<link rel="canonical" href="https://dsplugin.app/plugins/dsh-ios">'),
+  "dsh-ios canonical"
+);
+assert(!/noindex/i.test(iosHtml), "dsh-ios has no noindex");
+assert(iosHtml.includes('data-plugin-id="ZSeven-W/dsh-ios"'), "dsh-ios pins catalog id");
+assert(iosHtml.includes(`<meta name="description" content="${iosMeta}">`), "dsh-ios meta description is the signed suggestion");
+assert(iosHtml.includes(`<meta property="og:description" content="${iosMeta}">`), "dsh-ios og:description matches the signed meta");
+assert(iosHtml.includes(`<meta name="twitter:description" content="${iosMeta}">`), "dsh-ios twitter:description matches the signed meta");
+assert(
+  iosHtml.includes(
+    "dsh-ios（iOS 模拟器与真机流）是给 DeepSeek Harness（DSH）的社区插件：在会话里接入 iOS Simulator，以及经 USB 连接的 iPhone 真机画面，用于构建、运行、按无障碍或 OCR 操作界面，并在侧栏预览。本页只对应目录 id"
+  ),
+  "dsh-ios lead is the signed copy"
+);
+assert(
+  iosHtml.includes("它把 iOS Simulator，以及经 USB 连接的 iPhone 真机，接到 DeepSeek Harness 会话里：可以启动设备、构建并运行应用，按无障碍身份或 OCR 文字操作界面，并在侧栏实时预览、点按或拖拽。"),
+  "dsh-ios body is the signed copy"
+);
+assert(
+  iosHtml.includes("请仅用于个人学习与研究；内容与素材的版权归权利人所有。"),
+  "dsh-ios keeps the study/copyright line"
+);
+assert(!iosHtml.includes("本页是占位"), "dsh-ios has no stub placeholder");
+assert(!iosHtml.includes("合入备注"), "dsh-ios omits the writer note");
+assert(!iosHtml.includes('data-fact="stars"'), "dsh-ios has no stars tile");
+assert(iosHtml.includes("https://github.com/ZSeven-W/dsh-ios"), "dsh-ios repo link");
+assert(iosHtml.includes('"softwareVersion": "0.1.0-rc.11"'), "dsh-ios softwareVersion is 0.1.0-rc.11");
+assert(!/"softwareVersion": "(?!0\.1\.0-rc\.11")/.test(iosHtml), "dsh-ios has no other softwareVersion");
+assert(iosHtml.includes(iosInstall), "dsh-ios install string");
+assert(
+  iosHtml.split(iosInstall).length - 1 === 7,
+  "dsh-ios install string is the signed meta (meta/og/twitter/WebSite) plus code, FAQ, and FAQ JSON-LD"
+);
+const iosWithoutInstall = iosHtml.split(iosInstall).join("");
+assert(!iosWithoutInstall.includes("dsh plugin"), "no second dsh-ios install command");
+assert(!iosWithoutInstall.includes("github:"), "no other github: install target on dsh-ios");
+assert(!iosWithoutInstall.includes("--profile"), "no second profile on dsh-ios");
+assert(!iosHtml.includes("add dsh-ios"), "no short-form add dsh-ios");
+assert(!iosHtml.includes("add @zseven-w/dsh-ios"), "no short-form add @zseven-w/dsh-ios");
+assert(!iosHtml.includes("@zseven-w/dsh-ios@latest"), "no npm latest spec on dsh-ios");
+assert(!iosHtml.includes("--profile desktop"), "no desktop profile on dsh-ios");
+assert(!iosHtml.includes("npm install"), "no npm install on dsh-ios");
+assert(!iosHtml.includes("npm i "), "no npm i on dsh-ios");
+assert(!iosHtml.includes("<title>dsh-ios｜"), "dsh-ios title has no Chinese suffix");
+assert(!/<title>[^<]*iOS 模拟器/.test(iosHtml), "iOS 模拟器 is not in the title");
+assert(!/<h1[^>]*>[^<]*iOS 模拟器/.test(iosHtml), "iOS 模拟器 is not in the h1");
+assert(!/<title>ios<\/title>/.test(iosHtml), "bare ios is not the title");
+assert(!iosHtml.includes('<h1 class="page-title">ios</h1>'), "bare ios is not the h1");
+assert(!/<title>dsh-ios-simulator<\/title>/.test(iosHtml), "dsh-ios-simulator is not the title");
+assert(!iosHtml.includes('<h1 class="page-title">dsh-ios-simulator</h1>'), "dsh-ios-simulator is not the h1");
+assert(iosHtml.split(iosPkg).length - 1 === 3, "npm package name appears only in body, FAQ #3, and FAQ JSON-LD");
+assert(
+  iosHtml.includes("目录包名 <code>@zseven-w/dsh-ios</code> 不是安装命令"),
+  "npm package name in the body is marked as not the install command"
+);
+assert(
+  iosHtml.includes("目录包名 @zseven-w/dsh-ios 不是本页的安装命令"),
+  "npm package name in FAQ JSON-LD is marked as not the install command"
+);
+for (const term of ["Kickstartparty", "dsh-xcode", "下载量", "排名", "官方插件", "合入备注"]) {
+  assert(!iosHtml.includes(term), `dsh-ios page omits ${term}`);
+}
+const iosMain = iosHtml.split("<main")[1].split("</main>")[0];
+assert(!iosMain.includes('href="/c/'), "dsh-ios main has no /c/ CTA");
+assert(!iosMain.includes("官方"), "dsh-ios main does not call the plugin 官方");
+const iosLd = JSON.parse(iosHtml.match(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/)[1]);
+const iosFaqLd = iosLd["@graph"].find((node) => node["@type"] === "FAQPage");
+const iosAppLd = iosLd["@graph"].find((node) => node["@type"] === "SoftwareApplication");
+const iosCrumbLd = iosLd["@graph"].find((node) => node["@type"] === "BreadcrumbList");
+assert(iosAppLd.name === "dsh-ios", "SoftwareApplication name is dsh-ios");
+assert(iosCrumbLd.itemListElement[1].name === "dsh-ios", "BreadcrumbList name is dsh-ios");
+const iosFaqHtml = [...iosHtml.matchAll(/<div><dt>(.*?)<\/dt><dd>(.*?)<\/dd><\/div>/gs)].map((m) => ({
+  q: m[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(),
+  a: m[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(),
+}));
+assert(iosFaqLd.mainEntity.length === 4, "dsh-ios FAQPage has 4 items");
+assert(iosFaqHtml.length === 4, "dsh-ios HTML FAQ has 4 items");
+for (let i = 0; i < 4; i++) {
+  assert(iosFaqHtml[i].q === iosFaqLd.mainEntity[i].name, `dsh-ios FAQ ${i + 1} question matches JSON-LD`);
+  assert(iosFaqHtml[i].a === iosFaqLd.mainEntity[i].acceptedAnswer.text, `dsh-ios FAQ ${i + 1} answer matches JSON-LD`);
+}
+assert(iosFaqLd.mainEntity[1].acceptedAnswer.text.startsWith(iosInstall), "dsh-ios FAQPage answer 2 starts with the install command");
+assert(sitemapXml.includes("<loc>https://dsplugin.app/plugins/dsh-ios</loc>"), "sitemap lists /plugins/dsh-ios");
+assert(
+  /<loc>https:\/\/dsplugin\.app\/plugins\/dsh-ios<\/loc>\s*<lastmod>2026-11-10<\/lastmod>/.test(sitemapXml),
+  "sitemap lastmod for dsh-ios is 2026-11-10"
+);
+assert(!sitemapXml.includes("https://dsplugin.app/plugins/ios<"), "sitemap has no bare ios");
+assert(!sitemapXml.includes("dsh-ios-simulator"), "sitemap has no dsh-ios-simulator");
+assert(!sitemapXml.includes("zseven-w-dsh-ios"), "sitemap has no lowercase owner-hyphen lookalike");
+assert(!sitemapXml.includes("ZSeven-W-dsh-ios"), "sitemap has no owner-hyphen lookalike");
+assert(!sitemapXml.includes("https://dsplugin.app/c/dsh-ios"), "sitemap has no /c/dsh-ios URL");
+assert(!sitemapXml.includes("dsh-xcode"), "sitemap has no dsh-xcode");
+assert(!existsSync(join(ROOT, "plugins/ios.html")), "no /plugins/ios page");
+assert(!existsSync(join(ROOT, "plugins/dsh-ios-simulator.html")), "no /plugins/dsh-ios-simulator page");
+assert(!existsSync(join(ROOT, "plugins/zseven-w-dsh-ios.html")), "no lowercase owner-hyphen page");
+assert(!existsSync(join(ROOT, "c/dsh-ios.html")), "no /c/dsh-ios page");
+
+const eacHtml = await readFile(join(ROOT, "plugins/eac-design-world.html"), "utf8");
+const eacInstall = "dsh plugin --profile web add github:Ebony-Vinyl/EAC-design-world";
+const eacMeta =
+  "eac-design-world 是 DeepSeek Harness 的社区插件（EAC design world）：在本地做视频制作与设计，支持多轨剪辑、模板与设计体系、原生预览和真实文件导出。目录 id Ebony-Vinyl/EAC-design-world。安装：dsh plugin --profile web add github:Ebony-Vinyl/EAC-design-world。";
+assert(eacHtml.includes("<title>eac-design-world</title>"), "eac-design-world title is exactly eac-design-world");
+assert(eacHtml.includes('<h1 class="page-title">eac-design-world</h1>'), "eac-design-world h1 is exactly eac-design-world");
+assert(
+  eacHtml.includes('<meta property="og:title" content="eac-design-world">'),
+  "eac-design-world og:title is exactly eac-design-world"
+);
+assert(
+  eacHtml.includes('<meta name="twitter:title" content="eac-design-world">'),
+  "eac-design-world twitter:title is exactly eac-design-world"
+);
+assert(
+  eacHtml.includes('<link rel="canonical" href="https://dsplugin.app/plugins/eac-design-world">'),
+  "eac-design-world canonical is lowercase"
+);
+assert(!/noindex/i.test(eacHtml), "eac-design-world has no noindex");
+assert(eacHtml.includes('data-plugin-id="Ebony-Vinyl/EAC-design-world"'), "eac-design-world pins catalog id");
+assert(eacHtml.includes(`<meta name="description" content="${eacMeta}">`), "eac-design-world meta description is the signed suggestion");
+assert(eacHtml.includes(`<meta property="og:description" content="${eacMeta}">`), "eac-design-world og:description matches the signed meta");
+assert(
+  eacHtml.includes(`<meta name="twitter:description" content="${eacMeta}">`),
+  "eac-design-world twitter:description matches the signed meta"
+);
+assert(
+  eacHtml.includes(
+    "eac-design-world（EAC design world）是给 DeepSeek Harness（DSH）的社区插件：在本地完成视频制作与设计，支持多轨剪辑、模板与设计体系、原生预览和真实文件导出。本页只对应目录 id"
+  ),
+  "eac-design-world lead is the signed copy"
+);
+assert(
+  eacHtml.includes("它把本地视频制作与设计带进 DeepSeek Harness：可在多轨时间线上编排片段，选用模板与设计体系，在侧栏做原生预览，并把成片、字幕或设计源文件导出到本地。"),
+  "eac-design-world body is the signed copy"
+);
+assert(
+  eacHtml.includes("请仅用于个人学习与研究，并遵守素材、模板与第三方服务的许可与条款；内容与素材的版权归权利人所有。"),
+  "eac-design-world keeps the study/license/copyright line"
+);
+assert(
+  eacHtml.includes("仓库 README 里还有发布包与其它安装渠道，那些都不是本页的安装命令"),
+  "eac-design-world mentions other install channels only as not this page's command"
+);
+assert(!eacHtml.includes("本页是占位"), "eac-design-world has no stub placeholder");
+assert(!eacHtml.includes("合入备注"), "eac-design-world omits the writer note");
+assert(!eacHtml.includes('data-fact="stars"'), "eac-design-world has no stars tile");
+assert(eacHtml.includes("https://github.com/Ebony-Vinyl/EAC-design-world"), "eac-design-world repo link");
+assert(eacHtml.includes('"softwareVersion": "0.6.1"'), "eac-design-world softwareVersion is 0.6.1");
+assert(!/"softwareVersion": "(?!0\.6\.1")/.test(eacHtml), "eac-design-world has no other softwareVersion");
+assert(eacHtml.includes(eacInstall), "eac-design-world install string");
+assert(
+  eacHtml.split(eacInstall).length - 1 === 7,
+  "eac-design-world install string is the signed meta (meta/og/twitter/WebSite) plus code, FAQ, and FAQ JSON-LD"
+);
+const eacWithoutInstall = eacHtml.split(eacInstall).join("");
+assert(!eacWithoutInstall.includes("dsh plugin"), "no second eac-design-world install command");
+assert(!eacWithoutInstall.includes("github:"), "no other github: install target on eac-design-world");
+assert(!eacWithoutInstall.includes("--profile"), "no second profile on eac-design-world");
+assert(!eacHtml.includes("add eac-design-world"), "no short-form add eac-design-world");
+assert(!eacHtml.includes("--profile desktop"), "no desktop profile on eac-design-world");
+assert(!eacHtml.includes("npm install"), "no npm install on eac-design-world");
+assert(!eacHtml.includes("npm i "), "no npm i on eac-design-world");
+assert(!eacHtml.includes("install-harness.mjs"), "no install-harness.mjs on eac-design-world");
+assert(!eacHtml.includes(".tgz"), "no tgz install on eac-design-world");
+assert(!eacHtml.includes(".zip"), "no zip install on eac-design-world");
+assert(!eacHtml.includes("EAC-Pack"), "EAC-Pack is not an install command or subject");
+assert(!eacHtml.includes("eac-pack"), "eac-pack is not on the page");
+assert(!eacHtml.includes("<title>eac-design-world｜"), "eac-design-world title has no Chinese suffix");
+assert(!/<title>EAC-design-world<\/title>/.test(eacHtml), "EAC-design-world is not the title");
+assert(!eacHtml.includes('<h1 class="page-title">EAC-design-world</h1>'), "EAC-design-world is not the h1");
+assert(!/<title>eac-design<\/title>/.test(eacHtml), "bare eac-design is not the title");
+assert(!eacHtml.includes('<h1 class="page-title">eac-design</h1>'), "bare eac-design is not the h1");
+assert(!/<title>eac-designworld<\/title>/.test(eacHtml), "eac-designworld is not the title");
+assert(!eacHtml.includes('<h1 class="page-title">eac-designworld</h1>'), "eac-designworld is not the h1");
+for (const term of ["自媒体", "短剧", "画布", "节点画布", "无限画布", "下载量", "排名", "官方插件", "合入备注"]) {
+  assert(!eacHtml.includes(term), `eac-design-world page omits ${term}`);
+}
+const eacMain = eacHtml.split("<main")[1].split("</main>")[0];
+assert(!eacMain.includes('href="/c/'), "eac-design-world main has no /c/ CTA");
+assert(!eacMain.includes("官方"), "eac-design-world main does not call the plugin 官方");
+const eacLd = JSON.parse(eacHtml.match(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/)[1]);
+const eacFaqLd = eacLd["@graph"].find((node) => node["@type"] === "FAQPage");
+const eacAppLd = eacLd["@graph"].find((node) => node["@type"] === "SoftwareApplication");
+const eacCrumbLd = eacLd["@graph"].find((node) => node["@type"] === "BreadcrumbList");
+assert(eacAppLd.name === "eac-design-world", "SoftwareApplication name is eac-design-world");
+assert(eacCrumbLd.itemListElement[1].name === "eac-design-world", "BreadcrumbList name is eac-design-world");
+const eacFaqHtml = [...eacHtml.matchAll(/<div><dt>(.*?)<\/dt><dd>(.*?)<\/dd><\/div>/gs)].map((m) => ({
+  q: m[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(),
+  a: m[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(),
+}));
+assert(eacFaqLd.mainEntity.length === 4, "eac-design-world FAQPage has 4 items");
+assert(eacFaqHtml.length === 4, "eac-design-world HTML FAQ has 4 items");
+for (let i = 0; i < 4; i++) {
+  assert(eacFaqHtml[i].q === eacFaqLd.mainEntity[i].name, `eac-design-world FAQ ${i + 1} question matches JSON-LD`);
+  assert(
+    eacFaqHtml[i].a === eacFaqLd.mainEntity[i].acceptedAnswer.text,
+    `eac-design-world FAQ ${i + 1} answer matches JSON-LD`
+  );
+}
+assert(
+  eacFaqLd.mainEntity[1].acceptedAnswer.text.startsWith(eacInstall),
+  "eac-design-world FAQPage answer 2 starts with the install command"
+);
+assert(
+  sitemapXml.includes("<loc>https://dsplugin.app/plugins/eac-design-world</loc>"),
+  "sitemap lists /plugins/eac-design-world"
+);
+assert(
+  /<loc>https:\/\/dsplugin\.app\/plugins\/eac-design-world<\/loc>\s*<lastmod>2026-11-10<\/lastmod>/.test(sitemapXml),
+  "sitemap lastmod for eac-design-world is 2026-11-10"
+);
+assert(!sitemapXml.includes("https://dsplugin.app/plugins/EAC-design-world"), "sitemap has no uppercase EAC-design-world");
+assert(!sitemapXml.includes("https://dsplugin.app/plugins/EAC-Design-World"), "sitemap has no title-case EAC path");
+assert(!sitemapXml.includes("https://dsplugin.app/plugins/eac-design<"), "sitemap has no bare eac-design");
+assert(!sitemapXml.includes("eac-designworld"), "sitemap has no eac-designworld");
+assert(!sitemapXml.includes("EAC-Pack"), "sitemap has no EAC-Pack");
+assert(!sitemapXml.includes("eac-pack"), "sitemap has no eac-pack");
+assert(!sitemapXml.includes("https://dsplugin.app/c/eac-design-world"), "sitemap has no /c/eac-design-world URL");
+assert(!existsSync(join(ROOT, "plugins/eac-design.html")), "no /plugins/eac-design page");
+assert(!existsSync(join(ROOT, "plugins/eac-designworld.html")), "no /plugins/eac-designworld page");
+assert(!existsSync(join(ROOT, "plugins/EAC-Pack.html")), "no /plugins/EAC-Pack page");
+assert(!existsSync(join(ROOT, "plugins/eac-pack.html")), "no /plugins/eac-pack page");
+assert(!existsSync(join(ROOT, "c/eac-design-world.html")), "no /c/eac-design-world page");
+
 const outDir = await mkdtemp(join(tmpdir(), "pages-out-"));
 const wholeDir = await mkdtemp(join(tmpdir(), "pages-whole-"));
 try {
@@ -909,6 +1142,17 @@ try {
   );
   assert(!providersLanding.includes("本页是占位"), "uploaded dsh-providers-hub landing is not a stub");
   assert(providersLanding.includes(providersInstall), "uploaded dsh-providers-hub keeps the install command");
+  const iosLanding = await readFile(join(outDir, "plugins/dsh-ios.html"), "utf8");
+  assert(iosLanding.includes('href="https://dsplugin.app/plugins/dsh-ios"'), "uploaded dsh-ios landing keeps canonical");
+  assert(!iosLanding.includes("本页是占位"), "uploaded dsh-ios landing is not a stub");
+  assert(iosLanding.includes(iosInstall), "uploaded dsh-ios keeps the install command");
+  const eacLanding = await readFile(join(outDir, "plugins/eac-design-world.html"), "utf8");
+  assert(
+    eacLanding.includes('href="https://dsplugin.app/plugins/eac-design-world"'),
+    "uploaded eac-design-world landing keeps canonical"
+  );
+  assert(!eacLanding.includes("本页是占位"), "uploaded eac-design-world landing is not a stub");
+  assert(eacLanding.includes(eacInstall), "uploaded eac-design-world keeps the install command");
   assert(!existsSync(join(outDir, "data/plugins.json")), "upload still omits data/plugins.json");
 
   const whole = await preparePagesDeploy({
