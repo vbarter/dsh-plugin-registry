@@ -13,12 +13,21 @@
  *
  * Score is stars*2 + forks*0.2. Ties break by name, then id.
  * Do not print stars, forks, or the score.
+ *
+ * Blurbs: a Writer sheet in scripts/new-blurbs/YYYY-MM-DD.md wins for that
+ * day (zh on the Chinese page, en on the English page), then an undated
+ * plugin-id line in NEW_PLUGIN_BLURBS. Otherwise keep the first sentence,
+ * capped near 40 Chinese characters or 80 Latin characters, and strip
+ * commit hashes plus semver noise. The Chinese page prefers a Chinese
+ * catalog intro when one exists (description zh/en, a long " / " bilingual
+ * half, or intro/summary/tagline).
  */
 import { existsSync } from "node:fs";
 import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { PLUGIN_SLUGS } from "../functions/_middleware.js";
 import { NEW_PLUGIN_COPY, NEW_PLUGIN_ROW_SEPARATOR } from "./new-plugins-copy.mjs";
+import { resolveWriterBlurb } from "./new-plugin-blurbs.mjs";
 
 export const SITE = "https://dsplugin.app";
 export const HUB_PATH = "/new";
@@ -117,40 +126,210 @@ export function landingHref(plugin, ctx) {
   return `/plugin-detail?plugin=${encodeURIComponent(id)}`;
 }
 
-export function oneSentence(plugin) {
-  let raw = pickDescription(plugin).replace(/\s+/g, " ").trim();
-  if (!raw) return "";
-  const parts = raw.split(/\s\/\s/).map((part) => part.trim()).filter(Boolean);
-  if (parts.length >= 2 && parts[0].length >= 24 && parts[1].length >= 12) raw = parts[0];
-  for (let i = 0; i < raw.length; i++) {
-    const ch = raw[i];
-    if (ch === "。" || ch === "！" || ch === "？" || ch === "!" || ch === "?") {
-      return raw.slice(0, i + 1).trim();
-    }
-    if (ch === "." || ch === "…") {
-      if (ch === "…") return raw.slice(0, i + 1).trim();
-      const prev = raw[i - 1] || "";
-      const next = raw[i + 1] || "";
-      if (/\d/.test(prev) && /\d/.test(next)) continue;
-      if (next && /[A-Za-z0-9]/.test(next)) continue;
-      return raw.slice(0, i + 1).trim();
-    }
-  }
-  return raw;
+/** Chinese list lines stay near 40 characters; English stays similarly tight. */
+export const ZH_BLURB_MAX = 40;
+export const EN_BLURB_MAX = 80;
+
+const EXTRA_INTRO_KEYS = ["intro", "summary", "tagline", "blurb", "about"];
+
+function hanCount(text) {
+  return (String(text).match(/[\u4e00-\u9fff]/g) || []).length;
 }
 
-function pickDescription(plugin) {
-  const d = plugin && plugin.description;
-  if (d == null) return "";
-  if (typeof d === "string") return d;
-  if (typeof d === "object") {
-    if (typeof d.zh === "string" && d.zh.trim()) return d.zh;
-    if (typeof d.en === "string" && d.en.trim()) return d.en;
-    for (const value of Object.values(d)) {
-      if (typeof value === "string" && value.trim()) return value;
+function isChineseIntro(text) {
+  const han = hanCount(text);
+  if (!han) return false;
+  const latin = (String(text).match(/[A-Za-z]/g) || []).length;
+  if (latin === 0) return true;
+  return han >= 4 && han + 12 >= latin;
+}
+
+function bilingualHalves(text) {
+  const parts = String(text).split(/\s+\/\s+/);
+  if (parts.length !== 2) return null;
+  const left = parts[0].trim();
+  const right = parts[1].trim();
+  if (left.length < 12 || right.length < 12) return null;
+  const leftZh = isChineseIntro(left);
+  const rightZh = isChineseIntro(right);
+  if (leftZh === rightZh) return null;
+  return leftZh ? { zh: left, en: right } : { zh: right, en: left };
+}
+
+function collectIntros(plugin) {
+  const zh = [];
+  const en = [];
+  const other = [];
+  if (!plugin || typeof plugin !== "object") return { zh, en, other };
+  function take(value) {
+    if (typeof value === "string") {
+      other.push(value);
+      return;
+    }
+    if (!value || typeof value !== "object" || Array.isArray(value)) return;
+    if (typeof value.zh === "string") zh.push(value.zh);
+    if (typeof value.en === "string") en.push(value.en);
+    for (const [key, item] of Object.entries(value)) {
+      if (key === "zh" || key === "en") continue;
+      if (typeof item === "string") other.push(item);
     }
   }
+  take(plugin.description);
+  for (const key of EXTRA_INTRO_KEYS) take(plugin[key]);
+  return { zh, en, other };
+}
+
+function uniqueTexts(list) {
+  const out = [];
+  const seen = new Set();
+  for (const item of list) {
+    const text = String(item).replace(/\s+/g, " ").trim();
+    if (!text || seen.has(text)) continue;
+    seen.add(text);
+    out.push(text);
+  }
+  return out;
+}
+
+function pickChinese(plugin) {
+  const { zh, en, other } = collectIntros(plugin);
+  const texts = uniqueTexts([...zh, ...en, ...other]);
+  for (const text of texts) {
+    const halves = bilingualHalves(text);
+    if (halves) return halves.zh;
+  }
+  for (const text of texts) {
+    if (isChineseIntro(text)) return text;
+  }
   return "";
+}
+
+function pickEnglish(plugin) {
+  const { zh, en, other } = collectIntros(plugin);
+  const texts = uniqueTexts([...en, ...other, ...zh]);
+  for (const text of texts) {
+    const halves = bilingualHalves(text);
+    if (halves) return halves.en;
+  }
+  for (const text of texts) {
+    if (!isChineseIntro(text) && /[A-Za-z]/.test(text)) return text;
+  }
+  return "";
+}
+
+function collapseSpace(text) {
+  return String(text)
+    .replace(/\s+/g, " ")
+    .replace(/\s+([，。！？、；：,.!?;:])/g, "$1")
+    .trim();
+}
+
+function stripNoise(raw) {
+  let text = String(raw);
+  text = text.replace(/\b(?:main|master|HEAD)@[0-9a-f]{7,40}\b/gi, " ");
+  text = text.replace(/@[0-9a-f]{7,40}\b/gi, " ");
+  text = text.replace(/\b(?=[0-9a-f]*\d)[0-9a-f]{7,40}\b/gi, " ");
+  text = text.replace(/[（(]([^）)]*)[）)]/g, (full, inner) => {
+    if (/\d+\.\d+\.\d+/.test(inner) || /\b20\d{2}-\d{2}-\d{2}\b/.test(inner) || !/[A-Za-z\u4e00-\u9fff]/.test(inner)) {
+      return " ";
+    }
+    return full;
+  });
+  text = text.replace(/(?<!\d\.)\b[vV]?\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.]+)?(?!\.\d)\b/g, " ");
+  return collapseSpace(text);
+}
+
+function firstSentence(raw) {
+  const text = collapseSpace(raw);
+  if (!text) return "";
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (ch === "。" || ch === "！" || ch === "？" || ch === "!" || ch === "?") {
+      return text.slice(0, i + 1).trim();
+    }
+    if (ch === "." || ch === "…") {
+      if (ch === "…") return text.slice(0, i + 1).trim();
+      const prev = text[i - 1] || "";
+      const next = text[i + 1] || "";
+      if (/\d/.test(prev) && /\d/.test(next)) continue;
+      if (next && /[A-Za-z0-9]/.test(next)) continue;
+      return text.slice(0, i + 1).trim();
+    }
+  }
+  return text;
+}
+
+function stripEdge(text) {
+  return String(text)
+    .replace(/[\s，、；：,;:\-—]+$/u, "")
+    .replace(/^[\s，、；：,;:\-—]+/u, "")
+    .trim();
+}
+
+function dropUnclosed(text) {
+  let out = String(text);
+  for (const [open, close] of [
+    ["（", "）"],
+    ["(", ")"],
+  ]) {
+    const opened = out.lastIndexOf(open);
+    const closed = out.lastIndexOf(close);
+    if (opened !== -1 && opened > closed) out = out.slice(0, opened);
+  }
+  return out;
+}
+
+function hardClip(text, max) {
+  let out = text.slice(0, max);
+  const next = text[max] || "";
+  if (/[A-Za-z0-9]/.test(out[out.length - 1] || "") && /[A-Za-z0-9]/.test(next)) {
+    const trimmed = out.replace(/[A-Za-z0-9][A-Za-z0-9._+-]*$/, "");
+    if (trimmed.trim()) out = trimmed;
+  }
+  return out;
+}
+
+function clipAt(text, max) {
+  const source = text.trim();
+  if (source.length <= max) return source;
+  const floor = Math.min(max, Math.max(8, Math.floor(max * 0.45)));
+  let cut = -1;
+  const limit = Math.min(source.length, max);
+  for (let i = limit; i >= floor; i--) {
+    if (" ，、；：,;:".includes(source[i - 1])) {
+      cut = i - 1;
+      break;
+    }
+  }
+  const out = cut >= floor ? source.slice(0, cut) : hardClip(source, max);
+  return stripEdge(dropUnclosed(out));
+}
+
+export function tightenBlurb(raw, locale) {
+  const sentence = firstSentence(stripNoise(raw));
+  if (!sentence) return "";
+  return clipAt(sentence, locale === "zh" ? ZH_BLURB_MAX : EN_BLURB_MAX);
+}
+
+export function listBlurbs(plugin, date) {
+  const id = plugin && plugin.id ? String(plugin.id) : "";
+  const when = date || (plugin && typeof plugin.addedAt === "string" ? plugin.addedAt : "");
+  const override = id ? resolveWriterBlurb(id, when) : null;
+  if (override) {
+    return {
+      zh: typeof override.zh === "string" ? override.zh : "",
+      en: typeof override.en === "string" ? override.en : "",
+    };
+  }
+  const zhSource = pickChinese(plugin);
+  const enSource = pickEnglish(plugin);
+  const zh = zhSource ? tightenBlurb(zhSource, "zh") : enSource ? tightenBlurb(enSource, "en") : "";
+  const en = enSource ? tightenBlurb(enSource, "en") : zhSource ? tightenBlurb(zhSource, "zh") : "";
+  return { zh, en };
+}
+
+export function oneSentence(plugin) {
+  return listBlurbs(plugin).zh;
 }
 
 function displayName(plugin) {
@@ -158,11 +337,13 @@ function displayName(plugin) {
   return name || identityKey(plugin.id) || String(plugin.id);
 }
 
-function toRow(plugin, ctx) {
+function toRow(plugin, ctx, date) {
+  const blurbs = listBlurbs(plugin, date);
   return {
     id: String(plugin.id),
     name: displayName(plugin),
-    sentence: oneSentence(plugin),
+    zh: blurbs.zh,
+    en: blurbs.en,
     href: landingHref(plugin, ctx),
     score: newPluginScore(plugin),
   };
@@ -207,7 +388,7 @@ export function groupEligibleNewPlugins(plugins, ctx) {
       rows = [];
       byDate.set(date, rows);
     }
-    rows.push(toRow(plugin, ctx));
+    rows.push(toRow(plugin, ctx, date));
   }
   for (const rows of byDate.values()) rows.sort(compareRows);
   const dates = [...byDate.keys()].sort();
@@ -228,8 +409,17 @@ function esc(value) {
   });
 }
 
+function blurbText(text) {
+  return text ? `${NEW_PLUGIN_ROW_SEPARATOR}${text}` : "";
+}
+
 function rowHtml(row) {
-  const sentence = row.sentence ? `${NEW_PLUGIN_ROW_SEPARATOR}${esc(row.sentence)}` : "";
+  const zh = blurbText(row.zh);
+  const en = blurbText(row.en);
+  const sentence =
+    zh || en
+      ? `<span data-new-blurb data-zh="${esc(zh)}" data-en="${esc(en)}">${esc(zh || en)}</span>`
+      : "";
   return `<li><a href="${esc(row.href)}">${esc(row.name)}</a>${sentence}</li>`;
 }
 
@@ -332,6 +522,9 @@ export function renderNewPluginPage({ date, rows, kind }) {
     if (h1) h1.textContent = h1.getAttribute("data-" + loc) || h1.textContent;
     var intro = document.querySelector("[data-new-intro]");
     if (intro) intro.textContent = intro.getAttribute("data-" + loc) || intro.textContent;
+    document.querySelectorAll("[data-new-blurb]").forEach(function (el) {
+      el.textContent = el.getAttribute("data-" + loc) || "";
+    });
     var desc = document.querySelector('meta[name="description"]');
     if (desc) {
       var next = desc.getAttribute("data-" + loc) || desc.getAttribute("content") || "";

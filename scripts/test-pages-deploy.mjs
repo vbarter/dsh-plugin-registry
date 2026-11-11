@@ -1337,6 +1337,11 @@ try {
   assert(!newDay.includes('rel="canonical" href="https://dsplugin.app/new/2026-11-11"'), "date page is not self-canonical");
   assert(newDay.includes('property="og:url" content="https://dsplugin.app/new/2026-11-11"'), "date permalink is the og:url");
   assert(newDay.includes('name="robots" content="noindex"'), "date page is noindex");
+  assert(newDay.includes("<title>今日新增插件 · dsplugin.app</title>"), "date title stays locked");
+  assert(newDay.includes(">今日新增插件</h1>"), "date H1 stays 今日新增插件");
+  assert(newDay.includes("把本地技能编排成可按步骤执行的工作流"), "date page uses the writer zh blurb");
+  assert(newDay.includes("Orchestrate local skills into step-by-step workflows"), "date page uses the writer en blurb");
+  assert(!newDay.includes("4f2dbb67"), "date page does not keep the catalog commit hash");
   assert(!newDay.includes("插件目录"), "date page does not use 插件目录");
   assert(!newDay.includes("按最近收录"), "date page does not use 按最近收录");
   assert(!newDay.includes("新收录插件"), "date page does not use the retired title");
