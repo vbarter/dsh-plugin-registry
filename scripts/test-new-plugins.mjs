@@ -43,15 +43,48 @@ function assert(cond, message) {
   console.error(`FAIL ${message}`);
 }
 
-assert(NEW_PLUGIN_COPY.zh.title === "今日新增插件 · dsplugin.app", "zh title locked");
-assert(NEW_PLUGIN_COPY.zh.h1 === "今日新增插件", "zh H1 locked");
+const ZH_TITLE = "New Plugins · 今日新增插件 · dsplugin.app";
+const ZH_H1 = "New Plugins · 今日新增插件";
+const EN_TITLE = "New Plugins";
+const EN_H1 = "New Plugins";
+const H1_HTML = `<h1 id="new-plugins-title" class="page-title" data-zh="${ZH_H1}" data-en="${EN_H1}">${ZH_H1}</h1>`;
+
+function assertNoSingularNewPlugin(text, message) {
+  assert(!text.replaceAll("New Plugins", "").includes("New Plugin"), message);
+}
+
+function assertFrozenHead(html, label) {
+  assert(html.includes(`<title>${ZH_TITLE}</title>`), `${label} zh title`);
+  assert(html.includes(`data-title-zh="${ZH_TITLE}"`), `${label} data-title-zh`);
+  assert(html.includes(`data-title-en="${EN_TITLE}"`), `${label} data-title-en`);
+  assert(html.includes(H1_HTML), `${label} H1 zh and en`);
+  assert(html.includes(`property="og:title" content="${ZH_TITLE}"`), `${label} og:title is the zh title`);
+  assert(html.includes(`name="twitter:title" content="${ZH_TITLE}"`), `${label} twitter:title is the zh title`);
+  const docTitle = html.match(/<title>([^<]*)<\/title>/)[1];
+  const h1Text = html.match(/<h1 id="new-plugins-title"[^>]*>([^<]*)<\/h1>/)[1];
+  const h1Open = html.match(/<h1 id="new-plugins-title"[^>]*>/)[0];
+  const titleAttrs = html.match(/data-title-zh="[^"]*" data-title-en="[^"]*"/)[0];
+  for (const bit of [docTitle, h1Text, h1Open, titleAttrs]) {
+    assert(!/\d{4}-\d{2}-\d{2}/.test(bit), `${label} date stays out of title and H1`);
+    assert(!bit.includes("插件目录"), `${label} title and H1 omit 插件目录`);
+    assertNoSingularNewPlugin(bit, `${label} has no singular New Plugin`);
+  }
+  assert(docTitle === ZH_TITLE, `${label} document title is exactly the zh freeze`);
+  assert(h1Text === ZH_H1, `${label} H1 text is exactly the zh freeze`);
+  assert(!html.includes("Plugins added today"), `${label} drops Plugins added today`);
+  assert(!html.includes("<title>今日新增插件 · dsplugin.app</title>"), `${label} drops the previous title`);
+}
+
+assert(NEW_PLUGIN_COPY.zh.title === ZH_TITLE, "zh title locked");
+assert(NEW_PLUGIN_COPY.zh.h1 === ZH_H1, "zh H1 locked");
 assert(
   NEW_PLUGIN_COPY.zh.intro(3) === "今日新增 3 款插件，按综合得分排序；点名称查看详情。",
   "zh intro locked"
 );
 assert(NEW_PLUGIN_COPY.zh.empty === "今日暂无符合规则的新增插件。", "zh empty locked");
-assert(NEW_PLUGIN_COPY.en.title === "Plugins added today · dsplugin.app", "en title locked");
-assert(NEW_PLUGIN_COPY.en.h1 === "Plugins added today", "en H1 locked");
+assert(NEW_PLUGIN_COPY.en.title === EN_TITLE, "en title locked");
+assert(NEW_PLUGIN_COPY.en.h1 === EN_H1, "en H1 locked");
+assertNoSingularNewPlugin(ZH_TITLE + ZH_H1 + EN_TITLE + EN_H1, "frozen copy has no singular New Plugin");
 assert(
   NEW_PLUGIN_COPY.en.intro(3) === "3 plugins added today, sorted by a combined score. Open a name for details.",
   "en intro locked"
@@ -162,9 +195,13 @@ assert(dayHtml.includes('rel="canonical" href="https://dsplugin.app/new"'), "dat
 assert(hubHtml.includes('rel="canonical" href="https://dsplugin.app/new"'), "hub canonical is /new");
 assert(dayHtml.includes('property="og:url" content="https://dsplugin.app/new/2026-11-11"'), "date og:url is the permalink");
 assert(hubHtml.includes('property="og:url" content="https://dsplugin.app/new"'), "hub og:url is /new");
-assert(dayHtml.includes('<h1 id="new-plugins-title" class="page-title" data-zh="今日新增插件" data-en="Plugins added today">今日新增插件</h1>'), "H1 source is exactly 今日新增插件");
+assertFrozenHead(dayHtml, "date html");
+assertFrozenHead(hubHtml, "hub html");
 assert(!/<h1[^>]*>[^<]*\d{4}-\d{2}-\d{2}/.test(dayHtml), "date is not in the H1");
+assert(!/<title>[^<]*\d{4}-\d{2}-\d{2}/.test(dayHtml), "date is not in the title");
+assert(!/<title>[^<]*\d{4}-\d{2}-\d{2}/.test(hubHtml), "hub date is not in the title");
 assert(dayHtml.includes('<p class="page-sub" data-new-date="2026-11-11">2026-11-11</p>'), "date is the subtitle");
+assert(hubHtml.includes('<p class="page-sub" data-new-date="2026-11-11">2026-11-11</p>'), "hub date is only the subtitle");
 assert(dayHtml.includes(`今日新增 ${grouped.byDate.get("2026-11-11").length} 款插件，按综合得分排序；点名称查看详情。`), "intro uses the locked sentence");
 assert(!dayHtml.includes("插件目录") && !dayHtml.includes("按最近收录"), "intro avoids homepage keywords");
 const intro = dayHtml.match(/<p class="page-clarify"[^>]*>[^<]*<\/p>/)[0];
@@ -341,7 +378,7 @@ const escaped = renderNewPluginPage({
 });
 assert(escaped.includes("Tom &amp; Jerry&#39;s &quot;quote&quot;"), "blurb html is escaped");
 assert(escaped.includes('data-en="：Safe"'), "english blurb attribute is separate");
-assert(escaped.includes("<title>今日新增插件 · dsplugin.app</title>"), "blurb rows do not change the title");
+assertFrozenHead(escaped, "escaped page");
 assert(escaped.includes('rel="canonical" href="https://dsplugin.app/new"'), "blurb rows do not change canonical");
 assert(escaped.includes('name="robots" content="noindex"'), "blurb rows do not change noindex");
 
@@ -473,18 +510,13 @@ try {
   assert(!page.includes("4f2dbb67"), "2026-11-11 page drops the uupm commit hash");
   assert(!page.includes("4-layer routing"), "2026-11-11 page drops the raw chelate blurb");
   assert(!page.includes("Hugeicons"), "2026-11-11 page drops the raw workspace-icons blurb");
-  assert(page.includes("<title>今日新增插件 · dsplugin.app</title>"), "date title stays locked");
-  assert(page.includes('data-title-en="Plugins added today · dsplugin.app"'), "english title stays locked");
-  assert(
-    page.includes('<h1 id="new-plugins-title" class="page-title" data-zh="今日新增插件" data-en="Plugins added today">今日新增插件</h1>'),
-    "H1 stays locked"
-  );
+  assertFrozenHead(page, "catalog date page");
   assert(page.includes('rel="canonical" href="https://dsplugin.app/new"'), "date canonical stays /new");
   assert(!page.includes('rel="canonical" href="https://dsplugin.app/new/2026-11-11"'), "date page is not self-canonical");
   assert(page.includes('name="robots" content="noindex"'), "date page stays noindex");
   const hub = await readFile(join(catalogTmp, "new/index.html"), "utf8");
   assert(hub.includes("把本地技能编排成可按步骤执行的工作流"), "hub uses the same writer blurbs");
-  assert(hub.includes("<title>今日新增插件 · dsplugin.app</title>"), "hub title stays locked");
+  assertFrozenHead(hub, "catalog hub");
   assert(hub.includes('rel="canonical" href="https://dsplugin.app/new"'), "hub canonical stays /new");
   assert(hub.includes('name="robots" content="noindex"'), "hub stays noindex");
   assert(!existsSync(join(catalogTmp, "plugins")), "new pages do not create /plugins landings");
