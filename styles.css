@@ -849,14 +849,22 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
 }
 .hub-list a:hover { color: var(--blue); background: var(--blue-soft); }
 
-/* —— homepage alignment 20260816c —— */
+/* —— homepage alignment 20260816c ——
+   >960px: Topics | Get started on row 1, Featured full width on row 2.
+   Featured links are a 4-column grid (all 8 kept). ≤960px stays one column. */
 .landing:has(> .hub-list) {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    "topics start"
+    "featured featured";
   gap: 12px 16px;
   margin-top: 22px;
   align-items: start;
 }
+.landing:has(> .hub-list) > .hub-list[data-i18n-aria="index.hub.topics"] { grid-area: topics; }
+.landing:has(> .hub-list) > .hub-list[data-i18n-aria="index.hub.start"] { grid-area: start; }
+.landing:has(> .hub-list) > .hub-list[data-i18n-aria="index.hub.featured"] { grid-area: featured; }
 .landing:has(> .hub-list) .hub-list {
   display: flex;
   flex-direction: column;
@@ -868,6 +876,17 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
   border: 1px solid var(--line-soft);
   border-radius: var(--r-md);
   background: var(--bg);
+}
+.landing:has(> .hub-list) > .hub-list[data-i18n-aria="index.hub.featured"] {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+}
+.landing:has(> .hub-list) > .hub-list[data-i18n-aria="index.hub.featured"]::before {
+  grid-column: 1 / -1;
+}
+.landing:has(> .hub-list) > .hub-list[data-i18n-aria="index.hub.featured"] > li {
+  min-width: 0;
 }
 .landing:has(> .hub-list) .hub-list::before {
   content: attr(aria-label);
@@ -939,7 +958,17 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
   padding-right: 8px;
 }
 @media (max-width: 960px) {
-  .landing:has(> .hub-list) { grid-template-columns: 1fr; }
+  .landing:has(> .hub-list) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "topics"
+      "featured"
+      "start";
+  }
+  .landing:has(> .hub-list) > .hub-list[data-i18n-aria="index.hub.featured"] {
+    display: flex;
+    flex-direction: column;
+  }
   .prow { grid-template-columns: 36px minmax(0, 1fr) 72px 112px; }
   .toolbar-r { grid-template-columns: 1fr 1fr; }
 }
