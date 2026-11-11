@@ -627,6 +627,54 @@ assert(www.status === 301, "www → 301");
 assert(www.headers.get("location") === "https://dsplugin.app/c/harness", "www location is apex");
 assert(wwwCalls.n === 0, "www redirect does not call next()");
 
+const NEW_PAGE = `<!doctype html><html><head><link rel="canonical" href="https://dsplugin.app/new"><meta name="robots" content="noindex"><title>今日新增插件 · dsplugin.app</title></head><body data-new-landing="1"><h1>今日新增插件</h1></body></html>`;
+
+for (const path of ["/new", "/new/", "/new/index.html", "/new/2026-11-11", "/new/2026-11-11/", "/new/2026-11-11.html"]) {
+  const res = await statusOf(path, { body: NEW_PAGE });
+  assert(res.res.status === 200, `${path} generated landing → 200`);
+  assert(res.res.headers.get("x-robots-tag") === "noindex", `${path} noindex`);
+  assert(res.text.includes('href="https://dsplugin.app/new"'), `${path} keeps canonical`);
+  assert(res.text.includes("今日新增插件"), `${path} keeps H1`);
+  assert(!res.text.includes("data-page=\"index\""), `${path} is not the homepage shell`);
+}
+
+const newShell = await statusOf("/new");
+assert(newShell.res.status === 404, "/new homepage shell → 404");
+assert(newShell.res.headers.get("x-robots-tag") === "noindex", "/new homepage shell noindex");
+assert(newShell.text === "Not Found\n", "/new homepage shell is plain Not Found");
+
+const newDateShell = await statusOf("/new/2026-11-11");
+assert(newDateShell.res.status === 404, "/new/2026-11-11 homepage shell → 404");
+assert(newDateShell.res.headers.get("x-robots-tag") === "noindex", "/new/2026-11-11 homepage shell noindex");
+
+const newLang = await statusOf("/new?lang=en", { body: NEW_PAGE });
+assert(newLang.res.status === 200, "/new?lang=en → 200");
+assert(newLang.res.headers.get("x-robots-tag").includes("noindex"), "/new?lang=en stays noindex");
+
+for (const path of [
+  "/new/not-a-date",
+  "/new/not-a-date/",
+  "/new/2026-11-31",
+  "/new/2026-02-29",
+  "/new/2026-11-11/extra",
+  "/new/2026-11-11/extra.html",
+  "/plugins/dsh-ios-theme",
+  "/plugins/dsh-ios-theme.html",
+]) {
+  const res = await statusOf(path, { body: NEW_PAGE });
+  assert(res.res.status === 404, `${path} → 404`);
+  assert(res.res.headers.get("x-robots-tag") === "noindex", `${path} noindex`);
+  assert(res.text === "Not Found\n", `${path} is plain Not Found`);
+}
+
+const leap = await statusOf("/new/2024-02-29", { body: NEW_PAGE });
+assert(leap.res.status === 200, "/new/2024-02-29 generated landing → 200");
+assert(leap.res.headers.get("x-robots-tag") === "noindex", "/new/2024-02-29 noindex");
+
+const iosStill = await statusOf("/plugins/dsh-ios");
+assert(iosStill.res.status === 200, "/plugins/dsh-ios still 200");
+assert(iosStill.res.headers.get("x-robots-tag") == null, "/plugins/dsh-ios still has no noindex header");
+
 if (failed) {
   console.error(`\n${failed} failed`);
   process.exit(1);

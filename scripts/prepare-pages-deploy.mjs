@@ -18,6 +18,11 @@
  * category counts, languages) and data/list-default-NNN.json pages of 60
  * plugins in the empty-query relevance order from js/list-rank.js.
  *
+ * It also writes noindex /new/index.html (latest eligible day) and
+ * /new/YYYY-MM-DD.html for every catalog day that still has an eligible
+ * plugin. Days with zero eligible plugins are not written. Neither URL is
+ * added to sitemap.xml. See scripts/new-plugins.mjs.
+ *
  *   node scripts/prepare-pages-deploy.mjs
  *
  * Env:
@@ -28,6 +33,7 @@ import { cp, mkdir, readdir, readFile, rm, stat, writeFile } from "node:fs/promi
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadListRank } from "./list-rank.mjs";
+import { writeNewPluginPages } from "./new-plugins.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -207,6 +213,12 @@ export async function preparePagesDeploy({
   if (leaked) throw new Error("data/plugins.json was copied into the Pages upload");
 
   const shardInfo = await writeLiteShards(liteOut, shardTarget, hardLimit);
+  const full = JSON.parse(await readFile(join(rootAbs, "data", "plugins.json"), "utf8"));
+  const newPlugins = await writeNewPluginPages({
+    outDir: outAbs,
+    plugins: Array.isArray(full.plugins) ? full.plugins : [],
+    pluginsDir: join(rootAbs, "plugins"),
+  });
   const files = await walkFiles(outAbs);
   let largest = { path: "", bytes: 0 };
   for (const path of files) {
@@ -224,6 +236,7 @@ export async function preparePagesDeploy({
     listPages: built.pages.length,
     catalogFirst,
     catalogLast,
+    newPlugins,
   };
 }
 
@@ -244,6 +257,12 @@ if (isCli) {
         console.log(`plugins-lite.json left whole (${shard.bytes} bytes)`);
       }
       console.log(`wrote ${result.listPages} default list pages`);
+      const fresh = result.newPlugins;
+      console.log(
+        fresh.latest
+          ? `wrote ${fresh.dates.length} new-plugin date pages, hub /new → ${fresh.latest}`
+          : "no eligible new-plugin dates"
+      );
       console.log(
         `upload ${result.fileCount} files, largest ${result.largest.bytes} bytes ${result.largest.path}`
       );

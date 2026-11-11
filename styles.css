@@ -985,6 +985,30 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
   .prow { grid-template-columns: 36px minmax(0, 1fr); }
 }
 .page-title { max-width: none; }
+
+/* Daily /new list. Scoped so homepage hub grids stay put. */
+.new-plugins {
+  list-style: none;
+  margin: 8px 0 48px;
+  padding: 0;
+  max-width: 72ch;
+}
+.new-plugins li {
+  margin: 0;
+  padding: 14px 0;
+  border-top: 1px solid var(--line-soft);
+  color: var(--fg-2);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.new-plugins li:last-child { border-bottom: 1px solid var(--line-soft); }
+.new-plugins a {
+  color: var(--fg);
+  font-weight: 500;
+  text-decoration: none;
+}
+.new-plugins a:hover { color: var(--blue); }
 .page-sub { max-width: 72ch; overflow-wrap: anywhere; word-break: break-word; }
 .faq-list { max-width: none; }
 .pavatar, .pavatar.lg { border-radius: 12px; }

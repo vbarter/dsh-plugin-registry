@@ -1319,6 +1319,32 @@ try {
   assert(envelope.list.total === rebuilt.length, "envelope list.total matches the catalog");
   assert(envelope.list.totalPages === Math.ceil(rebuilt.length / 60), "envelope list.totalPages");
   assert(prepared.listPages === envelope.list.totalPages, "upload has one default page per page");
+  assert(prepared.newPlugins && prepared.newPlugins.latest, "deploy writes a /new hub");
+  assert(prepared.newPlugins.dates.includes("2026-11-11"), "2026-11-11 has eligible plugins");
+  assert(existsSync(join(outDir, "new/index.html")), "upload has /new/index.html");
+  assert(existsSync(join(outDir, "new/2026-11-11.html")), "upload has /new/2026-11-11.html");
+  assert(existsSync(join(outDir, "new/1999-01-01.html")) === false, "empty unknown date is not uploaded");
+  assert(existsSync(join(ROOT, "new/index.html")) === false, "date pages are not committed into the repo");
+  const newHub = await readFile(join(outDir, "new/index.html"), "utf8");
+  const newDay = await readFile(join(outDir, "new/2026-11-11.html"), "utf8");
+  assert(newHub.includes('data-new-landing="1"'), "/new hub is the generated landing");
+  assert(newHub.includes("<title>今日新增插件 · dsplugin.app</title>"), "/new title is the locked title");
+  assert(newHub.includes(">今日新增插件</h1>"), "/new H1 is 今日新增插件");
+  assert(newHub.includes('rel="canonical" href="https://dsplugin.app/new"'), "/new is self-canonical");
+  assert(newHub.includes('name="robots" content="noindex"'), "/new is noindex");
+  assert(newHub.includes(`data-new-date="${prepared.newPlugins.latest}"`), "/new subtitle is the latest eligible day");
+  assert(newDay.includes('rel="canonical" href="https://dsplugin.app/new"'), "date page canonical points at /new");
+  assert(!newDay.includes('rel="canonical" href="https://dsplugin.app/new/2026-11-11"'), "date page is not self-canonical");
+  assert(newDay.includes('property="og:url" content="https://dsplugin.app/new/2026-11-11"'), "date permalink is the og:url");
+  assert(newDay.includes('name="robots" content="noindex"'), "date page is noindex");
+  assert(!newDay.includes("插件目录"), "date page does not use 插件目录");
+  assert(!newDay.includes("按最近收录"), "date page does not use 按最近收录");
+  assert(!newDay.includes("新收录插件"), "date page does not use the retired title");
+  for (const banned of ["dsh-rea-pro", "dsh-websearch-zai-codingplan", "dsh-web-search-zhipu-mcp", "dsh-ios-theme"]) {
+    assert(!newDay.includes(banned), `2026-11-11 page omits ${banned}`);
+  }
+  const uploadedSitemap = await readFile(join(outDir, "sitemap.xml"), "utf8");
+  assert(!uploadedSitemap.includes("dsplugin.app/new"), "sitemap does not list /new");
   let specStars = 0;
   let specValidated = 0;
   const specOwners = {};
