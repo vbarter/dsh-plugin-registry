@@ -2,6 +2,11 @@
 // Unknown paths are served as index.html with status 200. Non-200 responses
 // (301/308 from _redirects / html_handling, 410 from the old sitemap Functions)
 // pass through unchanged.
+//
+// /new and /new/YYYY-MM-DD are daily landings written by prepare-pages-deploy.
+// A date-shaped path is allowed only when the asset is that generated page
+// (data-new-landing="1"). The homepage shell, unknown dates, and /new/not-a-date
+// stay 404 + noindex. Both live pages are noindex; date pages canonical to /new.
 
 const EXACT = new Set([
   "/",
@@ -36,7 +41,7 @@ const EXACT = new Set([
 // plugins/<slug>.html that exist in the repo. Anything else under /plugins/ is a soft-200.
 // Underscore is part of the slug charset: dsh-infinite_canvas matches the github path.
 // Hyphen lookalikes are not listed, so they stay 404 + noindex.
-const PLUGIN_SLUGS = new Set([
+export const PLUGIN_SLUGS = new Set([
   "agentero-dsh-plugin",
   "ds-bot",
   "dsh-boot-animation",
@@ -96,6 +101,23 @@ function isDefaultListPage(path) {
   return /^\/data\/list-default-\d+\.json$/.test(path);
 }
 
+function isIsoDate(iso) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+  if (!match) return false;
+  const y = Number(match[1]);
+  const mo = Number(match[2]);
+  const d = Number(match[3]);
+  const dt = new Date(Date.UTC(y, mo - 1, d));
+  return dt.getUTCFullYear() === y && dt.getUTCMonth() === mo - 1 && dt.getUTCDate() === d;
+}
+
+// Hub /new and calendar dates only. /new/not-a-date and 2026-11-31 do not match.
+function isNewLandingPath(path) {
+  if (path === "/new" || path === "/new.html" || path === "/new/index.html") return true;
+  const match = /^\/new\/(\d{4}-\d{2}-\d{2})(\.html)?$/.exec(path);
+  return Boolean(match && isIsoDate(match[1]));
+}
+
 function isAllowed(path) {
   if (EXACT.has(path) || DATA_JSON.has(path) || isLiteShard(path) || isDefaultListPage(path)) return true;
   let match = /^\/plugins\/([a-z0-9_-]+)(\.html)?$/.exec(path);
@@ -114,6 +136,16 @@ function isTypicalAssetPath(path) {
 
 // clone()+read deadlocks unless both branches are consumed. Buffer instead.
 // Only used for non-allowlisted assets whose Content-Type can lie (SPA shell).
+async function readTextAsset(res) {
+  const buf = await res.arrayBuffer();
+  const bytes = new Uint8Array(buf);
+  let start = 0;
+  if (bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf) start = 3;
+  const text = new TextDecoder("utf-8").decode(bytes.subarray(start));
+  const rebuilt = new Response(buf, { status: res.status, statusText: res.statusText, headers: res.headers });
+  return { text, res: rebuilt };
+}
+
 async function readAsset(res) {
   const buf = await res.arrayBuffer();
   const bytes = new Uint8Array(buf);
@@ -171,6 +203,22 @@ export async function onRequest(context) {
   if (res.status !== 200) return withLang(url, res);
 
   const path = normalizePath(url.pathname);
+  if (path && isNewLandingPath(path)) {
+    const peeked = await readTextAsset(res);
+    if (peeked.text.includes('data-new-landing="1"')) {
+      const headers = new Headers(peeked.res.headers);
+      headers.set("X-Robots-Tag", "noindex");
+      return withLang(
+        url,
+        new Response(peeked.res.body, {
+          status: peeked.res.status,
+          statusText: peeked.res.statusText,
+          headers,
+        })
+      );
+    }
+    return notFound();
+  }
   if (path && isAllowed(path)) return withLang(url, res);
   if (path) {
     const asset = await realStaticAsset(path, res);

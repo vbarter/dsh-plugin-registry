@@ -3,6 +3,7 @@
  * Write sitemap.xml as a single urlset of the indexable landing URLs.
  * Do not emit sitemap-static.xml or sitemap-plugins.xml.
  * Existing P0 lastmods stay 2026-08-16. New plugin locs use their ship date.
+ * /new and /new/YYYY-MM-DD are noindex. Do not add them here.
  */
 import fs from "node:fs";
 import path from "node:path";
