@@ -627,14 +627,21 @@ assert(www.status === 301, "www → 301");
 assert(www.headers.get("location") === "https://dsplugin.app/c/harness", "www location is apex");
 assert(wwwCalls.n === 0, "www redirect does not call next()");
 
-const NEW_PAGE = `<!doctype html><html><head><link rel="canonical" href="https://dsplugin.app/new"><meta name="robots" content="noindex"><title>今日新增插件 · dsplugin.app</title></head><body data-new-landing="1"><h1>今日新增插件</h1></body></html>`;
+const NEW_PAGE = `<!doctype html><html><head><link rel="canonical" href="https://dsplugin.app/new"><meta name="robots" content="noindex"><title>New Plugins · 今日新增插件 · dsplugin.app</title></head><body data-new-landing="1" data-title-zh="New Plugins · 今日新增插件 · dsplugin.app" data-title-en="New Plugins"><h1 id="new-plugins-title" data-zh="New Plugins · 今日新增插件" data-en="New Plugins">New Plugins · 今日新增插件</h1><p class="page-sub">2026-11-11</p></body></html>`;
 
 for (const path of ["/new", "/new/", "/new/index.html", "/new/2026-11-11", "/new/2026-11-11/", "/new/2026-11-11.html"]) {
   const res = await statusOf(path, { body: NEW_PAGE });
   assert(res.res.status === 200, `${path} generated landing → 200`);
   assert(res.res.headers.get("x-robots-tag") === "noindex", `${path} noindex`);
   assert(res.text.includes('href="https://dsplugin.app/new"'), `${path} keeps canonical`);
-  assert(res.text.includes("今日新增插件"), `${path} keeps H1`);
+  assert(res.text.includes("<title>New Plugins · 今日新增插件 · dsplugin.app</title>"), `${path} keeps title`);
+  assert(res.text.includes('data-title-en="New Plugins"'), `${path} keeps en title`);
+  assert(res.text.includes(">New Plugins · 今日新增插件</h1>"), `${path} keeps H1`);
+  assert(res.text.includes('data-en="New Plugins"'), `${path} keeps en H1`);
+  assert(!res.text.replaceAll("New Plugins", "").includes("New Plugin"), `${path} has no singular New Plugin`);
+  assert(!/<title>[^<]*\d{4}-\d{2}-\d{2}/.test(res.text), `${path} date is not in the title`);
+  assert(!/<h1[^>]*>[^<]*\d{4}-\d{2}-\d{2}/.test(res.text), `${path} date is not in the H1`);
+  assert(res.text.includes('<p class="page-sub">2026-11-11</p>'), `${path} date stays in the subtitle`);
   assert(!res.text.includes("data-page=\"index\""), `${path} is not the homepage shell`);
 }
 

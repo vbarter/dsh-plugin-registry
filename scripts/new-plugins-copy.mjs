@@ -5,16 +5,16 @@
  */
 export const NEW_PLUGIN_COPY = {
   zh: {
-    title: "今日新增插件 · dsplugin.app",
-    h1: "今日新增插件",
+    title: "New Plugins · 今日新增插件 · dsplugin.app",
+    h1: "New Plugins · 今日新增插件",
     intro(n) {
       return `今日新增 ${n} 款插件，按综合得分排序；点名称查看详情。`;
     },
     empty: "今日暂无符合规则的新增插件。",
   },
   en: {
-    title: "Plugins added today · dsplugin.app",
-    h1: "Plugins added today",
+    title: "New Plugins",
+    h1: "New Plugins",
     intro(n) {
       return `${n} plugins added today, sorted by a combined score. Open a name for details.`;
     },
