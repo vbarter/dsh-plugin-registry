@@ -15,6 +15,7 @@ import {
   preparePagesDeploy,
   shardText,
 } from "./prepare-pages-deploy.mjs";
+import { loadListRank } from "./list-rank.mjs";
 
 const ROOT = join(fileURLToPath(new URL("..", import.meta.url)));
 let failed = 0;
@@ -46,6 +47,71 @@ for (const group of groups) {
   assertBytes(bytes, "tiny shard under Pages limit");
   if (group.length > 1) assert(bytes <= 700, `multi-plugin shard stays within target (${bytes})`);
 }
+
+const rank = loadListRank();
+assert(rank.PAGE_SIZE === 60, "page size is 60");
+assert(rank.defaultPageFile(1) === "list-default-001.json", "default page file is list-default-001.json");
+assert(rank.defaultPageFile(12) === "list-default-012.json", "default page file pads to 3 digits");
+const scoreNow = Date.parse("2026-11-11T00:00:00.000Z");
+const day = 1000 * 60 * 60 * 24;
+const scored = {
+  stars: 10,
+  forks: 5,
+  source: "curated",
+  pushedAt: "2026-11-01T00:00:00.000Z",
+  verification: { manifest: "shape_validated" },
+};
+const expectedScore =
+  10 * 2 +
+  5 * 0.2 +
+  180 +
+  40 +
+  Math.max(0, (Date.parse(scored.pushedAt) - scoreNow + day * 90) / day);
+assert(rank.relevanceScore(scored, "", scoreNow) === expectedScore, "empty-query score formula");
+const qPlugin = {
+  name: "Alpha",
+  owner: "ada",
+  id: "ada/alpha",
+  stars: 80,
+  description: { zh: "终端", en: "terminal" },
+  topics: ["tui"],
+};
+assert(
+  rank.relevanceScore(qPlugin, "alpha", scoreNow) === 120 + 48 + 20 + Math.min(30, 80 / 80),
+  "query score counts exact name, name substring, and id"
+);
+const order = [
+  { id: "low", stars: 1 },
+  { id: "high", stars: 9 },
+];
+const rankedTiny = rank.sortByRelevance(order, scoreNow);
+assert(order.map((p) => p.id).join() === "low,high", "relevance sort does not mutate catalog order");
+assert(rankedTiny.map((p) => p.id).join() === "high,low", "relevance sort orders by score");
+const metaPlugins = [
+  {
+    owner: "a",
+    stars: 2,
+    category: "tools",
+    language: "Go",
+    install: "cmd-a",
+    verification: { manifest: "shape_validated" },
+    source: "curated",
+  },
+  { owner: "a", stars: 0, category: "tools", language: "Rust", source: "discovered" },
+  { owner: "b", category: "ui", install: "cmd-b" },
+];
+const meta = rank.buildListMeta(metaPlugins, scoreNow);
+assert(meta.count === 3 && meta.total === 3, "list meta count is plugins.length");
+assert(meta.stars === 2, "list meta stars sum");
+assert(meta.authors === 2, "list meta unique owners");
+assert(meta.validated === 1, "list meta shape_validated count");
+assert(meta.categoryCounts.tools === 2 && meta.categoryCounts.ui === 1, "list meta category counts");
+assert(
+  meta.languages.join() === ["Go", "Rust"].sort((a, b) => a.localeCompare(b)).join(),
+  "list meta languages match buildLanguages sort"
+);
+assert(meta.installSamples.join() === "cmd-a,cmd-b", "list meta keeps the first install commands");
+assert(meta.pageSize === 60 && meta.totalPages === 1, "list meta pageSize and totalPages");
 
 const redirect = redirectCatalog();
 assert(redirect.status === 302, "full catalog route is 302");
@@ -1244,7 +1310,79 @@ try {
   }
   const envBytes = (await stat(join(outDir, "data/plugins-lite.json"))).size;
   assertBytes(envBytes, "envelope");
+  assert(envBytes < 20000, `sharded envelope stays a manifest (${envBytes} bytes)`);
   assert(rebuilt.length === prepared.shardInfo.count, "shard plugin count matches");
+  assert(rebuilt[0].id === prepared.catalogFirst, "shards keep catalog order at the start");
+  assert(rebuilt[rebuilt.length - 1].id === prepared.catalogLast, "shards keep catalog order at the end");
+  assert(envelope.list && envelope.list.count === rebuilt.length, "envelope list.count is the plugin count");
+  assert(envelope.list.pageSize === 60, "envelope list.pageSize is 60");
+  assert(envelope.list.total === rebuilt.length, "envelope list.total matches the catalog");
+  assert(envelope.list.totalPages === Math.ceil(rebuilt.length / 60), "envelope list.totalPages");
+  assert(prepared.listPages === envelope.list.totalPages, "upload has one default page per page");
+  let specStars = 0;
+  let specValidated = 0;
+  const specOwners = {};
+  const specCounts = {};
+  const specLangs = {};
+  const specInstalls = [];
+  for (const plugin of rebuilt) {
+    specStars += plugin.stars || 0;
+    if (plugin.owner) specOwners[plugin.owner] = true;
+    const manifest = (plugin.verification && plugin.verification.manifest) || "not_checked";
+    if (manifest === "shape_validated") specValidated += 1;
+    specCounts[plugin.category] = (specCounts[plugin.category] || 0) + 1;
+    if (plugin.language) specLangs[plugin.language] = true;
+    if (plugin.install && specInstalls.length < 12) specInstalls.push(plugin.install);
+  }
+  assert(envelope.list.stars === specStars, "list.stars matches fillStats");
+  assert(envelope.list.authors === Object.keys(specOwners).length, "list.authors matches fillStats");
+  assert(envelope.list.validated === specValidated, "list.validated matches fillStats");
+  assert(
+    JSON.stringify(envelope.list.installSamples) === JSON.stringify(specInstalls),
+    "install samples are the first 12 catalog-order commands"
+  );
+  const specLanguages = Object.keys(specLangs).sort((a, b) => a.localeCompare(b));
+  assert(JSON.stringify(envelope.list.languages) === JSON.stringify(specLanguages), "list.languages match buildLanguages");
+  for (const key of new Set([...Object.keys(specCounts), ...Object.keys(envelope.list.categoryCounts)])) {
+    assert(envelope.list.categoryCounts[key] === specCounts[key], `category count ${key}`);
+  }
+  const sortNow = Date.parse(envelope.list.sortedAt);
+  function specScore(plugin) {
+    let s = (plugin.stars || 0) * 2 + (plugin.forks || 0) * 0.2;
+    const manifest = (plugin.verification && plugin.verification.manifest) || "not_checked";
+    if (manifest === "shape_validated") s += 180;
+    if (plugin.source === "curated") s += 40;
+    const pushed = Date.parse(plugin.pushedAt || "") || 0;
+    s += Math.max(0, (pushed - sortNow + 1000 * 60 * 60 * 24 * 90) / (1000 * 60 * 60 * 24));
+    return s;
+  }
+  const specSorted = rebuilt.slice().sort((a, b) => specScore(b) - specScore(a));
+  const gotIds = [];
+  let firstPage = null;
+  for (let page = 1; page <= envelope.list.totalPages; page++) {
+    const name = `list-default-${String(page).padStart(3, "0")}.json`;
+    const body = JSON.parse(await readFile(join(outDir, "data", name), "utf8"));
+    if (page === 1) firstPage = body;
+    assert(body.page === page, `${name} page field`);
+    assert(body.pageSize === 60, `${name} pageSize`);
+    assert(body.sort === "relevance", `${name} sort`);
+    assert(body.total === rebuilt.length, `${name} total`);
+    assert(body.totalPages === envelope.list.totalPages, `${name} totalPages`);
+    assert(body.plugins.length > 0 && body.plugins.length <= 60, `${name} has at most 60 plugins`);
+    if (page < envelope.list.totalPages) assert(body.plugins.length === 60, `${name} is a full page`);
+    gotIds.push(...body.plugins.map((plugin) => plugin.id));
+  }
+  assert(gotIds.length === specSorted.length, "default pages cover every plugin once");
+  assert(
+    gotIds.join("\n") === specSorted.map((plugin) => plugin.id).join("\n"),
+    "default pages match empty-query relevance order"
+  );
+  const firstLite = rebuilt.find((plugin) => plugin.id === firstPage.plugins[0].id);
+  assert(
+    firstLite && firstLite.name === firstPage.plugins[0].name && firstLite.stars === firstPage.plugins[0].stars,
+    "page 1 keeps the lite plugin fields the list renders"
+  );
+  assert(!existsSync(join(outDir, "data/plugins-index.json")), "this round does not upload a search index");
   const ops = rebuilt.find((p) => p.id === "T-Auto/dsh-ops");
   assert(ops && ops.name === "dsh-ops", "sharded lite still contains T-Auto/dsh-ops");
   assert(prepared.largest.bytes < PAGES_FILE_LIMIT, "largest upload file is under 25 MiB");
@@ -1319,6 +1457,9 @@ try {
   assert(whole.shardInfo.sharded === false, "lite under the override target stays one file");
   const wholeLite = JSON.parse(await readFile(join(wholeDir, "data/plugins-lite.json"), "utf8"));
   assert(Array.isArray(wholeLite.plugins) && wholeLite.plugins.length === rebuilt.length, "unsharded lite keeps plugins");
+  assert(wholeLite.list && wholeLite.list.count === wholeLite.plugins.length, "unsharded lite keeps list meta");
+  assert(existsSync(join(wholeDir, "data/list-default-001.json")), "unsharded upload still writes default pages");
+  assert(existsSync(join(wholeDir, "data/plugins-lite-000.json")) === false, "unsharded upload does not invent shard 0");
   let wholeLeak = false;
   try {
     await stat(join(wholeDir, "data/plugins.json"));
@@ -1421,6 +1562,38 @@ assert(again === lite, "second lite load uses the cache");
 assert(liteBrowser.counts["/data/plugins-lite.json"] === 1, "envelope is fetched once");
 assert(liteBrowser.counts["/data/plugins-lite-000.json"] === 1, "shard 0 is fetched once");
 
+const envBrowser = browserContext({
+  "/data/plugins-lite.json": {
+    stats: { published: 2 },
+    categories: { tools: { zh: "工具", en: "Tools" } },
+    shards: ["plugins-lite-000.json", "plugins-lite-001.json"],
+    list: {
+      count: 2,
+      stars: 9,
+      authors: 2,
+      validated: 1,
+      categoryCounts: { tools: 2 },
+      languages: ["Go"],
+      pageSize: 60,
+      total: 2,
+      totalPages: 1,
+    },
+  },
+  "/data/plugins-lite-000.json": catalogFiles["/data/plugins-lite-000.json"],
+  "/data/plugins-lite-001.json": catalogFiles["/data/plugins-lite-001.json"],
+});
+vm.runInContext(dataCode, envBrowser.sandbox);
+assert(envBrowser.sandbox.window.DSH.plugins().length === 0, "plugins() is empty before any catalog load");
+const envOnly = await envBrowser.sandbox.window.DSH.loadLiteEnvelope();
+assert(envOnly.list.count === 2, "envelope exposes list meta");
+assert(envBrowser.sandbox.window.DSH.categories().tools.zh === "工具", "categories are readable from the envelope");
+assert(envBrowser.sandbox.window.DSH.plugins().length === 0, "envelope load does not expose shard plugins");
+assert(!envBrowser.counts["/data/plugins-lite-000.json"], "envelope load does not fetch shards");
+const joinedAfterEnv = await envBrowser.sandbox.window.DSH.loadCatalog();
+assert(joinedAfterEnv.plugins.length === 2, "catalog after the envelope still joins shards");
+assert(envBrowser.counts["/data/plugins-lite.json"] === 1, "catalog reuses the envelope response");
+assert(envBrowser.counts["/data/plugins-lite-000.json"] === 1, "catalog fetches shards only when asked");
+
 const fullBrowser = browserContext(catalogFiles);
 vm.runInContext(dataCode, fullBrowser.sandbox);
 const full = await fullBrowser.sandbox.window.DSH.loadCatalog({ full: true });
@@ -1446,6 +1619,355 @@ assert(
   "plugin-facts reads pushedAt from lite shards"
 );
 assert(!factsBrowser.counts["/data/plugins.json"], "plugin-facts does not fetch the full catalog");
+
+const rankCode = await readFile(join(ROOT, "js/list-rank.js"), "utf8");
+const listCode = await readFile(join(ROOT, "js/list.js"), "utf8");
+
+function shardUrls(counts) {
+  return Object.keys(counts).filter((url) => /\/data\/plugins-lite-\d+\.json$/.test(url));
+}
+
+function bootHome(files, search) {
+  const counts = {};
+  const allEls = [];
+  function hasClass(el, name) {
+    return String(el.className || "").split(/\s+/).filter(Boolean).includes(name);
+  }
+  function matches(el, sel) {
+    if (!el || !el.attrs) return false;
+    if (sel === ".chip[data-cat]") return hasClass(el, "chip") && el.attrs["data-cat"] != null;
+    if (sel === '[data-cat="all"]') return el.attrs["data-cat"] === "all";
+    if (sel === ".chip-count") return hasClass(el, "chip-count");
+    return false;
+  }
+  function descendants(el) {
+    const out = [];
+    for (const child of el.children || []) {
+      out.push(child);
+      out.push(...descendants(child));
+    }
+    return out;
+  }
+  function queryAll(root, sel) {
+    const scope = root == null ? allEls : descendants(root);
+    return scope.filter((el) => matches(el, sel));
+  }
+  function makeEl(tag) {
+    const el = {
+      tag,
+      value: "",
+      textContent: "",
+      innerHTML: "",
+      hidden: false,
+      className: "",
+      type: "",
+      attrs: {},
+      children: [],
+      listeners: {},
+    };
+    el.classList = {
+      toggle(name, on) {
+        const parts = new Set(String(el.className || "").split(/\s+/).filter(Boolean));
+        if (on) parts.add(name);
+        else parts.delete(name);
+        el.className = [...parts].join(" ");
+      },
+    };
+    el.setAttribute = (key, value) => {
+      el.attrs[key] = String(value);
+    };
+    el.getAttribute = (key) => (el.attrs[key] == null ? null : el.attrs[key]);
+    el.addEventListener = (type, fn) => {
+      (el.listeners[type] ||= []).push(fn);
+    };
+    el.appendChild = (child) => {
+      el.children.push(child);
+      return child;
+    };
+    el.querySelector = (sel) => queryAll(el, sel)[0] || null;
+    el.querySelectorAll = (sel) => queryAll(el, sel);
+    allEls.push(el);
+    return el;
+  }
+  const byId = {};
+  function register(id, tag) {
+    const el = makeEl(tag || "div");
+    byId[id] = el;
+    return el;
+  }
+  const chips = register("chips");
+  const allBtn = makeEl("button");
+  allBtn.className = "chip on";
+  allBtn.attrs["data-cat"] = "all";
+  const allCount = makeEl("span");
+  allCount.className = "chip-count";
+  allBtn.appendChild(allCount);
+  chips.appendChild(allBtn);
+  register("list");
+  register("list-note");
+  const moreWrap = register("load-more-wrap");
+  moreWrap.hidden = true;
+  register("load-more", "button");
+  register("q", "input");
+  register("language", "select");
+  register("source", "select");
+  register("manifest", "select");
+  register("sort", "select");
+  register("st-count", "b");
+  register("st-stars", "b");
+  register("st-author", "b");
+  register("st-auto", "b");
+  register("typer", "span");
+  const document = {
+    listeners: {},
+    getElementById(id) {
+      return byId[id] || null;
+    },
+    createElement(tag) {
+      return makeEl(tag);
+    },
+    querySelectorAll(sel) {
+      return queryAll(null, sel);
+    },
+    querySelector(sel) {
+      return queryAll(null, sel)[0] || null;
+    },
+    addEventListener(type, fn) {
+      (document.listeners[type] ||= []).push(fn);
+    },
+    dispatchEvent(ev) {
+      (document.listeners[ev.type] || []).forEach((fn) => fn(ev));
+      return true;
+    },
+  };
+  const sandbox = {
+    console,
+    URLSearchParams,
+    encodeURIComponent,
+    decodeURIComponent,
+    setTimeout,
+    clearTimeout,
+    CustomEvent,
+    location: { search: search || "", pathname: "/", hash: "" },
+    history: { replaceState() {} },
+    document,
+    fetch(url) {
+      const key = String(url);
+      counts[key] = (counts[key] || 0) + 1;
+      const body = files[key];
+      if (!body) {
+        return Promise.resolve({
+          ok: false,
+          status: 404,
+          json() {
+            return Promise.reject(new Error("no body"));
+          },
+        });
+      }
+      return Promise.resolve({
+        ok: true,
+        status: 200,
+        json() {
+          return Promise.resolve(body);
+        },
+      });
+    },
+  };
+  sandbox.window = sandbox;
+  sandbox.DSHCommon = {
+    countUp(el, n) {
+      if (el) el.textContent = sandbox.DSH.formatNum(n);
+    },
+    bindSearchHotkey() {},
+    starSvg() {
+      return "";
+    },
+    forkSvg() {
+      return "";
+    },
+    prefersReducedMotion() {
+      return true;
+    },
+  };
+  vm.createContext(sandbox);
+  vm.runInContext(rankCode, sandbox, { filename: "list-rank.js" });
+  vm.runInContext(dataCode, sandbox, { filename: "data.js" });
+  vm.runInContext(listCode, sandbox, { filename: "list.js" });
+  return { sandbox, counts, byId };
+}
+
+function homeFiles() {
+  return {
+    "/data/plugins-lite.json": {
+      categories: { tools: { zh: "工具", en: "Tools" } },
+      shards: ["plugins-lite-000.json"],
+      list: {
+        count: 40,
+        stars: 12345,
+        authors: 8,
+        validated: 3,
+        categoryCounts: { tools: 6 },
+        languages: ["Go"],
+        pageSize: 60,
+        total: 40,
+        totalPages: 1,
+        installSamples: ["dsh plugin --profile web add github:a/alpha"],
+      },
+    },
+    "/data/list-default-001.json": {
+      page: 1,
+      pageSize: 60,
+      total: 2,
+      totalPages: 2,
+      sort: "relevance",
+      plugins: [{
+        id: "a/alpha",
+        name: "Alpha",
+        owner: "a",
+        url: "https://github.com/a/alpha",
+        category: "tools",
+        stars: 3,
+        source: "curated",
+        language: "Go",
+        verification: { manifest: "shape_validated" },
+      }],
+    },
+    "/data/list-default-002.json": {
+      page: 2,
+      pageSize: 60,
+      total: 2,
+      totalPages: 2,
+      sort: "relevance",
+      plugins: [{
+        id: "b/beta",
+        name: "Beta",
+        owner: "b",
+        url: "https://github.com/b/beta",
+        category: "tools",
+        stars: 2,
+        source: "discovered",
+        language: "Go",
+      }],
+    },
+    "/data/plugins-lite-000.json": {
+      plugins: [{
+        id: "s/from",
+        name: "From Shard",
+        owner: "s",
+        url: "https://github.com/s/from",
+        category: "tools",
+        stars: 1,
+        source: "discovered",
+        language: "Go",
+      }],
+    },
+  };
+}
+
+async function flushHome() {
+  for (let i = 0; i < 40; i++) await Promise.resolve();
+}
+
+try {
+  const home = bootHome(homeFiles(), "");
+  await flushHome();
+  assert(home.counts["/data/plugins-lite.json"] === 1, "default homepage fetches the lite envelope once");
+  assert(home.counts["/data/list-default-001.json"] === 1, "default homepage fetches list page 1");
+  assert(shardUrls(home.counts).length === 0, "default homepage does not fetch lite shards");
+  assert(!home.counts["/data/plugins.json"], "default homepage does not fetch the full catalog");
+  assert(home.byId.list.innerHTML.includes("Alpha"), "default homepage paints page 1");
+  assert(!home.byId.list.innerHTML.includes("From Shard"), "default homepage does not paint shard rows");
+  assert(home.byId["st-count"].textContent === "40", "stat count comes from list meta");
+  assert(home.byId["st-stars"].textContent === "12,345", "stat stars come from list meta");
+  assert(home.byId["st-author"].textContent === "8", "stat authors come from list meta");
+  assert(home.byId["st-auto"].textContent === "3", "stat validated comes from list meta");
+  assert(home.byId.typer.textContent === "dsh plugin --profile web add github:a/alpha", "typer uses install samples");
+  const allCount = home.byId.chips.querySelector(".chip-count");
+  assert(allCount && allCount.textContent === "40", "all-count comes from list meta");
+  const toolChip = home.byId.chips.children.find((el) => el.getAttribute("data-cat") === "tools");
+  assert(toolChip && toolChip.innerHTML.includes("工具") && toolChip.innerHTML.includes("6"), "category chip uses manifest counts");
+  assert(home.byId.language.children.some((el) => el.textContent === "Go"), "language dropdown uses manifest languages");
+  assert(home.byId["load-more-wrap"].hidden === false, "load more stays available");
+  home.byId["load-more"].listeners.click[0]();
+  await flushHome();
+  assert(home.counts["/data/list-default-002.json"] === 1, "load more fetches the next default page");
+  assert(shardUrls(home.counts).length === 0, "load more still does not fetch lite shards");
+  assert(home.byId.list.innerHTML.includes("Beta"), "load more appends page 2");
+  assert(home.byId["load-more-wrap"].hidden === true, "load more hides when the default pages are exhausted");
+  home.byId.q.value = "from";
+  home.byId.q.listeners.input[0]();
+  await new Promise((resolve) => setTimeout(resolve, 200));
+  assert(shardUrls(home.counts).length === 1, "search lazy-loads lite shards");
+  assert(home.counts["/data/plugins-lite.json"] === 1, "search reuses the envelope");
+  assert(home.byId.list.innerHTML.includes("From Shard"), "search renders from the lite shards");
+  assert(!home.byId.list.innerHTML.includes(">Alpha<"), "search leaves the default page");
+
+  const deep = bootHome(homeFiles(), "?category=tools");
+  await flushHome();
+  assert(!deep.counts["/data/list-default-001.json"], "filtered deep link does not fetch default pages");
+  assert(deep.counts["/data/plugins-lite-000.json"] === 1, "filtered deep link lazy-loads lite shards");
+  assert(deep.byId.list.innerHTML.includes("From Shard"), "filtered deep link renders shard rows");
+  assert(deep.byId["st-count"].textContent === "40", "filtered deep link still fills stats from list meta");
+} catch (err) {
+  assert(false, `homepage harness ${err && err.stack ? err.stack : err}`);
+}
+
+const seoCode = await readFile(join(ROOT, "js/seo.js"), "utf8");
+function bootSeo(page) {
+  let catalog = 0;
+  const head = {
+    querySelector() {
+      return null;
+    },
+    querySelectorAll() {
+      return [];
+    },
+    appendChild(el) {
+      return el;
+    },
+  };
+  const document = {
+    title: "",
+    readyState: "complete",
+    body: { getAttribute: () => page },
+    head,
+    getElementById() {
+      return null;
+    },
+    createElement() {
+      return { setAttribute() {}, textContent: "" };
+    },
+    addEventListener() {},
+    querySelector() {
+      return null;
+    },
+  };
+  const sandbox = {
+    document,
+    location: { search: "", pathname: "/" },
+    URLSearchParams,
+    encodeURIComponent,
+    CustomEvent,
+    DSH: {
+      loadCatalog() {
+        catalog += 1;
+        return Promise.resolve({ plugins: [] });
+      },
+      plugins() {
+        return [];
+      },
+      desc() {
+        return "";
+      },
+    },
+  };
+  sandbox.window = sandbox;
+  vm.createContext(sandbox);
+  vm.runInContext(seoCode, sandbox, { filename: "seo.js" });
+  return catalog;
+}
+assert(bootSeo("index") === 0, "homepage seo does not loadCatalog");
+assert(bootSeo("dashboard") === 1, "dashboard seo still loads the catalog");
 
 if (failed) {
   console.error(`\n${failed} failed`);

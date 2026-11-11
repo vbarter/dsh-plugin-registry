@@ -568,6 +568,39 @@ const fakeShard = await statusOf("/data/plugins-lite-nope.json", {
 });
 assert(fakeShard.res.status === 404, "/data/plugins-lite-nope.json SPA shell → 404");
 
+const listStream = new ReadableStream({
+  pull(controller) {
+    controller.enqueue(new TextEncoder().encode("{\"page\":1}"));
+    controller.close();
+  },
+});
+const listRes = await onRequest({
+  request: new Request("https://dsplugin.app/data/list-default-001.json"),
+  async next() {
+    return new Response(listStream, {
+      status: 200,
+      headers: { "content-type": "application/json" },
+    });
+  },
+});
+assert(listRes.status === 200, "default list page → 200");
+assert(listRes.bodyUsed === false, "default list page body is not consumed");
+assert((await listRes.text()) === "{\"page\":1}", "default list page body intact");
+
+const fakeList = await statusOf("/data/list-default-nope.json", {
+  contentType: "application/json; charset=utf-8",
+  body: INDEX,
+});
+assert(fakeList.res.status === 404, "/data/list-default-nope.json SPA shell → 404");
+assert(fakeList.res.headers.get("x-robots-tag") === "noindex", "/data/list-default-nope.json noindex");
+
+const fakeListStats = await statusOf("/data/list-stats.json", {
+  contentType: "application/json; charset=utf-8",
+  body: INDEX,
+});
+assert(fakeListStats.res.status === 404, "/data/list-stats.json SPA shell → 404");
+assert(fakeListStats.res.headers.get("x-robots-tag") === "noindex", "/data/list-stats.json noindex");
+
 for (const path of [
   "/sitemap-plugins.xml",
   "/sitemap-static.xml",

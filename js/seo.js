@@ -261,9 +261,12 @@
     built.graph.push(entity);
   }
 
+  let indexRows = null;
+
   function applyIndexList(built) {
-    if (!global.DSH || typeof DSH.plugins !== "function") return;
-    const list = DSH.plugins().slice(0, 20);
+    const fromList = indexRows && indexRows.length ? indexRows : null;
+    const fromCatalog = global.DSH && typeof DSH.plugins === "function" ? DSH.plugins() : [];
+    const list = (fromList || fromCatalog).slice(0, 20);
     if (!list.length) return;
     built.graph.push({
       "@type": "ItemList",
@@ -306,6 +309,15 @@
 
   function boot() {
     refresh();
+    // Index paints from list-default pages. Loading the lite shards here would
+    // pull the whole catalog on every homepage visit.
+    if (pageId() === "index") {
+      document.addEventListener("dsh-index-list", function (ev) {
+        indexRows = ev && ev.detail && ev.detail.plugins;
+        refresh();
+      });
+      return;
+    }
     if (global.DSH && typeof DSH.loadCatalog === "function") {
       const opts = pageId() === "detail" ? { full: true } : undefined;
       DSH.loadCatalog(opts).then(refresh).catch(function () {});

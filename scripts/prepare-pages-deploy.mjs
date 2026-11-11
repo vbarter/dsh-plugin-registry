@@ -7,11 +7,16 @@
  * catalog is already over that. /data/plugins.json is served by
  * functions/data/plugins.json/index.js (302 to GitHub raw).
  *
- * plugins-lite.json is what the site actually browses. Once it passes
+ * plugins-lite.json is what non-homepage consumers browse. Once it passes
  * SHARD_TARGET (12 MiB), split it into data/plugins-lite-NNN.json shards so
  * later discover growth does not redeploy one file into the 25 MiB wall.
  * The envelope keeps categories/stats and lists shard filenames. js/data.js
  * and js/plugin-facts.js reassemble them.
+ *
+ * The homepage default path does not read those shards. This script also
+ * writes list meta onto the envelope (counts, stars, authors, validated,
+ * category counts, languages) and data/list-default-NNN.json pages of 60
+ * plugins in the empty-query relevance order from js/list-rank.js.
  *
  *   node scripts/prepare-pages-deploy.mjs
  *
@@ -22,6 +27,7 @@
 import { cp, mkdir, readdir, readFile, rm, stat, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { loadListRank } from "./list-rank.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -166,6 +172,30 @@ export async function preparePagesDeploy({
   }
 
   const liteOut = join(outAbs, "data", "plugins-lite.json");
+  const rank = loadListRank();
+  const lite = JSON.parse(await readFile(liteOut, "utf8"));
+  if (!Array.isArray(lite.plugins)) {
+    throw new Error("plugins-lite.json has no plugins array");
+  }
+  const catalogFirst = lite.plugins[0] && lite.plugins[0].id;
+  const catalogLast = lite.plugins[lite.plugins.length - 1] && lite.plugins[lite.plugins.length - 1].id;
+  const sortedAt = Date.now();
+  lite.list = rank.buildListMeta(lite.plugins, sortedAt);
+  await writeFile(liteOut, JSON.stringify(lite) + "\n");
+  const built = rank.buildDefaultPages(lite.plugins, sortedAt);
+  if (built.pages.reduce((sum, page) => sum + page.plugins.length, 0) !== lite.plugins.length) {
+    throw new Error("default list pages dropped plugins");
+  }
+  const dataDir = dirname(liteOut);
+  for (const page of built.pages) {
+    const name = rank.defaultPageFile(page.page);
+    const text = JSON.stringify(page) + "\n";
+    if (Buffer.byteLength(text) >= hardLimit) {
+      throw new Error(`${name} is over the Pages file limit`);
+    }
+    await writeFile(join(dataDir, name), text);
+  }
+
   const fullLeak = join(outAbs, "data", "plugins.json");
   let leaked = false;
   try {
@@ -186,7 +216,15 @@ export async function preparePagesDeploy({
     }
     if (info.size > largest.bytes) largest = { path, bytes: info.size };
   }
-  return { outDir: outAbs, shardInfo, fileCount: files.length, largest };
+  return {
+    outDir: outAbs,
+    shardInfo,
+    fileCount: files.length,
+    largest,
+    listPages: built.pages.length,
+    catalogFirst,
+    catalogLast,
+  };
 }
 
 const isCli = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
@@ -205,6 +243,7 @@ if (isCli) {
       } else {
         console.log(`plugins-lite.json left whole (${shard.bytes} bytes)`);
       }
+      console.log(`wrote ${result.listPages} default list pages`);
       console.log(
         `upload ${result.fileCount} files, largest ${result.largest.bytes} bytes ${result.largest.path}`
       );
