@@ -21,7 +21,8 @@
  * It also writes noindex /new/index.html (latest eligible day) and
  * /new/YYYY-MM-DD.html for every catalog day that still has an eligible
  * plugin. Days with zero eligible plugins are not written. Neither URL is
- * added to sitemap.xml. See scripts/new-plugins.mjs.
+ * added to sitemap.xml. List blurbs come from scripts/new-blurbs (Writer
+ * zh/en lines) or a tightened catalog intro. See scripts/new-plugins.mjs.
  *
  *   node scripts/prepare-pages-deploy.mjs
  *

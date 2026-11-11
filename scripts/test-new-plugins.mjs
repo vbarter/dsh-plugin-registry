@@ -1,19 +1,29 @@
 // Daily /new eligibility, sort, copy, and generated HTML.
 //   node scripts/test-new-plugins.mjs
+import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
-import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { PLUGIN_SLUGS } from "../functions/_middleware.js";
+import {
+  NEW_PLUGIN_BLURBS,
+  parseBlurbSheet,
+  loadBlurbSheets,
+  resolveWriterBlurb,
+} from "./new-plugin-blurbs.mjs";
 import { NEW_PLUGIN_COPY } from "./new-plugins-copy.mjs";
 import {
+  EN_BLURB_MAX,
   HOLD_IDS,
+  ZH_BLURB_MAX,
   buildNewPluginContext,
   exclusionReason,
   groupEligibleNewPlugins,
   identityKey,
   landingHref,
+  listBlurbs,
   loadNewPluginContext,
   newPluginScore,
   oneSentence,
@@ -58,13 +68,12 @@ assert(identityKey("@cnhenaihui/dsh-ios-theme") === "dsh-ios-theme", "name last 
 assert(identityKey("ys118/harnmem#packages/dsh-harnmem") === "dsh-harnmem", "id subpath last segment");
 assert(oneSentence({ description: { zh: "第一句。第二句。", en: "English." } }) === "第一句。", "zh sentence wins");
 assert(oneSentence({ description: { zh: "", en: "First. Second." } }) === "First.", "en fallback is one sentence");
-assert(oneSentence({ description: { en: "Use 0.1.0 today. Next." } }) === "Use 0.1.0 today.", "version dots stay");
+assert(listBlurbs({ description: { en: "Use 0.1.0 today. Next." } }).en === "Use today.", "semver noise is stripped");
 assert(
-  oneSentence({
-    description: { zh: "Per-project icons for the sidebar, with bundled SVG icons. / 给侧栏每个项目设定图标。" },
-  }) === "Per-project icons for the sidebar, with bundled SVG icons.",
-  "bilingual slash join keeps the first sentence"
+  !listBlurbs({ description: { en: "Use 0.1.0 today. Next." } }).en.startsWith("Use 0."),
+  "version dots are not sentence breaks"
 );
+assert(listBlurbs({ description: { en: "Ships v1.2 today. Next." } }).en === "Ships v1.2 today.", "two-part versions stay");
 
 const slugs = new Set(["dsh-ios", "modlens"]);
 const base = (extra) => ({
@@ -161,7 +170,14 @@ assert(!dayHtml.includes("插件目录") && !dayHtml.includes("按最近收录")
 const intro = dayHtml.match(/<p class="page-clarify"[^>]*>[^<]*<\/p>/)[0];
 assert(!intro.includes("官方"), "intro does not say 官方");
 assert(!intro.includes("Alpha"), "intro does not name a plugin");
-assert(dayHtml.includes("<a href=\"/plugins/dsh-ios\">@zseven-w/dsh-ios</a>：模拟器。"), "row is name link plus one sentence");
+assert(
+  dayHtml.includes(
+    '<a href="/plugins/dsh-ios">@zseven-w/dsh-ios</a><span data-new-blurb data-zh="：模拟器。" data-en="：模拟器。">：模拟器。</span>'
+  ),
+  "row is name link plus one sentence"
+);
+assert(dayHtml.includes('data-en="：English only."'), "english page gets its own blurb attribute");
+assert(dayHtml.includes('document.querySelectorAll("[data-new-blurb]")'), "locale toggle swaps list blurbs");
 assert(dayHtml.includes("<a href=\"/plugin-detail?plugin=plain%2Fnodesc\">NoDesc</a></li>"), "missing description has no dangling colon");
 assert(!dayHtml.includes("/plugins/dsh-ios-theme"), "page never links a lookalike slug");
 assert(!dayHtml.includes("prow-stars") && !dayHtml.includes("prow-forks"), "page does not print rank columns");
@@ -169,6 +185,181 @@ assert(!dayHtml.includes(">50<") && !dayHtml.includes(">160<"), "page does not p
 const emptyHtml = renderNewPluginPage({ date: "2026-01-02", rows: [], kind: "date" });
 assert(emptyHtml.includes("今日暂无符合规则的新增插件。"), "empty copy is available to the renderer");
 assert(emptyHtml.includes("No matching plugins were added today."), "empty en copy is available");
+
+const slashZh =
+  "给侧栏每个项目设定图标，后面这半句是超长目录说明不应该整段留在中文列表里还要继续写到超过四十个字。";
+const slash = listBlurbs({
+  id: "ex/slash",
+  addedAt: "2026-01-04",
+  description: {
+    zh: `Per-project icons for the sidebar, with bundled SVG icons. / ${slashZh}`,
+    en: `Per-project icons for the sidebar, with bundled SVG icons. / ${slashZh}`,
+  },
+});
+assert(
+  slash.zh === "给侧栏每个项目设定图标，后面这半句是超长目录说明不应该整段留在中文列表里还要继续",
+  "chinese page keeps the chinese half, capped near 40"
+);
+assert(slash.zh.length <= ZH_BLURB_MAX, "chinese fallback blurb stays within 40 characters");
+assert(!slash.zh.includes("Per-project"), "chinese page does not keep the english catalog half");
+assert(!slash.zh.includes("写到超过"), "long chinese catalog tail is cut");
+assert(
+  slash.en === "Per-project icons for the sidebar, with bundled SVG icons.",
+  "english page keeps the english half's first sentence"
+);
+assert(!slash.en.includes("给侧栏"), "english page does not keep the chinese half");
+
+const swapped = listBlurbs({
+  id: "ex/swap",
+  addedAt: "2026-01-05",
+  description: {
+    zh: "Long English catalog blurb that keeps going past one sentence. Second stays out.",
+    en: "中文简介写在 en 字段。第二句不要。",
+  },
+});
+assert(swapped.zh === "中文简介写在 en 字段。", "chinese page prefers chinese copy even when it is not description.zh");
+assert(
+  swapped.en === "Long English catalog blurb that keeps going past one sentence.",
+  "english page still uses the english description"
+);
+assert(!swapped.zh.includes("catalog blurb"), "chinese page drops the long english blurb");
+
+const introBlurb = listBlurbs({
+  id: "ex/intro",
+  addedAt: "2026-01-05",
+  description: {
+    zh: "A very long English catalog blurb that should not be the Chinese line. It has a second sentence too.",
+    en: "A very long English catalog blurb that should not be the Chinese line. It has a second sentence too.",
+  },
+  intro: { zh: "中文简介在 intro 字段。第二句不要。" },
+});
+assert(introBlurb.zh === "中文简介在 intro 字段。", "chinese page prefers a chinese intro field");
+assert(
+  introBlurb.en === "A very long English catalog blurb that should not be the Chinese line.",
+  "english page stays on the english description"
+);
+
+const tools = listBlurbs({
+  id: "ex/tools",
+  addedAt: "2026-01-05",
+  description: { zh: "让 AI 调用 ffmpeg / ripgrep / fd，并在管理页看控制台。" },
+});
+assert(tools.zh.includes("ripgrep") && tools.zh.includes("ffmpeg"), "tool-list slashes are not a bilingual split");
+
+const noisy = listBlurbs({
+  id: "ex/noisy",
+  addedAt: "2026-01-06",
+  description: {
+    en: "UI/UX Pro Max upstream main@4f2dbb67 (2026-11-08; skill.json reports 2.15.0, newer than the released 2.15.0) skill body that keeps going well past the tight English limit with extra catalog clauses about data and scripts. Second sentence stays out.",
+  },
+});
+assert(
+  noisy.en === "UI/UX Pro Max upstream skill body that keeps going well past the tight English",
+  "commit hashes, versions, and the long tail are stripped"
+);
+assert(!noisy.en.includes("4f2dbb67") && !noisy.en.includes("2.15.0"), "hash and semver are gone");
+assert(!noisy.en.includes("Second sentence"), "only the first sentence remains");
+assert(noisy.en.length <= EN_BLURB_MAX, "english fallback stays within 80 characters");
+assert(noisy.zh === noisy.en, "chinese page uses the tight english line when no chinese intro exists");
+
+const longEn =
+  "This is the first sentence of a catalog blurb that goes on and on and on past the tight english limit so the list cannot show the whole thing. Second sentence stays out.";
+const long = listBlurbs({ id: "x/y", addedAt: "2026-01-02", description: { zh: longEn, en: longEn } });
+assert(
+  long.en === "This is the first sentence of a catalog blurb that goes on and on and on past",
+  "a long first sentence is clipped tight"
+);
+assert(!long.en.includes("Second sentence") && !long.zh.includes("cannot show"), "leftover catalog sentence is gone");
+
+const clipped = listBlurbs({
+  id: "ex/clip",
+  addedAt: "2026-01-07",
+  description: {
+    zh: "压缩上下文并保留要求和进度，支持回查和失败重试，TAILMARK这里是不应该留下的超长目录尾巴用于测试截断。",
+  },
+});
+assert(clipped.zh === "压缩上下文并保留要求和进度，支持回查和失败重试", "chinese blurb stops near 40 characters");
+assert(!clipped.zh.includes("TAILMARK"), "chinese blurb drops the long tail");
+
+assert(
+  listBlurbs({
+    id: "JiamingShi-JsPhys/chelate-shell",
+    addedAt: "2026-11-11",
+    description: { en: "Totally different catalog text that is long. Second." },
+  }).zh === "把本地技能编排成可按步骤执行的工作流",
+  "dated writer override replaces the catalog blurb"
+);
+assert(
+  listBlurbs({
+    id: "JiamingShi-JsPhys/chelate-shell",
+    addedAt: "2026-11-11",
+    description: { en: "Totally different catalog text that is long. Second." },
+  }).en === "Orchestrate local skills into step-by-step workflows",
+  "dated writer override supplies the english line"
+);
+assert(
+  listBlurbs({
+    id: "JiamingShi-JsPhys/chelate-shell",
+    addedAt: "2026-11-12",
+    description: { en: "Totally different catalog text that is long. Second." },
+  }).en === "Totally different catalog text that is long.",
+  "a writer sheet does not leak onto another day"
+);
+
+NEW_PLUGIN_BLURBS["ex/custom"] = { zh: "自定义一行", en: "Custom one line" };
+try {
+  const custom = listBlurbs({
+    id: "ex/custom",
+    addedAt: "2026-02-02",
+    description: { en: "Catalog sentence that must not win. Second." },
+  });
+  assert(custom.zh === "自定义一行" && custom.en === "Custom one line", "undated plugin-id override wins");
+} finally {
+  delete NEW_PLUGIN_BLURBS["ex/custom"];
+}
+assert(
+  resolveWriterBlurb("ex/custom", "2026-02-02", {
+    byDate: { "2026-02-02": { "ex/custom": { zh: "日期优先", en: "Date wins" } } },
+    byId: { "ex/custom": { zh: "仅 id", en: "Id only" } },
+  }).zh === "日期优先",
+  "a dated sheet wins over the plugin-id map"
+);
+
+const escaped = renderNewPluginPage({
+  date: "2026-01-09",
+  kind: "date",
+  rows: [
+    {
+      id: "a/b",
+      name: "Name",
+      zh: `Tom & Jerry's "quote"`,
+      en: "Safe",
+      href: "/plugin-detail?plugin=a%2Fb",
+      score: 0,
+    },
+  ],
+});
+assert(escaped.includes("Tom &amp; Jerry&#39;s &quot;quote&quot;"), "blurb html is escaped");
+assert(escaped.includes('data-en="：Safe"'), "english blurb attribute is separate");
+assert(escaped.includes("<title>今日新增插件 · dsplugin.app</title>"), "blurb rows do not change the title");
+assert(escaped.includes('rel="canonical" href="https://dsplugin.app/new"'), "blurb rows do not change canonical");
+assert(escaped.includes('name="robots" content="noindex"'), "blurb rows do not change noindex");
+
+const sheetTmp = await mkdtemp(join(tmpdir(), "new-blurbs-"));
+try {
+  await writeFile(
+    join(sheetTmp, "2026-03-03.md"),
+    "| plugin | 名称 | zh | en |\n|---|---|---|---|\n| owner/repo | NOT-THE-NAME | 掉进来的中文 | Dropped-in English |\n"
+  );
+  await writeFile(join(sheetTmp, "notes.md"), "| plugin | 名称 | zh | en |\n| other/repo | x | 不要读 | No |\n");
+  const dropped = loadBlurbSheets(sheetTmp);
+  assert(dropped["2026-03-03"]["owner/repo"].zh === "掉进来的中文", "a dated markdown sheet is the zh line");
+  assert(dropped["2026-03-03"]["owner/repo"].en === "Dropped-in English", "a dated markdown sheet is the en line");
+  assert(Object.keys(dropped).join() === "2026-03-03", "non-date files are not a sheet");
+  assert(parseBlurbSheet("| plugin | 名称 | zh | en |\n| a/b | NAME | 中文 | EN |")["a/b"].zh === "中文", "名称 column is not the blurb");
+} finally {
+  await rm(sheetTmp, { recursive: true, force: true });
+}
 
 const tmp = await mkdtemp(join(tmpdir(), "new-plugins-"));
 try {
@@ -235,6 +426,68 @@ try {
   const page = await readFile(join(catalogTmp, "new/2026-11-11.html"), "utf8");
   const expected = renderNewPluginPage({ date: "2026-11-11", rows, kind: "date" });
   assert(page === expected, "written date page matches the renderer");
+  const sheetBytes = await readFile(join(ROOT, "scripts/new-blurbs/2026-11-11.md"));
+  assert(
+    createHash("sha256").update(sheetBytes).digest("hex") ===
+      "b69c91d0311fe242e1cc5e769321afe646f2c2abf0b05d4d4be89939a52457b8",
+    "2026-11-11 writer sheet is the attached copy"
+  );
+  const sheet = parseBlurbSheet(sheetBytes.toString("utf8"));
+  const sheetIds = Object.keys(sheet);
+  assert(sheetIds.length === 42, "writer sheet has 42 plugins");
+  const pinned = {
+    "JiamingShi-JsPhys/chelate-shell": ["把本地技能编排成可按步骤执行的工作流", "Orchestrate local skills into step-by-step workflows"],
+    "JiamingShi-JsPhys/web-forager": ["遵守 robots 规则做多引擎检索，并提取网页与常见文档", "Robots-aware multi-engine search and document extraction"],
+    "puppetcat-fire/dsh-needs-archive": ["把用户原话归档，并可按主题或关键词回忆", "Archive the user's exact messages and recall them by topic or keyword"],
+    "tiny-andr/dsh-chinese-cot": ["在系统提示最前面加一行可编辑内容，让模型用中文思考", "Add an editable line at the start of the system prompt so the model thinks in Chinese"],
+    "lisusuba/Hardworking-donkey": ["按模型出词速度驱动的推磨驴背景", "A donkey-mill background paced by the model's token throughput"],
+    "Dynesshely/dsh-plugin-btw": ["用 /btw 在侧栏提问，不影响主对话", "Ask a side question with /btw in a sidebar, without touching the main chat"],
+    "bloodyxu/dsh-workspace-icons": ["为侧栏里的每个项目设置专属图标", "Give each project in the sidebar its own icon"],
+    "2750599332-art/prompt-enhancer": ["一键把草稿提示改写成更清楚、可直接执行的版本", "One click rewrites a draft prompt into a clearer, executable version"],
+  };
+  for (const [id, [zh, en]] of Object.entries(pinned)) {
+    assert(sheet[id].zh === zh, `${id} zh is the attached line`);
+    assert(sheet[id].en === en, `${id} en is the attached line`);
+  }
+  const byId = new Map(catalog.plugins.map((plugin) => [plugin.id, plugin]));
+  assert(rows.length === 42, "2026-11-11 still lists 42 eligible plugins");
+  for (const id of sheetIds) {
+    const row = rows.find((item) => item.id === id);
+    const plugin = byId.get(id);
+    assert(row, `${id} is listed on 2026-11-11`);
+    assert(/[\u4e00-\u9fff]/.test(sheet[id].zh), `${id} zh is Chinese`);
+    assert(/[A-Za-z]/.test(sheet[id].en), `${id} en is English`);
+    assert(sheet[id].zh !== sheet[id].en, `${id} zh and en differ`);
+    assert(row.zh === sheet[id].zh, `${id} chinese blurb is the writer line`);
+    assert(row.en === sheet[id].en, `${id} english blurb is the writer line`);
+    assert(row.name === plugin.name, `${id} display name stays ${plugin.name}`);
+    assert(page.includes(`>${plugin.name}</a>`), `${id} anchor text is the catalog name`);
+  }
+  assert(rows.every((row) => sheet[row.id]), "every listed 2026-11-11 plugin has a writer line");
+  assert(page.includes("data-zh=\"：把本地技能编排成可按步骤执行的工作流\""), "chinese blurb is the visible attribute");
+  assert(
+    page.includes("data-en=\"：Archive the user&#39;s exact messages and recall them by topic or keyword\""),
+    "english blurb is escaped on the english attribute"
+  );
+  assert(page.includes(">：把用户原话归档，并可按主题或关键词回忆</span>"), "chinese page shows the zh line");
+  assert(!page.includes("4f2dbb67"), "2026-11-11 page drops the uupm commit hash");
+  assert(!page.includes("4-layer routing"), "2026-11-11 page drops the raw chelate blurb");
+  assert(!page.includes("Hugeicons"), "2026-11-11 page drops the raw workspace-icons blurb");
+  assert(page.includes("<title>今日新增插件 · dsplugin.app</title>"), "date title stays locked");
+  assert(page.includes('data-title-en="Plugins added today · dsplugin.app"'), "english title stays locked");
+  assert(
+    page.includes('<h1 id="new-plugins-title" class="page-title" data-zh="今日新增插件" data-en="Plugins added today">今日新增插件</h1>'),
+    "H1 stays locked"
+  );
+  assert(page.includes('rel="canonical" href="https://dsplugin.app/new"'), "date canonical stays /new");
+  assert(!page.includes('rel="canonical" href="https://dsplugin.app/new/2026-11-11"'), "date page is not self-canonical");
+  assert(page.includes('name="robots" content="noindex"'), "date page stays noindex");
+  const hub = await readFile(join(catalogTmp, "new/index.html"), "utf8");
+  assert(hub.includes("把本地技能编排成可按步骤执行的工作流"), "hub uses the same writer blurbs");
+  assert(hub.includes("<title>今日新增插件 · dsplugin.app</title>"), "hub title stays locked");
+  assert(hub.includes('rel="canonical" href="https://dsplugin.app/new"'), "hub canonical stays /new");
+  assert(hub.includes('name="robots" content="noindex"'), "hub stays noindex");
+  assert(!existsSync(join(catalogTmp, "plugins")), "new pages do not create /plugins landings");
   const list = page.split('<ul class="new-plugins"')[1].split("</ul>")[0];
   const pageHrefs = [...list.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
   assert(pageHrefs.join("\n") === rows.map((row) => row.href).join("\n"), "HTML order matches stars*2 + forks*0.2");
