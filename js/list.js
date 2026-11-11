@@ -1,6 +1,10 @@
-/* Browse page: search, filters, URL sync, infinite-ish load more, terminal typer. */
+/* Browse page: search, filters, URL sync, load more, terminal typer.
+ * Default homepage (no q / filters / non-default sort) paints from the
+ * plugins-lite envelope plus /data/list-default-NNN.json and does not
+ * download lite shards. Search and other controls lazy-load the catalog.
+ */
 (function () {
-  const PAGE = 60;
+  const PAGE = (window.DSHListRank && DSHListRank.PAGE_SIZE) || 60;
   const state = {
     q: "",
     category: "all",
@@ -12,9 +16,31 @@
   };
 
   let filtered = [];
+  let defaultRows = [];
+  let defaultTotal = 0;
+  let defaultPage = 0;
+  let defaultTotalPages = 0;
+  let useDefault = false;
+  let ticket = 0;
+  let paging = false;
+  let catalogPromise = null;
+  let chromePainted = false;
 
   function t(key, vars) {
     return (window.DSHI18n && DSHI18n.t(key, vars)) || key;
+  }
+
+  function meta() {
+    return DSH.listMeta ? DSH.listMeta() : null;
+  }
+
+  function isDefaultQuery() {
+    return !state.q.trim()
+      && state.category === "all"
+      && state.source === "all"
+      && state.manifest === "all"
+      && state.language === "all"
+      && (!state.sort || state.sort === "relevance");
   }
 
   function haystack(plugin) {
@@ -30,28 +56,7 @@
   }
 
   function score(plugin, q) {
-    if (!q) {
-      let s = (plugin.stars || 0) * 2 + (plugin.forks || 0) * 0.2;
-      if (DSH.manifestKey(plugin) === "shape_validated") s += 180;
-      if (plugin.source === "curated") s += 40;
-      const pushed = Date.parse(plugin.pushedAt || "") || 0;
-      s += Math.max(0, (pushed - Date.now() + 1000 * 60 * 60 * 24 * 90) / (1000 * 60 * 60 * 24));
-      return s;
-    }
-    const name = (plugin.name || "").toLowerCase();
-    const owner = (plugin.owner || "").toLowerCase();
-    const id = (plugin.id || "").toLowerCase();
-    const text = (DSH.descAll ? DSH.descAll(plugin) : DSH.desc(plugin)).toLowerCase();
-    const topics = (plugin.topics || []).join(" ").toLowerCase();
-    let s = 0;
-    if (name === q) s += 120;
-    if (name.includes(q)) s += 48;
-    if (owner.includes(q)) s += 24;
-    if (id.includes(q)) s += 20;
-    if (text.includes(q)) s += 16;
-    if (topics.includes(q)) s += 12;
-    s += Math.min(30, (plugin.stars || 0) / 80);
-    return s;
+    return DSHListRank.relevanceScore(plugin, q, Date.now());
   }
 
   function applyFilters() {
@@ -117,20 +122,37 @@
     );
   }
 
+  function currentRows() {
+    if (useDefault) return defaultRows;
+    return filtered.slice(0, state.shown);
+  }
+
+  function currentTotal() {
+    if (useDefault) return defaultTotal;
+    return filtered.length;
+  }
+
   function renderList() {
     const list = document.getElementById("list");
     const note = document.getElementById("list-note");
     const moreWrap = document.getElementById("load-more-wrap");
-    const slice = filtered.slice(0, state.shown);
-    if (!filtered.length) {
+    const slice = currentRows();
+    const total = currentTotal();
+    if (!slice.length) {
       list.innerHTML = '<div class="prow-empty">' + DSH.escapeHtml(t("index.empty")) + "</div>";
       note.textContent = t("index.listNoteZero");
       moreWrap.hidden = true;
       return;
     }
     list.innerHTML = slice.map(rowHtml).join("");
-    note.textContent = t("index.listNote", { shown: slice.length, total: filtered.length });
-    moreWrap.hidden = slice.length >= filtered.length;
+    note.textContent = t("index.listNote", { shown: slice.length, total: total });
+    moreWrap.hidden = slice.length >= total;
+  }
+
+  function notifyIndexList() {
+    if (typeof document.dispatchEvent !== "function" || typeof CustomEvent !== "function") return;
+    const plugins = (useDefault ? defaultRows : filtered).slice(0, 20);
+    document.dispatchEvent(new CustomEvent("dsh-index-list", { detail: { plugins: plugins } }));
   }
 
   function syncControls() {
@@ -145,12 +167,89 @@
     });
   }
 
-  function refresh(resetPage) {
-    if (resetPage) state.shown = PAGE;
-    applyFilters();
+  function showListError(err) {
+    const list = document.getElementById("list");
+    if (!list) return;
+    list.innerHTML =
+      '<div class="prow-empty">' + DSH.escapeHtml(t("index.loadFail", { error: (err && err.message) || String(err) })) + "</div>";
+  }
+
+  function defaultPageUrl(page) {
+    return "/data/" + DSHListRank.defaultPageFile(page);
+  }
+
+  function ensureCatalog() {
+    if (!catalogPromise) {
+      catalogPromise = DSH.loadCatalog().catch(function (err) {
+        catalogPromise = null;
+        throw err;
+      });
+    }
+    return catalogPromise;
+  }
+
+  function catalogRefresh(resetPage, my) {
+    return ensureCatalog().then(function () {
+      if (my !== ticket) return;
+      useDefault = false;
+      if (resetPage) state.shown = PAGE;
+      applyFilters();
+      syncControls();
+      DSH.writeQuery(state);
+      renderList();
+    }).catch(function (err) {
+      if (my !== ticket) return;
+      showListError(err);
+    });
+  }
+
+  function applyDefaultPage(data, replace, my) {
+    if (my !== ticket || !data) return;
+    const plugins = data.plugins || [];
+    if (replace) defaultRows = plugins.slice();
+    else defaultRows = defaultRows.concat(plugins);
+    defaultTotal = Number(data.total);
+    if (!Number.isFinite(defaultTotal)) defaultTotal = defaultRows.length;
+    defaultTotalPages = Number(data.totalPages) || 1;
+    defaultPage = Number(data.page) || defaultPage;
+    useDefault = true;
     syncControls();
     DSH.writeQuery(state);
     renderList();
+    if (replace) notifyIndexList();
+  }
+
+  function loadDefaultPage(page, replace, my) {
+    return fetch(defaultPageUrl(page)).then(function (res) {
+      if (my !== ticket) return null;
+      if (!res.ok) throw new Error("无法读取列表页（" + res.status + "）");
+      return res.json();
+    }).then(function (data) {
+      applyDefaultPage(data, replace, my);
+    });
+  }
+
+  function refresh(resetPage) {
+    const my = ++ticket;
+    if (isDefaultQuery()) {
+      if (defaultRows.length) {
+        if (resetPage) {
+          defaultRows = defaultRows.slice(0, PAGE);
+          defaultPage = 1;
+        }
+        useDefault = true;
+        syncControls();
+        DSH.writeQuery(state);
+        renderList();
+        if (resetPage) notifyIndexList();
+        return Promise.resolve();
+      }
+      return loadDefaultPage(1, true, my).catch(function () {
+        if (my !== ticket) return;
+        return catalogRefresh(resetPage, my);
+      });
+    }
+    return catalogRefresh(resetPage, my);
   }
 
   function updateChipLabels() {
@@ -165,17 +264,30 @@
     });
   }
 
-  function buildChips() {
-    const host = document.getElementById("chips");
-    const cats = DSH.categories();
+  function allCount() {
+    const m = meta();
+    if (m && m.count != null) return m.count;
+    return DSH.plugins().length;
+  }
+
+  function categoryCounts() {
+    const m = meta();
+    if (m && m.categoryCounts) return m.categoryCounts;
     const counts = {};
     DSH.plugins().forEach(function (p) {
       counts[p.category] = (counts[p.category] || 0) + 1;
     });
+    return counts;
+  }
+
+  function buildChips() {
+    const host = document.getElementById("chips");
+    const cats = DSH.categories();
+    const counts = categoryCounts();
     const allBtn = host.querySelector('[data-cat="all"]');
     if (allBtn) {
       const span = allBtn.querySelector(".chip-count");
-      if (span) span.textContent = DSH.formatNum(DSH.plugins().length);
+      if (span) span.textContent = DSH.formatNum(allCount());
     }
     Object.keys(cats).forEach(function (key) {
       const btn = document.createElement("button");
@@ -191,25 +303,37 @@
     });
   }
 
-  function buildLanguages() {
-    const sel = document.getElementById("language");
+  function languageList() {
+    const m = meta();
+    if (m && Array.isArray(m.languages)) return m.languages;
     const set = {};
     DSH.plugins().forEach(function (p) {
       if (p.language) set[p.language] = true;
     });
-    Object.keys(set)
-      .sort(function (a, b) {
-        return a.localeCompare(b);
-      })
-      .forEach(function (lang) {
-        const opt = document.createElement("option");
-        opt.value = lang;
-        opt.textContent = lang;
-        sel.appendChild(opt);
-      });
+    return Object.keys(set).sort(function (a, b) {
+      return a.localeCompare(b);
+    });
+  }
+
+  function buildLanguages() {
+    const sel = document.getElementById("language");
+    languageList().forEach(function (lang) {
+      const opt = document.createElement("option");
+      opt.value = lang;
+      opt.textContent = lang;
+      sel.appendChild(opt);
+    });
   }
 
   function fillStats() {
+    const m = meta();
+    if (m && m.count != null) {
+      DSHCommon.countUp(document.getElementById("st-count"), m.count);
+      DSHCommon.countUp(document.getElementById("st-stars"), m.stars || 0);
+      DSHCommon.countUp(document.getElementById("st-author"), m.authors || 0);
+      DSHCommon.countUp(document.getElementById("st-auto"), m.validated || 0);
+      return;
+    }
     const list = DSH.plugins();
     const stars = list.reduce(function (s, p) { return s + (p.stars || 0); }, 0);
     const owners = {};
@@ -227,10 +351,16 @@
   function startTyper() {
     const el = document.getElementById("typer");
     if (!el) return;
-    const cmds = DSH.plugins()
-      .filter(function (p) { return p.install; })
-      .slice(0, 12)
-      .map(function (p) { return p.install; });
+    const m = meta();
+    let cmds = [];
+    if (m && Array.isArray(m.installSamples) && m.installSamples.length) {
+      cmds = m.installSamples.slice(0, 12);
+    } else {
+      cmds = DSH.plugins()
+        .filter(function (p) { return p.install; })
+        .slice(0, 12)
+        .map(function (p) { return p.install; });
+    }
     if (!cmds.length) {
       el.textContent = "dsh plugin --profile web add github:owner/repo";
       return;
@@ -266,6 +396,16 @@
       }
     }
     tick();
+  }
+
+  function paintChrome() {
+    if (!chromePainted) {
+      buildChips();
+      buildLanguages();
+      startTyper();
+      chromePainted = true;
+    }
+    fillStats();
   }
 
   function hydrateFromUrl() {
@@ -311,6 +451,20 @@
     });
 
     document.getElementById("load-more").addEventListener("click", function () {
+      if (useDefault) {
+        if (paging) return;
+        if (defaultRows.length >= defaultTotal) return;
+        if (defaultPage >= defaultTotalPages) return;
+        const my = ticket;
+        paging = true;
+        loadDefaultPage(defaultPage + 1, false, my).catch(function (err) {
+          if (my !== ticket) return;
+          showListError(err);
+        }).then(function () {
+          paging = false;
+        });
+        return;
+      }
       state.shown += PAGE;
       renderList();
     });
@@ -321,18 +475,17 @@
     });
   }
 
-  DSH.loadCatalog()
-    .then(function () {
-      hydrateFromUrl();
-      buildChips();
-      buildLanguages();
-      fillStats();
-      startTyper();
+  hydrateFromUrl();
+  DSH.loadLiteEnvelope()
+    .then(function (data) {
+      const hasMeta = !!(data && data.list && data.list.count != null);
+      if (hasMeta) paintChrome();
       bind();
-      refresh(true);
+      return refresh(true).then(function () {
+        if (!hasMeta) paintChrome();
+      });
     })
     .catch(function (err) {
-      document.getElementById("list").innerHTML =
-        '<div class="prow-empty">' + DSH.escapeHtml(t("index.loadFail", { error: err.message || String(err) })) + "</div>";
+      showListError(err);
     });
 })();

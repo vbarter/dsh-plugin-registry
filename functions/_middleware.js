@@ -90,8 +90,14 @@ function isLiteShard(path) {
   return /^\/data\/plugins-lite-\d+\.json$/.test(path);
 }
 
+// Homepage default sort, 60 plugins per file. Same allowlist treatment as shards.
+// Names that are not list-default-NNN.json still fall through to the SPA peek.
+function isDefaultListPage(path) {
+  return /^\/data\/list-default-\d+\.json$/.test(path);
+}
+
 function isAllowed(path) {
-  if (EXACT.has(path) || DATA_JSON.has(path) || isLiteShard(path)) return true;
+  if (EXACT.has(path) || DATA_JSON.has(path) || isLiteShard(path) || isDefaultListPage(path)) return true;
   let match = /^\/plugins\/([a-z0-9_-]+)(\.html)?$/.exec(path);
   if (match && PLUGIN_SLUGS.has(match[1])) return true;
   match = /^\/c\/(vision|web-ui|tui)(\.html)?$/.exec(path);

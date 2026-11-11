@@ -1,7 +1,9 @@
 /* Catalog loader + field helpers.
- * Homepage list loads /data/plugins-lite.json. When that file is over the
- * Pages shard target, prepare-pages-deploy.mjs replaces the plugins array
- * with shards[] of /data/plugins-lite-NNN.json files; this loader joins them.
+ * The homepage default path reads the plugins-lite.json envelope (categories
+ * plus list meta) and /data/list-default-NNN.json. It does not follow shards.
+ * Search, filters, and non-default sorts call loadCatalog(), which joins
+ * plugins-lite-NNN.json when the envelope lists shards. plugin-facts and the
+ * dashboard still use that full lite catalog.
  * Detail asks for /data/plugins.json. Pages 302s that URL to GitHub raw
  * because the full file is over the 25 MiB asset limit. If that fetch fails,
  * fall back to the lite catalog so the detail page still renders.
@@ -13,6 +15,8 @@
   let fullCache = null;
   let liteInflight = null;
   let fullInflight = null;
+  let envelopeCache = null;
+  let envelopeInflight = null;
   // Active catalog for helpers (plugins/categories/stats/findPlugin).
   let cache = null;
 
@@ -62,13 +66,34 @@
     return data;
   }
 
+  function fetchEnvelope() {
+    if (envelopeCache) return Promise.resolve(envelopeCache);
+    if (envelopeInflight) return envelopeInflight;
+    envelopeInflight = fetchCatalog(LITE_URL)
+      .then(function (data) {
+        envelopeCache = data;
+        envelopeInflight = null;
+        return data;
+      })
+      .catch(function (err) {
+        envelopeInflight = null;
+        throw err;
+      });
+    return envelopeInflight;
+  }
+
+  // Envelope only: categories, stats, list meta. Does not follow shards.
+  function loadLiteEnvelope() {
+    return fetchEnvelope();
+  }
+
   function loadLite() {
     if (liteCache) {
       cache = liteCache;
       return Promise.resolve(liteCache);
     }
     if (liteInflight) return liteInflight;
-    liteInflight = fetchCatalog(LITE_URL)
+    liteInflight = fetchEnvelope()
       .then(attachShards)
       .then(rememberLite)
       .catch(function (err) {
@@ -115,11 +140,21 @@
   }
 
   function categories() {
-    return (cache && cache.categories) || {};
+    const fromCache = cache && cache.categories;
+    if (fromCache && Object.keys(fromCache).length) return fromCache;
+    const fromEnv = envelopeCache && envelopeCache.categories;
+    if (fromEnv && Object.keys(fromEnv).length) return fromEnv;
+    return fromCache || {};
   }
 
   function stats() {
-    return (cache && cache.stats) || {};
+    return (cache && cache.stats) || (envelopeCache && envelopeCache.stats) || {};
+  }
+
+  function listMeta() {
+    if (envelopeCache && envelopeCache.list) return envelopeCache.list;
+    if (cache && cache.list) return cache.list;
+    return null;
   }
 
   function desc(plugin) {
@@ -277,10 +312,12 @@
 
   global.DSH = {
     loadCatalog: loadCatalog,
+    loadLiteEnvelope: loadLiteEnvelope,
     getCatalog: getCatalog,
     plugins: plugins,
     categories: categories,
     stats: stats,
+    listMeta: listMeta,
     desc: desc,
     descAll: descAll,
     categoryName: categoryName,
