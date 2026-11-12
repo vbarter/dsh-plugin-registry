@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>dsplugin vs dshplugin｜DeepSeek Harness 插件目录对比</title>
-<meta name="description" content="dsplugin.app、dshplugin.app 和 dshplugin.world 都是社区目录，不是官方。本站给中文安装/发布路径，有有效 dsh.bundle 才给安装命令。">
+<meta name="description" data-i18n-content="meta.vs" content="dsplugin.app、dshplugin.app 和 dshplugin.world 都是社区目录，不是官方。本站给中文安装/发布路径，有有效 dsh.bundle 才给安装命令。">
 <link rel="canonical" href="https://dsplugin.app/vs">
-<meta property="og:title" content="dsplugin vs dshplugin｜DeepSeek Harness 插件目录对比">
-<meta property="og:description" content="dsplugin.app、dshplugin.app 和 dshplugin.world 都是社区目录，不是官方。本站给中文安装/发布路径，有有效 dsh.bundle 才给安装命令。">
+<meta property="og:title" content="dsplugin vs dshplugin｜DeepSeek Harness 插件目录对比" data-i18n-content="title.vs">
+<meta property="og:description" content="dsplugin.app、dshplugin.app 和 dshplugin.world 都是社区目录，不是官方。本站给中文安装/发布路径，有有效 dsh.bundle 才给安装命令。" data-i18n-content="meta.vs">
 <meta property="og:url" content="https://dsplugin.app/vs">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="dsplugin.app">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://dsplugin.app/og.svg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="dsplugin vs dshplugin｜DeepSeek Harness 插件目录对比">
-<meta name="twitter:description" content="dsplugin.app、dshplugin.app 和 dshplugin.world 都是社区目录，不是官方。本站给中文安装/发布路径，有有效 dsh.bundle 才给安装命令。">
+<meta name="twitter:title" content="dsplugin vs dshplugin｜DeepSeek Harness 插件目录对比" data-i18n-content="title.vs">
+<meta name="twitter:description" content="dsplugin.app、dshplugin.app 和 dshplugin.world 都是社区目录，不是官方。本站给中文安装/发布路径，有有效 dsh.bundle 才给安装命令。" data-i18n-content="meta.vs">
 <meta name="theme-color" content="#181411">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <script type="application/ld+json">
@@ -109,8 +109,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 </head>
-<body class="landing">
-<a class="skip-link" href="#main-content">跳到主要内容</a>
+<body data-page="vs" class="landing">
+<a class="skip-link" href="#main-content" data-i18n="skip">跳到主要内容</a>
 <header class="topbar">
   <div class="wrap topbar-in">
     <a class="brand" href="/">
@@ -125,62 +125,70 @@
       </svg>
       <span class="brand-word"><strong>DeepSeek Harness</strong><em>Community Registry</em></span>
     </a>
-    <nav class="nav" aria-label="主要导航">
-      <a href="/">浏览插件</a>
-      <a href="/install">安装</a>
-      <a href="/publish">发布</a>
-      <a href="/vs" class="on" aria-current="page">对比</a>
+    <nav class="nav" aria-label="主要导航" data-i18n-aria="nav.aria">
+      <a href="/" data-i18n="nav.browse">浏览插件</a>
+      <a href="/install" data-i18n="nav.install">安装</a>
+      <a href="/publish" data-i18n="nav.publish">发布</a>
+      <a href="/vs" class="on" aria-current="page" data-i18n="nav.vs">对比</a>
     </nav>
-    <div class="topbar-r"><span class="cli-tag">COMMUNITY PREVIEW</span></div>
+    <div class="topbar-r">
+      <div class="lang-toggle" role="group" aria-label="语言" data-i18n-aria="lang.aria">
+        <button type="button" data-lang-set="zh" aria-pressed="true">中文</button>
+        <button type="button" data-lang-set="en" aria-pressed="false">EN</button>
+      </div>
+      <span class="cli-tag" data-i18n="tag.preview">COMMUNITY PREVIEW</span>
+    </div>
   </div>
 </header>
 <main class="wrap" id="main-content">
-  <nav class="crumbs" aria-label="面包屑"><a href="/">目录</a><span aria-hidden="true">/</span><span>对比</span></nav>
+  <nav class="crumbs" aria-label="面包屑" data-i18n-aria="vs.crumbsAria"><a href="/" data-i18n="vs.crumb.home">目录</a><span aria-hidden="true">/</span><span data-i18n="vs.crumb.here">对比</span></nav>
   <section class="page-head">
-    <p class="eyebrow">Compare · dsplugin vs dshplugin</p>
-    <h1 class="page-title">dsplugin.app 和 dshplugin 有何不同</h1>
-    <p class="page-sub">三家都是社区目录，都不是 DeepSeek 官方。官方发现仍是 GitHub dsh-plugin topic。搜「dshplugin」偶尔也会进到我们，以本页对照为准。</p>
+    <p class="eyebrow" data-i18n="vs.eyebrow">Compare · dsplugin vs dshplugin</p>
+    <h1 class="page-title" data-i18n="vs.heroTitle">dsplugin.app 和 dshplugin 有何不同</h1>
+    <p class="page-sub" data-i18n="vs.heroSub">三家都是社区目录，都不是 DeepSeek 官方。官方发现仍是 GitHub dsh-plugin topic。搜「dshplugin」偶尔也会进到我们，以本页对照为准。</p>
   </section>
   <article class="prose">
-    <h2>dsplugin.app（我们）</h2>
-    <p>中文安装/发布路径。先看来源和 Manifest，有有效 <code>dsh.bundle</code> 才给 <code>dsh plugin add</code>。提交：预检 → GitHub Issue → <a href="https://github.com/vbarter/dsh-plugin-registry">vbarter/dsh-plugin-registry</a>。</p>
-    <h2>dshplugin.app</h2>
-    <p>英文指南更厚，带安全/兼容信号和源码分析，适合要比对情报的人。</p>
-    <h2>dshplugin.world</h2>
-    <p>静态可抓的短名单，人工核对过 README 和安装命令，不是全量 topic 倾销。</p>
-    <h2>不会做什么</h2>
-    <p>不会：冒充官方、编下载量、替你装或做安全审计。</p>
-    <p>本页只帮你分清近形域名，不做安装教程、不做安全审计、不替你装。官方发现仍看 <a href="https://github.com/topics/dsh-plugin" target="_blank" rel="noopener"><code>dsh-plugin</code> topic</a>。认站：看域名是否为 <code>dsplugin.app</code>，再对照本页三家；别把「拼写纠错」结果当本站。</p>
+    <h2 data-i18n="vs.h2.us">dsplugin.app（我们）</h2>
+    <p data-lang-block="zh"><span data-i18n="vs.body.us.before">中文安装/发布路径。先看来源和 Manifest，有有效 </span><code>dsh.bundle</code><span data-i18n="vs.body.us.mid"> 才给 </span><code>dsh plugin add</code><span data-i18n="vs.body.us.after">。提交：预检 → GitHub Issue → </span><a href="https://github.com/vbarter/dsh-plugin-registry">vbarter/dsh-plugin-registry</a><span data-i18n="vs.body.us.end">。</span></p>
+    <p data-lang-block="en" hidden><span data-i18n="vs.body.us.before">A Chinese-first install and publish path. Check the source and Manifest first; only show a </span><code>dsh plugin add</code><span data-i18n="vs.body.us.mid"> command when a valid </span><code>dsh.bundle</code><span data-i18n="vs.body.us.after"> is present. Submissions go: precheck → GitHub Issue → </span><a href="https://github.com/vbarter/dsh-plugin-registry">vbarter/dsh-plugin-registry</a><span data-i18n="vs.body.us.end">.</span></p>
+    <h2 data-i18n="vs.h2.dshpluginApp">dshplugin.app</h2>
+    <p data-i18n="vs.body.dshpluginApp">英文指南更厚，带安全/兼容信号和源码分析，适合要比对情报的人。</p>
+    <h2 data-i18n="vs.h2.dshpluginWorld">dshplugin.world</h2>
+    <p data-i18n="vs.body.dshpluginWorld">静态可抓的短名单，人工核对过 README 和安装命令，不是全量 topic 倾销。</p>
+    <h2 data-i18n="vs.h2.wont">不会做什么</h2>
+    <p data-i18n="vs.body.wont">不会：冒充官方、编下载量、替你装或做安全审计。</p>
+    <p><span data-i18n="vs.body.scope.before">本页只帮你分清近形域名，不做安装教程、不做安全审计、不替你装。官方发现仍看 </span><a href="https://github.com/topics/dsh-plugin" target="_blank" rel="noopener"><code>dsh-plugin</code> topic</a><span data-i18n="vs.body.scope.mid">。认站：看域名是否为 </span><code>dsplugin.app</code><span data-i18n="vs.body.scope.after">，再对照本页三家；别把「拼写纠错」结果当本站。</span></p>
     <ul class="hub-list">
-      <li><a href="/install">如何安装</a></li>
-      <li><a href="/publish">如何发布</a></li>
-      <li><a href="/">浏览目录</a></li>
+      <li><a href="/install" data-i18n="vs.hub.install">如何安装</a></li>
+      <li><a href="/publish" data-i18n="vs.hub.publish">如何发布</a></li>
+      <li><a href="/" data-i18n="vs.hub.browse">浏览目录</a></li>
     </ul>
   </article>
   <section class="faq" id="faq" aria-labelledby="faq-title">
-    <div class="section-label"><h2 id="faq-title">常见问题</h2></div>
+    <div class="section-label"><h2 id="faq-title" data-i18n="vs.faqTitle">常见问题</h2></div>
     <dl class="faq-list">
-      <div><dt>dsplugin.app、dshplugin.app、dshplugin.world 怎么分？</dt><dd>三家都是社区目录，都不是 DeepSeek 官方。本站（dsplugin.app）偏中文路径，先看来源与 Manifest 状态；dshplugin.app 英文指南更厚、带安全/兼容信号；dshplugin.world 是静态短名单。认站以本页对照表为准。</dd></div>
-      <div><dt>近形域名怎么避免认错？</dt><dd>dsplugin 与 dshplugin 只差一个字母。搜到近形域名时先回本页看三家对照，再点站；规范域名是 dsplugin.app。本站不冒充官方、不替装、不做安全审计。</dd></div>
-      <div><dt>dsplugin.app 是 dshplugin 的拼写错误吗？</dt><dd>不是。dsplugin.app 是独立的 DeepSeek Harness 社区插件目录；dshplugin.app / dshplugin.world 是近形域名下的其他站点。认站以本页三家对照为准，不要把我们当成拼写纠错结果。</dd></div>
-      <div><dt>搜 dsplugin 会进 dshplugin.app 吗？</dt><dd>近形域名常见；对照本页三家，规范站是 dsplugin.app。</dd></div>
-      <div><dt>除了这三家，别的目录怎么认？</dt><dd>先看是不是 DeepSeek 官方（官方入口是 Harness 仓库与 topic，不是任一社区目录）。社区站以本页三家对照为起点；要装或发布分别走 <a href="/install">/install</a>、<a href="/publish">/publish</a>，不在本页展开步骤。</dd></div>
+      <div><dt data-i18n="vs.faq.q1">dsplugin.app、dshplugin.app、dshplugin.world 怎么分？</dt><dd data-i18n="vs.faq.a1">三家都是社区目录，都不是 DeepSeek 官方。本站（dsplugin.app）偏中文路径，先看来源与 Manifest 状态；dshplugin.app 英文指南更厚、带安全/兼容信号；dshplugin.world 是静态短名单。认站以本页对照表为准。</dd></div>
+      <div><dt data-i18n="vs.faq.q2">近形域名怎么避免认错？</dt><dd data-i18n="vs.faq.a2">dsplugin 与 dshplugin 只差一个字母。搜到近形域名时先回本页看三家对照，再点站；规范域名是 dsplugin.app。本站不冒充官方、不替装、不做安全审计。</dd></div>
+      <div><dt data-i18n="vs.faq.q3">dsplugin.app 是 dshplugin 的拼写错误吗？</dt><dd data-i18n="vs.faq.a3">不是。dsplugin.app 是独立的 DeepSeek Harness 社区插件目录；dshplugin.app / dshplugin.world 是近形域名下的其他站点。认站以本页三家对照为准，不要把我们当成拼写纠错结果。</dd></div>
+      <div><dt data-i18n="vs.faq.q4">搜 dsplugin 会进 dshplugin.app 吗？</dt><dd data-i18n="vs.faq.a4">近形域名常见；对照本页三家，规范站是 dsplugin.app。</dd></div>
+      <div><dt data-i18n="vs.faq.q5">除了这三家，别的目录怎么认？</dt><dd><span data-i18n="vs.faq.a5.before">先看是不是 DeepSeek 官方（官方入口是 Harness 仓库与 topic，不是任一社区目录）。社区站以本页三家对照为起点；要装或发布分别走 </span><a href="/install">/install</a><span data-i18n="vs.faq.a5.mid">、</span><a href="/publish">/publish</a><span data-i18n="vs.faq.a5.after">，不在本页展开步骤。</span></dd></div>
     </dl>
   </section>
 
 </main>
 <footer class="footer">
   <div class="wrap footer-in">
-    <a href="/">浏览插件</a>
-    <a href="/install">安装</a>
-    <a href="/publish">发布</a>
-    <a href="/vs">对比</a>
+    <a href="/" data-i18n="nav.browse">浏览插件</a>
+    <a href="/install" data-i18n="nav.install">安装</a>
+    <a href="/publish" data-i18n="nav.publish">发布</a>
+    <a href="/vs" data-i18n="nav.vs">对比</a>
     <a href="/c/vision">Vision</a>
     <a href="/c/web-ui">Web UI</a>
     <a href="/c/tui">TUI</a>
     <a href="https://github.com/vbarter/dsh-plugin-registry" target="_blank" rel="noopener">GitHub</a>
-    <span class="fr">社区目录 · 不是 DeepSeek 官方站</span>
+    <span class="fr" data-i18n="footer.notOfficial">社区目录 · 不是 DeepSeek 官方站</span>
   </div>
 </footer>
+<script src="/js/i18n.js?v=20261112a"></script>
 </body>
 </html>
