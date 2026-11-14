@@ -179,11 +179,24 @@ function withLang(url, res) {
   return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
 }
 
+// Public 404 is HTML so the same Umami tag can sit in <head>. It stays a hard
+// 404 (not the SPA shell): no title, H1, canonical, or JSON-LD.
+const NOT_FOUND_HTML = `<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="e0a19656-1ab8-4cf2-8843-6b4e6965c470"></script>
+</head>
+<body>Not Found
+</body>
+</html>
+`;
+
 function notFound() {
-  return new Response("Not Found\n", {
+  return new Response(NOT_FOUND_HTML, {
     status: 404,
     headers: {
-      "Content-Type": "text/plain; charset=utf-8",
+      "Content-Type": "text/html; charset=utf-8",
       "Cache-Control": "no-store",
       "CDN-Cache-Control": "no-store",
       "Cloudflare-CDN-Cache-Control": "no-store",

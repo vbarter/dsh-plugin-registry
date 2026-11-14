@@ -1,6 +1,13 @@
 // Simulates Cloudflare Pages SPA soft-200 (unknown path → index.html, status 200)
 // and checks functions/_middleware.js. Run: node scripts/test-not-found.mjs
+import { readFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { onRequest } from "../functions/_middleware.js";
+
+const ROOT = dirname(fileURLToPath(import.meta.url));
+const UMAMI =
+  '<script defer src="https://cloud.umami.is/script.js" data-website-id="e0a19656-1ab8-4cf2-8843-6b4e6965c470"></script>';
 
 const INDEX = `<!doctype html><html><head><link rel="canonical" href="https://dsplugin.app/"></head><body data-page="index"></body></html>`;
 const VISION = `<!doctype html><html><head><link rel="canonical" href="https://dsplugin.app/c/vision"></head><body data-page="vision"></body></html>`;
@@ -33,10 +40,17 @@ async function statusOf(path, opts) {
 
 const harness = await statusOf("/c/harness");
 assert(harness.res.status === 404, "/c/harness → 404");
-assert(harness.text === "Not Found\n", "/c/harness body is plain Not Found");
+assert(harness.text.includes("Not Found"), "/c/harness body says Not Found");
+assert(harness.text.includes(UMAMI), "/c/harness has the Umami tag");
+assert(harness.text.split(UMAMI).length === 2, "/c/harness has the Umami tag once");
 assert(!harness.text.includes("data-page"), "/c/harness body is not the homepage");
+assert(!harness.text.includes("<title"), "/c/harness has no title");
+assert(!harness.text.includes("<h1"), "/c/harness has no h1");
+assert(!harness.text.includes("canonical"), "/c/harness has no canonical");
+assert(!harness.text.includes("application/ld+json"), "/c/harness has no JSON-LD");
 assert(harness.res.headers.get("x-robots-tag") === "noindex", "/c/harness noindex");
-assert(harness.res.headers.get("content-type").includes("text/plain"), "/c/harness text/plain");
+assert(harness.res.headers.get("content-type").includes("text/html"), "/c/harness text/html");
+assert((await readFile(join(ROOT, "..", "404.html"), "utf8")) === harness.text, "404.html matches the 404 response");
 
 const harnessSlash = await statusOf("/c/harness/");
 assert(harnessSlash.res.status === 404, "/c/harness/ → 404");
@@ -648,7 +662,8 @@ for (const path of ["/new", "/new/", "/new/index.html", "/new/2026-11-11", "/new
 const newShell = await statusOf("/new");
 assert(newShell.res.status === 404, "/new homepage shell → 404");
 assert(newShell.res.headers.get("x-robots-tag") === "noindex", "/new homepage shell noindex");
-assert(newShell.text === "Not Found\n", "/new homepage shell is plain Not Found");
+assert(newShell.text.includes(UMAMI), "/new homepage shell has the Umami tag");
+assert(newShell.text.includes("Not Found"), "/new homepage shell says Not Found");
 
 const newDateShell = await statusOf("/new/2026-11-11");
 assert(newDateShell.res.status === 404, "/new/2026-11-11 homepage shell → 404");
@@ -671,7 +686,8 @@ for (const path of [
   const res = await statusOf(path, { body: NEW_PAGE });
   assert(res.res.status === 404, `${path} → 404`);
   assert(res.res.headers.get("x-robots-tag") === "noindex", `${path} noindex`);
-  assert(res.text === "Not Found\n", `${path} is plain Not Found`);
+  assert(res.text.includes(UMAMI), `${path} has the Umami tag`);
+  assert(res.text.includes("Not Found"), `${path} says Not Found`);
 }
 
 const leap = await statusOf("/new/2024-02-29", { body: NEW_PAGE });

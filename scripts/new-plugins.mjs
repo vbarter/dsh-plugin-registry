@@ -456,6 +456,7 @@ export function renderNewPluginPage({ date, rows, kind }) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css?v=${STYLES_VERSION}">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="e0a19656-1ab8-4cf2-8843-6b4e6965c470"></script>
 </head>
 <body class="landing" data-new-landing="1" data-title-zh="${esc(copy.zh.title)}" data-title-en="${esc(copy.en.title)}">
 <a class="skip-link" href="#main-content" data-i18n="skip">跳到主要内容</a>
