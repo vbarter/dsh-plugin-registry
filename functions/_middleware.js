@@ -1,7 +1,9 @@
-// www → apex, ?lang= noindex, and hard 404 for Pages SPA soft-200s.
-// Unknown paths are served as index.html with status 200. Non-200 responses
-// (301/308 from _redirects / html_handling, 410 from the old sitemap Functions)
-// pass through unchanged.
+// www → apex, ?lang= noindex, and hard 404s.
+// Without /404.html, Pages SPA-falls unknown paths to index.html at status 200
+// and notFound() rewrites them. With /404.html, Pages itself returns that file
+// at status 404 (https://developers.cloudflare.com/pages/configuration/serving-pages/).
+// The old `status !== 200` return passed that response through, so X-Robots-Tag
+// never got set. Every 404 is stamped noindex. 301/308 and 410 still pass through.
 //
 // /new and /new/YYYY-MM-DD are daily landings written by prepare-pages-deploy.
 // A date-shaped path is allowed only when the asset is that generated page
@@ -179,6 +181,14 @@ function withLang(url, res) {
   return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
 }
 
+// Pages' native 404.html response. Keep its body and headers; only add noindex.
+// ?lang= stays `noindex` too — withLang's `noindex, follow` is for real pages.
+function withNoindex(res) {
+  const headers = new Headers(res.headers);
+  headers.set("X-Robots-Tag", "noindex");
+  return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
+}
+
 // Public 404 is HTML so the same Umami tag can sit in <head>. It stays a hard
 // 404 (not the SPA shell): no title, H1, canonical, or JSON-LD.
 const NOT_FOUND_HTML = `<!doctype html>
@@ -213,6 +223,7 @@ export async function onRequest(context) {
   }
 
   const res = await context.next();
+  if (res.status === 404) return withNoindex(res);
   if (res.status !== 200) return withLang(url, res);
 
   const path = normalizePath(url.pathname);

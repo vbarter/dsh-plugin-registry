@@ -1,5 +1,6 @@
-// Simulates Cloudflare Pages SPA soft-200 (unknown path → index.html, status 200)
-// and checks functions/_middleware.js. Run: node scripts/test-not-found.mjs
+// Simulates Cloudflare Pages: SPA soft-200 (unknown path → index.html, status 200)
+// and native 404.html (status 404, the live behavior once 404.html exists).
+// Run: node scripts/test-not-found.mjs
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -50,7 +51,79 @@ assert(!harness.text.includes("canonical"), "/c/harness has no canonical");
 assert(!harness.text.includes("application/ld+json"), "/c/harness has no JSON-LD");
 assert(harness.res.headers.get("x-robots-tag") === "noindex", "/c/harness noindex");
 assert(harness.res.headers.get("content-type").includes("text/html"), "/c/harness text/html");
-assert((await readFile(join(ROOT, "..", "404.html"), "utf8")) === harness.text, "404.html matches the 404 response");
+const PAGE_404 = await readFile(join(ROOT, "..", "404.html"), "utf8");
+assert(PAGE_404 === harness.text, "404.html matches the 404 response");
+
+// Pages serves 404.html with status 404 before notFound() runs. The body stays
+// that document; the missing header is X-Robots-Tag: noindex.
+for (const path of [
+  "/this-page-should-404-umami-check",
+  "/plugins/not-a-real-plugin",
+  "/plugins/dsh-our-free-model",
+  "/modlens",
+  "/c/dsh-wallpaper-engine",
+  "/new/1999-01-01",
+  "/missing.js",
+]) {
+  const res = await statusOf(path, { status: 404, body: PAGE_404 });
+  assert(res.res.status === 404, `${path} native 404 stays 404`);
+  assert(res.res.headers.get("x-robots-tag") === "noindex", `${path} native 404 noindex`);
+  assert(res.text === PAGE_404, `${path} native 404 body unchanged`);
+  assert(res.text.split(UMAMI).length === 2, `${path} native 404 Umami tag once`);
+  assert(!res.text.includes("<title"), `${path} native 404 has no title`);
+  assert(!res.text.includes("<h1"), `${path} native 404 has no h1`);
+  assert(!res.text.includes("canonical"), `${path} native 404 has no canonical`);
+}
+
+const modlensLang = await statusOf("/modlens?lang=en", { status: 404, body: PAGE_404 });
+assert(modlensLang.res.status === 404, "/modlens?lang=en native 404 stays 404");
+assert(modlensLang.res.headers.get("x-robots-tag") === "noindex", "/modlens?lang=en native 404 is noindex");
+assert(modlensLang.text === PAGE_404, "/modlens?lang=en native 404 body unchanged");
+
+const stamped = await onRequest({
+  request: new Request("https://dsplugin.app/plugins/dsh-our-free-model"),
+  async next() {
+    return new Response(PAGE_404, {
+      status: 404,
+      headers: {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "x-pages-sentinel": "keep",
+      },
+    });
+  },
+});
+assert(stamped.status === 404, "stamped native 404 stays 404");
+assert(stamped.headers.get("x-robots-tag") === "noindex", "stamped native 404 noindex");
+assert(stamped.headers.get("cache-control") === "no-store", "stamped native 404 keeps cache-control");
+assert(stamped.headers.get("x-pages-sentinel") === "keep", "stamped native 404 keeps other headers");
+assert(stamped.headers.get("content-type").includes("text/html"), "stamped native 404 keeps content-type");
+assert((await stamped.text()) === PAGE_404, "stamped native 404 body unchanged");
+
+const json404 = await statusOf("/data/nope.json", {
+  status: 404,
+  contentType: "application/json; charset=utf-8",
+  body: PAGE_404,
+});
+assert(json404.res.status === 404, "/data/nope.json native 404 stays 404");
+assert(json404.res.headers.get("x-robots-tag") === "noindex", "/data/nope.json native 404 noindex");
+assert(json404.res.headers.get("content-type").includes("application/json"), "/data/nope.json native 404 keeps json type");
+assert(json404.text === PAGE_404, "/data/nope.json native 404 body unchanged");
+
+const freeModel = await statusOf("/plugins/dsh-our-free-model");
+assert(freeModel.res.status === 404, "/plugins/dsh-our-free-model soft-200 → 404");
+assert(freeModel.res.headers.get("x-robots-tag") === "noindex", "/plugins/dsh-our-free-model soft-200 noindex");
+assert(freeModel.text.includes(UMAMI), "/plugins/dsh-our-free-model soft-200 has the Umami tag");
+assert(freeModel.text.split(UMAMI).length === 2, "/plugins/dsh-our-free-model soft-200 Umami tag once");
+
+const modlensRoot = await statusOf("/modlens");
+assert(modlensRoot.res.status === 404, "/modlens soft-200 → 404");
+assert(modlensRoot.res.headers.get("x-robots-tag") === "noindex", "/modlens soft-200 noindex");
+assert(modlensRoot.text.includes(UMAMI), "/modlens soft-200 has the Umami tag");
+
+const ancient = await statusOf("/new/1999-01-01");
+assert(ancient.res.status === 404, "/new/1999-01-01 homepage shell → 404");
+assert(ancient.res.headers.get("x-robots-tag") === "noindex", "/new/1999-01-01 homepage shell noindex");
 
 const harnessSlash = await statusOf("/c/harness/");
 assert(harnessSlash.res.status === 404, "/c/harness/ → 404");
@@ -66,6 +139,7 @@ assert(missing.res.status === 404, "/not-a-page → 404");
 
 const home = await statusOf("/", { body: INDEX });
 assert(home.res.status === 200, "/ → 200");
+assert(home.res.headers.get("x-robots-tag") == null, "/ has no noindex");
 assert(home.text.includes("data-page=\"index\""), "/ keeps homepage body");
 
 const install = await statusOf("/install");
@@ -74,6 +148,7 @@ const installSlash = await statusOf("/install/");
 assert(installSlash.res.status === 200, "/install/ → 200");
 const installHtml = await statusOf("/install.html", { status: 301, contentType: "text/plain;charset=UTF-8", body: "" });
 assert(installHtml.res.status === 301, "/install.html 301 passes through");
+assert(installHtml.res.headers.get("x-robots-tag") == null, "/install.html 301 has no noindex");
 
 for (const path of ["/publish", "/vs", "/dashboard", "/policy", "/plugin-detail", "/c/vision", "/c/web-ui", "/c/tui"]) {
   const res = await statusOf(path, { body: path.startsWith("/c/") ? VISION : INDEX });
@@ -83,6 +158,7 @@ for (const path of ["/publish", "/vs", "/dashboard", "/policy", "/plugin-detail"
 for (const path of ["/c/vision.html", "/c/web-ui/", "/c/tui.html"]) {
   const res = await statusOf(path, { status: 308, contentType: "text/plain", body: "" });
   assert(res.res.status === 308, `${path} redirect passes through`);
+  assert(res.res.headers.get("x-robots-tag") == null, `${path} redirect has no noindex`);
 }
 
 const modlens = await statusOf("/plugins/modlens");
@@ -629,6 +705,7 @@ for (const path of [
   });
   assert(res.res.status === 410, `${path} → 410`);
   assert(res.text.startsWith("Gone."), `${path} keeps Gone body`);
+  assert(res.res.headers.get("x-robots-tag") == null, `${path} 410 is not restamped`);
 }
 
 const lang = await statusOf("/?lang=en");
