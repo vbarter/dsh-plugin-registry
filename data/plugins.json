@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-19T07:47:34.853Z",
+  "generatedAt": "2026-11-19T12:50:57.360Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 32413,
-    "curated": 576,
-    "automaticallyDiscovered": 32038,
+    "curated": 577,
+    "automaticallyDiscovered": 32037,
     "patchFilesConfirmed": 28956,
     "published": 32614,
     "manifestRejected": 3634,
     "pendingReview": 3634,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -909390,13 +909390,13 @@
         "en": "Native Beav plugin for DeepSeek Harness"
       },
       "category": "tools",
-      "stars": 2,
+      "stars": 1,
       "forks": 0,
       "language": "TypeScript",
       "pushedAt": "2026-08-26T05:12:08Z",
       "addedAt": null,
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
+      "source": "curated",
+      "trustLevel": "curated",
       "verification": {
         "manifest": "shape_validated",
         "patch": "exists",
