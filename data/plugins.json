@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-22T07:12:56.647Z",
+  "generatedAt": "2026-11-22T13:49:45.204Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 33359,
-    "curated": 576,
+    "curated": 577,
     "automaticallyDiscovered": 32997,
-    "patchFilesConfirmed": 29874,
-    "published": 33573,
+    "patchFilesConfirmed": 29875,
+    "published": 33574,
     "manifestRejected": 3676,
     "pendingReview": 3676,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -1114893,6 +1114893,40 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "lonyness/dsh-rust-anything",
+      "name": "dsh-rust-anything",
+      "owner": "lonyness",
+      "url": "https://github.com/lonyness/dsh-rust-anything",
+      "description": {
+        "zh": "Native rust-anything migration tools and skills for DeepSeek Harness.",
+        "en": "Native rust-anything migration tools and skills for DeepSeek Harness."
+      },
+      "category": "skill",
+      "stars": 0,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-11-22T13:46:41Z",
+      "addedAt": "2026-11-22",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:lonyness/dsh-rust-anything",
+      "archived": false,
+      "topics": [
+        "code-migration",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin",
+        "mcp",
+        "rust"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/32832069?v=4"
     }
   ]
 }
