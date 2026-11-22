@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-22T07:12:56.647Z",
+  "generatedAt": "2026-11-22T16:43:15.059Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -60,7 +60,7 @@
     "manifestRejected": 3676,
     "pendingReview": 3676,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -6875,7 +6875,7 @@
       "stars": 98,
       "forks": 9,
       "language": "TypeScript",
-      "pushedAt": "2026-11-21T10:57:37Z",
+      "pushedAt": "2026-11-22T07:52:30Z",
       "addedAt": "2026-08-14",
       "source": "curated",
       "trustLevel": "curated",
@@ -6887,13 +6887,19 @@
       "install": "dsh plugin --profile web add github:PerryLink/dsh-mcp-panel",
       "archived": false,
       "topics": [
+        "ai-agent",
+        "ai-agents",
         "cordis",
         "deepseek",
         "deepseek-harness",
+        "developer-tools",
         "dsh",
         "dsh-plugin",
+        "management",
         "mcp",
         "mcp-client",
+        "mcp-console",
+        "model-context-protocol",
         "observability",
         "panel"
       ],
