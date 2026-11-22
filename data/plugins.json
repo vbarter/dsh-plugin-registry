@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-22T07:12:56.647Z",
+  "generatedAt": "2026-11-22T16:52:35.686Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -60,7 +60,7 @@
     "manifestRejected": 3676,
     "pendingReview": 3676,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -12030,7 +12030,7 @@
       "stars": 71,
       "forks": 4,
       "language": "PowerShell",
-      "pushedAt": "2026-11-21T10:58:46Z",
+      "pushedAt": "2026-11-22T07:59:09Z",
       "addedAt": "2026-08-15",
       "source": "curated",
       "trustLevel": "curated",
@@ -12043,13 +12043,20 @@
       "archived": false,
       "topics": [
         "agent-skill",
+        "ai-agent",
+        "ai-agents",
+        "checker",
+        "cli",
         "cordis",
         "deepseek",
         "deepseek-harness",
+        "developer-tools",
         "dsh",
         "dsh-plugin",
         "knowledge-base",
-        "plugin-development"
+        "plugin",
+        "plugin-development",
+        "scaffold"
       ],
       "icon": "https://avatars.githubusercontent.com/u/255665900?v=4"
     },
