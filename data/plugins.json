@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-22T07:12:56.647Z",
+  "generatedAt": "2026-11-22T15:37:12.688Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -60,7 +60,7 @@
     "manifestRejected": 3676,
     "pendingReview": 3676,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -8908,7 +8908,7 @@
       "stars": 21,
       "forks": 4,
       "language": "TypeScript",
-      "pushedAt": "2026-11-21T10:57:32Z",
+      "pushedAt": "2026-11-22T07:51:47Z",
       "addedAt": "2026-08-15",
       "source": "curated",
       "trustLevel": "curated",
@@ -8920,10 +8920,13 @@
       "install": "dsh plugin --profile web add github:PerryLink/dsh-composer-history",
       "archived": false,
       "topics": [
+        "ai-agent",
+        "ai-agents",
         "compaction",
         "composer",
         "context-window",
         "deepseek-harness",
+        "developer-tools",
         "dsh",
         "dsh-plugin",
         "input-history",
