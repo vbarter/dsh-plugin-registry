@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-22T07:12:56.647Z",
+  "generatedAt": "2026-11-22T16:55:08.683Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 33359,
-    "curated": 576,
-    "automaticallyDiscovered": 32997,
+    "curated": 577,
+    "automaticallyDiscovered": 32996,
     "patchFilesConfirmed": 29874,
     "published": 33573,
     "manifestRejected": 3676,
     "pendingReview": 3676,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -57881,35 +57881,26 @@
         "en": "GitHub PRs, reviews, issues and CI for DeepSeek Harness: approval-gated write tools, a CI composite action, a polling review bot and a status-check gate."
       },
       "category": "tools",
-      "stars": 33,
-      "forks": 9,
+      "stars": 6,
+      "forks": 0,
       "language": "TypeScript",
-      "pushedAt": "2026-11-21T10:58:22Z",
+      "pushedAt": "2026-11-22T08:04:46Z",
       "addedAt": "2026-11-02",
-      "source": "discovered",
-      "trustLevel": "manifest_verified",
+      "source": "curated",
+      "trustLevel": "curated",
       "verification": {
         "manifest": "shape_validated",
         "patch": "exists",
         "installation": "not_tested"
       },
-      "install": "dsh plugin --profile web add github:PerryLink/dsh-github",
+      "install": "dsh plugin --profile web add github:PerryLink/dsh-github-bot",
       "archived": false,
       "topics": [
-        "ai-agent",
-        "ai-agents",
         "ci",
-        "ci-cd",
-        "code-review",
         "deepseek-harness",
-        "developer-tools",
         "dsh",
         "dsh-plugin",
-        "github",
-        "github-actions",
-        "github-integration",
-        "issue-tracker",
-        "pull-request"
+        "github"
       ],
       "icon": "https://avatars.githubusercontent.com/u/255665900?v=4"
     },
