@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-22T07:12:56.647Z",
+  "generatedAt": "2026-11-22T17:57:49.076Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 33359,
-    "curated": 576,
+    "curated": 577,
     "automaticallyDiscovered": 32997,
-    "patchFilesConfirmed": 29874,
-    "published": 33573,
+    "patchFilesConfirmed": 29875,
+    "published": 33574,
     "manifestRejected": 3676,
     "pendingReview": 3676,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -1114893,6 +1114893,36 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "PerryLink/dsh-provider-params",
+      "name": "dsh-provider-params",
+      "owner": "PerryLink",
+      "url": "https://github.com/PerryLink/dsh-provider-params",
+      "description": {
+        "zh": "Vendor parameter mapping and deterministic JSON repair for DeepSeek Harness: params_map/params_compare/params_vendors map temperature, top_p, max_tokens, stop, system and related fields across 11 LLM vendors, and json_repair fixes broken JSON tool output without fabricating data.",
+        "en": "Vendor parameter mapping and deterministic JSON repair for DeepSeek Harness: params_map/params_compare/params_vendors map temperature, top_p, max_tokens, stop, system and related fields across 11 LLM vendors, and json_repair fixes broken JSON tool output without fabricating data."
+      },
+      "category": "model",
+      "stars": 2,
+      "forks": 1,
+      "language": "TypeScript",
+      "pushedAt": "2026-11-22T16:26:56Z",
+      "addedAt": "2026-11-22",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:PerryLink/dsh-provider-params",
+      "archived": false,
+      "topics": [
+        "deepseek-harness",
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/255665900?v=4"
     }
   ]
 }
