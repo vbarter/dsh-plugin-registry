@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-22T07:12:56.647Z",
+  "generatedAt": "2026-11-22T15:01:18.701Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -60,7 +60,7 @@
     "manifestRejected": 3676,
     "pendingReview": 3676,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -9021,7 +9021,7 @@
       "stars": 141,
       "forks": 4,
       "language": "TypeScript",
-      "pushedAt": "2026-11-21T10:57:45Z",
+      "pushedAt": "2026-11-22T08:15:43Z",
       "addedAt": "2026-08-15",
       "source": "curated",
       "trustLevel": "curated",
@@ -9033,17 +9033,24 @@
       "install": "dsh plugin --profile web add github:PerryLink/dsh-permission-rules",
       "archived": false,
       "topics": [
+        "ai-agent",
+        "ai-agents",
         "ai-safety",
         "allow-deny-ask",
         "approval",
         "cordis",
         "deepseek",
         "deepseek-harness",
+        "developer-tools",
         "dsh",
         "dsh-plugin",
+        "network",
+        "network-policy",
         "permission",
         "policy",
-        "safety"
+        "proxy",
+        "safety",
+        "sandbox"
       ],
       "icon": "https://avatars.githubusercontent.com/u/255665900?v=4"
     },
