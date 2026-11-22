@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-22T07:12:56.647Z",
+  "generatedAt": "2026-11-22T16:54:02.314Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -60,7 +60,7 @@
     "manifestRejected": 3676,
     "pendingReview": 3676,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -8870,7 +8870,7 @@
       "stars": 33,
       "forks": 4,
       "language": "JavaScript",
-      "pushedAt": "2026-11-21T10:58:14Z",
+      "pushedAt": "2026-11-22T07:46:20Z",
       "addedAt": "2026-08-15",
       "source": "curated",
       "trustLevel": "curated",
@@ -8882,13 +8882,18 @@
       "install": "dsh plugin --profile web add github:PerryLink/dsh-checkpoint-rewind",
       "archived": false,
       "topics": [
+        "ai-agent",
+        "ai-agents",
         "checkpoint",
+        "config-restore",
         "cordis-plugin",
         "deepseek-harness",
+        "developer-tools",
         "dsh",
         "dsh-plugin",
         "rewind",
         "session-fork",
+        "session-replay",
         "snapshot",
         "undo",
         "workspace-safety"
