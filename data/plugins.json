@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-22T07:12:56.647Z",
+  "generatedAt": "2026-11-22T17:59:33.026Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 33359,
-    "curated": 576,
+    "curated": 577,
     "automaticallyDiscovered": 32997,
-    "patchFilesConfirmed": 29874,
-    "published": 33573,
+    "patchFilesConfirmed": 29875,
+    "published": 33574,
     "manifestRejected": 3676,
     "pendingReview": 3676,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -1114893,6 +1114893,36 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "PerryLink/dsh-settlement-docs",
+      "name": "dsh-settlement-docs",
+      "owner": "PerryLink",
+      "url": "https://github.com/PerryLink/dsh-settlement-docs",
+      "description": {
+        "zh": "Check a construction final-settlement document checklist against what was actually submitted: missing documents, short copies, missing signatures/stamps and the completeness rate; export a review worksheet CSV.",
+        "en": "Check a construction final-settlement document checklist against what was actually submitted: missing documents, short copies, missing signatures/stamps and the completeness rate; export a review worksheet CSV."
+      },
+      "category": "tools",
+      "stars": 2,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-11-22T16:27:16Z",
+      "addedAt": "2026-11-22",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:PerryLink/dsh-settlement-docs",
+      "archived": false,
+      "topics": [
+        "deepseek-harness",
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/255665900?v=4"
     }
   ]
 }
