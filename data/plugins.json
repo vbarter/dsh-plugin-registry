@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-22T07:12:56.647Z",
+  "generatedAt": "2026-11-22T15:58:41.972Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -60,7 +60,7 @@
     "manifestRejected": 3676,
     "pendingReview": 3676,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -8827,10 +8827,10 @@
         "en": "Second-model auto-review on the approval answerer chain: a read-only reviewer subagent returns structured allow/deny verdicts with reasons, fail-closed by default."
       },
       "category": "workflow",
-      "stars": 254,
+      "stars": 255,
       "forks": 9,
       "language": "TypeScript",
-      "pushedAt": "2026-11-21T11:01:26Z",
+      "pushedAt": "2026-11-22T07:51:23Z",
       "addedAt": "2026-08-15",
       "source": "curated",
       "trustLevel": "curated",
@@ -8842,12 +8842,16 @@
       "install": "dsh plugin --profile web add github:PerryLink/dsh-auto-review",
       "archived": false,
       "topics": [
+        "ai-agent",
+        "ai-agents",
         "ai-safety",
         "approval",
         "auto-review",
+        "code-review",
         "cordis",
         "deepseek",
         "deepseek-harness",
+        "developer-tools",
         "dsh",
         "dsh-plugin",
         "llm",
