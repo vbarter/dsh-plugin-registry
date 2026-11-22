@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-22T07:12:56.647Z",
+  "generatedAt": "2026-11-22T15:01:04.445Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -60,7 +60,7 @@
     "manifestRejected": 3676,
     "pendingReview": 3676,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -8949,7 +8949,7 @@
       "stars": 146,
       "forks": 4,
       "language": "JavaScript",
-      "pushedAt": "2026-11-21T10:57:40Z",
+      "pushedAt": "2026-11-22T07:58:53Z",
       "addedAt": "2026-08-14",
       "source": "curated",
       "trustLevel": "curated",
@@ -8962,10 +8962,13 @@
       "archived": false,
       "topics": [
         "agent-memory",
+        "ai-agent",
+        "ai-agents",
         "approval",
         "audit",
         "cordis",
         "deepseek-harness",
+        "developer-tools",
         "dsh",
         "dsh-plugin",
         "llm",
