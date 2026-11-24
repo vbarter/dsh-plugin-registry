@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "id": "finogeeks/finsafe",
+    "url": "https://github.com/finogeeks/finsafe",
+    "submittedAt": "2026-11-24T05:20:07.712Z",
+    "issue": 903,
+    "reason": "not a DSH plugin (missing dsh-plugin topic or dsh.bundle / dsh.plugin / dsh-related package.json)",
+    "status": "pending"
+  }
+]
