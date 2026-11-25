@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-24T10:15:44.380Z",
+  "generatedAt": "2026-11-25T08:11:52.700Z",
   "categories": {
     "ui": {
       "en": "UI Enhancements",
@@ -53,14 +53,14 @@
   },
   "stats": {
     "topicCandidates": 34070,
-    "curated": 576,
+    "curated": 577,
     "automaticallyDiscovered": 33740,
-    "patchFilesConfirmed": 30594,
-    "published": 34316,
+    "patchFilesConfirmed": 30595,
+    "published": 34317,
     "manifestRejected": 3699,
     "pendingReview": 3699,
     "quarantined": 1,
-    "discoveryMode": "partial"
+    "discoveryMode": "ingest"
   },
   "sources": {
     "curated": "https://awesome-dsh-plugin.com/plugins.json",
@@ -1139417,6 +1139417,36 @@
         "dsh-plugin"
       ],
       "icon": "https://avatars.githubusercontent.com/u/12806611?v=4"
+    },
+    {
+      "id": "carloskey/dsh-automation-dashboard",
+      "name": "@carloskey/dsh-automation-dashboard",
+      "owner": "carloskey",
+      "url": "https://github.com/carloskey/dsh-automation-dashboard",
+      "description": {
+        "zh": "A standalone sci-fi dashboard for the official automation tasks: task status cards, a top readout bar (fired today, on-time delivery rate, next-run countdown) and a delivery-record timeline. Read only — every value comes from the official schedule service, and the Automation tasks page is left untouched.",
+        "en": "A standalone sci-fi dashboard for the official automation tasks: task status cards, a top readout bar (fired today, on-time delivery rate, next-run countdown) and a delivery-record timeline. Read only — every value comes from the official schedule service, and the Automation tasks page is left untouched."
+      },
+      "category": "workflow",
+      "stars": 1,
+      "forks": 0,
+      "language": "JavaScript",
+      "pushedAt": "2026-11-25T07:28:45Z",
+      "addedAt": "2026-11-25",
+      "source": "curated",
+      "trustLevel": "curated",
+      "verification": {
+        "manifest": "shape_validated",
+        "patch": "exists",
+        "installation": "not_tested"
+      },
+      "install": "dsh plugin --profile web add github:carloskey/dsh-automation-dashboard",
+      "archived": false,
+      "topics": [
+        "deepseek-harness",
+        "dsh-plugin"
+      ],
+      "icon": "https://avatars.githubusercontent.com/u/46745917?v=4"
     }
   ]
 }
